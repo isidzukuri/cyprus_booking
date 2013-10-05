@@ -1,0 +1,61 @@
+ru:
+  front_all:
+    small_title: ПДД онлайн
+    big_title: Мгновенная оплата штрафов
+    back_to_dai: Вернутся на сайт ДАИ
+    my_cabinet: Личный кабинет
+    main: Главная
+    structure: Структура
+    regions: Региональные подразделения
+    contacts: Контакты
+    news: Новости
+    administration: Руководство
+    copy: При копировании материалов обязательна ссылка на ресурс!
+    kazna: Управление казначейства
+    next: Продолжить
+    send_data: Отправить данные
+    payment_details: Банковские реквизиты получателя
+    protocol: Протокол
+    serial: Серия
+    protocol_date: Дата постановления
+    protocol_penalty: Сумма штрафа, грн.
+    user_data: Данные плательщика
+    user_last_name: Фамилия 
+    user_first_name: Имя 
+    user_patronic: Отчество
+    user_address: Адрес плательщика штрафа
+    user_city: Город
+    user_street: Улица
+    user_building: № Дома
+    polu4atel: Получатель
+    erdpo: ЕГРПОУ (ОКПО)
+    mfo: МФО
+    s4et: Расчетный счет
+    user_email: Email
+    payment_details: Информация о платеже
+    payer_details: Информация о плательщике
+    oferta: публичной оферты
+    cost: Стоимость платежа
+    duplicat_error: Вы уже создавали платеж с такими данными, оплатите  его из кабинета
+    payment_date: Дата операции
+    polu4atel_pl: Получатель платежа
+    nazna4enit: Назначение платежа
+    summ: Сумма платежа
+    fio: ФИО плательщика
+    registr: Место проживания (регистрация)
+    payment_tax: Сбор за обработку платежа
+    invoice: Получить оригинал квитанции почтой
+    total_summ: Всего к оплате
+    i_accept: Согласен с правилами
+    go_pay: Перейти к оплате
+    oferta_rules: Правила публичной оферты 
+    popup_title: ДОГОВОР МЕЖДУ КЛИЕНТОМ И TICKETS.UA
+    my_orders: Мои квитанции
+    exit: Выход
+    timeout_error: Время оплаты истекло, создайте платеж заново
+    pay_desc: "Оплата протокола № %{number}"
+    steps:
+      step_1: Регион
+      step_2: Реквизиты
+      step_3: Квитанция
+      step_4: Оплата

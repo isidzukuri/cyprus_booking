@@ -1,0 +1,49 @@
+#tabs-wrapper
+  .row-fluid
+    %a.span2.tab{:href=>"/admin/articles"}
+      = t("admin.articles.list")
+    %a.span2.tab.active{:href=>"/admin/articles/regions"}
+      = t("admin.articles.region_list")
+    %a.span2.tab{:href=>"/admin/articles/banks"}
+      = t("admin.articles.banks")
+    %a.span2.tab{:href=>"/admin/articles/new"}
+      = t("admin.articles.kazn_new")
+    %a.span2.tab{:href=>"#"}
+      = t("admin.articles.kazn_edit")
+#pad-wrapper.users-list{:"data-auto-controller"=>"AdminArticlesItemsController"}
+  .row-fluid.header
+    %h3= t("admin.articles.region_list")
+    .span10.pull-right
+      %a.btn-flat.success.pull-right{:"data-type"=>"Region"}
+        %span +
+        = t("admin.articles.add")
+  %p{:style=>"font-weight: bold;color:green"}=flash[:notice] 
+  - unless flash[:errors].nil? 
+    - flash[:errors].each_pair do |field,mes|
+      %p{:style=>"font-weight: bold;color:red"}=t("admin.articles.#{field}") + ": " + mes.first
+  .row-fluid.table
+    %table.table.table-hover 
+      %thead
+        %tr
+          %th.span2.sortable
+            = t("admin.articles.name_ru")    
+          %th.span2.sortable
+            %span.line
+            = t("admin.articles.name_ua") 
+          %th.span2.sortable
+            %span.line
+            = t("admin.articles.actions") 
+      %tbody
+        - @regions.each_with_index do |region,i|
+          %tr{:class=>("active" if i == 0)}
+            %td
+              = link_to "#{region.name_ru}" , "#" , :class=>"name"
+            %td
+              = link_to "#{region.name_ua}" , "#" , :class=>"name"
+            %td
+              %a.btn-flat.success.edit{:"data-id"=>region.id, :"data-type"=>"Region"}
+                = t("admin.articles.edit")
+              %a.btn-flat.danger.delete{:"data-id"=>region.id, :"data-type"=>"Region"}
+                = t("admin.articles.delete")
+  .pagination.pull-right 
+    = will_paginate @regions         

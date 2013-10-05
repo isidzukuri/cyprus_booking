@@ -1,0 +1,74 @@
+#tabs-wrapper
+  .row-fluid
+    %a.span2.tab.active{:href=>"/admin/users"}
+      = t("admin.users.list")
+    %a.span2.tab{:href=>"/admin/users/new"}
+      = t("admin.users.add_new")
+    %a.span2.tab{:href=>"#"}
+      = t("admin.users.add_edit")
+
+
+#pad-wrapper.users-list
+  .row-fluid.header
+    %h3= t("admin.users.search")
+    .span10.pull-right
+      = form_tag admin_users_path, :method=>:get do
+        = text_field_tag  :email ,params[:email], :placeholder=>"Email", :class=>"span5 search" , :required=>true
+        .ui-dropdown
+          = submit_tag t("admin.users.search") ,:class=>"btn-flat success"
+        %a.btn-flat.success.pull-right{:style=>"margin-left: 10px;",:href=>"/admin/users?type=1"}
+          = t("admin.users.show_admin")
+        %a.btn-flat.success.pull-right{:href=>new_admin_user_path}
+          %span +
+          = t("admin.users.add")     
+      %p{:style=>"font-weight: bold;color:green"}=flash[:notice] 
+      %p{:style=>"font-weight: bold;color:red"}=flash[:error] 
+      - unless flash[:errors].nil? 
+        - flash[:errors].each_pair do |field,mes|
+          %p{:style=>"font-weight: bold;color:red"}=t("admin.users.#{field}") + ": " + mes.first
+  .row-fluid.table{:"data-auto-controller"=>"AdminUsersController"}
+    %table.table.table-hover
+      %thead
+        %tr
+          %th.span2.sortable
+            = form_tag admin_users_path, :method=>:get do
+              = hidden_field_tag :sort , "last_name"
+              = hidden_field_tag :dir , @dir
+              = t("admin.users.name")    
+          %th.span2.sortable
+            %span.line
+            = form_tag admin_users_path, :method=>:get do
+              = hidden_field_tag :sort , "email"
+              = hidden_field_tag :dir , @dir
+              = t("admin.users.email") 
+          %th.span2.sortable
+            %span.line
+            = form_tag admin_users_path, :method=>:get do
+              = hidden_field_tag :sort , "created_at"
+              = hidden_field_tag :dir , @dir
+              = t("admin.users.created") 
+          %th.span2.sortable
+            %span.line
+            = form_tag admin_users_path, :method=>:get do
+              = hidden_field_tag :sort , "active"
+              = hidden_field_tag :dir , @dir
+              = t("admin.users.active") 
+          %th.span2.sortable
+            %span.line
+              = t("admin.users.penalties") 
+      %tbody
+        - @users.each_with_index do |user,i|
+          %tr{:class=>("active" if i == 0)}
+            %td
+              = link_to "#{user.last_name} #{user.first_name} #{user.patronic}" , edit_admin_user_path(user.id) , :class=>"name"
+              %span.subtext=user.roles.map{|role| role.name}.join(",")
+            %td
+              = link_to user.email , edit_admin_user_path(user.id) , :class=>"name"
+            %td=l(user.created_at.to_date,:format=>:long)
+            %td{:class=>"_user_active_#{user.active}"}=t("admin.users.active_#{user.active}")
+            %td=user.penalties.count
+  .pagination.pull-right 
+    - if params[:type].nil?
+      = will_paginate @users         
+
+

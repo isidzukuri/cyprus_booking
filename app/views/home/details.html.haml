@@ -1,0 +1,77 @@
+= book_steps(t("front_all.steps").values,1)
+.content_box
+  - unless flash[:errors].nil? 
+    - flash[:errors].each_pair do |field,mes|
+      %p{:style=>"font-weight: bold;color:red;text-align: center;"}=t("admin.users.#{field}") + ": " + mes.first
+  = form_for @penalty , :url=>check_details_path , :remote=>false,:html=>{:class=>"jNice",:"data-auto-controller"=>"DetailsFormController"} do |f|
+    = f.hidden_field :payment_detail_id
+    .details_row
+      .left_details=t("front_all.payment_details")
+      .right_details
+        - details = @penalty.payment_detail
+        %p
+          %span=t("front_all.polu4atel")
+          = "#{details.bank.name} (#{details.name}), #{details.budget_code} "
+        %p
+          %span=t("front_all.erdpo")
+          = details.edrpo
+        %p
+          %span=t("front_all.mfo")
+          = details.bank.bank_code
+        %p
+          %span=t("front_all.s4et")
+          = details.payment_number
+      .clr
+    .details_row
+      .left_details=t("front_all.protocol")
+      .right_details
+        %fieldset
+          = f.label :protocol_serial , t("front_all.serial")
+          = f.text_field :protocol_serial ,:class=>"in in_57 only_chars_and_numbers" ,:required=>true
+        %fieldset
+          = f.label :protocol_number , "№"
+          = f.text_field :protocol_number ,:class=>"in in_143 only_numbers" ,:required=>true
+        .clr
+        %fieldset
+          = f.label :protocol_date , t("front_all.protocol_date")
+          = f.text_field :protocol_date , :id => "datepicker" ,:required=>true
+        .clr
+        %fieldset
+          = f.label :protocol_penalty , t("front_all.protocol_penalty")
+          = f.text_field :protocol_penalty ,:class=>"in only_numbers" ,:required=>true
+        .clr
+        = f.fields_for :user , @user do |fu|
+          %p.gray=t("front_all.user_data")
+          .clr
+          %fieldset
+            - unless logged_in?
+              = fu.hidden_field :password , :value=> @password
+            = fu.label :last_name , t("front_all.user_last_name")
+            = fu.text_field :last_name ,:class=>"in only_cyrylic" ,:required=>true
+          %fieldset
+            = fu.label :first_name , t("front_all.user_first_name")
+            = fu.text_field :first_name ,:class=>"in only_cyrylic" ,:required=>true
+          %fieldset
+            = fu.label :patronic , t("front_all.user_patronic")
+            = fu.text_field :patronic ,:class=>"in only_cyrylic" ,:required=>true
+          .clr
+          %p.gray=t("front_all.user_address")
+          .clr
+          %fieldset
+            = fu.label :city , t("front_all.user_city")
+            = fu.text_field :city ,:class=>"in only_cyrylic" ,:required=>true
+          %fieldset
+            = fu.label :street , t("front_all.user_street")
+            = fu.text_field :street ,:class=>"in only_cyrylic" ,:required=>true
+          %fieldset
+            = fu.label :building , t("front_all.user_building")
+            = fu.text_field :building ,:class=>"in cyrylic_with_numbers" ,:required=>true
+          .clr
+          %fieldset
+            = fu.label :email , t("front_all.user_email")
+            = fu.text_field :email ,:class=>"in" ,:required=>true ,:type=>:email, :readonly=>(true if logged_in?)
+            .clr
+      .clr
+      -#= link_to t("front_all.send_data") ,"#", :class=>"btn"
+      = f.submit t("front_all.send_data") , :class=>"btn"
+    .clr

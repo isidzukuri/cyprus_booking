@@ -1,0 +1,108 @@
+body{ 
+    margin: 0; 
+    padding: 0;
+    background: url("../images/graybg.png") repeat scroll center top transparent;
+    font-family: Tahoma,Arial,Helvetica,sans-serif;
+}
+
+div.top_menu{
+    position: absolute;
+    top:0;
+    left: 0;
+    right: 0;
+    height: 40px;
+    background: #000;
+}
+
+
+div.top_menu  div.home{
+    margin: 9px 25px;
+}
+div.top_menu  a{
+    color: #fff;    
+    text-decoration: none;
+}
+
+div.top_menu a:hover{
+    text-decoration: underline;
+}
+
+div.top_menu div.title{
+    margin: 0 25px;
+    float: right;
+}
+
+div.top_menu div.title h1{
+    font-size: 100%;
+    font-weight: normal;
+}
+
+div.wrap{
+    margin: 50px auto;
+    width: 600px;
+    
+}
+
+form.form{
+    width: 600px;
+    margin: 0 auto;
+}
+
+form.form div {
+    padding:4px;
+    margin: 4px 0;
+    position:relative;
+}
+
+form.form input.text,
+.textarea {
+    padding:5px 10px;
+    height:20px;
+    border:1px solid #ddd;
+    color:#333;
+    background:url(../images/bginput.jpg) repeat-x bottom #fff;
+    position:relative;
+    z-index:2;
+    font-size: 16px;
+}
+
+form.form input.text {
+    width:290px;
+}
+
+form.form .textarea {
+    height:150px;
+    width:290px;
+}
+
+form.form label {
+    float:left;
+    width:120px;
+    text-align:right;
+    margin-right:15px;
+    font-weight:bold;
+    color:#666;
+    font-size: 13px;
+}
+
+form.form .btn {
+    display:block;
+    height:31px;
+    padding:0 10px;
+    background:url(../images/bgbtn.jpg) repeat-x;
+    color:#565e62;
+    font-weight:bold;
+    font-size:12px;
+    border:1px solid #e1e0df;
+    outline:none;
+    cursor: pointer;
+}
+
+/* CSS3 */
+form.form .btn,
+form.form .text,
+form.form .textarea { 
+-moz-border-radius:8px;
+-webkit-border-radius:8px;
+border-radius:8px;
+}

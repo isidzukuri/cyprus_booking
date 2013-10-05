@@ -1,0 +1,110 @@
+ru:
+  admin:
+    penalties: 
+      list: Список штрафов
+      name: Пользователь
+      show: Просмотр шртафа
+      polu4atel: Получатель
+      protocol: Протокол
+      created: Создан
+      status: Статус
+      status_1: Создан
+      status_2: Оплачен
+      address: Прописка платильщика
+      protocol_date: Дата протокола
+      s4et: Расчетный счет
+      mfo: МФО
+      erdpo: ЕГРПОУ (ОКПО)
+      protocol_price: Сумма штрафа
+      bumajka: Заказана бумажная копия?
+      summa: Сумма
+      trans_list: Список транзакций
+      trans_show: Просмотр тразакции
+      amount: Сумма
+      total_amount: Общая сумма оплаты
+      commision: Коммисия
+    settings: 
+      index: Настройки
+      price: Цена бумажной квитанции
+      save: Сохранить
+      price_desc: Установите 0 для отключения опции
+      lang_desc: Установите язык по умолчанию
+      key_desc: Ключи для оплаты через FatPayments
+      shop_secret_key: Серкрет магазина
+      shop_api_key: Ключ магазина
+      lang: Язык по умолчанию
+      oferta_ru: Договор оферты RU
+      oferta_ua: Договор оферты UA
+      shop_link: URL для обработки оплаты
+    articles:
+      kkdb_types:
+        first: Административные штрафы в сфере обеспечения безопасности дорожнего движения
+      bank_id: Банк
+      region_id: Область
+      budget_code_name: Наименование платежа
+      payment_number: № Счета
+      budget_code: КБКД
+      edrpo: ЄДРПОУ
+      region: Область
+      name: Наименование
+      title: Справочник казначейств 
+      list: Список казначейств
+      region_list: Области / районы
+      kazn_new: Добавление казначейства
+      kazn_edit: Редактирование казначейства
+      banks: Банки
+      name_ru: Название RU
+      name_ua: Навзание UA
+      bank_code: Код банка
+      bank_list: Список банков
+      region_list: Список областей
+      add: Добавить
+      actions: Действия
+      edit: Редактировать
+      delete: Удалить
+      cancel: Отмена
+      save: Сохранить
+      bank_modal: Редактирование / Создание Банка
+      region_modal: Редактирование / Создание Региона
+      delete_success: Успешно удалено
+      saved: Успешно сохранено
+      default_error: Невозможно удалить так как обекты в базе ссылаются на данный обект , сначала удалите их
+
+
+    emails:
+      title: Шаблоны Email
+      list: Список шаблонов
+      edit_template: Редактирование шаблона
+      edit: "Редактирование шаблона '%{template}'"
+      changed: Шаблон изменен успешно
+      vars: Динамические данные письма
+      vars_info: При нажатии в окне редактирования появится спец символ
+    users:
+      pass_info: Вы можете завдать свой пароль или пароль будет сгнерирован автоматически. После изменения пароля пользователю будет отправлено електронное письмо с новым паролем
+      pass_change: Изменение пароля
+      change_pass: Отправить пароль
+      show_admin: Показать администраторов
+      generate_pass: Изменить автоматически
+      list: Список юзеров
+      add_new: Добавление юзера
+      add_edit: Редактирование юзера
+      add: Добавить пользователя
+      not_exist: Такой пользователь не существует
+      search: Поиск
+      name: Имя
+      email: Email
+      created: Создан
+      penalties: Оплат
+      role: Тип
+      active: Активен?
+      active_0: Нет
+      active_1: Да
+      city: Город
+      street: Улица
+      building: Дом
+      first_name: Имя
+      last_name: Фамилия
+      patronic: Отчество
+      address: Адресс
+      new: Создать
+      edit: Редактировать

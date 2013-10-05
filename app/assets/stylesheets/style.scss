@@ -1,0 +1,135 @@
+/*===============================================*/
+/*   Mixu  */
+/*===============================================*/
+.b {
+  font-weight: bold;
+}
+.fl {
+  float: left;
+}
+.fr {
+  float: right;
+}
+.tdu {
+  text-decoration: underline;
+}
+.tdn {
+  text-decoration: none;
+}
+.cur {
+  cursor: pointer;
+}
+.ttu {
+  text-transform: uppercase;
+}
+.clr {
+  clear: both;
+}
+.ma {
+  margin: 0 auto;
+}
+.pa {
+  position: absolute;
+}
+.pr {
+  position: relative;
+}
+.hid {
+  overflow: hidden;
+}
+/*===============================================*/
+/*   STRUCTURE  */
+/*===============================================*/
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+nav,
+section,
+audio,
+canvas,
+video {
+  display: block;
+}
+html {
+  height: 100%;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+body {
+  width: 100%;
+  height: 100%;
+  color: #000000;
+  line-height: 18px;
+  font-size: 14px;
+  font-family: 'Arial', sans-serif;
+  background-color: #f3f3f3;
+  background-repeat: repeat-x;
+  background-position: 0 0;
+}
+a {
+  color: #000000;
+  text-decoration: underline;
+  cursor: pointer;
+}
+a:hover {
+  text-decoration: none;
+  color: #000000;
+}
+img {
+  border: none;
+}
+input {
+  vertical-align: middle;
+}
+ul {
+  margin: 0;
+  list-style: none;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: normal;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+table, th, td {
+  border: none;
+}
+figure {
+  position: relative;
+}
+figure img,
+figure object,
+figure embed,
+figure video {
+  max-width: 100%;
+  display: block;
+}
+.content{
+  width: 100%;
+  height: 100%;
+}
+#map_apartments{
+  width: 100%;
+  height: 100%;
+}
+#header{
+    background: image-url("header.jpg") no-repeat left center;
+    height: 168px;
+    width:100%;
+}

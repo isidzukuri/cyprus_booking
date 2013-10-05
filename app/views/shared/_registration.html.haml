@@ -1,0 +1,16 @@
+= form_tag user_auth_path, :remote=>true, :"data-auto-controller"=>"LoginController"  do 
+  .registration
+    .title=t("user.title")
+    %p=t("user.desc")
+    = text_field :user,:email,:required=>true,:type=>:email,:placeholder=>"email"
+    = text_field :user,:password,:required=>true,:type=>:password,:placeholder=>t("user.pass")
+    = link_to t("user.forgot") ,"#" ,:class=>"forgot"
+    = link_to t("user.enter") , "#" ,:class=>"btn submit"
+
+= form_tag user_forgot_path, :remote=>true,:style=>"display:none;", :"data-auto-controller"=>"ForgotController"  do 
+  .registration
+    .title=t("user.forgot_tittle")
+    %p=t("user.forgot_desc")
+    = text_field :user,:email,:required=>true,:type=>:email,:placeholder=>"email"
+    = link_to t("user.enter") ,"#" ,:class=>"login"
+    = link_to t("user.send") , "#" ,:class=>"btn submit"

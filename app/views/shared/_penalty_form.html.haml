@@ -1,0 +1,93 @@
+.content_box
+  = form_for @penalty , :url=>@url , :remote=>false,:html=>{:class=>"jNice",:"data-auto-controller"=>"BookingFormController"} do |f|
+    = f.hidden_field :payment_detail_id
+    = f.hidden_field :protocol_serial
+    = f.hidden_field :protocol_date
+    = f.hidden_field :protocol_number
+    = f.hidden_field :protocol_penalty
+    - unless @penalty.status.nil?
+      = f.hidden_field :id
+    .details_row
+      .left_details=t("front_all.payment_details")
+      .right_details
+        - details = @penalty.payment_detail
+        %p
+          %span=t("front_all.polu4atel")
+          = "#{details.bank.name} (#{details.name}), #{details.budget_code} "
+        %p
+          %span=t("front_all.erdpo")
+          = details.edrpo
+        %p
+          %span=t("front_all.mfo")
+          = details.bank.bank_code
+        %p
+          %span=t("front_all.s4et")
+          = details.payment_number
+      .clr
+    .title_row
+      = t("front_all.payment_details")
+    %table.simple
+      %tbody
+        %tr.head_tr
+          %td{:width=>"140"}=t("front_all.payment_date")
+          %td{:width=>"320"}=t("front_all.polu4atel_pl")
+          %td{:width=>"240"}=t("front_all.nazna4enit")
+          %td.last=t("front_all.summ")
+        %tr
+          %td=l(Date.today,:format=>:long)
+          %td=details.bank.name
+          %td
+            =@penalty.appoitment
+            %br
+            =@penalty.user.fio
+          %td.last.to_calc #{@penalty.protocol_penalty} ГРН
+    .title_row
+      = t("front_all.payer_details")
+    %table.simple
+      %tbody
+        %tr.head_tr
+          %td{:width=>"140"}=t("front_all.fio")
+          %td{:width=>"320"}
+          %td{:width=>"240"}=t("front_all.registr")
+          %td.last
+        %tr
+          %td{:colspan=>2}=@penalty.user.fio
+          %td.last=@penalty.user.address
+    .title_row
+      = t("front_all.cost")
+    %table.simple.border
+      %tbody
+        %tr
+          %td{:width=>"300"}=t("front_all.payment_tax")
+          %td.last.to_calc #{@pm.surchage} ГРН
+        -if @pm.invoice_price > 0 
+          -if @penalty.status == 2 && @penalty.has_invoice == 1 || @penalty.status != 2
+            %tr
+              %td
+                - unless @penalty.status == 2 && @penalty.has_invoice == 1
+                  = f.check_box :has_invoice
+                = t("front_all.invoice")
+              %td.last
+                %span.gray #{@pm.invoice_price} ГРН
+        %tr.summ.red
+          %td=t("front_all.total_summ")
+          %td.last
+  .clr
+  - if @penalty.status != 2
+    %p.license.jNice
+      = check_box(:eula,:accept,{:required=>true})
+      = t("front_all.i_accept")
+      %span.license_pop_up=t("front_all.oferta")
+    = link_to t("front_all.go_pay") ,"#", :class=>"btn submit"
+.popup{:style=>"display:none"}
+  .pop_up_bg
+  .pop_up{:style=>"top:50%"}
+    .head=t("front_all.oferta_rules")
+    #scrollbar
+      .scrollbar
+        .thumb
+          .end
+      .viewport
+        .overview
+          %p.title=t("front_all.popup_title")
+          = @offerta

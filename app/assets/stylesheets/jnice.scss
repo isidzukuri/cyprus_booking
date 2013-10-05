@@ -1,0 +1,109 @@
+/* -------------
+ * Checkboxes
+ * ------------- */
+.jNiceCheckbox {
+	background: transparent image-url("check_bg.png") no-repeat left top;
+	height: 12px;
+	width: 12px;
+	position:absolute;
+	left:0px;
+	top:3px;
+	z-index:2;
+	cursor:pointer;
+}
+
+.jNiceChecked {
+	background-position: left bottom;
+}
+
+/* -------------
+ * Selects
+ * ------------- */
+.jNiceWrapper select {
+	border:none;
+	margin:0;padding:0;
+}
+
+.jNiceSelectWrapper {
+	height: 17px;
+	left:0px;
+	top:0px;
+	position:absolute;
+}
+
+.jNiceWrapper iframe {
+	position:absolute;
+	z-index:1;
+	width:100%;
+	left:0px;
+	top:0px;
+}
+
+.jNiceSelectWrapper .jNiceSelectText {
+	height: 35px;
+	line-height: 35px;
+	padding: 0px 12px;
+	background-color: #FFF;
+	overflow:hidden;
+	float:none;
+	position:absolute;
+	z-index:100;
+	cursor: pointer;
+	width: 100% !important;
+	color: #6b6b6b;
+}
+
+.jNiceSelectWrapper .jNiceSelectOpen {
+	width: 44px;
+	height: 37px;
+	background: image-url("select_bg.png") no-repeat left top;
+	z-index:100;
+	display:block;
+	position:absolute;
+	right:-38px;
+	top:-1px;
+	cursor: pointer;
+}
+
+.jNiceSelectWrapper .jNiceSelectOpen:hover {
+	background-position: left bottom;
+}
+
+.jNiceSelectWrapper ul {
+	top: 36px;
+	background-color: #FFF;
+	border: solid 1px #cfcfcf;
+	height: auto !important;
+	max-height: 222px;
+	position:absolute;
+	left:-1px;
+	list-style:none;
+	display: none;
+	margin:0;
+	padding:0;
+	overflow-y:auto;
+	z-index:201;
+}
+
+.jNiceSelectWrapper ul a {
+	color:#6b6b6b;
+	background-color: #FFF;
+	display:block;
+	padding: 0 5px;
+	text-decoration:none;
+}
+
+.jNiceSelectWrapper ul a:hover {
+	background:#DDDDDD;
+}
+.jNiceSelectWrapper ul a.selected {
+	background: #EDEDED;
+}
+
+.jNiceFocus {
+	border: dotted 1px #666666;
+}
+
+.jNiceHidden {opacity:0;z-index:-1;position:relative;}
+.jNiceWrapper {position:relative;vertical-align:top;}
+.jNiceWrapper input {outline:none;moz-outline:none;}

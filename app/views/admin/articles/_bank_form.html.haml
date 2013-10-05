@@ -1,0 +1,17 @@
+.modal
+  .modal-header
+    %h3=t("admin.articles.bank_modal")
+  .modal-body
+    = form_for @item , :methid=>:post,:url => "/admin/articles/save_item"  do |f|
+      = hidden_field_tag :save_type , :Bank
+      = hidden_field_tag :id , @item.id
+      = f.label :name_ru , t("admin.articles.name_ru")    
+      = f.text_field :name_ru ,:class=>"" ,:required=>true
+      = f.label :name_ua , t("admin.articles.name_ua")    
+      = f.text_field :name_ua ,:class=>"" ,:required=>true
+      = f.label :bank_code , t("admin.articles.bank_code")    
+      = f.text_field :bank_code ,:class=>""
+
+  .modal-footer
+    %a.btn-flat.danger{:onclick=>"$.publish('close_modal')",:href=>"#"}=t("admin.articles.cancel")
+    %a.btn-flat.success{:onclick=>"$.publish('submit_data',$(this))",:href=>"#"}=t("admin.articles.save")

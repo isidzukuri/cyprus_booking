@@ -1,0 +1,45 @@
+#tabs-wrapper
+  .row-fluid
+    %a.span2.tab.active{:href=>"/admin/penalties"}
+      = t("admin.penalties.trans_list")
+    %a.span2.tab{:href=>"#"}
+      = t("admin.penalties.trans_show")
+
+
+#pad-wrapper.users-list
+  .row-fluid.header
+    - unless flash[:errors].nil? 
+      - flash[:errors].each_pair do |field,mes|
+        %p{:style=>"font-weight: bold;color:red"}=t("admin.users.#{field}") + ": " + mes.first
+  .row-fluid.table{:"data-auto-controller"=>"AdminUsersController"}
+    %table.table.table-hover
+      %thead
+        %tr
+          %th.span2.sortable
+            = t("admin.penalties.name")    
+          %th.span2.sortable
+            %span.line
+              = t("admin.penalties.polu4atel") 
+          %th.span2.sortable
+            %span.line
+              = t("admin.penalties.summa") 
+          %th.span2.sortable
+            %span.line
+              = t("admin.penalties.created") 
+          %th.span2.sortable
+            %span.line
+              = t("admin.penalties.status") 
+      %tbody
+        - @transactions.each_with_index do |pen,i|
+          %tr{:class=>("active" if i == 0)}
+            %td=pen.user.fio
+            %td #{pen.penalty.payment_detail.bank.name} (#{pen.penalty.payment_detail.name}), #{pen.penalty.payment_detail.budget_code}
+            %td
+              %a{:href=>admin_transaction_path(pen)}
+                = pen.amount  + " + "  + pen.commision + " Грн"
+            %td=l(pen.created_at,:format=>:long)
+            %td{:class=>"pen_status_#{pen.status}"}=t("admin.penalties.status_#{pen.status}")
+  .pagination.pull-right 
+    = will_paginate @penalties         
+
+

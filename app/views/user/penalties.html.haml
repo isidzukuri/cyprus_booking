@@ -1,0 +1,26 @@
+.steps
+  .title=t("user.list")
+.content_box
+  %table
+    %tbody
+      %tr.head_tr
+        %td{:width=>"140"}
+          = link_to t("front_all.payment_date"), "#"
+        %td{:width=>"320"}
+          = link_to t("front_all.polu4atel_pl") , "#"
+        %td{:width=>"240"}
+          = link_to t("front_all.nazna4enit"), "#"
+        %td.last   
+          = link_to t("front_all.summ")  ,"#"   
+      - @penalties.each do |pen|
+        %tr
+          %td
+            %a{:href=>"/user/penalties/#{pen.id}"}
+              =l(pen.created_at.to_date,:format=>:long)
+          %td=pen.payment_detail.bank.name
+          %td
+            =pen.appoitment
+            %br
+            =current_user.fio
+          %td.last #{pen.protocol_penalty} ГРН
+  = will_paginate @penalties

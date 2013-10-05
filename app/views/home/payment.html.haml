@@ -1,0 +1,33 @@
+= book_steps(t("front_all.steps").values,3)
+.content_box
+  = form_for @payment , :url=>pay_path , :html=>{:class=>"jNice",:"data-auto-controller"=>"PaymentFormController"} do |f|
+    .card_info_block.card2
+      .card_maininfo
+        .credit_row
+          .card_num
+            %span.label номер карты
+            - 4.times do |i|
+              = f.text_field :"card_number#{(i+1)}" ,:class=>"throw_tab textinp valid_card_number" ,:required=>true , :placeholder => "XXXX", :style=>"width:45px" , :"data-max_length" => 4
+            .clr
+        .credit_row
+          .valid_thru
+            %span.label valid/THRU
+            = f.text_field :card_valid_m ,:class=>"throw_tab textinp" ,:required=>true , :placeholder => "MM",  :"data-max_length" => 2
+            = f.text_field :card_valid_y ,:class=>"throw_tab textinp" ,:required=>true , :placeholder => "YY",  :"data-max_length" => 2
+            .clr
+        .credit_row
+          %span.label имя владельца карты
+          = f.text_field :card_holdername ,:class=>"throw_tab textinp only_latin_with_spaces" ,:required=>true , :placeholder => "IVAN PETROV"
+      .card_cwinfo
+        .credit_row.cw_cvc
+          %span.label CVV/CVC
+          = f.text_field :card_cvv ,:class=>"throw_tab textinp" ,:required=>true , :placeholder => "XXX", :"data-max_length" => 3
+      .clr  
+    .security_info
+      %a{:class=>"fancybox-link iframe",:href=>"https://gd.tickets.ua/pub/img_post/pci_dss_cert+jpg.html"}
+        Передача информации защищена сертификатом SSL 128 бит подписанным компанией Thawte. Сайт в полной мере отвечает стандартам безопасности платежных систем Visa и MasterCard (PCI compliancy). Надежность подтверждена сертификатом HackerSafe от McAfee.
+    %a.btn.submit{:href=>"#"} Оплатить
+    .clr
+
+
+      

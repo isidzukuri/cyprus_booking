@@ -1,0 +1,2 @@
+payment:
+  ip: http://10.6.11.89:8080/WebMainApp/MainServlet

@@ -1,0 +1,6 @@
+.span9.with-sidebar
+  .container
+    = form_for @email ,:url => admin_email_path(@email) ,:html=>{:class=>"new_user_form inline-input"} do |f|
+      = f.text_area :html , :style=>'width:100%;height:500px'
+      .span11.field-box.actions
+        = f.submit t("admin.users.#{params[:action]}"), :class=>"btn-glow primary"

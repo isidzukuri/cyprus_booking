@@ -1,0 +1,19 @@
+#tabs-wrapper
+  .row-fluid
+    %a.span2.tab{:href=>"/admin/articles"}
+      = t("admin.articles.list")
+    %a.span2.tab{:href=>"/admin/articles/regions"}
+      = t("admin.articles.region_list")
+    %a.span2.tab{:href=>"/admin/articles/banks"}
+      = t("admin.articles.banks")
+    %a.span2.tab{:href=>"/admin/articles/new"}
+      = t("admin.articles.kazn_new")
+    %a.span2.tab.active{:href=>"#"}
+      = t("admin.articles.kazn_edit")
+#pad-wrapper.new-user
+  .row-fluid.header
+    %h3= t("admin.articles.kazn_edit")
+  .row-fluid.form-wrapper
+    = render 'detail_form'
+
+

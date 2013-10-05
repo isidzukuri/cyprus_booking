@@ -1,0 +1,39 @@
+#tabs-wrapper
+  .row-fluid
+    %a.span2.tab{:href=>"/admin/penalties"}
+      = t("admin.penalties.list")
+    %a.span2.tab.active{:href=>"#"}
+      = t("admin.penalties.show")
+#pad-wrapper.form-page
+  .row-fluid.form-wrapper
+    .span8.column
+      .field-box
+        %label=t("admin.penalties.name") + ": "
+        %span=@penalty.user.fio
+      .field-box
+        %label=t("admin.penalties.address")  + ": "
+        %span=@penalty.user.address
+      .field-box
+        %label=t("admin.penalties.protocol")
+        %span=@penalty.number
+      .field-box
+        %label=t("admin.penalties.protocol_date")
+        %span=l(Date.strptime(@penalty.protocol_date, '%m/%d/%Y'),:format=>:long)
+      .field-box
+        %label=t("admin.penalties.polu4atel")
+        %span #{@penalty.payment_detail.bank.name} (#{@penalty.payment_detail.name}), #{@penalty.payment_detail.budget_code}
+      .field-box
+        %label=t("admin.penalties.s4et")
+        %span=@penalty.payment_detail.payment_number
+      .field-box
+        %label=t("admin.penalties.mfo")
+        %span=@penalty.payment_detail.bank.bank_code
+      .field-box
+        %label=t("admin.penalties.erdpo")
+        %span=@penalty.payment_detail.edrpo
+      .field-box
+        %label=t("admin.penalties.protocol_price")
+        %span=@penalty.protocol_penalty
+      .field-box
+        %label=t("admin.penalties.bumajka")
+        %span= @penalty.has_invoice > 0 ? "Да" : "Нет"

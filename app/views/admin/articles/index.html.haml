@@ -1,0 +1,54 @@
+#tabs-wrapper
+  .row-fluid
+    %a.span2.tab.active{:href=>"/admin/articles"}
+      = t("admin.articles.list")
+    %a.span2.tab{:href=>"/admin/articles/regions"}
+      = t("admin.articles.region_list")
+    %a.span2.tab{:href=>"/admin/articles/banks"}
+      = t("admin.articles.banks")
+    %a.span2.tab{:href=>"/admin/articles/new"}
+      = t("admin.articles.kazn_new")
+    %a.span2.tab{:href=>"#"}
+      = t("admin.articles.kazn_edit")
+#pad-wrapper.users-list
+  .row-fluid.header
+    %h3= t("admin.articles.title")
+  %p{:style=>"font-weight: bold;color:green"}=flash[:notice] 
+  - unless flash[:errors].nil? 
+    - flash[:errors].each_pair do |field,mes|
+      %p{:style=>"font-weight: bold;color:red"}=t("admin.articles.#{field}") + ": " + mes.first
+  .row-fluid.table
+    %table.table.table-hover 
+      %thead
+        %tr
+          %th.span2.sortable
+            = t("admin.articles.region_id")    
+          %th.span2.sortable
+            %span.line
+            = t("admin.articles.name") 
+          %th.span2.sortable
+            %span.line
+            = t("admin.articles.bank_id") 
+          %th.span2.sortable
+            %span.line
+            = t("admin.articles.payment_number") 
+          %th.span2.sortable
+            %span.line
+            = t("admin.articles.edrpo") 
+          %th.span2.sortable
+            %span.line
+            = t("admin.articles.budget_code") 
+      %tbody
+        - @details.each_with_index do |detail,i|
+          %tr{:class=>("active" if i == 0)}
+            %td=detail.region.name
+            %td
+              = link_to "#{detail.name}" , "/admin/articles/edit/#{detail.id}" , :class=>"name"
+            %td=detail.bank.name
+            %td=detail.payment_number
+            %td=detail.edrpo
+            %td=detail.budget_code
+
+  .pagination.pull-right 
+    = will_paginate @details         
+

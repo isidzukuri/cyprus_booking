@@ -1,0 +1,7 @@
+.steps
+  .declaration
+    %span
+      =t("user.penalty")
+      = @penalty.number
+    =link_to t("user.back_to_list") , user_penalties_path
+= render "shared/penalty_form"
