@@ -165,6 +165,65 @@ ActiveRecord::Schema.define(:version => 20130827134025) do
     t.datetime "updated_at",                                     :null => false
   end
 
+  create_table "houses", :force => true do |t|
+    t.string   "name_uk"
+    t.string   "name_ru"
+    t.string   "name_en"
+    t.string   "description_uk"
+    t.string   "description_ru"
+    t.string   "description_en"
+    t.float    "rating",        :default => 0, :null => false
+    t.float    "cost",        :default => 0, :null => false
+    t.integer  "views",        :default => 0, :null => false
+    t.string   "facilities"
+    t.string   "longitude"
+    t.string   "latitude"
+    t.string   "full_address"
+    t.string   "flat_number"
+    t.string   "floor_number"
+    t.string   "house_number"
+    t.string   "street"
+    t.string   "full_address"
+    t.string   "district"
+    t.integer  "floors"
+    t.integer  "rooms"
+    t.integer  "places"
+    t.integer  "showers"
+    t.integer  "user_id"
+    t.integer  "city_id"
+  end
+
+  create_table "cities", :force => true do |t|
+    t.string   "country",     :default => 'CY', :null => false
+    t.string   "zip_code"
+    t.string   "name_ru"
+    t.string   "name_uk"
+    t.string   "name_en"
+  end
+
+  create_table "photos", :force => true do |t|
+    t.integer  "house_id"
+    t.string   "file"
+  end
+
+  create_table "characteristics", :force => true do |t|
+    t.string   "name_ru"
+    t.string   "name_uk"
+    t.string   "name_en"
+  end
+
+  create_table "facilities_houses", :force => true do |t|
+    t.integer  "house_id"
+    t.integer  "facility_id"
+  end
+
+  create_table "ratings", :force => true do |t|
+    t.integer   "house_id"
+    t.integer   "user_id"
+    t.integer   "characteristic_id"
+    t.integer   "value"
+  end
+
   add_index "users", ["remember_me_token"], :name => "index_users_on_remember_me_token"
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token"
 

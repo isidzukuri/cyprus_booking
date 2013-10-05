@@ -7,6 +7,21 @@ if AdminModule.count == 0
 	AdminModule.create(name:"Налаштування",action:"settings",parent_id:0,:ico_cls=>"sidebar-gear")
 	AdminModule.create(name:"Довідник",action:"articles",parent_id:0,:ico_cls=>"sidebar-widgets")
 	AdminModule.create(name:"Зручності",action:"facilities",parent_id:0,:ico_cls=>"sidebar-widgets")
+	AdminModule.create(name:"Апартаменти",action:"apartaments",parent_id:0,:ico_cls=>"sidebar-widgets")
+end
+
+if City.count == 0
+	City.create(name_ru:"Никосия")
+end
+
+if Facility.count == 0
+	Facility.create(name_ru:"Удобность 1", name_uk:"Удобность 1", name_en:"Удобность 1", seo:"udobnost1")
+	Facility.create(name_ru:"Удобность 2", name_uk:"Удобность 2", name_en:"Удобность 2", seo:"udobnost2")
+end
+
+if Characteristic.count == 0
+	Characteristic.create(name_ru:"parametr 1", name_uk:"parametr 1", name_en:"parametr 1")
+	Characteristic.create(name_ru:"parametr 2", name_uk:"parametr 2", name_en:"parametr 2")
 end
 
 if User.count == 0
