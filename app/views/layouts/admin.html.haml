@@ -3,7 +3,7 @@
   %head
     %meta{:charset => "utf-8"}
     %meta{:name => "viewport", :content => "width=device-width, initial-scale=1, maximum-scale=1"}
-    %title= content_for?(:title) ? yield(:title) : "DAI Admin"
+    %title= content_for?(:title) ? yield(:title) : "Cyprus booking"
     %meta{:content => "", :name => "description"}
     %meta{:content => "", :name => "author"}
     = stylesheet_link_tag "admin", :media => "all"
@@ -13,8 +13,8 @@
   %body
     %header.navbar.navbar-inverse{:style=>"margin-bottom:0"}
       %nav.navbar-inner
-        %a.brand{:href=>"#"}
-          = image_tag "logo_ad.png"
+        / %a.brand{:href=>"#"}
+        /   = image_tag "logo_ad.png"
         %ul.nav.pull-right
           %li#fat-menu.dropdown
             %a.logout{:href=>"/logout"}

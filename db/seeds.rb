@@ -6,6 +6,7 @@ if AdminModule.count == 0
 	AdminModule.create(name:"Шаблони Email",action:"emails",parent_id:0,:ico_cls=>"sidebar-forms")
 	AdminModule.create(name:"Налаштування",action:"settings",parent_id:0,:ico_cls=>"sidebar-gear")
 	AdminModule.create(name:"Довідник",action:"articles",parent_id:0,:ico_cls=>"sidebar-widgets")
+	AdminModule.create(name:"Зручності",action:"facilities",parent_id:0,:ico_cls=>"sidebar-widgets")
 end
 
 if User.count == 0

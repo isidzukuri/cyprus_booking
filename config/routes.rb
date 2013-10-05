@@ -14,6 +14,10 @@ Dai::Application.routes.draw do
      resources :emails 
      resources :penalties
      resources :transactions
+     resources :facilities
+     get "facilities",          to: "facilities#index"
+     get "facilities/new",      to: "facilities#new"
+     get "facilities/delete/:id",      to: "facilities#delete"
      get "articles",          to: "articles#index"
      get "articles/regions",  to: "articles#regions"
      get "articles/get_form/:id", to: "articles#get_form"

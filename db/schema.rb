@@ -153,6 +153,18 @@ ActiveRecord::Schema.define(:version => 20130827134025) do
     t.datetime "reset_password_email_sent_at"
   end
 
+  create_table "facilities", :force => true do |t|
+    t.string   "name_uk"
+    t.string   "name_ru"
+    t.string   "name_en"
+    t.string   "ico"
+    t.text     "description"                                          
+    t.integer  "active",                          :default => 1, :null => false
+    t.string   "seo"
+    t.datetime "created_at",                                     :null => false
+    t.datetime "updated_at",                                     :null => false
+  end
+
   add_index "users", ["remember_me_token"], :name => "index_users_on_remember_me_token"
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token"
 
