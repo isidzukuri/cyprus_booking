@@ -1,7 +1,7 @@
 class Facility < ActiveRecord::Base
   authenticates_with_sorcery!
 
-  attr_accessible :name_ru, :name_uk, :name_en, :seo
+  attr_accessible :id, :active, :name_ru, :name_uk, :name_en, :seo
 
   # has_many :penalties
   has_and_belongs_to_many :houses

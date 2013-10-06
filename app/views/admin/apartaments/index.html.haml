@@ -38,6 +38,16 @@
               = t("admin.apartaments.active")
           %th.span2.sortable
             %span.line
+            = form_tag admin_apartaments_path, :method=>:get do
+              = hidden_field_tag :sort , "full_address"
+              = hidden_field_tag :dir , @dir
+              = t("admin.apartaments.full_address")
+          %th.span2
+            %span.line
+            = form_tag admin_apartaments_path, :method=>:get do
+              = t("admin.apartaments.locality")
+          %th.span2.sortable
+            %span.line
               = t("facility.actions.delete") 
            
       %tbody
@@ -46,6 +56,8 @@
             %td
               = link_to "#{apartament.name_ru}" , "/admin/apartaments/#{apartament.id}/edit" , :class=>"name"
             %td{:class=>"_user_active_#{apartament.active}"}=t("admin.apartaments.active_#{apartament.active}")
+            %td="#{apartament.full_address}"
+            %td="#{apartament.city.name_ru}"
             %td
               = link_to t("apartament.actions.delete")  , "/admin/apartaments/delete/#{apartament.id}" , :class=>"name"
   .pagination.pull-right 
