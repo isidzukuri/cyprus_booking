@@ -2,16 +2,17 @@
 if AdminModule.count == 0
 	AdminModule.create(name:"Користувачі",action:"users",parent_id:0,:ico_cls=>"icon-group")
 	AdminModule.create(name:"Штрафи",action:"penalties",parent_id:0,:ico_cls=>"sidebar-calendar")
-	AdminModule.create(name:"Транзакції",action:"transactions",parent_id:0,:ico_cls=>"sidebar-charts")
+	# AdminModule.create(name:"Транзакції",action:"transactions",parent_id:0,:ico_cls=>"sidebar-charts")
 	AdminModule.create(name:"Шаблони Email",action:"emails",parent_id:0,:ico_cls=>"sidebar-forms")
 	AdminModule.create(name:"Налаштування",action:"settings",parent_id:0,:ico_cls=>"sidebar-gear")
-	AdminModule.create(name:"Довідник",action:"articles",parent_id:0,:ico_cls=>"sidebar-widgets")
+	# AdminModule.create(name:"Довідник",action:"articles",parent_id:0,:ico_cls=>"sidebar-widgets")
 	AdminModule.create(name:"Зручності",action:"facilities",parent_id:0,:ico_cls=>"sidebar-widgets")
 	AdminModule.create(name:"Апартаменти",action:"apartaments",parent_id:0,:ico_cls=>"sidebar-widgets")
 end
 
 if City.count == 0
 	City.create(name_ru:"Никосия")
+	City.create(name_ru:"Корнос")
 end
 
 if Facility.count == 0

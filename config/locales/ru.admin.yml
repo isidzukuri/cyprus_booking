@@ -123,3 +123,35 @@ ru:
       name: Название
       new: Создать
       edit: Редактировать
+    apartaments:
+      list: Список апартаментов
+      add_new: Добавление апартаментов
+      add_edit: Редактирование апартаментов
+      add: Добавить апартаменты
+      not_exist: Такие апартаменты не существует
+      search: Поиск
+      created: Создан
+      active: Активно
+      active_0: Нет
+      active_1: Да
+      building: Дом
+      name: Название
+      new: Создать
+      edit: Редактировать
+      description: Описание
+      cost: Цена
+      full_address: Адресс
+      flat_number: Номер квартиры
+      floor_number: Номер этажа 
+      house_number: Номер дома
+      street: Улица
+      floors: Этажей
+      rooms: Комнат
+      places: Мест
+      showers: Ванных
+      locality: Населенный пункт
+      facilities: Удобства
+      latitude: Широта
+      longitude: Долгота
+
+

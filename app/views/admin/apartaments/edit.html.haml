@@ -1,0 +1,16 @@
+#tabs-wrapper
+  .row-fluid
+    %a.span2.tab{:href=>"/admin/apartaments"}
+      = t("admin.apartaments.list")
+    %a.span2.tab{:href=>"/admin/apartaments/new"}
+      = t("admin.apartaments.add_new")
+    %a.span2.tab.active{:href=>"#"}
+      = t("admin.apartaments.add_edit")
+#pad-wrapper.new-user
+  .row-fluid.header
+    %h3= t("admin.apartaments.add_edit")
+  .row-fluid.form-wrapper
+    = render 'apartament_form'
+
+
+

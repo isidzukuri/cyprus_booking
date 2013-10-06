@@ -175,20 +175,19 @@ ActiveRecord::Schema.define(:version => 20130827134025) do
     t.float    "rating",        :default => 0, :null => false
     t.float    "cost",        :default => 0, :null => false
     t.integer  "views",        :default => 0, :null => false
-    t.string   "facilities"
-    t.string   "longitude"
-    t.string   "latitude"
+    t.string   "longitude"     :default => 0, :null => false 
+    t.string   "latitude"      :default => 0, :null => false
     t.string   "full_address"
     t.string   "flat_number"
     t.string   "floor_number"
     t.string   "house_number"
     t.string   "street"
-    t.string   "full_address"
     t.string   "district"
     t.integer  "floors"
     t.integer  "rooms"
     t.integer  "places"
     t.integer  "showers"
+    t.integer  "active",       :default => 1, :null => false
     t.integer  "user_id"
     t.integer  "city_id"
   end

@@ -15,6 +15,9 @@ Dai::Application.routes.draw do
      resources :penalties
      resources :transactions
      resources :facilities
+     resources :apartaments
+     get "apartaments",          to: "apartaments#index"
+     get "apartaments/delete/:id",      to: "apartaments#delete"
      get "facilities",          to: "facilities#index"
      get "facilities/new",      to: "facilities#new"
      get "facilities/delete/:id",      to: "facilities#delete"

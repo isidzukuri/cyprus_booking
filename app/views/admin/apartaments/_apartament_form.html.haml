@@ -1,0 +1,102 @@
+.span9.with-sidebar
+  - url =  params[:action] =~ /new/ ? admin_apartaments_path : admin_apartament_path(@apartament)
+  .container
+    = form_for @apartament ,:url => url  ,:html=>{:class=>"new_user_form inline-input"} do |f|
+      = f.hidden_field :id
+      = f.hidden_field :user_id
+
+      .span12.field-box
+        = f.label :active , t("admin.apartaments.active")    
+        = f.select :active , options_for_select([[t("admin.apartaments.active_1"),1],[t("admin.apartaments.active_0"),0]],@apartament.active) ,{} ,:class=>"span9" , :required=>true
+      .span12.field-box
+        = f.label :name_ru , "#{t("admin.apartaments.name")} [ru]"   
+        = f.text_field :name_ru , :class=>"span9" , :required=>true
+      .span12.field-box
+        = f.label :name_uk , "#{t("admin.apartaments.name")} [uk]"   
+        = f.text_field :name_uk , :class=>"span9" 
+      .span12.field-box
+        = f.label :name_en , "#{t("admin.apartaments.name")} [en]"   
+        = f.text_field :name_en , :class=>"span9" 
+
+      .span12.field-box
+        = f.label :description_ru , "#{t("admin.apartaments.description")} [ru]"   
+        = f.text_area :description_ru , :class=>"span9"
+      .span12.field-box
+        = f.label :description_uk , "#{t("admin.apartaments.description")} [uk]"   
+        = f.text_area :description_uk , :class=>"span9"
+      .span12.field-box
+        = f.label :description_en , "#{t("admin.apartaments.description")} [en]"   
+        = f.text_area :description_en , :class=>"span9"
+
+      .span12.field-box
+        = f.label :cost , "#{t("admin.apartaments.cost")}"   
+        = f.text_field :cost , :class=>"span2" 
+
+      .span12.field-box
+        = f.label :full_address , "#{t("admin.apartaments.full_address")}"   
+        = f.text_field :full_address , :class=>"span9"
+
+      .span12.field-box
+        = f.label :flat_number , "#{t("admin.apartaments.flat_number")}"   
+        = f.text_field :flat_number , :class=>"span2"
+
+      .span12.field-box
+        = f.label :floor_number , "#{t("admin.apartaments.floor_number")}"   
+        = f.text_field :floor_number , :class=>"span2" 
+
+      .span12.field-box
+        = f.label :house_number , "#{t("admin.apartaments.house_number")}"   
+        = f.text_field :house_number , :class=>"span2"
+
+      .span12.field-box
+        = f.label :street , "#{t("admin.apartaments.street")}"   
+        = f.text_field :street , :class=>"span4"
+
+      .span12.field-box
+        = f.label :floors , "#{t("admin.apartaments.floors")}"   
+        = f.text_field :floors , :class=>"span2"
+
+      .span12.field-box
+        = f.label :rooms , "#{t("admin.apartaments.rooms")}"   
+        = f.text_field :rooms , :class=>"span2"
+
+      .span12.field-box
+        = f.label :places , "#{t("admin.apartaments.places")}"   
+        = f.text_field :places , :class=>"span2"
+
+      .span12.field-box
+        = f.label :floors , "#{t("admin.apartaments.floors")}"   
+        = f.text_field :floors , :class=>"span2"
+
+      .span12.field-box
+        = f.label :showers , "#{t("admin.apartaments.showers")}"   
+        = f.text_field :showers , :class=>"span2"
+
+      .span12.field-box
+        = f.label :city_id , t("admin.apartaments.locality")    
+        = f.select :city_id , options_for_select(@cities,@apartament.city_id.present? ? @apartament.city_id : 1) ,{} ,:class=>"span9" , :required=>true
+
+
+      .span12.field-box
+        = f.label :facilities , "#{t("admin.apartaments.facilities")}"   
+        - @facilities.each do |fs|
+          .ch_b 
+            = fs[0]
+            = check_box_tag "house[facilities[#{fs[1]}]]", fs[1], @apartament.facilities.include?(Facility.find(fs[1]))
+      
+      
+            
+
+      .span12.field-box
+        .span6
+          = f.label :latitude , "#{t("admin.apartaments.latitude")}"   
+          = f.text_field :latitude , :class=>"span4"
+        .span6
+          = f.label :longitude , "#{t("admin.apartaments.longitude")}"   
+          = f.text_field :longitude , :class=>"span4"  
+        #google_map
+      
+     
+      
+      .span11.field-box.actions
+        = f.submit t("admin.apartaments.#{params[:action]}"), :class=>"btn-glow primary"

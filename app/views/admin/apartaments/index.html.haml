@@ -1,0 +1,54 @@
+#tabs-wrapper
+  .row-fluid
+    %a.span2.tab.active{:href=>"/admin/apartaments"}
+      = t("admin.apartaments.list")
+    %a.span2.tab{:href=>"/admin/apartaments/new"}
+      = t("admin.apartaments.add_new")
+    %a.span2.tab{:href=>"#"}
+      = t("admin.apartaments.add_edit")
+
+
+#pad-wrapper.users-list
+  .row-fluid.header
+    %h3= t("admin.apartaments.search")
+    .span10.pull-right
+      = form_tag admin_apartaments_path, :method=>:get do
+        = text_field_tag  :name_ru ,params[:name_ru],  :class=>"span5 search" , :required=>true
+        .ui-dropdown
+          = submit_tag t("admin.apartaments.search") ,:class=>"btn-flat success"     
+      %p{:style=>"font-weight: bold;color:green"}=flash[:notice] 
+      %p{:style=>"font-weight: bold;color:red"}=flash[:error] 
+      - unless flash[:errors].nil? 
+        - flash[:errors].each_pair do |field,mes|
+          %p{:style=>"font-weight: bold;color:red"}=t("admin.apartaments.#{field}") + ": " + mes.first
+  .row-fluid.table{:"data-auto-controller"=>"AdminUsersController"}
+    %table.table.table-hover
+      %thead
+        %tr
+          %th.span2.sortable
+            = form_tag admin_apartaments_path, :method=>:get do
+              = hidden_field_tag :sort , "name_ru"
+              = hidden_field_tag :dir , @dir
+              = t("admin.apartaments.name")    
+          %th.span2.sortable
+            %span.line
+            = form_tag admin_apartaments_path, :method=>:get do
+              = hidden_field_tag :sort , "active"
+              = hidden_field_tag :dir , @dir
+              = t("admin.apartaments.active")
+          %th.span2.sortable
+            %span.line
+              = t("facility.actions.delete") 
+           
+      %tbody
+        - @apartaments.each_with_index do |apartament,i|
+          %tr{:class=>("active" if i == 0)}
+            %td
+              = link_to "#{apartament.name_ru}" , "/admin/apartaments/#{apartament.id}/edit" , :class=>"name"
+            %td{:class=>"_user_active_#{apartament.active}"}=t("admin.apartaments.active_#{apartament.active}")
+            %td
+              = link_to t("apartament.actions.delete")  , "/admin/apartaments/delete/#{apartament.id}" , :class=>"name"
+  .pagination.pull-right 
+    = will_paginate @apartaments         
+
+
