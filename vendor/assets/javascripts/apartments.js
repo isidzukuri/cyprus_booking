@@ -3,7 +3,6 @@ $(window).load(function(){
 		$('#map_apartments').height($(window).height() - $('#header').height())
 		initialize();
 	}
-	initialize_map()
 });
 
 
@@ -15,6 +14,25 @@ function initialize() {
       mapTypeId: google.maps.MapTypeId.ROADMAP
     }
     var map = new google.maps.Map(mapCanvas, mapOptions);
+}
+
+
+
+// admin
+$(window).load(function(){
+	initialize_map();
+	$('.delete_but').click(function(){
+		delete_photo($(this).data('photo_id'),$(this).data('house_id'));
+		$(this).parent().remove()
+	});
+});
+
+function delete_photo(photo_id, house_id){
+	$.ajax({
+	  url: "/admin/apartaments/remove_photo/"+photo_id,
+	  contentType: "application/json;",
+	  dataType: "json"
+	});
 }
 
 var Gmap;

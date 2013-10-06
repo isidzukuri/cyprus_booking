@@ -19,14 +19,23 @@ class Admin::ApartamentsController < AdminController
 	end
 
 	def create
+		photos = params[:house][:photos]
+		params[:house].delete(:photos)
 		facilities_ids = []
 		facilities_ids = params[:house][:facilities].keys unless !params[:house][:facilities].present?
 		params[:house].delete(:facilities)
 		apartament = House.new(params[:house])
 		apartament.facilities = Facility.find(facilities_ids)
-
 		# if apartament.valid?
 			apartament.save
+			if photos.present? 
+				photos.each do |one|
+					@photo = Photo.new()
+					@photo.file = one
+					@photo.house_id = apartament.id
+					@photo.save
+				end
+			end
 			flash[:notice] = t("apartament.actions.added")
 		# else
 		# 	flash[:errors] = apartament.errors.messages
@@ -41,6 +50,8 @@ class Admin::ApartamentsController < AdminController
 	end
 
 	def update
+		photos = params[:house][:photos]
+		params[:house].delete(:photos)
 		facilities_ids = []
 		facilities_ids = params[:house][:facilities].keys unless !params[:house][:facilities].present?
 		params[:house].delete(:facilities)
@@ -49,6 +60,14 @@ class Admin::ApartamentsController < AdminController
 		apartament.facilities = Facility.find(facilities_ids)
 		# if apartament.valid?
 			apartament.save
+			if photos.present? 
+				photos.each do |one|
+					@photo = Photo.new()
+					@photo.file = one
+					@photo.house_id = apartament.id
+					@photo.save
+				end
+			end
 			flash[:notice] = t("apartament.actions.changed")
 		# else
 		# 	flash[:errors] = apartament.errors.messages
@@ -61,6 +80,13 @@ class Admin::ApartamentsController < AdminController
 		apartament.delete
 		flash[:notice] = t("apartament.actions.deleted")
 		redirect_to admin_apartaments_path
+	end
+
+	def remove_photo
+		@photo = Photo.find(params[:photo_id])
+		@photo.file.destroy
+		@photo.delete
+		render :text => @photo.delete
 	end
 
 	

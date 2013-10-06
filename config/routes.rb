@@ -18,6 +18,7 @@ Dai::Application.routes.draw do
      resources :apartaments
      get "apartaments",          to: "apartaments#index"
      get "apartaments/delete/:id",      to: "apartaments#delete"
+     get "apartaments/remove_photo/:photo_id",  to: "apartaments#remove_photo"
      get "facilities",          to: "facilities#index"
      get "facilities/new",      to: "facilities#new"
      get "facilities/delete/:id",      to: "facilities#delete"

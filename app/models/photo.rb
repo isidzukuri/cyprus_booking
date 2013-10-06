@@ -1,3 +1,20 @@
 class Photo < ActiveRecord::Base
 	belongs_to :house
+
+	has_attached_file :file, 
+	:url  => "/photos/:house_id/:id/:style.:extension",
+    :path => ":rails_root/public/photos/:house_id/:id/:style.:extension",
+	# :path => "public/photos/:house_id/:id/:style.:extension",    
+	:styles => {
+      :original => ['1920x1680>', :jpg],
+      :small    => ['100x100#',   :jpg],
+      :medium   => ['560x560',    :jpg],
+      :large    => ['500x500>',   :jpg]
+  	}
+
+	Paperclip.interpolates :house_id do |attachment, style|
+		"#{attachment.instance.house_id}"
+	end
+
+
 end

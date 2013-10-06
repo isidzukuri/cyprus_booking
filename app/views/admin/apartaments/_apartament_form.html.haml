@@ -1,7 +1,7 @@
 .span9.with-sidebar
   - url =  params[:action] =~ /new/ ? admin_apartaments_path : admin_apartament_path(@apartament)
   .container
-    = form_for @apartament ,:url => url  ,:html=>{:class=>"new_user_form inline-input"} do |f|
+    = form_for @apartament ,:url => url  ,:html=>{:class=>"new_user_form inline-input" , :multipart => true} do |f|
       = f.hidden_field :id
       = f.hidden_field :user_id
 
@@ -83,9 +83,7 @@
           .ch_b 
             = fs[0]
             = check_box_tag "house[facilities[#{fs[1]}]]", fs[1], @apartament.facilities.include?(Facility.find(fs[1]))
-      
-      
-            
+                 
 
       .span12.field-box
         .span6
@@ -95,8 +93,17 @@
           = f.label :longitude , "#{t("admin.apartaments.longitude")}"   
           = f.text_field :longitude , :class=>"span4"  
         #google_map
+
+      .span12.field-box
+        = f.label :photos , "#{t("admin.apartaments.photos")}"  
+        %input(type="file" name="house[photos][]" multiple)
       
-     
+
+      .span12.field-box
+        - @apartament.photos.each do |photo|
+          .adm_img_preview
+            =image_tag "#{photo.file.url(:small)}"
+            .delete_but{"data-photo_id" => "#{photo.id}", "data-house_id" => "#{photo.house_id}"}
       
       .span11.field-box.actions
         = f.submit t("admin.apartaments.#{params[:action]}"), :class=>"btn-glow primary"

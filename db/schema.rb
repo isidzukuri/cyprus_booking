@@ -175,8 +175,8 @@ ActiveRecord::Schema.define(:version => 20130827134025) do
     t.float    "rating",        :default => 0, :null => false
     t.float    "cost",        :default => 0, :null => false
     t.integer  "views",        :default => 0, :null => false
-    t.string   "longitude"     :default => 0, :null => false 
-    t.string   "latitude"      :default => 0, :null => false
+    t.string   "longitude",     :default => 0, :null => false 
+    t.string   "latitude",      :default => 0, :null => false
     t.string   "full_address"
     t.string   "flat_number"
     t.string   "floor_number"
@@ -203,6 +203,10 @@ ActiveRecord::Schema.define(:version => 20130827134025) do
   create_table "photos", :force => true do |t|
     t.integer  "house_id"
     t.string   "file"
+    t.string   "file_file_name"
+    t.string   "file_content_type"
+    t.integer  "file_file_size"
+    t.datetime "file_updated_at"
   end
 
   create_table "characteristics", :force => true do |t|
