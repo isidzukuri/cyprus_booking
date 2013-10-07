@@ -1,13 +1,13 @@
 # encoding: UTF-8
 if AdminModule.count == 0
-	AdminModule.create(name:"Користувачі",action:"users",parent_id:0,:ico_cls=>"icon-group")
-	AdminModule.create(name:"Штрафи",action:"penalties",parent_id:0,:ico_cls=>"sidebar-calendar")
+	AdminModule.create(name:"Пользователи",action:"users",parent_id:0,:ico_cls=>"icon-group")
+	#AdminModule.create(name:"Штрафи",action:"penalties",parent_id:0,:ico_cls=>"sidebar-calendar")
 	# AdminModule.create(name:"Транзакції",action:"transactions",parent_id:0,:ico_cls=>"sidebar-charts")
-	AdminModule.create(name:"Шаблони Email",action:"emails",parent_id:0,:ico_cls=>"sidebar-forms")
-	AdminModule.create(name:"Налаштування",action:"settings",parent_id:0,:ico_cls=>"sidebar-gear")
+	AdminModule.create(name:"Шаблоны Email",action:"emails",parent_id:0,:ico_cls=>"sidebar-forms")
+	AdminModule.create(name:"Настройки",action:"settings",parent_id:0,:ico_cls=>"sidebar-gear")
 	# AdminModule.create(name:"Довідник",action:"articles",parent_id:0,:ico_cls=>"sidebar-widgets")
-	AdminModule.create(name:"Зручності",action:"facilities",parent_id:0,:ico_cls=>"sidebar-widgets")
-	AdminModule.create(name:"Апартаменти",action:"apartaments",parent_id:0,:ico_cls=>"sidebar-widgets")
+	AdminModule.create(name:"Опции апартаментов",action:"facilities",parent_id:0,:ico_cls=>"sidebar-widgets")
+	AdminModule.create(name:"Апартаменты",action:"apartaments",parent_id:0,:ico_cls=>"sidebar-widgets")
 end
 
 if City.count == 0
@@ -16,8 +16,8 @@ if City.count == 0
 end
 
 if Facility.count == 0
-	Facility.create(name_ru:"Удобность 1", name_uk:"Удобность 1", name_en:"Удобность 1", seo:"udobnost1")
-	Facility.create(name_ru:"Удобность 2", name_uk:"Удобность 2", name_en:"Удобность 2", seo:"udobnost2")
+	Facility.create(name_ru:"Интернет", name_uk:"Интернет", name_en:"Интернет", seo:"internet")
+	Facility.create(name_ru:"Камин", name_uk:"Камин", name_en:"Камин", seo:"kamin")
 end
 
 if Characteristic.count == 0
@@ -36,10 +36,10 @@ if User.count == 0
 end
 
 if EmailTemplate.count == 0
-	EmailTemplate.create(:email_type=>:password_change,:html=>"",:name=>"Зміна пароля")
-	EmailTemplate.create(:email_type=>:registration,:html=>"",:name=>"Реєстрація")
-	EmailTemplate.create(:email_type=>:create_penalty,:html=>"",:name=>"Створення платіжки")
-	EmailTemplate.create(:email_type=>:pay_penalty,:html=>"",:name=>"Оплата платіжки")
+	EmailTemplate.create(:email_type=>:password_change,:html=>"",:name=>"Изменение пароля")
+	EmailTemplate.create(:email_type=>:registration,:html=>"",:name=>"Регистрация")
+	EmailTemplate.create(:email_type=>:create_penalty,:html=>"",:name=>"Создание бука")
+	EmailTemplate.create(:email_type=>:pay_penalty,:html=>"",:name=>"Оплата бука")
 end
 
 if AdminSettings.count == 0

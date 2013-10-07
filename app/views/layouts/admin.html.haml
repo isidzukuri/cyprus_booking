@@ -30,7 +30,7 @@
               .arrow_border
           %a.tab2{:href=>"/admin"}
             %i{:class=>"sidebar-home"}
-            %span Головна
+            %span Главная
         - current_user.modules.each do |modul|
           %li{:class=>("active" if (params[:controller] =~ /#{modul.action}/))}
             - if (params[:controller] =~ /#{modul.action}/)
