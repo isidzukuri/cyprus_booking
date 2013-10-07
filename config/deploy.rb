@@ -2,7 +2,7 @@ require "rvm/capistrano"
 require "bundler/capistrano"
 require "capistrano"
 set :application, "dai"
-set :repository,  "git@172.27.0.116:adok/dai.git"
+set :repository,  "git@github.com:isidzukuri/cyprus_booking.git"
 set :user, "adok"
 set :use_sudo, false
 
