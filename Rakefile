@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Dai::Application.load_tasks
+CyprusBooking::Application.load_tasks

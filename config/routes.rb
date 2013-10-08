@@ -1,18 +1,16 @@
-Dai::Application.routes.draw do
+CyprusBooking::Application.routes.draw do
    get 'admin',  to: "admin#index" 
    get 'logout', to: "user#exit"
    post 'login', to: "user#enter"
    match "details",to:"home#details" , :via=>:post
    match "check_details" , to: "home#check_details"
-   match "payment_success" , to: "home#payment_success"
-   post "pay", to: "home#pay"
-   get "home/index"
+
+
    namespace :admin do
      post "login_admin"
      post "users/pass_change"
      resources :users
      resources :emails 
-     resources :penalties
      resources :transactions
      resources :facilities
      resources :apartaments
@@ -22,34 +20,17 @@ Dai::Application.routes.draw do
      get "facilities",          to: "facilities#index"
      get "facilities/new",      to: "facilities#new"
      get "facilities/delete/:id",      to: "facilities#delete"
-     get "articles",          to: "articles#index"
-     get "articles/regions",  to: "articles#regions"
-     get "articles/get_form/:id", to: "articles#get_form"
-     get "articles/delete_dic/:id", to: "articles#delete_dic"
-     match "articles/save_item", to: "articles#save_item" ,:via=>[:post,:put]
-     match "articles/save_detail", to: "articles#save_detail" ,:via=>[:post,:put]
-     get "articles/banks" ,   to: "articles#banks"
-     get "articles/new",      to: "articles#new"
-     get "articles/edit/:id", to: "articles#edit"
-     post "articles/create",  to: "articles#create"
-     post "articles/update",  to: "articles#update"
      get "settings", to: "settings#index"
      post "settings/save"
    end
-get  "user/penalties/:id" => "user#show_penalty"
 
    namespace :user do
-    get  "penalties"
-    put  "pay_penalty" 
     post "auth"
     post "forgot"
    end
 
 
    root :to => "home#index"
-   get "home/details"
-
-   post "create/penalty" , to: "home#create_penalty"
 
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
