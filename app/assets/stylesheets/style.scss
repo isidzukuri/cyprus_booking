@@ -159,7 +159,8 @@ article ul {
   background: image-url("line.png") no-repeat center 50%;
 }
 
-footer ul li, article ul li {
+
+footer ul li, article ul li , nav ul li {
   float: left;
 }
 
@@ -178,7 +179,7 @@ html {
 article {
   height: 80%;
   min-height: 400px;
-  background: url(/assets/background.png) no-repeat;
+  background: image-url("background.png") no-repeat;
   background-size: 100% 100%;
 }
 
@@ -269,3 +270,22 @@ section.main {
     }
   }
 }
+.map header{
+  min-height: 135px !important;
+}
+.map header h1{
+  padding-bottom: 10px
+}
+;
+.map nav{
+  position: absolute;
+right: 50px;
+background: image-url("line.png") no-repeat center 50%;
+}
+.line{
+  background: image-url("head_line.png") transparent no-repeat;
+  background-size: 100% 100%;
+  height: 77px;
+}
+
+

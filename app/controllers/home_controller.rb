@@ -3,4 +3,8 @@ class HomeController < ApplicationController
 	def index
 	end
 
+	def apartments
+		render :layout =>"map"
+	end
+
 end
