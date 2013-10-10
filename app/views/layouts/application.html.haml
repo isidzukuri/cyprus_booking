@@ -1,7 +1,7 @@
 !!!
-%html
+%html{lang: "en-US"}
   %head
-    %meta{:charset => "utf-8"}
+    %meta{charset: "UTF-8"}/
     %meta{:name => "viewport", :content => "width=device-width, initial-scale=1, maximum-scale=1"}
     %title= content_for?(:title) ? yield(:title) : "Cyprus Booking"
     %meta{:content => "", :name => "description"}
@@ -10,7 +10,38 @@
     = javascript_include_tag "application"
     = javascript_include_tag 'http://maps.googleapis.com/maps/api/js?sensor=false'
     = csrf_meta_tags
-  %body#wrapper
-    .content
-      #header
-      #map_apartments
+    /[if IE] <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  %body
+    #wrapper
+      %header
+        %figure
+          %h1
+            %a{href: "/"}
+              = image_tag "logo.png"
+      %article
+        %section.main
+          %h1 Cyprus Short Stay
+          %p We are opening soon....
+          %a.btn_main{href: "#"}
+            %span Adout Us
+        %nav
+          %ul
+            %li
+              %a.apartments{href: "#"}
+            %li
+              %a.hotels{href: "#"}
+            %li
+              %a.cars{href: "#"}
+            %li
+              %a.yahts{href: "#"}
+      %footer
+        %ul
+          %li
+            %a{href: "#"}
+              = image_tag "ic_facebook.png"
+          %li
+            %a{href: "#"}
+              = image_tag "ic_twitter.png"
+          %li
+            %a{href: "#"}
+              = image_tag "ic_google.png"

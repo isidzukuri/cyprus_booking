@@ -1,135 +1,270 @@
+@import url(http://fonts.googleapis.com/css?family=Roboto);
+
 /*===============================================*/
 /*   Mixu  */
 /*===============================================*/
+
 .b {
   font-weight: bold;
 }
+
 .fl {
   float: left;
 }
+
 .fr {
   float: right;
 }
+
 .tdu {
   text-decoration: underline;
 }
+
 .tdn {
   text-decoration: none;
 }
+
 .cur {
   cursor: pointer;
 }
+
 .ttu {
   text-transform: uppercase;
 }
+
 .clr {
   clear: both;
 }
+
 .ma {
   margin: 0 auto;
 }
+
 .pa {
   position: absolute;
 }
+
 .pr {
   position: relative;
 }
+
 .hid {
   overflow: hidden;
 }
+
 /*===============================================*/
 /*   STRUCTURE  */
 /*===============================================*/
+
 * {
   margin: 0;
   padding: 0;
   border: 0;
 }
-article,
-aside,
-details,
-figcaption,
-figure,
-footer,
-header,
-hgroup,
-nav,
-section,
-audio,
-canvas,
-video {
+
+article, aside, details, figcaption, figure, footer, header, hgroup, nav, section, audio, canvas, video {
   display: block;
 }
+
 html {
   height: 100%;
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
 }
+
 body {
   width: 100%;
   height: 100%;
   color: #000000;
   line-height: 18px;
   font-size: 14px;
-  font-family: 'Arial', sans-serif;
+  font-family: 'Roboto', sans-serif;
   background-color: #f3f3f3;
-  background-repeat: repeat-x;
-  background-position: 0 0;
 }
+
 a {
   color: #000000;
   text-decoration: underline;
   cursor: pointer;
+  &:hover {
+    text-decoration: none;
+    color: #000000;
+  }
 }
-a:hover {
-  text-decoration: none;
-  color: #000000;
-}
+
 img {
   border: none;
 }
+
 input {
   vertical-align: middle;
 }
+
 ul {
   margin: 0;
   list-style: none;
 }
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+
+h1, h2, h3, h4, h5, h6 {
   font-weight: normal;
 }
+
 table {
   border-collapse: collapse;
   border-spacing: 0;
-}
-table, th, td {
   border: none;
 }
+
+th, td {
+  border: none;
+}
+
 figure {
   position: relative;
+  img, object, embed, video {
+    max-width: 100%;
+    display: block;
+  }
 }
-figure img,
-figure object,
-figure embed,
-figure video {
-  max-width: 100%;
+
+header {
+  height: 10%;
+  background-color: #ffffff;
+  min-height: 80px!important;
+  h1 {
+    padding-left: 50px;
+    width: 300px;
+  }
+}
+
+footer {
+  height: 10%;
+  width: 100%;
+  background-color: #ffffff;
+  position: absolute;
+  bottom: 0;
+  min-height: 90px!important;
+  ul {
+    position: absolute;
+    right: 50px;
+    bottom: 20px;
+  }
+}
+
+article ul {
+  position: absolute;
+  right: 50px;
+  bottom: 20px;
+  bottom: 70px;
+  background: image-url("line.png") no-repeat center 50%;
+}
+
+footer ul li, article ul li {
+  float: left;
+}
+
+#wrapper {
+  background: image-url("background.png") no-repeat;
+  height: 100%;
+}
+
+html, article {
+  position: relative;
+}
+
+html {
+  min-height: 500px;
+}
+
+article {
+  height: 80%;
+  min-height: 400px;
+}
+
+.apartments, .hotels, .cars, .yahts {
+  height: 65px;
+  width: 65px;
   display: block;
 }
-.content{
-  width: 100%;
-  height: 100%;
+
+.apartments, .hotels, .cars {
+  margin-right: 55px;
 }
-#map_apartments{
-  width: 100%;
-  height: 100%;
+
+.apartments {
+  background: image-url("ic_house.png") transparent;
 }
-#header{
-    background: image-url("header.jpg") no-repeat left center;
-    height: 168px;
-    width:100%;
+
+.hotels {
+  background: image-url("ic_hotels.png") transparent;
+}
+
+.cars {
+  background: image-url("ic_cars.png") transparent;
+}
+
+.yahts {
+  background: image-url("ic_yacht.png") transparent;
+}
+
+.apartments:hover {
+  background: image-url("hover_ic_house.png") transparent;
+}
+
+.hotels:hover {
+  background: image-url("hover_ic_hotels.png") transparent;
+}
+
+.cars:hover {
+  background: image-url("hover_ic_cars.png") transparent;
+}
+
+.yahts:hover {
+  background: image-url("hover_ic_yacht.png") transparent;
+}
+
+.btn_main {
+  background: image-url("btn_main.png") transparent no-repeat;
+  width: 245px;
+  height: 60px;
+  display: block;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  span {
+    padding-top: 20px;
+    display: block;
+  }
+  &:hover {
+    background: image-url("hover_btn_main.png") transparent no-repeat;
+  }
+}
+
+article section.main {
+  h1 {
+    color: #ff793d;
+    font-size: 50pt;
+  }
+  p {
+    color: #ffffff;
+    font-size: 20pt;
+    padding-top: 35px;
+  }
+}
+
+section.main {
+  padding-left: 50px;
+  height: 200px;
+  position: absolute;
+  bottom: 100px;
+  a {
+    position: absolute;
+    bottom: 0;
+    font-weight: bold;
+    font-size: 18pt;
+    color: #fff;
+    &:hover {
+      color: #ff793d;
+    }
+  }
 }
