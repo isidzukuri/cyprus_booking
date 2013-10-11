@@ -105,7 +105,7 @@ function admin_employment_calendar(){
 
 
 function admin_add_employment(button){
-	emp_p_inputs = '<div><div class="range_inputs"><label for="from">'+adm_apartments_langs.ru.from+'</label> <input type="text" class="employment_from" name="employment_from[]" /></div><div class="range_inputs"><label for="to">'+adm_apartments_langs.ru.to+'</label> <input type="text" class="employment_to" class="name_from[]" /></div><div class="ui-state-default ui-corner-all range_inputs remove_range"><span class="ui-icon ui-icon-circle-close"></span></div><div class="clear"></div></div>';
+	emp_p_inputs = '<div><div class="range_inputs"><label for="from">'+adm_apartments_langs.ru.from+'</label> <input type="text" class="employment_from" required name="employment_from[]" /></div><div class="range_inputs"><label for="to">'+adm_apartments_langs.ru.to+'</label> <input type="text" class="employment_to" required name="employment_to[]" /></div><div class="ui-state-default ui-corner-all range_inputs remove_range"><span class="ui-icon ui-icon-circle-close"></span></div><div class="clear"></div></div>';
 	button.before(emp_p_inputs);
 	admin_atach_from_to_datepicker(button);
 }
@@ -116,17 +116,17 @@ function admin_remove_range(button){
 }
 
 function admin_atach_from_to_datepicker(button){
-	last = button.parent();
+	last = button.prev();
 	last.find('.employment_from').datepicker({
       dateFormat: "dd.mm.yy",
       onClose: function( selectedDate ) {
-        last.find('.employment_to').datepicker( "option", "minDate", selectedDate );
+        $(this).parent().parent().find('.employment_to').datepicker( "option", "minDate", selectedDate );
       }
     });
     last.find('.employment_to').datepicker({
       dateFormat: "dd.mm.yy",
       onClose: function( selectedDate ) {
-        last.find('.employment_from').datepicker( "option", "maxDate", selectedDate );
+        $(this).parent().parent().find('.employment_from').datepicker( "option", "maxDate", selectedDate );
       }
     });
 }

@@ -68,6 +68,16 @@ class Admin::ApartamentsController < AdminController
 					@photo.save
 				end
 			end
+			if params[:employment_from].present? 
+				params[:employment_from].each_with_index do |one,i|
+					@period = Employment.new()
+					@period.from = Time.strptime(one,"%d.%m.%Y").to_i
+					@period.to = Time.strptime(params[:employment_to][i],"%d.%m.%Y").to_i
+					@period.status = 1
+					@period.house_id = apartament.id
+					@period.save
+				end
+			end
 			flash[:notice] = t("apartament.actions.changed")
 		# else
 		# 	flash[:errors] = apartament.errors.messages
