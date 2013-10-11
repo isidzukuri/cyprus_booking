@@ -1,7 +1,6 @@
 class User < ActiveRecord::Base
   authenticates_with_sorcery!
 
-  has_many :penalties
   has_and_belongs_to_many :roles
 
   validates :first_name,:last_name, :patronic, :city, :street,  :presence => {:message=>I18n.t("user.errors.presense")}, :length => {:minimum => 3, :maximum => 254 ,:message=>I18n.t("user.errors.minimum_chars")}
