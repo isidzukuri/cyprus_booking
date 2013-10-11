@@ -213,6 +213,13 @@ ActiveRecord::Schema.define(:version => 20130827134025) do
     t.datetime "file_updated_at"
   end
 
+  create_table "employments", :force => true do |t|
+    t.integer   "house_id"
+    t.integer   "from"
+    t.integer   "to"
+    t.integer   "status"
+  end
+
   create_table "characteristics", :force => true do |t|
     t.string   "name_ru"
     t.string   "name_uk"

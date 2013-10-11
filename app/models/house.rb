@@ -4,6 +4,7 @@ class House < ActiveRecord::Base
   belongs_to :user
   belongs_to :city
   has_many :photos
+  has_many :employments
   has_and_belongs_to_many :facilities
 
   has_many :ratings

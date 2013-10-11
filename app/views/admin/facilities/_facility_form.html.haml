@@ -20,10 +20,11 @@
         = f.label :seo , "SEO"   
         = f.text_field :seo , :class=>"span9" , :required=>true
 
-      .span12.field-box
-        = f.label :photos , "#{t("admin.facilities.ico")}"  
+      .span6.field-box
+        = f.label :ico , "#{t("admin.facilities.ico")}"  
+        -if @facility.ico.present?
+          =image_tag "#{@facility.ico.url(:small)}"
         %input(type="file" name="ico")
-        =image_tag "#{@facility.ico.url(:small)}"
       
       
       .span11.field-box.actions

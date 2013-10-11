@@ -21,11 +21,20 @@ function initialize() {
 // admin
 $(window).load(function(){
 	initialize_map();
+	admin_employment_calendar();
 	$('.delete_but').click(function(){
 		delete_photo($(this).data('photo_id'),$(this).data('house_id'));
 		$(this).parent().remove()
 	});
+
+
+    $('.range_inputs span').live('click', function () {admin_remove_range($(this)); });
+
+	$('#add_employment').click(function(){ admin_add_employment($(this)); });
+		
 });
+
+
 
 function delete_photo(photo_id, house_id){
 	$.ajax({
@@ -87,3 +96,45 @@ function initialize_map(lat,lng){
 // 	marker.setTitle(title)
 // 	balloon.setContent(title)
 // }
+
+
+function admin_employment_calendar(){
+	$.datepicker.setDefaults($.datepicker.regional['ru']);
+	$("#employment_calendar").datepicker();
+}
+
+
+function admin_add_employment(button){
+	emp_p_inputs = '<div><div class="range_inputs"><label for="from">'+adm_apartments_langs.ru.from+'</label> <input type="text" class="employment_from" name="employment_from[]" /></div><div class="range_inputs"><label for="to">'+adm_apartments_langs.ru.to+'</label> <input type="text" class="employment_to" class="name_from[]" /></div><div class="ui-state-default ui-corner-all range_inputs remove_range"><span class="ui-icon ui-icon-circle-close"></span></div><div class="clear"></div></div>';
+	button.before(emp_p_inputs);
+	admin_atach_from_to_datepicker(button);
+}
+
+
+function admin_remove_range(button){
+	button.parent().parent().remove();
+}
+
+function admin_atach_from_to_datepicker(button){
+	last = button.parent();
+	last.find('.employment_from').datepicker({
+      dateFormat: "dd.mm.yy",
+      onClose: function( selectedDate ) {
+        last.find('.employment_to').datepicker( "option", "minDate", selectedDate );
+      }
+    });
+    last.find('.employment_to').datepicker({
+      dateFormat: "dd.mm.yy",
+      onClose: function( selectedDate ) {
+        last.find('.employment_from').datepicker( "option", "maxDate", selectedDate );
+      }
+    });
+}
+
+
+window.adm_apartments_langs = {
+	ru:{
+		from: "от",
+		to: "до"
+	}
+}

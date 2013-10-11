@@ -25,6 +25,6 @@
 //= require jquery.mvc
 //= require_tree .
 
-	
+//= require datapicker_ru	
 //= require apartments
 

@@ -94,6 +94,15 @@
           = f.text_field :longitude , :class=>"span4"  
         #google_map
 
+
+      .span6.field-box
+        #employment_calendar
+        .inputs_pool
+          .clear
+        / = f.label :photos , "#{t("admin.apartaments.employment")}" 
+        #add_employment.btn-glow.smal #{t("admin.apartaments.add_employment")}
+
+
       .span12.field-box
         = f.label :photos , "#{t("admin.apartaments.photos")}"  
         %input(type="file" name="house[photos][]" multiple)
@@ -104,6 +113,7 @@
           .adm_img_preview
             =image_tag "#{photo.file.url(:small)}"
             .delete_but{"data-photo_id" => "#{photo.id}", "data-house_id" => "#{photo.house_id}"}
+
       
       .span11.field-box.actions
         = f.submit t("admin.apartaments.#{params[:action]}"), :class=>"btn-glow primary"

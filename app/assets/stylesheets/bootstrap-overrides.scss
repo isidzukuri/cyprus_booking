@@ -400,3 +400,28 @@ table th span.line{
     -webkit-transition: opacity .5s ease-out;
     -o-transition: opacity .5s ease-out;
 }
+.range_inputs{
+	float:left;
+	margin-right:5px;
+}
+.range_inputs input{
+	width: 100px;
+}
+.new-user .form-wrapper .range_inputs label{
+	width: 40px;
+	line-height: 33px;
+}
+.clear{
+	width:0 !important;
+	height:0 !important;
+	clear:both !important;
+}
+#add_employment{
+	margin-top:10px;
+}
+.range_inputs input, .range_inputs span{
+	cursor:pointer;
+}
+.remove_range{
+	margin-top:5px;
+}
