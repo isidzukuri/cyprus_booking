@@ -163,6 +163,10 @@ ActiveRecord::Schema.define(:version => 20130827134025) do
     t.string   "seo"
     t.datetime "created_at",                                     :null => false
     t.datetime "updated_at",                                     :null => false
+    t.string   "ico_file_name"
+    t.string   "ico_content_type"
+    t.integer  "ico_file_size"
+    t.datetime "ico_updated_at"
   end
 
   create_table "houses", :force => true do |t|

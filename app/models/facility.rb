@@ -2,6 +2,12 @@ class Facility < ActiveRecord::Base
   authenticates_with_sorcery!
 
   attr_accessible :id, :active, :name_ru, :name_uk, :name_en, :seo
+  has_attached_file :ico,
+  	:url  => "/facilities/:id/:style.:extension",
+    :path => ":rails_root/public/facilities/:id/:style.:extension", 
+    :styles => {
+      :small  => "35x35>"
+        }
 
   # has_many :penalties
   has_and_belongs_to_many :houses

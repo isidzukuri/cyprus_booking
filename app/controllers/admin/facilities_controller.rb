@@ -35,6 +35,9 @@ class Admin::FacilitiesController < AdminController
 		facility = Facility.find(params[:id])
 		facility.update_attributes(params[:facility])
 		if facility.valid?
+			if params[:ico].present? 
+				facility.ico = params[:ico]
+			end
 			facility.save
 			flash[:notice] = t("facility.actions.changed")
 		else

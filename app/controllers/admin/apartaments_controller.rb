@@ -77,6 +77,9 @@ class Admin::ApartamentsController < AdminController
 
 	def delete
 		apartament = House.find(params[:id])
+		apartament.photos.each do |photo|
+			photo.file.destroy
+		end
 		apartament.delete
 		flash[:notice] = t("apartament.actions.deleted")
 		redirect_to admin_apartaments_path

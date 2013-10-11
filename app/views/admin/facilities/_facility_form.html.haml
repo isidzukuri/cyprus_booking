@@ -1,7 +1,7 @@
 .span9.with-sidebar
   - url =  params[:action] =~ /new/ ? admin_facilities_path : admin_facility_path(@facility)
   .container
-    = form_for @facility ,:url => url  ,:html=>{:class=>"new_user_form inline-input"} do |f|
+    = form_for @facility ,:url => url  ,:html=>{:class=>"new_user_form inline-input" , :multipart => true} do |f|
       = f.hidden_field :id
       .span12.field-box
         = f.label :active , t("admin.facilities.active")    
@@ -19,6 +19,11 @@
       .span12.field-box
         = f.label :seo , "SEO"   
         = f.text_field :seo , :class=>"span9" , :required=>true
+
+      .span12.field-box
+        = f.label :photos , "#{t("admin.facilities.ico")}"  
+        %input(type="file" name="ico")
+        =image_tag "#{@facility.ico.url(:small)}"
       
       
       .span11.field-box.actions
