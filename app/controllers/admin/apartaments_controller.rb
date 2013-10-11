@@ -19,23 +19,16 @@ class Admin::ApartamentsController < AdminController
 	end
 
 	def create
-		photos = params[:house][:photos]
+		@photos = params[:house][:photos]
 		params[:house].delete(:photos)
 		facilities_ids = []
 		facilities_ids = params[:house][:facilities].keys unless !params[:house][:facilities].present?
 		params[:house].delete(:facilities)
-		apartament = House.new(params[:house])
-		apartament.facilities = Facility.find(facilities_ids)
-		# if apartament.valid?
-			apartament.save
-			if photos.present? 
-				photos.each do |one|
-					@photo = Photo.new()
-					@photo.file = one
-					@photo.house_id = apartament.id
-					@photo.save
-				end
-			end
+		@apartament = House.new(params[:house])
+		@apartament.facilities = Facility.find(facilities_ids)
+		# if @apartament.valid?
+			@apartament.save
+			save_dependencies()
 			flash[:notice] = t("apartament.actions.added")
 		# else
 		# 	flash[:errors] = apartament.errors.messages
@@ -47,37 +40,31 @@ class Admin::ApartamentsController < AdminController
 		@apartament = House.find(params[:id])
 		@cities = City.all.map{|city| [city.name_ru,city.id]}
 		@facilities = Facility.where("active = 1").map{|f| [f.name_ru,f.id]}
+		employments = @apartament.employments.where(:status => [1,2,3])
+		if employments.present?
+			disabled_days = []
+			employments.each do |r|
+				curent_day = r.from
+				begin
+					disabled_days << "'#{Time.at(curent_day).strftime("#{Time.at(curent_day).day}.#{Time.at(curent_day).month}.%Y")}'"
+					curent_day += 86400
+				end while curent_day <= r.to
+			end
+			@disabled_days = disabled_days.join(', ')
+		end
 	end
 
 	def update
-		photos = params[:house][:photos]
+		@photos = params[:house][:photos]
 		params[:house].delete(:photos)
 		facilities_ids = []
 		facilities_ids = params[:house][:facilities].keys unless !params[:house][:facilities].present?
 		params[:house].delete(:facilities)
-		apartament = House.find(params[:id])
-		apartament.update_attributes(params[:house])
-		apartament.facilities = Facility.find(facilities_ids)
-		# if apartament.valid?
-			apartament.save
-			if photos.present? 
-				photos.each do |one|
-					@photo = Photo.new()
-					@photo.file = one
-					@photo.house_id = apartament.id
-					@photo.save
-				end
-			end
-			if params[:employment_from].present? 
-				params[:employment_from].each_with_index do |one,i|
-					@period = Employment.new()
-					@period.from = Time.strptime(one,"%d.%m.%Y").to_i
-					@period.to = Time.strptime(params[:employment_to][i],"%d.%m.%Y").to_i
-					@period.status = 1
-					@period.house_id = apartament.id
-					@period.save
-				end
-			end
+		@apartament = House.find(params[:id])
+		@apartament.update_attributes(params[:house])
+		@apartament.facilities = Facility.find(facilities_ids)
+		# if @apartament.valid?
+			save_dependencies()
 			flash[:notice] = t("apartament.actions.changed")
 		# else
 		# 	flash[:errors] = apartament.errors.messages
@@ -100,6 +87,33 @@ class Admin::ApartamentsController < AdminController
 		@photo.file.destroy
 		@photo.delete
 		render :text => @photo.delete
+	end
+
+	def remove_employment
+		@period = Employment.find(params[:id])
+		render :text => @period.delete
+	end
+
+	def save_dependencies
+		@apartament.save
+		if @photos.present? 
+			@photos.each do |one|
+				@photo = Photo.new()
+				@photo.file = one
+				@photo.house_id = @apartament.id
+				@photo.save
+			end
+		end
+		if params[:employment_from].present? 
+			params[:employment_from].each_with_index do |one,i|
+				@period = Employment.new()
+				@period.from = Time.strptime(one,"%d.%m.%Y").to_i
+				@period.to = Time.strptime(params[:employment_to][i],"%d.%m.%Y").to_i
+				@period.status = 1
+				@period.house_id = @apartament.id
+				@period.save
+			end
+		end
 	end
 
 	

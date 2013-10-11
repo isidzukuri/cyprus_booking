@@ -98,10 +98,22 @@ function initialize_map(lat,lng){
 // }
 
 
+
 function admin_employment_calendar(){
 	$.datepicker.setDefaults($.datepicker.regional['ru']);
-	$("#employment_calendar").datepicker();
+	$("#employment_calendar").datepicker({
+		dateFormat: "dd.mm.yy",
+		beforeShowDay: function( d ) {
+			this_date = d.getDate()+"."+(d.getMonth()+1)+"."+d.getFullYear();
+			if($.inArray( this_date, disabledDays)  != -1 ){
+				return [false,"","reserved"];
+			}else{
+				return [true,"","reserved"];
+			}
+      	}
+	});
 }
+
 
 
 function admin_add_employment(button){
@@ -112,6 +124,13 @@ function admin_add_employment(button){
 
 
 function admin_remove_range(button){
+	if(button.data('id')){
+		$.ajax({
+		  url: "/admin/"+button.data('controller')+"/remove_"+button.data('type')+"/"+button.data('id'),
+		  contentType: "application/json;",
+		  dataType: "json"
+		});
+	}
 	button.parent().parent().remove();
 }
 

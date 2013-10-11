@@ -17,6 +17,7 @@ CyprusBooking::Application.routes.draw do
      get "apartaments",          to: "apartaments#index"
      get "apartaments/delete/:id",      to: "apartaments#delete"
      get "apartaments/remove_photo/:photo_id",  to: "apartaments#remove_photo"
+     get "apartaments/remove_employment/:id",  to: "apartaments#remove_employment"
      get "facilities",          to: "facilities#index"
      get "facilities/new",      to: "facilities#new"
      get "facilities/delete/:id",      to: "facilities#delete"
