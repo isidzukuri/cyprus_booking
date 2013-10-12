@@ -106,23 +106,26 @@
         .inputs_pool
           - if @reserved.present?
             - if @reserved["owner"].present?
-              %h5 #{t("admin.apartaments.reserved_by_owner")}
-              - @reserved["owner"].each do |employment|
-                .div
-                  .period= "#{Time.at(employment.from_date).strftime("%d.%m.%Y")} - #{Time.at(employment.to_date).strftime("%d.%m.%Y")}"
-                  .ui-state-default.ui-corner-all.range_inputs.remove_range
-                    %span.ui-icon.ui-icon-circle-close{"data-id" => "#{employment.id}", "data-type" => "employment", "data-controller" => "apartaments"}
-                  .clear
-              .clear
+              .emp_column
+                %h5 #{t("admin.apartaments.reserved_by_owner")}
+                - @reserved["owner"].each do |employment|
+                  .div
+                    .period= "#{Time.at(employment.from_date).strftime("%d.%m.%Y")} - #{Time.at(employment.to_date).strftime("%d.%m.%Y")}"
+                    .ui-state-default.ui-corner-all.range_inputs.remove_range
+                      %span.ui-icon.ui-icon-circle-close{"data-id" => "#{employment.id}", "data-type" => "employment", "data-controller" => "apartaments"}
+                    .clear
+                .clear
             - if @reserved["client"].present?
-              %h5 #{t("admin.apartaments.reserved_by_client")}
-              - @reserved["client"].each do |employment|
-                .div
-                  .period= "#{Time.at(employment.from_date).strftime("%d.%m.%Y")} - #{Time.at(employment.to_date).strftime("%d.%m.%Y")}"
-                  .ui-state-default.ui-corner-all.range_inputs.remove_range
+              .emp_column
+                %h5 #{t("admin.apartaments.reserved_by_client")}
+                - @reserved["client"].each do |employment|
+                  .div
+                    .period= "#{Time.at(employment.from_date).strftime("%d.%m.%Y")} - #{Time.at(employment.to_date).strftime("%d.%m.%Y")}"
+                    .ui-state-default.ui-corner-all.range_inputs.remove_range
                     %span.ui-icon.ui-icon-circle-close{"data-id" => "#{employment.id}", "data-type" => "employment", "data-controller" => "apartaments"}
-                  .clear
-              .clear
+                    .clear
+                .clear
+            .clear
         / = f.label :photos , "#{t("admin.apartaments.employment")}" 
         #add_employment.btn-glow.smal #{t("admin.apartaments.add_employment")}
 

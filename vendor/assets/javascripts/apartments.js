@@ -103,6 +103,7 @@ function admin_employment_calendar(){
 	$.datepicker.setDefaults($.datepicker.regional['ru']);
 	$("#employment_calendar").datepicker({
 		dateFormat: "dd.mm.yy",
+		numberOfMonths: 3,
 		beforeShowDay: function( d ) {
 			this_date = d.getDate()+"."+(d.getMonth()+1)+"."+d.getFullYear();
 			if($.inArray( this_date, disabledDays)  != -1 ){
