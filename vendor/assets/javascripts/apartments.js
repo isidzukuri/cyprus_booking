@@ -34,7 +34,7 @@ $(window).load(function(){
 
 	$('#add_employment').click(function(){ admin_add_range($(this),'employment',disabledDays); });
 	$('#add_price').click(function(){ admin_add_range($(this),'price',price_disabledDays); });
-		
+	$('#price_calendar td a').click(function(){ return false;});	
 		
 });
 

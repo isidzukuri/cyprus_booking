@@ -1,0 +1,22 @@
+.span9.with-sidebar
+  - url =  params[:action] =~ /new/ ? admin_characteristics_path : admin_characteristic_path(@characteristic)
+  .container
+    = form_for @characteristic ,:url => url  ,:html=>{:class=>"new_user_form inline-input" , :multipart => true} do |f|
+      = f.hidden_field :id
+      
+      .span12.field-box
+        = f.label :name_ru , "#{t("admin.characteristics.name")} [ru]"   
+        = f.text_field :name_ru , :class=>"span9" , :required=>true
+      .span12.field-box
+        = f.label :name_uk , "#{t("admin.characteristics.name")} [uk]"   
+        = f.text_field :name_uk , :class=>"span9" , :required=>true
+      .span12.field-box
+        = f.label :name_en , "#{t("admin.characteristics.name")} [en]"   
+        = f.text_field :name_en , :class=>"span9" , :required=>true
+      
+
+      
+      
+      
+      .span11.field-box.actions
+        = f.submit t("admin.characteristics.#{params[:action]}"), :class=>"btn-glow primary"

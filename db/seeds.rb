@@ -8,6 +8,7 @@ if AdminModule.count == 0
 	# AdminModule.create(name:"Довідник",action:"articles",parent_id:0,:ico_cls=>"sidebar-widgets")
 	AdminModule.create(name:"Опции апартаментов",action:"facilities",parent_id:0,:ico_cls=>"sidebar-widgets")
 	AdminModule.create(name:"Апартаменты",action:"apartaments",parent_id:0,:ico_cls=>"sidebar-widgets")
+	AdminModule.create(name:"Характеристики апартаментов",action:"characteristics",parent_id:0,:ico_cls=>"sidebar-widgets")
 end
 
 if City.count == 0
@@ -27,8 +28,11 @@ if Facility.count == 0
 end
 
 if Characteristic.count == 0
-	Characteristic.create(name_ru:"parametr 1", name_uk:"parametr 1", name_en:"parametr 1")
-	Characteristic.create(name_ru:"parametr 2", name_uk:"parametr 2", name_en:"parametr 2")
+	Characteristic.create(name_ru:"Чистота", name_uk:"Чистота", name_en:"Чистота")
+	Characteristic.create(name_ru:"Цена/качество", name_uk:"Цена/качество", name_en:"Цена/качество")
+	Characteristic.create(name_ru:"Общение", name_uk:"Общение", name_en:"Общение")
+	Characteristic.create(name_ru:"Заселение", name_uk:"Заселение", name_en:"Заселение")
+	Characteristic.create(name_ru:"Расположение", name_uk:"Расположение", name_en:"Расположение")
 end
 
 if User.count == 0

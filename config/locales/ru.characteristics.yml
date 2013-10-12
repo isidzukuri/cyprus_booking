@@ -1,0 +1,12 @@
+ru:
+  characteristic:
+    enter: Вход
+    send: Отправить
+    actions:
+      added: Характеристика добавлена успешно
+      changed: Данные характеристики изменены
+      delete: Удалить
+      deleted: Удалено
+    errors:
+      presense: Не заполнены обязательные поля
+      minimum_chars: Полe заполнено некоретным колличеством символов

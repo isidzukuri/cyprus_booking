@@ -17,6 +17,7 @@ class Admin::ApartamentsController < AdminController
 		@cities = City.all.map{|city| [city.name_ru,city.id]}
 		@currencies = Currency.all.map{|c| [c.title,c.id]}
 		@facilities = Facility.where("active = 1").map{|f| [f.name_ru,f.id]}
+		@currency = Currency.find(1)
 	end
 
 	def create
@@ -78,6 +79,7 @@ class Admin::ApartamentsController < AdminController
 		end
 		@price_calendar_disabled_days = price_calendar_disabled_days.join(', ')
 		@price_calendar_values = @price_calendar_values.to_json
+		@currency = Currency.find(@apartament.currency_id)
 	end
 
 	def update

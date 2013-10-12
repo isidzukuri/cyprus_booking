@@ -6,11 +6,11 @@
       = f.hidden_field :user_id
       
       :javascript
-          default_currency = "#{p Currency.find(@apartament.currency_id).title }";
+          default_currency = "#{p @currency.title }";
           window.default_price = "#{p @apartament.cost}"
           window.disabledDays = [#{p @disabled_days }];
           window.price_disabledDays = [#{p @price_calendar_disabled_days }];
-          window.price_values = #{p @price_calendar_values};
+          window.price_values = #{p @price_calendar_values.present? ? @price_calendar_values : "[]"};
       .span12.field-box
         = f.label :name_ru , "#{t("admin.apartaments.name")} [ru]"   
         = f.text_field :name_ru , :class=>"span9" , :required=>true
