@@ -215,8 +215,8 @@ ActiveRecord::Schema.define(:version => 20130827134025) do
 
   create_table "employments", :force => true do |t|
     t.integer   "house_id"
-    t.integer   "from"
-    t.integer   "to"
+    t.integer   "from_date"
+    t.integer   "to_date"
     t.integer   "status"
   end
 

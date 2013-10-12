@@ -40,15 +40,22 @@ class Admin::ApartamentsController < AdminController
 		@apartament = House.find(params[:id])
 		@cities = City.all.map{|city| [city.name_ru,city.id]}
 		@facilities = Facility.where("active = 1").map{|f| [f.name_ru,f.id]}
-		employments = @apartament.employments.where(:status => [1,2,3])
+		employments = @apartament.employments.where(:status => [1,2,3]).where("to_date > ?", Time.now.to_i)
+		@reserved = {'owner' => [],'client' => []}
+
 		if employments.present?
 			disabled_days = []
 			employments.each do |r|
-				curent_day = r.from
+				curent_day = r.from_date
 				begin
 					disabled_days << "'#{Time.at(curent_day).strftime("#{Time.at(curent_day).day}.#{Time.at(curent_day).month}.%Y")}'"
 					curent_day += 86400
-				end while curent_day <= r.to
+				end while curent_day <= r.to_date
+				if r.status == 1
+					@reserved['owner'] << r
+				else
+					@reserved['client'] << r
+				end	
 			end
 			@disabled_days = disabled_days.join(', ')
 		end
@@ -107,8 +114,8 @@ class Admin::ApartamentsController < AdminController
 		if params[:employment_from].present? 
 			params[:employment_from].each_with_index do |one,i|
 				@period = Employment.new()
-				@period.from = Time.strptime(one,"%d.%m.%Y").to_i
-				@period.to = Time.strptime(params[:employment_to][i],"%d.%m.%Y").to_i
+				@period.from_date = Time.strptime(one,"%d.%m.%Y").to_i
+				@period.to_date = Time.strptime(params[:employment_to][i],"%d.%m.%Y").to_i
 				@period.status = 1
 				@period.house_id = @apartament.id
 				@period.save
