@@ -1,0 +1,50 @@
+#apatments
+  = form_for @apartments_search ,:url => "apatments/search" ,:html => {:"data-auto-controller" => "ApartmentsController"} do |f|
+    .form_line
+      .b_form_text.icon_search
+        = f.text_field :city ,:class=>"form-text", :required=>true,:placeholder=>"- Secelt city -"
+    .dates
+      %ul
+        %li
+          %ul
+            %li
+              .b_form_text.icon_date
+                = f.text_field :arrival ,:class=>"form-text", :required=>true,:placeholder=>"- from -"
+            %li
+              .b_form_text.icon_date
+                = f.text_field :departure ,:class=>"form-text", :required=>true,:placeholder=>"- to -"
+        %li
+          %ul
+            %li.jNice
+              .b_form_text.icon_guests
+                %select
+                  %option{value: "1"} 1 guest
+                  %option{value: "2"} 2 guest
+                  %option{value: "3"} 3 guest
+                  %option{value: "4"} 4 guest
+                  %option{value: "5"} 5 guest
+                  %option{value: "6"} 6 guest
+            %li
+              %a.search_btn{href: "#"}
+                %span search
+    %a.adv_but{href: "#"}
+    .advanced
+      %ul
+        %li
+          %ul
+            %li
+              .b_form_text.icon_money
+                = f.text_field :price_from ,:class=>"form-text" ,:required=>true,:placeholder=>"- 10 -"
+            %li
+              .b_form_text.icon_money
+                = f.text_field :price_to ,:class=>"form-text" ,:required=>true,:placeholder=>"- 1000 -"
+      - if @apartments_search.facilities.count > 0
+        .facifitiles
+          %ul
+            - @apartments_search.facilities.each do |facility|
+              = f.fields_for :facilities , facility do |ff|
+                %li.jNice
+                  = image_tag "facilfitiles/conditioner.png"
+                  %span.text=facility.name
+                  = ff.check_box :active ,:value=>1, :checked=>false
+        .clear

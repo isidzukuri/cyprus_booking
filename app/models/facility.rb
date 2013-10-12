@@ -1,5 +1,4 @@
 class Facility < ActiveRecord::Base
-  authenticates_with_sorcery!
 
   attr_accessible :id, :active, :name_ru, :name_uk, :name_en, :seo
   has_attached_file :ico,

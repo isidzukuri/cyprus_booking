@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 
 gem 'rails', '3.2.13'
 
@@ -15,6 +15,7 @@ gem "rails_config"
 gem 'wrest'
 gem 'builder'
 gem "paperclip", "~> 3.0"
+gem 'active_attr', :git => "git://github.com/chromov/active_attr.git"
 # gem 'rmagick', '2.13.2'
 
 group :assets do
