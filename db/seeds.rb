@@ -15,6 +15,12 @@ if City.count == 0
 	City.create(name_ru:"Корнос")
 end
 
+if Currency.count == 0
+	Currency.create(title:"UAH",curs:1)
+	Currency.create(title:"USD",curs:2)
+	Currency.create(title:"EUR",curs:3)
+end
+
 if Facility.count == 0
 	Facility.create(name_ru:"Интернет", name_uk:"Интернет", name_en:"Интернет", seo:"internet")
 	Facility.create(name_ru:"Камин", name_uk:"Камин", name_en:"Камин", seo:"kamin")

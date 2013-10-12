@@ -194,6 +194,7 @@ ActiveRecord::Schema.define(:version => 20130827134025) do
     t.integer  "active",       :default => 1, :null => false
     t.integer  "user_id"
     t.integer  "city_id"
+    t.integer  "currency_id"
   end
 
   create_table "cities", :force => true do |t|
@@ -236,6 +237,11 @@ ActiveRecord::Schema.define(:version => 20130827134025) do
     t.integer   "user_id"
     t.integer   "characteristic_id"
     t.integer   "value"
+  end
+
+  create_table "currencies", :force => true do |t|
+    t.float  "curs"
+    t.string  "title"
   end
 
   add_index "users", ["remember_me_token"], :name => "index_users_on_remember_me_token"
