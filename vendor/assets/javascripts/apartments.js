@@ -107,9 +107,9 @@ function admin_employment_calendar(){
 		beforeShowDay: function( d ) {
 			this_date = d.getDate()+"."+(d.getMonth()+1)+"."+d.getFullYear();
 			if($.inArray( this_date, disabledDays)  != -1 ){
-				return [false,"","reserved"];
+				return [false,"",adm_apartments_langs.ru.busy];
 			}else{
-				return [true,"","reserved"];
+				return [true,"",adm_apartments_langs.ru.free];
 			}
       	}
 	});
@@ -155,6 +155,8 @@ function admin_atach_from_to_datepicker(button){
 window.adm_apartments_langs = {
 	ru:{
 		from: "от",
-		to: "до"
+		to: "до",
+		busy: "Зарезервировано",
+		free: "Свободно"
 	}
 }

@@ -15,6 +15,7 @@ class Admin::ApartamentsController < AdminController
 		@apartament = House.new
 		@apartament.user_id = @apartament.user_id.present? ? @apartament.user_id : @current_user.id 
 		@cities = City.all.map{|city| [city.name_ru,city.id]}
+		@currencies = Currency.all.map{|c| [c.title,c.id]}
 		@facilities = Facility.where("active = 1").map{|f| [f.name_ru,f.id]}
 	end
 
@@ -39,6 +40,7 @@ class Admin::ApartamentsController < AdminController
 	def edit
 		@apartament = House.find(params[:id])
 		@cities = City.all.map{|city| [city.name_ru,city.id]}
+		@currencies = Currency.all.map{|c| [c.title,c.id]}
 		@facilities = Facility.where("active = 1").map{|f| [f.name_ru,f.id]}
 		employments = @apartament.employments.where(:status => [1,2,3]).where("to_date > ?", Time.now.to_i)
 		@reserved = {'owner' => [],'client' => []}
