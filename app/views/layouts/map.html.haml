@@ -19,6 +19,7 @@
             %a{href: "/"}
               = image_tag "logo.png"
         .line
+          %a.search{:href=>"#"}
           %nav
             %ul
               %li
@@ -30,7 +31,8 @@
               %li
                 %a.yahts{href: "#"}
 
+      = yield
+      %section#map_apartments
 
-      %section
-        %section#map_apartments
+
 
