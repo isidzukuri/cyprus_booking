@@ -61,6 +61,23 @@ class Admin::ApartamentsController < AdminController
 			end
 			@disabled_days = disabled_days.join(', ')
 		end
+		@custom_prices = {}
+		@prices = @apartament.house_prices.where("to_date > ?", Time.now.to_i)
+		if @prices.present?
+			price_calendar_disabled_days = []
+			@price_calendar_values = []
+			@prices.each do |r|
+				curent_day = r.from_date
+				begin
+					day = "#{Time.at(curent_day).strftime("#{Time.at(curent_day).day}.#{Time.at(curent_day).month}.%Y")}"
+					price_calendar_disabled_days << "'#{day}'"
+					@price_calendar_values << r.cost
+					curent_day += 86400
+				end while curent_day <= r.to_date
+			end
+		end
+		@price_calendar_disabled_days = price_calendar_disabled_days.join(', ')
+		@price_calendar_values = @price_calendar_values.to_json
 	end
 
 	def update
@@ -103,6 +120,11 @@ class Admin::ApartamentsController < AdminController
 		render :text => @period.delete
 	end
 
+	def remove_price
+		@period = HousePrice.find(params[:id])
+		render :text => @period.delete
+	end
+
 	def save_dependencies
 		@apartament.save
 		if @photos.present? 
@@ -119,6 +141,16 @@ class Admin::ApartamentsController < AdminController
 				@period.from_date = Time.strptime(one,"%d.%m.%Y").to_i
 				@period.to_date = Time.strptime(params[:employment_to][i],"%d.%m.%Y").to_i
 				@period.status = 1
+				@period.house_id = @apartament.id
+				@period.save
+			end
+		end
+		if params[:price_from].present? 
+			params[:price_from].each_with_index do |one,i|
+				@period = HousePrice.new()
+				@period.from_date = Time.strptime(one,"%d.%m.%Y").to_i
+				@period.to_date = Time.strptime(params[:price_to][i],"%d.%m.%Y").to_i
+				@period.cost = params[:price_range_value][i]
 				@period.house_id = @apartament.id
 				@period.save
 			end

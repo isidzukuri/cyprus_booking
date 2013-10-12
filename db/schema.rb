@@ -221,6 +221,13 @@ ActiveRecord::Schema.define(:version => 20130827134025) do
     t.integer   "status"
   end
 
+  create_table "house_prices", :force => true do |t|
+    t.integer   "house_id"
+    t.integer   "from_date"
+    t.integer   "to_date"
+    t.float     "cost"
+  end
+
   create_table "characteristics", :force => true do |t|
     t.string   "name_ru"
     t.string   "name_uk"

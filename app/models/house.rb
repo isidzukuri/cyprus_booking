@@ -3,8 +3,10 @@ class House < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :city
+  belongs_to :currency
   has_many :photos
   has_many :employments
+  has_many :house_prices
   has_and_belongs_to_many :facilities
 
   has_many :ratings

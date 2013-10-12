@@ -4,8 +4,13 @@
     = form_for @apartament ,:url => url  ,:html=>{:class=>"new_user_form inline-input" , :multipart => true} do |f|
       = f.hidden_field :id
       = f.hidden_field :user_id
-
-
+      
+      :javascript
+          default_currency = "#{p Currency.find(@apartament.currency_id).title }";
+          window.default_price = "#{p @apartament.cost}"
+          window.disabledDays = [#{p @disabled_days }];
+          window.price_disabledDays = [#{p @price_calendar_disabled_days }];
+          window.price_values = #{p @price_calendar_values};
       .span12.field-box
         = f.label :name_ru , "#{t("admin.apartaments.name")} [ru]"   
         = f.text_field :name_ru , :class=>"span9" , :required=>true
@@ -26,12 +31,8 @@
         #google_map
 
       
-        :javascript
-          window.disabledDays = [
-          #{
-           p @disabled_days
-          }
-          ];
+      %h4 #{t("admin.apartaments.availability")}
+      %hr  
       .span6.field-box
         #employment_calendar
         .inputs_pool
@@ -58,13 +59,35 @@
         #add_employment.btn-glow.smal #{t("admin.apartaments.add_employment")}
 
 
+
+      %h4 #{t("admin.apartaments.cost")}
+      %hr
       .span12.field-box
         .fl
-          = f.label :cost , "#{t("admin.apartaments.cost")}"   
+          = f.label :cost , "#{t("admin.apartaments.basic_cost")}"   
           = f.text_field :cost , :class=>"span4" 
         .fl  
           = f.select :currency_id , options_for_select(@currencies,@apartament.currency_id.present? ? @apartament.currency_id : 1) ,{} ,:class=>"span4" , :required=>true 
 
+
+      .span6.field-box
+        #price_calendar
+        .inputs_pool
+          - if @prices.present?
+            .emp_column
+              %h5 #{t("admin.apartaments.period_price")}
+              - @prices.each do |item|
+                .div
+                  .period
+                    #{Time.at(item.from_date).strftime("%d.%m.%Y")} - #{Time.at(item.to_date).strftime("%d.%m.%Y")}
+                    %b=" : #{item.cost} #{@apartament.currency.title}"
+                  .ui-state-default.ui-corner-all.range_inputs.remove_range
+                    %span.ui-icon.ui-icon-circle-close{"data-id" => "#{item.id}", "data-type" => "price", "data-controller" => "apartaments"}
+                  .clear
+              .clear
+            
+          .clear
+        #add_price.btn-glow.smal #{t("admin.apartaments.add_price")}
       
         
 

@@ -20,8 +20,10 @@ function initialize() {
 
 // admin
 $(window).load(function(){
+	$.datepicker.setDefaults($.datepicker.regional['ru']);
 	initialize_map();
 	admin_employment_calendar();
+	admin_price_calendar();
 	$('.delete_but').click(function(){
 		delete_photo($(this).data('photo_id'),$(this).data('house_id'));
 		$(this).parent().remove()
@@ -30,7 +32,9 @@ $(window).load(function(){
 
     $('.range_inputs span').live('click', function () {admin_remove_range($(this)); });
 
-	$('#add_employment').click(function(){ admin_add_employment($(this)); });
+	$('#add_employment').click(function(){ admin_add_range($(this),'employment',disabledDays); });
+	$('#add_price').click(function(){ admin_add_range($(this),'price',price_disabledDays); });
+		
 		
 });
 
@@ -100,7 +104,6 @@ function initialize_map(lat,lng){
 
 
 function admin_employment_calendar(){
-	$.datepicker.setDefaults($.datepicker.regional['ru']);
 	$("#employment_calendar").datepicker({
 		dateFormat: "dd.mm.yy",
 		numberOfMonths: 3,
@@ -115,12 +118,34 @@ function admin_employment_calendar(){
 	});
 }
 
+function admin_price_calendar(){
+	$("#price_calendar").datepicker({
+		dateFormat: "dd.mm.yy",
+		numberOfMonths: 3,
+		beforeShowDay: function( d ) {
+			this_date = d.getDate()+"."+(d.getMonth()+1)+"."+d.getFullYear();
+			key = $.inArray( this_date, price_disabledDays);
+			if(key != -1){
+				return [false, "price_color", price_values[key]+" "+default_currency];
+			}else{
+				return [true,"",default_price+" "+default_currency];
+			}
+      	}
+	});
+	$('.price_color').each(function( index ) {
+	  color = parseInt($(this).attr('title')) + "fffff";
+	  color = "#"+color.substring(0, 6);
+	  $(this).find('span').css('background',color);
+	});
+}
 
 
-function admin_add_employment(button){
-	emp_p_inputs = '<div><div class="range_inputs"><label for="from">'+adm_apartments_langs.ru.from+'</label> <input type="text" class="employment_from" required name="employment_from[]" /></div><div class="range_inputs"><label for="to">'+adm_apartments_langs.ru.to+'</label> <input type="text" class="employment_to" required name="employment_to[]" /></div><div class="ui-state-default ui-corner-all range_inputs remove_range"><span class="ui-icon ui-icon-circle-close"></span></div><div class="clear"></div></div>';
+
+function admin_add_range(button,type,disabled){
+	custom_field = (type == 'price') ? '<div class="range_inputs"><label>'+adm_apartments_langs.ru.price+'</label> <input type="text" class="'+type+'_inp" required name="'+type+'_range_value[]" /></div>' : '';
+	emp_p_inputs = '<div><div class="range_inputs"><label for="from">'+adm_apartments_langs.ru.from+'</label> <input type="text" class="'+type+'_from" required name="'+type+'_from[]" /></div><div class="range_inputs"><label for="to">'+adm_apartments_langs.ru.to+'</label> <input type="text" class="'+type+'_to" required name="'+type+'_to[]" /></div>'+custom_field+'<div class="ui-state-default ui-corner-all range_inputs remove_range"><span class="ui-icon ui-icon-circle-close"></span></div><div class="clear"></div></div>';
 	button.before(emp_p_inputs);
-	admin_atach_from_to_datepicker(button);
+	admin_atach_from_to_datepicker(button,type,disabled);
 }
 
 
@@ -135,19 +160,35 @@ function admin_remove_range(button){
 	button.parent().parent().remove();
 }
 
-function admin_atach_from_to_datepicker(button){
+function admin_atach_from_to_datepicker(button,type,disabled){
 	last = button.prev();
-	last.find('.employment_from').datepicker({
+	last.find('.'+type+'_from').datepicker({
       dateFormat: "dd.mm.yy",
       onClose: function( selectedDate ) {
-        $(this).parent().parent().find('.employment_to').datepicker( "option", "minDate", selectedDate );
-      }
+        $(this).parent().parent().find('.'+type+'_to').datepicker( "option", "minDate", selectedDate );
+      },
+      beforeShowDay: function( d ) {
+			this_date = d.getDate()+"."+(d.getMonth()+1)+"."+d.getFullYear();
+			if($.inArray( this_date, disabled)  != -1 ){
+				return [false,"",adm_apartments_langs.ru.busy];
+			}else{
+				return [true,"",adm_apartments_langs.ru.free];
+			}
+      	}
     });
-    last.find('.employment_to').datepicker({
+    last.find('.'+type+'_to').datepicker({
       dateFormat: "dd.mm.yy",
       onClose: function( selectedDate ) {
-        $(this).parent().parent().find('.employment_from').datepicker( "option", "maxDate", selectedDate );
-      }
+        $(this).parent().parent().find('.'+type+'_from').datepicker( "option", "maxDate", selectedDate );
+      },
+      beforeShowDay: function( d ) {
+			this_date = d.getDate()+"."+(d.getMonth()+1)+"."+d.getFullYear();
+			if($.inArray( this_date, disabled)  != -1 ){
+				return [false,"",adm_apartments_langs.ru.busy];
+			}else{
+				return [true,"",adm_apartments_langs.ru.free];
+			}
+      	}
     });
 }
 
@@ -157,6 +198,7 @@ window.adm_apartments_langs = {
 		from: "от",
 		to: "до",
 		busy: "Зарезервировано",
-		free: "Свободно"
+		free: "Свободно",
+		price: "цена"
 	}
 }

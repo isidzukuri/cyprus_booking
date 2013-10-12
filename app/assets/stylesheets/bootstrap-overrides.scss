@@ -416,7 +416,7 @@ table th span.line{
 	height:0 !important;
 	clear:both !important;
 }
-#add_employment{
+#add_employment, #add_price{
 	margin-top:10px;
 }
 .range_inputs input, .range_inputs span{
@@ -437,4 +437,11 @@ table th span.line{
 .fl{
 	float:left;
 	width:225px;
+}
+.price_color{
+	opacity: 0.7 !important;
+}
+.price_color span{
+	color: #000 !important;
+	font-weight: 700 !important;
 }

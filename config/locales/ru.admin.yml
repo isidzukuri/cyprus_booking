@@ -160,5 +160,9 @@ ru:
       reserved_by_owner: Зарезервировано владелцем
       reserved_by_client: Зарезервировано клиентами
       currency: Валюта
+      add_price: Добавить цену на период
+      availability: Доступность апартаментов
+      basic_cost: Базовая цена
+      period_price: Цена на период
 
 
