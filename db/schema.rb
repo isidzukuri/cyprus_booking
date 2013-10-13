@@ -47,12 +47,71 @@ ActiveRecord::Schema.define(:version => 20130827134025) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "characteristics", :force => true do |t|
+    t.string "name_ru"
+    t.string "name_uk"
+    t.string "name_en"
+  end
+
+  create_table "cities", :force => true do |t|
+    t.string "country",  :default => "CY", :null => false
+    t.string "zip_code"
+    t.string "name_ru"
+    t.string "name_uk"
+    t.string "name_en"
+  end
+
   create_table "email_templates", :force => true do |t|
     t.string   "name"
     t.string   "email_type"
     t.text     "html"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "facilities", :force => true do |t|
+    t.string   "name_uk"
+    t.string   "name_ru"
+    t.string   "name_en"
+    t.string   "ico"
+    t.text     "description"
+    t.integer  "active",      :default => 1, :null => false
+    t.string   "seo"
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
+  end
+
+  create_table "facilities_houses", :force => true do |t|
+    t.integer "house_id"
+    t.integer "facility_id"
+  end
+
+  create_table "houses", :force => true do |t|
+    t.string  "name_uk"
+    t.string  "name_ru"
+    t.string  "name_en"
+    t.string  "description_uk"
+    t.string  "description_ru"
+    t.string  "description_en"
+    t.float   "rating",         :default => 0.0, :null => false
+    t.float   "cost",           :default => 0.0, :null => false
+    t.integer "views",          :default => 0,   :null => false
+    t.string  "longitude",      :default => "0", :null => false
+    t.string  "latitude",       :default => "0", :null => false
+    t.string  "full_address"
+    t.string  "flat_number"
+    t.string  "floor_number"
+    t.string  "house_number"
+    t.string  "street"
+    t.integer "currency_id"
+    t.string  "district"
+    t.integer "floors"
+    t.integer "rooms"
+    t.integer "places"
+    t.integer "showers"
+    t.integer "active",         :default => 1,   :null => false
+    t.integer "user_id"
+    t.integer "city_id"
   end
 
   create_table "modules", :force => true do |t|
@@ -97,13 +156,34 @@ ActiveRecord::Schema.define(:version => 20130827134025) do
 
   add_index "penalties", ["user_id"], :name => "index_penalties_on_user_id"
 
+  create_table "photos", :force => true do |t|
+    t.integer  "house_id"
+    t.string   "file"
+    t.string   "file_file_name"
+    t.string   "file_content_type"
+    t.integer  "file_file_size"
+    t.datetime "file_updated_at"
+  end
+
+  create_table "ratings", :force => true do |t|
+    t.integer "house_id"
+    t.integer "user_id"
+    t.integer "characteristic_id"
+    t.integer "value"
+  end
+
   create_table "regions", :force => true do |t|
     t.string   "name_ru"
     t.string   "name_ua"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
-
+  create_table "currencies", :force => true do |t|
+    t.string   "title"
+    t.string   "curs"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
   create_table "roles", :force => true do |t|
     t.string   "name"
     t.string   "role_type"
@@ -151,104 +231,6 @@ ActiveRecord::Schema.define(:version => 20130827134025) do
     t.string   "reset_password_token"
     t.datetime "reset_password_token_expires_at"
     t.datetime "reset_password_email_sent_at"
-  end
-
-  create_table "facilities", :force => true do |t|
-    t.string   "name_uk"
-    t.string   "name_ru"
-    t.string   "name_en"
-    t.string   "ico"
-    t.text     "description"                                          
-    t.integer  "active",                          :default => 1, :null => false
-    t.string   "seo"
-    t.datetime "created_at",                                     :null => false
-    t.datetime "updated_at",                                     :null => false
-    t.string   "ico_file_name"
-    t.string   "ico_content_type"
-    t.integer  "ico_file_size"
-    t.datetime "ico_updated_at"
-  end
-
-  create_table "houses", :force => true do |t|
-    t.string   "name_uk"
-    t.string   "name_ru"
-    t.string   "name_en"
-    t.string   "description_uk"
-    t.string   "description_ru"
-    t.string   "description_en"
-    t.float    "rating",        :default => 0, :null => false
-    t.float    "cost",        :default => 0, :null => false
-    t.integer  "views",        :default => 0, :null => false
-    t.string   "longitude",     :default => 0, :null => false 
-    t.string   "latitude",      :default => 0, :null => false
-    t.string   "full_address"
-    t.string   "flat_number"
-    t.string   "floor_number"
-    t.string   "house_number"
-    t.string   "street"
-    t.string   "district"
-    t.integer  "floors"
-    t.integer  "rooms"
-    t.integer  "places"
-    t.integer  "showers"
-    t.integer  "active",       :default => 1, :null => false
-    t.integer  "user_id"
-    t.integer  "city_id"
-    t.integer  "currency_id"
-  end
-
-  create_table "cities", :force => true do |t|
-    t.string   "country",     :default => 'CY', :null => false
-    t.string   "zip_code"
-    t.string   "name_ru"
-    t.string   "name_uk"
-    t.string   "name_en"
-  end
-
-  create_table "photos", :force => true do |t|
-    t.integer  "house_id"
-    t.string   "file"
-    t.string   "file_file_name"
-    t.string   "file_content_type"
-    t.integer  "file_file_size"
-    t.datetime "file_updated_at"
-  end
-
-  create_table "employments", :force => true do |t|
-    t.integer   "house_id"
-    t.integer   "from_date"
-    t.integer   "to_date"
-    t.integer   "status"
-  end
-
-  create_table "house_prices", :force => true do |t|
-    t.integer   "house_id"
-    t.integer   "from_date"
-    t.integer   "to_date"
-    t.float     "cost"
-  end
-
-  create_table "characteristics", :force => true do |t|
-    t.string   "name_ru"
-    t.string   "name_uk"
-    t.string   "name_en"
-  end
-
-  create_table "facilities_houses", :force => true do |t|
-    t.integer  "house_id"
-    t.integer  "facility_id"
-  end
-
-  create_table "ratings", :force => true do |t|
-    t.integer   "house_id"
-    t.integer   "user_id"
-    t.integer   "characteristic_id"
-    t.integer   "value"
-  end
-
-  create_table "currencies", :force => true do |t|
-    t.float  "curs"
-    t.string  "title"
   end
 
   add_index "users", ["remember_me_token"], :name => "index_users_on_remember_me_token"

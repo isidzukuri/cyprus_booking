@@ -211,19 +211,19 @@ article {
   background: image-url("ic_yacht.png") transparent;
 }
 
-.apartments:hover {
+.apartments:hover , .apartments.active{
   background: image-url("hover_ic_house.png") transparent;
 }
 
-.hotels:hover {
+.hotels:hover , .hotels.active{
   background: image-url("hover_ic_hotels.png") transparent;
 }
 
-.cars:hover {
+.cars:hover , .cars.active{
   background: image-url("hover_ic_cars.png") transparent;
 }
 
-.yahts:hover {
+.yahts:hover, .yahts.active {
   background: image-url("hover_ic_yacht.png") transparent;
 }
 
@@ -351,10 +351,11 @@ form, fieldset, input, textarea, blockquote, th, td {
   clear: both;
 }
 
-#apatments {
-top: 10px;
-left: 30px;
-z-index: 30000;
+#apartments {
+  top: 10px;
+  left: 30px;
+  z-index: 30000;
+  display: none;
   width: 462px;
   background-color: #ffffff;
   height: auto;
@@ -416,7 +417,7 @@ z-index: 30000;
   height: 130px;
 }
 
-#apatments {
+#apartments {
   ul {
     list-style-type: none;
     li ul {
@@ -472,7 +473,7 @@ z-index: 30000;
   &:hover! {}
 }
 
-#apatments {
+#apartments {
   select {
     height: 40px;
     width: 120px;
@@ -543,5 +544,14 @@ z-index: 30000;
   .jNiceWrapper {
     float: right;
     margin-top: 5px;
+  }
+}
+
+.ui-autocomplete.ui-menu.ui-widget.ui-widget-content.ui-corner-all{
+  width: 360px;
+background: none;
+border: none;
+  a{
+    font-size: 20px;
   }
 }

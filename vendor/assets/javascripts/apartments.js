@@ -6,6 +6,7 @@ $(window).load(function(){
 });
 
 
+
 function initialize() {
 	var mapCanvas = document.getElementById('map_apartments');
     var mapOptions = {
@@ -13,7 +14,7 @@ function initialize() {
       zoom: 9,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     }
-    var map = new google.maps.Map(mapCanvas, mapOptions);
+    G_map = new google.maps.Map(mapCanvas, mapOptions);
 }
 
 
@@ -21,7 +22,9 @@ function initialize() {
 // admin
 $(window).load(function(){
 	$.datepicker.setDefaults($.datepicker.regional['ru']);
-	initialize_map();
+	if($('#google_map').length){
+		initialize_map();
+	}
 	admin_employment_calendar();
 	admin_price_calendar();
 	$('.delete_but').click(function(){

@@ -11,6 +11,7 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
+
 //= require twitter/bootstrap
 //= require wysiwug
 //= require bootstrap-wysihtml5
@@ -24,6 +25,7 @@
 //= require jquery.maskedinput.min
 //= require jquery.mvc
 //= require_tree .
+
 
 //= require datapicker_ru	
 //= require apartments

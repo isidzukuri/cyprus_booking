@@ -2,9 +2,6 @@ CyprusBooking::Application.routes.draw do
    get 'admin',  to: "admin#index" 
    get 'logout', to: "user#exit"
    post 'login', to: "user#enter"
-   match "details",to:"home#details" , :via=>:post
-   match "check_details" , to: "home#check_details"
-
 
    namespace :admin do
      post "login_admin"
@@ -38,6 +35,9 @@ CyprusBooking::Application.routes.draw do
 
    root :to => "home#index"
 
-   match "apartments", to: "home#apartments", via: [:get]
+   match "apartments", to: "apartments#index", via: [:get]
+   match "apartments", to: "apartments#search", via: [:post]
+
+   get "apartments/complete"
 
 end
