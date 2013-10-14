@@ -12,7 +12,7 @@
   .photos
     = photos_min_dispay @apartment.photos
   .desciption
-    %h2 @apartment.name
+    %h2=@apartment.name
     %p.text
       = truncate(@apartment.description, length: 150, omission: '...')
     .rating
