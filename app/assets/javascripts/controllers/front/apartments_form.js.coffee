@@ -55,11 +55,12 @@ $.Controller "ApartmentsController", "FormController",
         i++
       marker.set "icon", '/assets/ic_map_hover.png'
       self.show_apart(data)
-    console.log(data)
+
     $(".content_box").find(".text:eq(0)").text(data.cost)
     $(".content_box").find(".text:eq(1)").text(data.rooms)
     $(".content_box").find(".text:eq(2)").text(data.rating)
     $(".content_box").find(".text:eq(3)").text(data.places)
+
     google.maps.event.addListener marker, "mouseover", ->
       window.balloon.setContent $(".content_box").show().html()
       window.balloon.open G_map , marker
@@ -77,7 +78,18 @@ $.Controller "ApartmentsController", "FormController",
       G_map.fitBounds bounds
 
   show_apart: (data) ->
-
+    self = @
+    $.ajax
+      url:"/apartments/show_index"
+      type: "post"
+      data: "id=" + data.id
+      dataType: "json"
+      success: (resp) ->
+        $("#apartments_view").remove()
+        $(".map").append(resp.html)
+        url = ""
+        $(".rating").rating url ,
+          curvalue: 3
   init_autocomplete: ->
     @element.find("#apartment_search_city").autocomplete
       source: '/apartments/complete',

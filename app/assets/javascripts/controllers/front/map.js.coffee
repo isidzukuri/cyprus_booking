@@ -1,8 +1,5 @@
 $.Controller "MapController",
   init: ->
-    url = ""
-    @element.find(".rating").rating url ,
-      curvalue: 3
     @initialize()
 
 

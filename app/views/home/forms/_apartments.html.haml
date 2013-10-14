@@ -19,13 +19,8 @@
           %ul
             %li.jNice
               .b_form_text.icon_guests
-                %select
-                  %option{value: "1"} 1 guest
-                  %option{value: "2"} 2 guest
-                  %option{value: "3"} 3 guest
-                  %option{value: "4"} 4 guest
-                  %option{value: "5"} 5 guest
-                  %option{value: "6"} 6 guest
+                = f.select :people_count , 6.times.map{|i| [pluralize((i+1),'guest'),(i+1)]}, :class=>"form-select"
+ 
             %li
               %a.search_btn{href: "#"}
                 %span search

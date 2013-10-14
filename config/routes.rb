@@ -38,6 +38,7 @@ CyprusBooking::Application.routes.draw do
 
    match "apartments", to: "apartments#index", via: [:get]
    match "apartments", to: "apartments#search", via: [:post]
+   post "apartments/show_index"
 
    get "apartments/complete"
 

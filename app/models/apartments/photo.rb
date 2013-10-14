@@ -6,8 +6,8 @@ class Photo < ActiveRecord::Base
     :path => ":rails_root/public/photos_houses/:house_id/:id/:style.:extension",    
 	:styles => {
       :original => ['1920x1680>', :jpg],
-      :small    => ['100x100#',   :jpg],
-      :medium   => ['560x560',    :jpg],
+      :small    => ['220x100#',   :jpg],
+      :medium   => ['450x285',    :jpg],
       :large    => ['500x500>',   :jpg]
   	}
 

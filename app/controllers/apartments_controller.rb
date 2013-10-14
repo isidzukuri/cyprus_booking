@@ -12,7 +12,6 @@ class ApartmentsController < ApplicationController
 	    ApartmentFacifility.new({:name=>item.name_ru,:id=>item.id,:ico=>item.ico})
 	  end
 	  @apartments_search = ApartmentSearch.new(:facilities => facilities)
-	  @facilities = House.last.facilities
 	  render :layout =>"map"
 	end
 
@@ -36,6 +35,12 @@ class ApartmentsController < ApplicationController
       apartments = apartments.joins(:facilities) if ids.any?
       render :json  => apartments.all.to_json
 	end 
+
+	def show_index
+		@apartment = House.find(params[:id])
+		render :json  => {:html=>render_to_string( "apartments/_min_view", :layout => false)}
+	end
+
 
 end
 

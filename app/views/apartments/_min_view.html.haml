@@ -2,7 +2,7 @@
   %em.rectangle
   .facifilites_list
     %ul
-      - @facilities.each do |f|
+      - @apartment.facilities.each do |f|
         %li
           = image_tag f.ico
     .price
@@ -10,15 +10,11 @@
       %span.currency
         = image_tag @currency.ico
   .photos
+    = photos_min_dispay @apartment.photos
   .desciption
-    %h2 Nábrežie Oravskej priehrady, Námestovo, Žilina Region 029 01, 
-
+    %h2 @apartment.name
     %p.text
-      = truncate("This lovely private cottage is located in a very peaceful and quite surroundings of Oravska Priehrada. It is family friendly and is located 10 minutes (by car) from town Tvrdosin and 15 minutes from town Namestovo.", length: 150, omission: '...')
-      
-
-
-    .desc_footer
+      = truncate(@apartment.description, length: 150, omission: '...')
     .rating
       = rating_display
     %a.search_btn{:href=>"#"} 

@@ -24,6 +24,14 @@ class House < ActiveRecord::Base
     total
   end
 
+  def description
+    read_attribute("description_#{I18n.locale}")
+  end
+
+  def name
+    read_attribute("name_#{I18n.locale}")
+  end
+
   
 
 end

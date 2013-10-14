@@ -23,4 +23,34 @@ module ApplicationHelper
   	rating.join("").html_safe
   end
 
+  def photos_min_dispay photos
+  	count = photos.count
+  	photo_html = case count
+  	when 0
+  		_render_one_photo
+  	when 1
+  		_render_one_photo photos.first
+  	when 2
+  		_render_one_photo photos.first
+  	else		
+  		_render_thre_photo photos
+  	end
+  end
+
+
+
+
+  def _render_one_photo photo = nil
+  	image_tag ( photo.nil? ? "#{Rails.root}/public/missings/apart_main.jpg" : photo.file(:medium)) ,:size=>"450x285" ,:style=>"margin: 8px;"
+  end
+
+  def _render_thre_photo photos
+  	first = photos.shift
+  	content = [image_tag(first.file(:medium) ,:size=>"447x285" ,:style=>"margin: 8px;")]
+  	photos.each do |photo|
+  		content << image_tag( photo.file(:small) ,:style=>"margin-left: 8px;")
+  	end
+  	content.join("").html_safe
+  end
+
 end
