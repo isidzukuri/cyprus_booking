@@ -251,6 +251,32 @@ ActiveRecord::Schema.define(:version => 20130827134025) do
     t.string  "title"
   end
 
+  create_table "yachts", :force => true do |t|
+    t.integer   "yachts_type_id"
+    t.float     "length"
+    t.float     "width"
+    t.integer   "engine_speed"
+    t.integer   "speed_under_sail"
+    t.float     "sinking" # осадка
+    t.string    "engine"
+    t.string    "fuel_autonomy"
+    t.string    "electricity"
+    t.integer   "passenger_capacity"
+    t.integer  "user_id"
+    t.integer  "currency_id"
+    t.string   "name"
+    t.string   "description_uk"
+    t.string   "description_ru"
+    t.string   "description_en"
+    t.float    "rating",        :default => 0, :null => false
+    t.float    "cost",        :default => 0, :null => false
+    t.integer  "views",        :default => 0, :null => false
+  end
+
+  create_table "yachts_types", :force => true do |t|
+    t.string  "title"
+  end
+
   add_index "users", ["remember_me_token"], :name => "index_users_on_remember_me_token"
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token"
 
