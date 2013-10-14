@@ -1,16 +1,21 @@
 class Exchange
+  
   class << self
+
 	def convert from ,to
 	  begin
-		koef = exchanges[from.to_sym][to.to_sym]
+		koef = exchanges from,to
+		koef koef.ni? ? 1 : koef
 	  rescue
 		koef = 1
 	  ensure
 		return koef
+	  end
 	end
 
-	def exchanges
-		{:USD=>{:EUR=>1,:UAH=>0.5,:RUR=>0.2}}
+	def exchanges from,to
+		url  = "http://rate-exchange.appspot.com/currency".to_uri
+		data = url.get(:from=>from,:to=>to).deserialise["rate"]
 	end
   end
 end

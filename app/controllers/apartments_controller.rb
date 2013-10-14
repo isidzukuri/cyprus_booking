@@ -33,7 +33,7 @@ class ApartmentsController < ApplicationController
       conditions << " AND cost BETWEEN #{search.price_from} AND #{search.price_to}" if search.price_from.to_i!=50 && search.price_to.to_i!=1000
       apartments = House.where(conditions)
       apartments = apartments.joins(:facilities) if ids.any?
-      render :json  => apartments.all.to_json
+      render :json  => apartments.all.map{|a| a.to_search(search)}
 	end 
 
 	def show_index

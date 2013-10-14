@@ -14,8 +14,17 @@ class House < ActiveRecord::Base
 
 
 
-  def concerted_price 
-    Exchange.convert(self.currency.title, $currency) * self.cost
+  def concerted_price total
+    Exchange.convert(self.currency.title, $currency) * total
+  end
+
+  def period_price search
+    total = 0.0
+    specific_prices = self.house_prices.where("from_date >= ? AND to_date <= ?",search.arrival.to_time.to_i,search.departure.to_time.to_i).all 
+    search.nights.times do |n|
+      total += specific_prices.count >= (n+1) ? specific_prices[n].cost : self.cost
+    end
+    concerted_price(total)
   end
 
   def total_rating
@@ -30,6 +39,18 @@ class House < ActiveRecord::Base
 
   def name
     read_attribute("name_#{I18n.locale}")
+  end
+
+  def to_search search
+    {
+      :id        => self.id,
+      :rooms     => self.rooms,
+      :places    => self.places,
+      :rating    => total_rating,
+      :price     => period_price(search),
+      :latitude  => self.latitude,
+      :longitude => self.longitude
+    }
   end
 
   
