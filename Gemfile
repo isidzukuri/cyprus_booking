@@ -28,6 +28,7 @@ group :assets do
   gem 'therubyracer', :platforms => :ruby
   gem 'uglifier', '>= 1.0.3'
   gem 'jquery-ui-rails'
+  gem 'pie-rails'
 end
 group :development do
   gem 'thin'

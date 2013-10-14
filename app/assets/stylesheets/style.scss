@@ -351,11 +351,9 @@ form, fieldset, input, textarea, blockquote, th, td {
   clear: both;
 }
 
-#apartments {
-  top: 10px;
-  left: 30px;
+#apartments ,#apartments_view {
+  
   z-index: 30000;
-  display: none;
   width: 462px;
   background-color: #ffffff;
   height: auto;
@@ -367,9 +365,26 @@ form, fieldset, input, textarea, blockquote, th, td {
   -webkit-border-radius: 6px;
   -moz-border-radius: 6px;
   border-radius: 6px;
-  behavior: url(javascripts/pie/PIE.php);
+  behavior: url(/assets/PIE.htc);
 }
-
+#apartments{
+  top: 10px;
+  left: 30px;
+  display: none;
+}
+#apartments_view{
+top: 145px;
+position: absolute;
+right: 35px;
+}
+.rectangle{
+  background: image-url("kutyk.png");
+  width: 14px;
+  height: 8px;
+  position: absolute;
+top: -8px;
+left: 45px;
+}
 .form-text {
   height: 40px;
   width: 90%;
@@ -384,6 +399,7 @@ form, fieldset, input, textarea, blockquote, th, td {
   &.icon_search {
     border: none;
     margin-left: 15px;
+    margin-right: 10px;
   }
 }
 

@@ -1,4 +1,5 @@
 #apartments
+  %em.rectangle
   = form_for @apartments_search ,:url => "apartments" ,:html => {:"data-auto-controller" => "ApartmentsController",:class=>"submit"} do |f|
     .form_line
       .b_form_text.icon_search
@@ -45,7 +46,7 @@
             - @apartments_search.facilities.each do |facility|
               = f.fields_for :facilities , facility do |ff|
                 %li.jNice
-                  = image_tag "facilfitiles/conditioner.png"
+                  = image_tag "#{facility.ico}"
                   %span.text=facility.name
                   = ff.check_box :active ,:value=>1, :checked=>false
                   = ff.hidden_field :id

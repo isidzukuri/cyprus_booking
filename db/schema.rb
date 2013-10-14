@@ -74,6 +74,7 @@ ActiveRecord::Schema.define(:version => 20130827134025) do
     t.string   "name_ru"
     t.string   "name_en"
     t.string   "ico"
+    t.string   "ico_file_name"
     t.text     "description"
     t.integer  "active",      :default => 1, :null => false
     t.string   "seo"
@@ -211,7 +212,18 @@ ActiveRecord::Schema.define(:version => 20130827134025) do
   add_index "transactions", ["penalty_id"], :name => "index_transactions_on_penalty_id"
   add_index "transactions", ["status"], :name => "index_transactions_on_status"
   add_index "transactions", ["user_id"], :name => "index_transactions_on_user_id"
-
+  create_table "employments", :force => true do |t|
+    t.integer   "house_id"
+    t.integer   "from_date"
+    t.integer   "to_date"
+    t.integer   "status"
+  end
+ create_table "house_prices", :force => true do |t|
+    t.integer   "house_id"
+    t.integer   "from_date"
+    t.integer   "to_date"
+    t.float     "cost"
+  end
   create_table "users", :force => true do |t|
     t.string   "username"
     t.string   "first_name"

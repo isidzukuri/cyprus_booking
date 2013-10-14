@@ -14,6 +14,7 @@ $.Controller "ApartmentsController", "FormController",
     alert resp.error
 
   search: ->
+    @LatLngList = [] 
     data = @element.serialize()
     self = @
     $.ajax
@@ -39,10 +40,9 @@ $.Controller "ApartmentsController", "FormController",
     @search() if @element.valid()
   
   add_marker: (data) ->
-    LatLngList = [] 
     self = @
     Latlng = new google.maps.LatLng(Number(data.latitude),Number(data.longitude))
-    LatLngList.push Latlng
+    @LatLngList.push Latlng
     marker = new google.maps.Marker
       position: Latlng
       icon: '/assets/ic_map.png'
@@ -58,8 +58,8 @@ $.Controller "ApartmentsController", "FormController",
       window.balloon.open G_map , marker
     
     bounds = new google.maps.LatLngBounds()
-    for i of LatLngList
-      bounds.extend LatLngList[i]
+    for i of @LatLngList
+      bounds.extend @LatLngList[i]
       G_map.fitBounds bounds
 
 
