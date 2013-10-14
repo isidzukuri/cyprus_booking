@@ -29,7 +29,7 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
   gem 'jquery-ui-rails'
   gem 'pie-rails'
-  gem 'jquery-star-rating-rails'
+
 end
 group :development do
   gem 'thin'

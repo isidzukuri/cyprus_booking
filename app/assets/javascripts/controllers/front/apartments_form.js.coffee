@@ -54,14 +54,29 @@ $.Controller "ApartmentsController", "FormController",
         G_map.markers[i].set "icon", '/assets/ic_map.png'
         i++
       marker.set "icon", '/assets/ic_map_hover.png'
-      window.balloon.setContent "ewefewfwfwe"
+      self.show_apart(data)
+    console.log(data)
+    $(".content_box").find(".text:eq(0)").text(data.cost)
+    $(".content_box").find(".text:eq(1)").text(data.rooms)
+    $(".content_box").find(".text:eq(2)").text(data.rating)
+    $(".content_box").find(".text:eq(3)").text(data.places)
+    google.maps.event.addListener marker, "mouseover", ->
+      window.balloon.setContent $(".content_box").show().html()
       window.balloon.open G_map , marker
-    
+      marker.set "icon", '/assets/ic_map_hover.png'
+
+    google.maps.event.addListener marker, "mouseout", ->
+      window.balloon.close()
+      $(".content_box").hide()
+      marker.set "icon", '/assets/ic_map.png'
+
+
     bounds = new google.maps.LatLngBounds()
     for i of @LatLngList
       bounds.extend @LatLngList[i]
       G_map.fitBounds bounds
 
+  show_apart: (data) ->
 
   init_autocomplete: ->
     @element.find("#apartment_search_city").autocomplete

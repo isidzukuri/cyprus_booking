@@ -26,14 +26,14 @@
   width: 8px
 }
 .cancel,
-.cancel a {background: url(delete.gif) no-repeat 0 -16px;}
+.cancel a {background: image-url("delete.gif") no-repeat 0 -16px;}
 
 .star,
-.star a {background: url(rating.png) no-repeat 0 0px;}
+.star a {background: image-url("rating.png") no-repeat 0 0px;}
 .star-left,
-.star-left a {background: url(star-left.gif) no-repeat 0 0px;}
+.star-left a {background: image-url("star-left.png") no-repeat 0 0px;}
 .star-right,
-.star-right a {background: url(star-right.gif) no-repeat 0 0px;}
+.star-right a {background: image-url("star-right.png") no-repeat 0 0px;}
 	
 .cancel a,
 .star a {
@@ -44,11 +44,11 @@
 }
 
 div.rating div.on a {
-	background-position: 0 -16px;
+	background-position: 0 -55px;
 }
 div.rating div.hover a,
 div.rating div a:hover {
-	background-position: 0 -32px;
+	background-position: 0 -28px;
 }
 
 

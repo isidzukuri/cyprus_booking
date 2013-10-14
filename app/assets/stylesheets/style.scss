@@ -377,13 +377,16 @@ form, fieldset, input, textarea, blockquote, th, td {
   border-radius: 6px;
   behavior: url(/assets/PIE.htc);
 }
+#apartments_view .rectangle{
+  left: 120px
+}
 #apartments{
   top: 50px;
   left: 23px;
   display: none;
 }
 #apartments_view{
-top: 130px;
+top: 120px;
 position: absolute;
 right: 35px;
 }
