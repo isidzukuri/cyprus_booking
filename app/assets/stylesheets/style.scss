@@ -416,10 +416,11 @@ left: 45px;
 }
 
 .form_line {
-  background: image-url("line_d.png") no-repeat 15px bottom;
+  background: image-url("line_2.png") no-repeat 15px bottom;
   padding-bottom: 5px;
   margin: 0 auto;
   margin-bottom: 10px;
+  margin-right: 22px;
 }
 
 .main_form {
@@ -569,5 +570,12 @@ background: none;
 border: none;
   a{
     font-size: 20px;
+  }
+}
+
+.facifilites_list{
+  ul li{
+    float: left;
+
   }
 }

@@ -1,2 +1,7 @@
 #apartments_view
   %em.rectangle
+  .facifilites_list
+    %ul
+      - @facilities.each do |f|
+        %li
+          = image_tag f.ico

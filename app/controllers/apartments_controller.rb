@@ -7,6 +7,7 @@ class ApartmentsController < ApplicationController
 	    ApartmentFacifility.new({:name=>item.name_ru,:id=>item.id,:ico=>item.ico})
 	  end
 	  @apartments_search = ApartmentSearch.new(:facilities => facilities)
+	  @facilities = House.last.facilities
 	  render :layout =>"map"
 	end
 
@@ -18,7 +19,7 @@ class ApartmentsController < ApplicationController
 	def search
 	  search = ApartmentSearch.new(params[:apartment_search])
 	  ids    = search.facilities.map{|e| e.active == 0 ? nil : e.id }.compact
-	  p
+
       cookies[:last_apartment_search] = {
         :value   => Marshal.dump(search),
         :expires => 24.hours.from_now

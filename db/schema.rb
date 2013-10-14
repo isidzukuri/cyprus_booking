@@ -182,6 +182,7 @@ ActiveRecord::Schema.define(:version => 20130827134025) do
   create_table "currencies", :force => true do |t|
     t.string   "title"
     t.string   "curs"
+    t.string   "ico_file_name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

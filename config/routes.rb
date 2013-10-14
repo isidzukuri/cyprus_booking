@@ -12,6 +12,7 @@ CyprusBooking::Application.routes.draw do
      resources :facilities
      resources :apartaments
      resources :characteristics
+     resources :currencies
      get "apartaments",          to: "apartaments#index"
      get "apartaments/delete/:id",      to: "apartaments#delete"
      get "apartaments/remove_photo/:photo_id",  to: "apartaments#remove_photo"
