@@ -12,6 +12,12 @@ class House < ActiveRecord::Base
   has_many :ratings
   has_many :characteristics, :through => :ratings
 
+
+
+  def concerted_price 
+    Exchange.convert(self.currency.title, $currency) * self.cost
+  end
+
   
 
 end
