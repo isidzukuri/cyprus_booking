@@ -56,7 +56,7 @@ $.Controller "ApartmentsController", "FormController",
       marker.set "icon", '/assets/ic_map_hover.png'
       self.show_apart(data)
 
-    $(".content_box").find(".text:eq(0)").text(data.cost)
+    $(".content_box").find(".text:eq(0)").text(data.price)
     $(".content_box").find(".text:eq(1)").text(data.rooms)
     $(".content_box").find(".text:eq(2)").text(data.rating)
     $(".content_box").find(".text:eq(3)").text(data.places)

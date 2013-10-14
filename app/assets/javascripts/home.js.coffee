@@ -26,3 +26,14 @@ $ ->
     plg = undefined
     plg.call $(this)  if plg = $(this)["attach" + $(this).data("auto-controller")]
 
+  $(".header_right a").click (ev) ->
+    ev.preventDefault()
+    left = $(ev.target).offset().left
+    console.log(left)
+    block = $(ev.target).next()
+    $(".header_right ul:eq(0)").after block
+    block.show()
+   # block.css "left" , left
+
+    
+#currencies_block

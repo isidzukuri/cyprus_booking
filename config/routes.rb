@@ -21,6 +21,7 @@ CyprusBooking::Application.routes.draw do
      get "facilities",          to: "facilities#index"
      get "facilities/new",      to: "facilities#new"
      get "facilities/delete/:id",      to: "facilities#delete"
+     get "currencies/delete/:id",      to: "currencies#delete"
      get "characteristics",          to: "characteristics#index"
      get "characteristics/new",      to: "characteristics#new"
      get "characteristics/delete/:id",      to: "characteristics#delete"

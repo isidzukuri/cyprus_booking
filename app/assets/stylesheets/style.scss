@@ -138,6 +138,9 @@ header {
   height: 8%;
   background-color: #ffffff;
   min-height: 60px!important;
+-webkit-box-shadow: 0px 3px 2px rgba(51, 50, 50, 0.75);
+-moz-box-shadow:    0px 3px 2px rgba(51, 50, 50, 0.75);
+box-shadow:         0px 3px 2px rgba(51, 50, 50, 0.75);
   h1 {
     padding-left: 50px;
     width: 300px;
@@ -281,12 +284,14 @@ section.main {
   }
 }
 .map header{
-  min-height: 70px !important;
+  min-height: 63px !important;
 }
 .map header h1{
   padding-bottom: 10px
 }
-;
+header figure{
+  float: left;
+}
 .map nav{
   position: absolute;
   right: 50px;
@@ -640,4 +645,50 @@ border: none;
   background: image-url("rating.png") no-repeat !important;
       width: 25px;
       height: 25px;
+}
+
+.header_right{
+  float: right;
+  right: 50px;
+  position: absolute;
+  top: 35px;
+
+  li{
+    float: left;
+    margin-right: 20px;
+    a{
+      text-decoration: none;
+      color: #696969;
+    }
+   a:hover{
+      color: #ff793d;
+    }
+  }
+}
+.map header figure{
+  float: none;
+}
+.currencies_block{
+  z-index: 5000;
+  position: absolute;
+  display: none;
+  background-color: #ffffff;
+  -webkit-box-shadow: 0px 0px 6px rgba(45, 52, 52, 0.8);
+  -moz-box-shadow: 0px 0px 6px rgba(45, 52, 52, 0.8);
+  box-shadow: 0px 0px 6px rgba(45, 52, 52, 0.8);
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  behavior: url(/assets/PIE.htc);
+  top: 30px;
+  li{
+    float: none;
+    position: relative;
+    a:hover{
+      color: #ff793d;
+    }
+  }
+}
+.currencies_block.langs .rectangle{
+  left: 5px;
 }

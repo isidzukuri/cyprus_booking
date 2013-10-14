@@ -16,7 +16,7 @@ class Admin::CurrenciesController < AdminController
 	end
 
 	def create
-		facility = Currency.new(params[:facility])
+		facility = Currency.new(params[:currency])
 		p facility
 		if facility.valid?
 			facility.save
@@ -33,7 +33,7 @@ class Admin::CurrenciesController < AdminController
 
 	def update
 		facility = Currency.find(params[:id])
-		facility.update_attributes(params[:facility])
+		facility.update_attributes(params[:currency])
 		if facility.valid?
 			if params[:ico].present? 
 				facility.ico = params[:ico]

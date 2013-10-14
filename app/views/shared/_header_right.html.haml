@@ -1,0 +1,12 @@
+.header_right
+  %ul
+    %li
+      %a{:href=>"#"}
+        = I18n.locale.upcase
+        = render "shared/list/locale"
+    %li
+      %a{:href=>"#"}
+        = $currency.upcase
+      = render "shared/list/currency"
+    %li
+      %a{:href=>"#"}=logged_in? ? current_user.fio : "Login".upcase
