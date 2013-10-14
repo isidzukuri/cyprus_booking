@@ -1,7 +1,8 @@
 CyprusBooking::Application.routes.draw do
    get 'admin',  to: "admin#index" 
    get 'logout', to: "user#exit"
-   post 'login', to: "user#enter"
+   match "login",to: "user#enter", via:[:post]
+   match "login",to: "home#login", via:[:get]
 
    namespace :admin do
      post "login_admin"
@@ -32,15 +33,18 @@ CyprusBooking::Application.routes.draw do
    namespace :user do
     post "auth"
     post "forgot"
+    post "register"
    end
 
+  scope "(:locale)", :locale => /en|ru/ do
+     root :to => "home#index"
+     match "apartments", to: "apartments#index", via: [:get]
+     match "apartments", to: "apartments#search", via: [:post]
+     post "apartments/show_index"
+     get  "apartments/show/:id", to: "apartments#show"
+     match "change_currency", to: "home#change_currency"
 
-   root :to => "home#index"
-
-   match "apartments", to: "apartments#index", via: [:get]
-   match "apartments", to: "apartments#search", via: [:post]
-   post "apartments/show_index"
-
-   get "apartments/complete"
+     get "apartments/complete"
+   end
 
 end

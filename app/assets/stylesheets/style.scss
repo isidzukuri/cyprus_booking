@@ -1,4 +1,4 @@
-@import url(http://fonts.googleapis.com/css?family=Roboto);
+//@import url(http://fonts.googleapis.com/css?family=Roboto);
 
 /*===============================================*/
 /*   Mixu  */
@@ -68,6 +68,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, nav, sectio
 
 html {
   height: 100%;
+  min-width: 630px;
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
 }
@@ -138,9 +139,10 @@ header {
   height: 8%;
   background-color: #ffffff;
   min-height: 60px!important;
--webkit-box-shadow: 0px 3px 2px rgba(51, 50, 50, 0.75);
--moz-box-shadow:    0px 3px 2px rgba(51, 50, 50, 0.75);
-box-shadow:         0px 3px 2px rgba(51, 50, 50, 0.75);
+  -webkit-box-shadow: 1px 4px 11px rgba(50, 50, 50, 0.75);
+  -moz-box-shadow:    1px 4px 11px rgba(50, 50, 50, 0.75);
+  box-shadow:         1px 4px 11px rgba(50, 50, 50, 0.75);
+  behavior: url(/assets/PIE.htc);
   h1 {
     padding-left: 50px;
     width: 300px;
@@ -152,8 +154,13 @@ footer {
   width: 100%;
   background-color: #ffffff;
   position: absolute;
+  z-index: 50000;
   bottom: 0;
-  min-height: 90px!important;
+  min-height: 105px!important;
+  -webkit-box-shadow: 0px -4px 11px rgba(50, 50, 50, 0.75);
+  -moz-box-shadow:    0px -4px 11px rgba(50, 50, 50, 0.75);
+  box-shadow:         0px -4px 11px rgba(50, 50, 50, 0.75);
+  behavior: url(/assets/PIE.htc);
   ul {
     position: absolute;
     right: 50px;
@@ -185,14 +192,15 @@ html, article {
 }
 
 html {
-  min-height: 500px;
+  min-height: 650px;
 }
 
 article {
   height: 80%;
-  min-height: 400px;
+  min-height: 450px;
   background: image-url("background.png") no-repeat;
   background-size: 100% 100%;
+ // top: -50px;
 }
 
 .apartments, .hotels, .cars, .yahts {
@@ -318,9 +326,10 @@ header figure{
 
 #map_apartments{
   z-index: 10000;
-  top: 117px;
   position: absolute!important;
   width: 100%;
+  height: 75%!important;
+  top:115px;
 }
 
 
@@ -386,9 +395,9 @@ form, fieldset, input, textarea, blockquote, th, td {
   left: 120px
 }
 #apartments{
-  top: 50px;
   left: 23px;
   display: none;
+  top: 55px;
 }
 #apartments_view{
 top: 120px;
@@ -428,14 +437,30 @@ left: 45px;
 
 .icon_search {
   background: image-url("search.png") no-repeat;
+  a{
+    padding-top: 10px;
+    display: block;
+  }
 }
 
 .icon_guests {
   background: image-url("guest.png") no-repeat;
+  a{
+    padding-top: 10px;
+    display: block;
+  }
+}
+
+.icon_name{
+  background: image-url("icon_name.png") no-repeat;
 }
 
 .icon_money {
   background: image-url("money.png") no-repeat;
+  a{
+    padding-top: 10px;
+    display: block;
+  }
 }
 
 .form_line {
@@ -649,13 +674,16 @@ border: none;
 
 .header_right{
   float: right;
-  right: 50px;
+  right: 35px;
   position: absolute;
-  top: 35px;
+  top: 20px;
+  
 
   li{
     float: left;
     margin-right: 20px;
+    padding-left: 45px;
+    height: 60px;
     a{
       text-decoration: none;
       color: #696969;
@@ -667,28 +695,197 @@ border: none;
 }
 .map header figure{
   float: none;
+-webkit-box-shadow: 1px 4px 11px rgba(50, 50, 50, 0.75);
+  -moz-box-shadow:    1px 4px 11px rgba(50, 50, 50, 0.75);
+  box-shadow:         1px 4px 11px rgba(50, 50, 50, 0.75);
+  behavior: url(/assets/PIE.htc);
+
 }
 .currencies_block{
-  z-index: 5000;
+  z-index: 40000;
   position: absolute;
   display: none;
   background-color: #ffffff;
   -webkit-box-shadow: 0px 0px 6px rgba(45, 52, 52, 0.8);
   -moz-box-shadow: 0px 0px 6px rgba(45, 52, 52, 0.8);
   box-shadow: 0px 0px 6px rgba(45, 52, 52, 0.8);
-  -webkit-border-radius: 6px;
-  -moz-border-radius: 6px;
-  border-radius: 6px;
   behavior: url(/assets/PIE.htc);
-  top: 30px;
+  top: 50px;
   li{
     float: none;
     position: relative;
+    padding:0;
+    height: auto;
     a:hover{
       color: #ff793d;
+    }
+    img{
+      margin-bottom: -10px
     }
   }
 }
 .currencies_block.langs .rectangle{
   left: 5px;
+}
+
+#login_form{
+  background: image-url("login_bg.png") no-repeat;
+  width: 648px;
+  height: 435px;
+  margin: 0 auto;
+  top: 50px;
+  position: relative;
+  .error{
+    border-bottom: 1px solid red;
+  }
+  .forgot{
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    a{
+      color: #ffffff;
+      border-bottom: 1px #ffffff dotted;
+      text-decoration: none;
+    }
+    a:hover{
+      //color: #ff793d;
+      border-bottom: 1px #ff793d dotted;
+    }
+  }
+  .buttons{
+    width: 90%;
+    margin: 0 auto;
+    height: 50px;
+    position: relative;
+    top: 25px;
+  }
+  .fields{
+    width: 90%;
+    top: 100px;
+    position: relative;
+    margin: 0 auto;
+    .icon_mail span, .icon_pass span, .icon_name span{
+      display: block;
+      height: 39px;
+      width: 44px;
+      float: left;
+      margin-left: 10px;
+      top: 11px;
+    }
+    .icon_pass span{
+      position: relative;
+    }
+    .icon_mail span{
+       background:  #6edbef image-url("icon_mail.png") no-repeat;
+    }
+    .icon_name span{
+      background: #6edbef image-url("icon_name.png") no-repeat;
+      margin-top: 11px;
+    }
+    .icon_pass {
+       input{
+        padding-top: 12px;
+       }
+        span{
+           background: #6edbef image-url("icon_password.png") no-repeat;
+
+        }
+    }
+
+
+    .b_form_text{
+      background:  image-url("field.png") no-repeat;
+      height: 62px;
+      border: none;
+      position: relative;
+      input{
+          margin-left: 7px;
+          margin-top: 19px;
+          font-size: 18px;
+          text-align: center;
+          width: 80%;
+      }
+    }
+  }
+  .button_login{
+    bottom: 70px;
+    position: absolute;
+    background: none;
+    color: #ffffff;
+    left: 36%;
+    width: 200px;
+    height: 42px;
+    border: 1px solid #ffffff;
+    cursor: pointer;
+    input{
+      background: none;
+      cursor: pointer;
+      color: #ffffff;
+      margin: 0 auto;
+      display: block;
+      font-size: 20px;
+      padding-top: 9px;
+    }
+    input:hover {
+      color: #ff793d;
+    }
+
+  }
+  .button_login:hover {
+      border: 1px solid #ff793d;
+  }
+  .button_login:hover input{
+    color: #ff793d;
+  }
+
+
+  .facebook,.register{
+    text-decoration:none;
+    color: #ffffff;
+    height: 62px;
+    width: 290px;
+    display: block;
+    float: left;
+    span{
+      text-align: center;
+      display: block;
+      padding-top: 20px;
+    }
+  }
+  .facebook{ 
+    background:  image-url("facebook.png") no-repeat;
+  }
+  .register{
+     background: image-url("register.png") no-repeat;
+  }
+}
+
+#login_form.registered{
+  display: none;
+  background-size: 100% 100%;
+  height: 460px;
+  .fields{
+    top:50px;
+  }
+  .button_login{
+    bottom: 65px;
+  }
+
+}
+#login_form.forgot{
+  display: none;
+  .fields{
+    top:100px;
+  }
+}
+  .icon_name input{
+    padding-top: 11px;
+  }
+.ui-corner-all.ui-state-focus{
+  background: none!important;
+border: none!important;
+
+}
+.form-text.ui-autocomplete-input, .ui-widget-content a{
+color: #696969!important;
 }

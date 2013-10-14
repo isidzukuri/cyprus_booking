@@ -1,0 +1,20 @@
+#login_form.log
+  = form_tag user_auth_path, :remote=>true, :"data-auto-controller"=>"AdminLoginController"  do 
+    .buttons
+      %a.facebook{:href=>"#"} 
+        %span Login with facebook
+      %a.register{:href=>"#"} 
+        %span Register
+    .fields
+      .b_form_text.icon_mail
+        %span
+        = text_field :user,:email , :class=>"span12", :required=>true, :type=>"email" ,:autocomplete=>"off"
+      .b_form_text.icon_pass
+        %span
+        = text_field :user,:password , :class=>"span12", :required=>true, :type=>"password" ,:autocomplete=>"off"
+    .button_login
+      = submit_tag "Enter", :class=>"submit btn-glow primary login"
+    .forgot
+      %a{:href=>"#"} forgot your pass?
+
+    

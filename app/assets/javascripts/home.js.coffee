@@ -20,20 +20,39 @@ $ ->
           this.markers[i].setMap(null)
           i++
         this.markers = [];
-
+ 
 
   $("*[data-auto-controller]").each ->
     plg = undefined
     plg.call $(this)  if plg = $(this)["attach" + $(this).data("auto-controller")]
+  width = $(".currencies_block.cur ul").size() * 75
+  $(".currencies_block.cur").width(width)
 
-  $(".header_right a").click (ev) ->
+  $(document).click (ev) ->
+    if $(ev.target).parents(".header_right").size() < 1
+      $(".currencies_block").hide() if $(".currencies_block").is(":visible")
+
+
+  $(".currency").click (ev) ->
     ev.preventDefault()
-    left = $(ev.target).offset().left
-    console.log(left)
-    block = $(ev.target).next()
-    $(".header_right ul:eq(0)").after block
-    block.show()
-   # block.css "left" , left
+    data = "currency=" + $(ev.target).text()
+    url  = $(ev.target).attr("href")
+    $.ajax
+      url: url 
+      data: data
+      type:"post"
+      dataType:"json"
+      success:(resp)->
+        window.location.reload()
 
+  $(".header_right a.cur,.header_right a.lang").click (ev) ->
+    ev.preventDefault()
+    $(".currencies_block").hide()
     
-#currencies_block
+    block = if  $(ev.target).hasClass("lang") then $(".currencies_block.langs") else $(".currencies_block.cur") 
+    left =   - (block.width() / 4) + 40
+    block.css "left",left  
+    block.find(".rectangle").css("left", (-left + 96)) unless  $(ev.target).hasClass("lang")
+    $(".header_right ul:eq(0)").after block
+
+    block.show()

@@ -17,6 +17,8 @@ class AppMailer < ActionMailer::Base
   end
 
   def registration pass ,user ,domain
+    p pass
+    p "*"*50
    	email_data = {
   		:name  		=> "#{user.last_name} #{user.first_name}",
   		:email 		=> user.email,
@@ -41,9 +43,11 @@ class AppMailer < ActionMailer::Base
 
   private
     def set_email_template action , data
-    	@template = EmailTemplate.find_by_email_type(action)
+    	@template = EmailTemplate.find_by_email_type("registration")
     	data.each_pair do |key,v|
-    		@template.html.gsub!("%#{key}%",v)
+        p v
+        p key
+    		@template.html.gsub!("%#{key}%",v) unless @template.html.nil?
     	end
     end
 end

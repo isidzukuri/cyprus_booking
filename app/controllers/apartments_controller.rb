@@ -41,6 +41,15 @@ class ApartmentsController < ApplicationController
 		render :json  => {:html=>render_to_string( "apartments/_min_view", :layout => false)}
 	end
 
+	def show 
+	  house = House.find(params[:id])
+	  unless house.nil?
+
+	  else
+
+	  end 
+	end
+
 
 end
 

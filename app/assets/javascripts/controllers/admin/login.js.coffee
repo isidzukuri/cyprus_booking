@@ -8,6 +8,15 @@ $.Controller "AdminLoginController", "FormController",
 
   failure_call_back: (resp) ->
     alert resp.error
+  ".register -> click":(ev)->
+    ev.preventDefault()
+    $("#login_form").hide()
+    $("#login_form.registered").show()
+
+  ".forgot -> click":(ev) ->
+    ev.preventDefault()
+    $("#login_form").hide()
+    $("#login_form.forgot").show()
 
 $.Controller "LoginController", "FormController",
   init: ->
@@ -24,6 +33,8 @@ $.Controller "LoginController", "FormController",
     @element.hide()
     @element.next().show()
 
+    
+
 $.Controller "ForgotController", "FormController",
   init: ->
     @super_call("init")
@@ -35,8 +46,8 @@ $.Controller "ForgotController", "FormController",
   failure_call_back: (resp) ->
     alert resp.error
 
-  ".login -> click": (ev) ->
+  ".register -> click": (ev) ->
     ev.preventDefault()
-    @element.hide()
-    @element.prev().show()
+    $("#login_form.forgot").hide()
+    $("#login_form.log").show()
 
