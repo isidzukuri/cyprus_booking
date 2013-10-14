@@ -2,6 +2,11 @@ class ApartmentsController < ApplicationController
 
 	include ActionView::Helpers::TagHelper
 
+	def initialize
+		super
+		@currency = Currency.find_by_title($currency.to_s)
+	end
+
 	def index
 	  facilities = Facility.where(:active=>1).map do |item|
 	    ApartmentFacifility.new({:name=>item.name_ru,:id=>item.id,:ico=>item.ico})

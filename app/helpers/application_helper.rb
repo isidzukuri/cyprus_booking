@@ -14,4 +14,13 @@ module ApplicationHelper
 
   end
 
+  def rating_display value = 3.0
+  	rating = []
+  	5.times do |i|
+  		rating << tag(:input , {:class=>"star", :type=>"radio" ,:name=>"star" })
+  	end
+  	rating << tag(:input , {:name=>"val", :type=>"hidden" ,:value=>value})
+  	rating.join("").html_safe
+  end
+
 end

@@ -18,6 +18,12 @@ class House < ActiveRecord::Base
     Exchange.convert(self.currency.title, $currency) * self.cost
   end
 
+  def total_rating
+    total = 0.0
+    self.ratings.each{|r| total += (r.value * Rating.koef) }
+    total
+  end
+
   
 
 end

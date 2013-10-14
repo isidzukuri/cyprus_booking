@@ -24,6 +24,7 @@
 //= require jquery.tinyscrollbar.min
 //= require jquery.maskedinput.min
 //= require jquery.mvc
+//= require jquery.rating
 //= require_tree .
 
 

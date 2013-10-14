@@ -126,11 +126,18 @@ figure {
     display: block;
   }
 }
+header{
+figure{
+  img{
+    padding-top: 5px;
+  }
+}
+}
 
 header {
-  height: 10%;
+  height: 8%;
   background-color: #ffffff;
-  min-height: 80px!important;
+  min-height: 60px!important;
   h1 {
     padding-left: 50px;
     width: 300px;
@@ -186,45 +193,46 @@ article {
 }
 
 .apartments, .hotels, .cars, .yahts {
-  height: 65px;
-  width: 65px;
+  height: 50px;
+  width: 50px;
   display: block;
+  background-size: 50px!important;
 }
 
 .apartments, .hotels, .cars {
-  margin-right: 55px;
+  margin-right: 48px;
 }
 
 .apartments {
-  background: image-url("ic_house.png") transparent;
+  background: image-url("ic_house.png") no-repeat transparent;
 }
 
 .hotels {
-  background: image-url("ic_hotels.png") transparent;
+  background: image-url("ic_hotels.png") no-repeat transparent;
 }
 
 .cars {
-  background: image-url("ic_cars.png") transparent;
+  background: image-url("ic_cars.png") no-repeat transparent;
 }
 
 .yahts {
-  background: image-url("ic_yacht.png") transparent;
+  background: image-url("ic_yacht.png") no-repeat transparent;
 }
 
 .apartments:hover , .apartments.active{
-  background: image-url("hover_ic_house.png") transparent;
+  background: image-url("hover_ic_house.png") no-repeat transparent;
 }
 
 .hotels:hover , .hotels.active{
-  background: image-url("hover_ic_hotels.png") transparent;
+  background: image-url("hover_ic_hotels.png") no-repeat transparent;
 }
 
 .cars:hover , .cars.active{
-  background: image-url("hover_ic_cars.png") transparent;
+  background: image-url("hover_ic_cars.png") no-repeat transparent;
 }
 
 .yahts:hover, .yahts.active {
-  background: image-url("hover_ic_yacht.png") transparent;
+  background: image-url("hover_ic_yacht.png") no-repeat transparent;
 }
 
 .btn_main {
@@ -273,7 +281,7 @@ section.main {
   }
 }
 .map header{
-  min-height: 135px !important;
+  min-height: 70px !important;
 }
 .map header h1{
   padding-bottom: 10px
@@ -287,23 +295,25 @@ section.main {
 .line{
   background: image-url("head_line.png") transparent no-repeat;
   background-size: 100% 100%;
-  height: 77px;
+  height: 55px;
 }
 .line .search{
-    width:65px;
-    height:65px;
+    width:50px;
+    height:50px;
     display:block;
     float: left;
     margin-left: 50px;
     background: image-url("ic_search.png") no-repeat center 50%;
+    background-size: 50px;
 }
 .line .search:hover,.line .search.active {
     background: image-url("hover_ic_search.png") no-repeat center 50%;
+    background-size: 50px;
 }
 
 #map_apartments{
   z-index: 10000;
-  top: 140px;
+  top: 117px;
   position: absolute!important;
   width: 100%;
 }
@@ -368,12 +378,12 @@ form, fieldset, input, textarea, blockquote, th, td {
   behavior: url(/assets/PIE.htc);
 }
 #apartments{
-  top: 10px;
-  left: 30px;
+  top: 50px;
+  left: 23px;
   display: none;
 }
 #apartments_view{
-top: 145px;
+top: 130px;
 position: absolute;
 right: 35px;
 }
@@ -400,7 +410,12 @@ left: 45px;
     border: none;
     margin-left: 15px;
     margin-right: 10px;
+  input{
+    width: 70%;
   }
+
+  }
+
 }
 
 .icon_search {
@@ -483,6 +498,10 @@ left: 45px;
   border-radius: 3px;
   text-align: center;
   font-size: 20px;
+  &:hover {
+    text-decoration: none;
+    color: #ff793d;
+  }
   span {
     display: block;
     padding-top: 7px;
@@ -551,7 +570,7 @@ left: 45px;
         padding-top: 10px;
         display: block;
         float: left;
-        color: gray;
+        color: #696969;
       }
     }
   }
@@ -574,8 +593,48 @@ border: none;
 }
 
 .facifilites_list{
+  background: image-url("line_2.png") no-repeat 8px bottom;
+  margin: 0 10px;
+  height: 45px;
+
   ul li{
     float: left;
-
   }
+  .price{
+    float: right;
+    color: #ff793d;
+    font-size: 30pt;
+    font-weight: 100!important;
+  }
+}
+.photos{
+  min-height: 300px;
+  background: image-url("line_2.png") no-repeat 8px bottom;
+}
+.desciption {
+  margin: 10px;
+  color: #696969;
+  line-height: 1.5;
+  .search_btn{
+    width: 150px;
+    float: right;
+    margin: 10px;
+   span{
+    padding-top: 4px;
+   }
+  }
+  h2{
+     color: #ff793d;
+  }
+  .rating{
+    height: 12px;
+    float: left;
+    margin-top: 25px;
+  }
+
+}
+.rating div.star-rating, div.star-rating a{
+  background: image-url("rating.png") no-repeat !important;
+      width: 25px;
+      height: 25px;
 }

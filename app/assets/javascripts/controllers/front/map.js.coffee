@@ -1,5 +1,7 @@
 $.Controller "MapController",
   init: ->
+    @element.find(":radio.star").rating
+      curvalue: 3
     @initialize()
 
 
