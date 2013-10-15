@@ -3,7 +3,7 @@ CyprusBooking::Application.routes.draw do
    get 'logout', to: "user#exit"
    match "login",to: "user#enter", via:[:post]
    match "login",to: "home#login", via:[:get]
-
+scope "(:locale)", :locale => /en|ru/ do
    namespace :admin do
      post "login_admin"
      post "users/pass_change"
@@ -37,7 +37,7 @@ CyprusBooking::Application.routes.draw do
     post "fbregister"
    end
 
-  scope "(:locale)", :locale => /en|ru/ do
+  
      root :to => "home#index"
      match "apartments", to: "apartments#index", via: [:get]
      match "apartments", to: "apartments#search", via: [:post]
