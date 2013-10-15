@@ -37,6 +37,8 @@ class ApartmentsController < ApplicationController
 	end 
 
 	def show_index
+		ApartmentSearch.new
+		@search = Marshal.load(cookies[:last_apartment_search])
 		@apartment = House.find(params[:id])
 		render :json  => {:html=>render_to_string( "apartments/_min_view", :layout => false)}
 	end

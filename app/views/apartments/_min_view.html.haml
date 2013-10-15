@@ -6,7 +6,7 @@
         %li
           = image_tag f.ico
     .price
-      = 10
+      = @apartment.period_price(@search)
       %span.currency
         = image_tag @currency.ico
   .photos

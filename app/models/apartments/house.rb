@@ -24,7 +24,7 @@ class House < ActiveRecord::Base
     search.nights.times do |n|
       total += specific_prices.count >= (n+1) ? specific_prices[n].cost : self.cost
     end
-    concerted_price(total)
+    concerted_price(total).to_i
   end
 
   def total_rating

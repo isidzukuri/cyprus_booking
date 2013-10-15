@@ -5,7 +5,7 @@ class Exchange
 	def convert from ,to
 	  begin
 		koef = exchanges from,to
-		koef koef.ni? ? 1 : koef
+		koef  = koef.nil? ? 1 : koef
 	  rescue
 		koef = 1
 	  ensure
