@@ -36,17 +36,7 @@
 
       = yield
       #map_apartments
-    %footer
-      %ul
-        %li
-          %a{href: "#"}
-            = image_tag "ic_facebook.png"
-        %li
-          %a{href: "#"}
-            = image_tag "ic_twitter.png"
-        %li
-          %a{href: "#"}
-            = image_tag "ic_google.png"
+    = render "shared/footer"  
 :javascript
   window.type = "#{params[:controller]}"
   FBappId = "#{Settings.fb.key}"

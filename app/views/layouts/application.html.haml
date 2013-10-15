@@ -23,16 +23,6 @@
         =render "shared/header_right"
       %article
         = yield
-      %footer
-        %ul
-          %li
-            %a{href: "#"}
-              = image_tag "ic_facebook.png"
-          %li
-            %a{href: "#"}
-              = image_tag "ic_twitter.png"
-          %li
-            %a{href: "#"}
-              = image_tag "ic_google.png"
+      = render "shared/footer"  
 :javascript
   FBappId = "#{Settings.fb.key}"

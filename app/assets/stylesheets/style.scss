@@ -68,7 +68,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, nav, sectio
 
 html {
   height: 100%;
-  min-width: 630px;
+  min-width: 700px;
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
 }
@@ -161,10 +161,24 @@ footer {
   -moz-box-shadow:    0px -4px 11px rgba(50, 50, 50, 0.75);
   box-shadow:         0px -4px 11px rgba(50, 50, 50, 0.75);
   behavior: url(/assets/PIE.htc);
-  ul {
+  ul.nav {
     position: absolute;
     right: 50px;
     bottom: 20px;
+  }
+  ul.left{
+    margin-left: 50px;
+    margin-top: 50px;
+    li{
+      margin-left: 20px;
+      a{
+        text-decoration: none;
+        color: #696969;
+      }
+      a:hover{
+        text-decoration: underline;
+      }
+    }
   }
 }
 
