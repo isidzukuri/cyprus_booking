@@ -3,9 +3,13 @@ class Exchange
   class << self
 
 	def convert from ,to
+
 	  begin
-		koef = exchanges from,to
-		koef  = koef.nil? ? 1 : koef
+	  	unless koef = Rails.cache.read("#{from}#{to}")
+			koef = exchanges from,to
+			koef  = koef.nil? ? 1 : koef
+			Rails.cache.write("#{from}#{to}",koef,:expires_in => 12.hours)
+		end
 	  rescue
 		koef = 1
 	  ensure
