@@ -2,7 +2,7 @@ class Photo < ActiveRecord::Base
 	belongs_to :house
 
 	has_attached_file :file, 
-	:url  => "/photos_houses/:house_id/:id/:style.:extension",
+	:url  => "/system/photos_houses/:house_id/:id/:style.:extension",
     :path => ":rails_root/public/system/photos_houses/:house_id/:id/:style.:extension",    
 	:styles => {
       :original => ['1920x1680>', :jpg],
