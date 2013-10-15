@@ -17,8 +17,6 @@ class AppMailer < ActionMailer::Base
   end
 
   def registration pass ,user ,domain
-    p pass
-    p "*"*50
    	email_data = {
   		:name  		=> "#{user.last_name} #{user.first_name}",
   		:email 		=> user.email,
