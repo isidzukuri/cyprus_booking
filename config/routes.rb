@@ -34,6 +34,7 @@ CyprusBooking::Application.routes.draw do
     post "auth"
     post "forgot"
     post "register"
+    post "fbregister"
    end
 
   scope "(:locale)", :locale => /en|ru/ do

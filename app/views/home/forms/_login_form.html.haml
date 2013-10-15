@@ -1,8 +1,8 @@
 #login_form.log
   = form_tag user_auth_path, :remote=>true, :"data-auto-controller"=>"AdminLoginController"  do 
     .buttons
-      %a.facebook{:href=>"#"} 
-        %span Login with facebook
+      %a.facebook{:href=>"#",:onclick=>"window.doFbLogin()"}
+        %span Sign with facebook
       %a.register{:href=>"#"} 
         %span Register
     .fields

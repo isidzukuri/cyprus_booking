@@ -1,8 +1,8 @@
 #login_form.forgot
   = form_tag user_forgot_path, :remote=>true, :"data-auto-controller"=>"ForgotController"  do 
     .buttons
-      %a.facebook{:href=>"#"} 
-        %span Login with facebook
+      %a.facebook{:href=>"#" ,:onclick=>"window.doFbLogin()"} 
+        %span Sign with facebook
       %a.register{:href=>"#"} 
         %span Login
     .fields

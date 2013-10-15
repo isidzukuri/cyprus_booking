@@ -1,8 +1,8 @@
 #login_form.registered
   = form_tag user_register_path, :remote=>true, :"data-auto-controller"=>"RegisterController"  do 
     .buttons
-      %a.facebook{:href=>"#"} 
-        %span Register with facebook
+      %a.facebook{:href=>"#",:onclick=>"window.doFbLogin()"} 
+        %span Sign with facebook
       %a.register.enter{:href=>"#"} 
         %span Enter
     .fields

@@ -1,6 +1,6 @@
 class UserController < ApplicationController
 
-	before_filter :require_login , :except => [:auth,:forgot,:register]
+	before_filter :require_login , :except => [:auth,:forgot,:register,:fbregister]
     
 	def auth
 		login(params[:user][:email],params[:user][:password],true)
@@ -47,6 +47,33 @@ class UserController < ApplicationController
       	json = {:success=>false,:error=>t("user.exist")}
       end
       render :json => json
+	end
+
+	def fbregister
+		data = {
+			:access_token => params[:access_token],
+			:fields       => "id,first_name,last_name,email,locale,picture,birthday,gender",
+			:type         => "large"
+
+		}
+		fb_user = Settings.fb.url.to_uri.get(data).deserialize
+	    user_attr = {:first_name=>fb_user["first_name"],:email=>fb_user["email"],:last_name=>fb_user["last_name"]}
+        if User.find_by_email(user_attr[:email]).nil?
+            user_attr[:password] = SecureRandom.hex(10)
+            if user = User.create(user_attr)
+	            auto_login user
+	            Thread.new do
+	              AppMailer.registration(user_attr[:password],user,"http://#{request.host}").deliver
+	      	    end
+	            json = {:success=>true}
+            else
+            	json = {:success=>false,:error=>t("user.data_error")}
+            end
+        else
+        	auto_login User.find_by_email(user_attr[:email])
+        	json = {:success=>true}
+        end
+        render :json => json
 	end
 
 
