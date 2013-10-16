@@ -1,3 +1,5 @@
+= render "shared/admin/lang_switcher_fixed"
+
 .span9.with-sidebar
   - url =  params[:action] =~ /new/ ? admin_apartaments_path : admin_apartament_path(@apartament)
   .container
@@ -11,15 +13,12 @@
           window.disabledDays = [#{p @disabled_days }];
           window.price_disabledDays = [#{p @price_calendar_disabled_days }];
           window.price_values = #{p @price_calendar_values.present? ? @price_calendar_values : "[]"};
-      .span12.field-box
-        = f.label :name_ru , "#{t("admin.apartaments.name")} [ru]"   
-        = f.text_field :name_ru , :class=>"span9" , :required=>true
-      .span12.field-box
-        = f.label :name_uk , "#{t("admin.apartaments.name")} [uk]"   
-        = f.text_field :name_uk , :class=>"span9" 
-      .span12.field-box
-        = f.label :name_en , "#{t("admin.apartaments.name")} [en]"   
-        = f.text_field :name_en , :class=>"span9"
+
+
+      - I18n.available_locales.each do |locale|
+        .span12.field-box.many_langs{:class => ("lang_hidden" unless locale.to_s == I18n.locale.to_s), :lang=>"#{locale.to_s}"}
+          = f.label "name_#{locale.to_s}" , "#{t("admin.apartaments.name")} [#{locale.to_s}]"   
+          = f.text_field "name_#{locale.to_s}" , :class=>"span9 required" 
 
       .span12.field-box
         .span6
@@ -90,16 +89,10 @@
         #add_price.btn-glow.smal #{t("admin.apartaments.add_price")}
       
         
-
-      .span12.field-box
-        = f.label :description_ru , "#{t("admin.apartaments.description")} [ru]"   
-        = f.text_area :description_ru , :class=>"span9"
-      .span12.field-box
-        = f.label :description_uk , "#{t("admin.apartaments.description")} [uk]"   
-        = f.text_area :description_uk , :class=>"span9"
-      .span12.field-box
-        = f.label :description_en , "#{t("admin.apartaments.description")} [en]"   
-        = f.text_area :description_en , :class=>"span9"
+      - I18n.available_locales.each do |locale|
+        .span12.field-box.many_langs{:class => ("lang_hidden" unless locale.to_s == I18n.locale.to_s), :lang=>"#{locale.to_s}"}
+          = f.label "description_#{locale.to_s}", "#{t("admin.apartaments.description")} [#{locale.to_s}]"   
+          = f.text_area "description_#{locale.to_s}" , :class=>"span9"
 
       .span12.field-box
         = f.label :full_address , "#{t("admin.apartaments.full_address")}"   

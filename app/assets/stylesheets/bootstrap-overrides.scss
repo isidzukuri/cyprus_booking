@@ -448,3 +448,29 @@ table th span.line{
 #price_calendar td a{
 	cursor:default !important;
 }
+.lang_hidden{
+	display:none !important;
+}
+.admin_lang_menu{
+	position:fixed;
+	right:10px;
+	top:50px;
+}
+.admin_lang_menu .lang_menu_title{
+	font-weight:700;
+}
+.admin_lang_menu a{
+	cursor:pointer;
+	padding-left: 18px;
+	margin: 0 5px 5px 0;
+}
+.admin_lang_menu a.lang_ico_ru{
+	background: image-url("flags/admin_flag_ru.png") no-repeat 0 0;
+}
+.admin_lang_menu a.lang_ico_en{
+	background: image-url("flags/admin_flag_en.gif") no-repeat 0 0;
+}
+.admin_lang_menu a.lang_active{
+	font-weight:700;
+	text-decoration:underline;
+}

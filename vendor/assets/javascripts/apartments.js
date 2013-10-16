@@ -37,11 +37,20 @@ $(window).load(function(){
 
 	$('#add_employment').click(function(){ admin_add_range($(this),'employment',disabledDays); });
 	$('#add_price').click(function(){ admin_add_range($(this),'price',price_disabledDays); });
-	$('#price_calendar td a').click(function(){ return false;});	
+	$('#price_calendar td a').click(function(){ return false;});
+	$('.admin_lang_menu a').click(function(){
+		switch_admin_lang($(this));
+	});	
 		
 });
 
-
+function switch_admin_lang(button){
+	to_lang = button.attr('lang');
+	$('.lang_active').removeClass('lang_active');
+	button.addClass('lang_active');
+	$('.many_langs').addClass('lang_hidden');
+	$('.many_langs[lang='+to_lang+']').removeClass('lang_hidden');
+}
 
 function delete_photo(photo_id, house_id){
 	$.ajax({
