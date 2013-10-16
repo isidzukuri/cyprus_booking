@@ -68,6 +68,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, nav, sectio
 
 html {
   height: 100%;
+  min-width: 700px;
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
 }
@@ -126,11 +127,22 @@ figure {
     display: block;
   }
 }
+header{
+figure{
+  img{
+    padding-top: 5px;
+  }
+}
+}
 
 header {
-  height: 10%;
+  height: 8%;
   background-color: #ffffff;
-  min-height: 80px!important;
+  min-height: 60px!important;
+  -webkit-box-shadow: 1px 4px 11px rgba(50, 50, 50, 0.75);
+  -moz-box-shadow:    1px 4px 11px rgba(50, 50, 50, 0.75);
+  box-shadow:         1px 4px 11px rgba(50, 50, 50, 0.75);
+  behavior: url(/assets/PIE.htc);
   h1 {
     padding-left: 50px;
     width: 300px;
@@ -142,12 +154,31 @@ footer {
   width: 100%;
   background-color: #ffffff;
   position: absolute;
+  //z-index: 50000;
   bottom: 0;
-  min-height: 90px!important;
-  ul {
+  min-height: 105px!important;
+  -webkit-box-shadow: 0px -4px 11px rgba(50, 50, 50, 0.75);
+  -moz-box-shadow:    0px -4px 11px rgba(50, 50, 50, 0.75);
+  box-shadow:         0px -4px 11px rgba(50, 50, 50, 0.75);
+  behavior: url(/assets/PIE.htc);
+  ul.nav {
     position: absolute;
     right: 50px;
     bottom: 20px;
+  }
+  ul.left{
+    margin-left: 50px;
+    margin-top: 50px;
+    li{
+      margin-left: 20px;
+      a{
+        text-decoration: none;
+        color: #696969;
+      }
+      a:hover{
+        text-decoration: underline;
+      }
+    }
   }
 }
 
@@ -175,56 +206,58 @@ html, article {
 }
 
 html {
-  min-height: 500px;
+  min-height: 650px;
 }
 
 article {
   height: 80%;
-  min-height: 400px;
+  min-height: 450px;
   background: image-url("background.png") no-repeat;
   background-size: 100% 100%;
+ // top: -50px;
 }
 
 .apartments, .hotels, .cars, .yahts {
-  height: 65px;
-  width: 65px;
+  height: 50px;
+  width: 50px;
   display: block;
+  background-size: 50px!important;
 }
 
 .apartments, .hotels, .cars {
-  margin-right: 55px;
+  margin-right: 48px;
 }
 
 .apartments {
-  background: image-url("ic_house.png") transparent;
+  background: image-url("ic_house.png") no-repeat transparent;
 }
 
 .hotels {
-  background: image-url("ic_hotels.png") transparent;
+  background: image-url("ic_hotels.png") no-repeat transparent;
 }
 
 .cars {
-  background: image-url("ic_cars.png") transparent;
+  background: image-url("ic_cars.png") no-repeat transparent;
 }
 
 .yahts {
-  background: image-url("ic_yacht.png") transparent;
+  background: image-url("ic_yacht.png") no-repeat transparent;
 }
 
-.apartments:hover {
-  background: image-url("hover_ic_house.png") transparent;
+.apartments:hover , .apartments.active{
+  background: image-url("hover_ic_house.png") no-repeat transparent;
 }
 
-.hotels:hover {
-  background: image-url("hover_ic_hotels.png") transparent;
+.hotels:hover , .hotels.active{
+  background: image-url("hover_ic_hotels.png") no-repeat transparent;
 }
 
-.cars:hover {
-  background: image-url("hover_ic_cars.png") transparent;
+.cars:hover , .cars.active{
+  background: image-url("hover_ic_cars.png") no-repeat transparent;
 }
 
-.yahts:hover {
-  background: image-url("hover_ic_yacht.png") transparent;
+.yahts:hover, .yahts.active {
+  background: image-url("hover_ic_yacht.png") no-repeat transparent;
 }
 
 .btn_main {
@@ -273,12 +306,14 @@ section.main {
   }
 }
 .map header{
-  min-height: 135px !important;
+  min-height: 63px !important;
 }
 .map header h1{
   padding-bottom: 10px
 }
-;
+header figure{
+  float: left;
+}
 .map nav{
   position: absolute;
   right: 50px;
@@ -287,25 +322,28 @@ section.main {
 .line{
   background: image-url("head_line.png") transparent no-repeat;
   background-size: 100% 100%;
-  height: 77px;
+  height: 55px;
 }
 .line .search{
-    width:65px;
-    height:65px;
+    width:50px;
+    height:50px;
     display:block;
     float: left;
     margin-left: 50px;
     background: image-url("ic_search.png") no-repeat center 50%;
+    background-size: 50px;
 }
 .line .search:hover,.line .search.active {
     background: image-url("hover_ic_search.png") no-repeat center 50%;
+    background-size: 50px;
 }
 
 #map_apartments{
   z-index: 10000;
-  top: 140px;
   position: absolute!important;
   width: 100%;
+  height: 75%!important;
+  top:115px;
 }
 
 
@@ -351,10 +389,9 @@ form, fieldset, input, textarea, blockquote, th, td {
   clear: both;
 }
 
-#apatments {
-top: 10px;
-left: 30px;
-z-index: 30000;
+#apartments ,#apartments_view {
+  
+  z-index: 30000;
   width: 462px;
   background-color: #ffffff;
   height: auto;
@@ -366,9 +403,29 @@ z-index: 30000;
   -webkit-border-radius: 6px;
   -moz-border-radius: 6px;
   border-radius: 6px;
-  behavior: url(javascripts/pie/PIE.php);
+  behavior: url(/assets/PIE.htc);
 }
-
+#apartments_view .rectangle{
+  left: 120px
+}
+#apartments{
+  left: 23px;
+  display: none;
+  top: 55px;
+}
+#apartments_view{
+top: 120px;
+position: absolute;
+right: 35px;
+}
+.rectangle{
+  background: image-url("kutyk.png");
+  width: 14px;
+  height: 8px;
+  position: absolute;
+top: -8px;
+left: 45px;
+}
 .form-text {
   height: 40px;
   width: 90%;
@@ -383,26 +440,49 @@ z-index: 30000;
   &.icon_search {
     border: none;
     margin-left: 15px;
+    margin-right: 10px;
+  input{
+    width: 70%;
   }
+
+  }
+
 }
 
 .icon_search {
   background: image-url("search.png") no-repeat;
+  a{
+    padding-top: 10px;
+    display: block;
+  }
 }
 
 .icon_guests {
   background: image-url("guest.png") no-repeat;
+  a{
+    padding-top: 10px;
+    display: block;
+  }
+}
+
+.icon_name{
+  background: image-url("icon_name.png") no-repeat;
 }
 
 .icon_money {
   background: image-url("money.png") no-repeat;
+  a{
+    padding-top: 10px;
+    display: block;
+  }
 }
 
 .form_line {
-  background: image-url("line_d.png") no-repeat 15px bottom;
+  background: image-url("line_2.png") no-repeat 15px bottom;
   padding-bottom: 5px;
   margin: 0 auto;
   margin-bottom: 10px;
+  margin-right: 22px;
 }
 
 .main_form {
@@ -416,7 +496,7 @@ z-index: 30000;
   height: 130px;
 }
 
-#apatments {
+#apartments {
   ul {
     list-style-type: none;
     li ul {
@@ -465,6 +545,10 @@ z-index: 30000;
   border-radius: 3px;
   text-align: center;
   font-size: 20px;
+  &:hover {
+    text-decoration: none;
+    color: #ff793d;
+  }
   span {
     display: block;
     padding-top: 7px;
@@ -472,7 +556,7 @@ z-index: 30000;
   &:hover! {}
 }
 
-#apatments {
+#apartments {
   select {
     height: 40px;
     width: 120px;
@@ -533,7 +617,7 @@ z-index: 30000;
         padding-top: 10px;
         display: block;
         float: left;
-        color: gray;
+        color: #696969;
       }
     }
   }
@@ -544,4 +628,279 @@ z-index: 30000;
     float: right;
     margin-top: 5px;
   }
+}
+
+.ui-autocomplete.ui-menu.ui-widget.ui-widget-content.ui-corner-all{
+  width: 360px;
+background: none;
+border: none;
+  a{
+    font-size: 20px;
+  }
+}
+
+.facifilites_list{
+  background: image-url("line_2.png") no-repeat 8px bottom;
+  margin: 0 10px;
+  height: 45px;
+
+  ul li{
+    float: left;
+  }
+  .price{
+    float: right;
+    color: #ff793d;
+    font-size: 30pt;
+    font-weight: 100!important;
+    padding-top: 10px;
+  }
+}
+.photos{
+  min-height: 300px;
+  background: image-url("line_2.png") no-repeat 8px bottom;
+}
+.desciption {
+  margin: 10px;
+  color: #696969;
+  line-height: 1.5;
+  .search_btn{
+    width: 150px;
+    float: right;
+    margin: 10px;
+   span{
+    padding-top: 4px;
+   }
+  }
+  h2{
+     color: #ff793d;
+  }
+  .rating{
+    height: 12px;
+    float: left;
+    margin-top: 25px;
+  }
+
+}
+.rating div.star-rating, div.star-rating a{
+  background: image-url("rating.png") no-repeat !important;
+      width: 25px;
+      height: 25px;
+}
+
+.header_right{
+  float: right;
+  right: 35px;
+  position: absolute;
+  top: 20px;
+  
+
+  li{
+    float: left;
+    margin-right: 20px;
+    padding-left: 45px;
+    height: 60px;
+    a{
+      text-decoration: none;
+      color: #696969;
+    }
+   a:hover{
+      color: #ff793d;
+    }
+  }
+}
+.map header figure{
+  float: none;
+-webkit-box-shadow: 1px 4px 11px rgba(50, 50, 50, 0.75);
+  -moz-box-shadow:    1px 4px 11px rgba(50, 50, 50, 0.75);
+  box-shadow:         1px 4px 11px rgba(50, 50, 50, 0.75);
+  behavior: url(/assets/PIE.htc);
+
+}
+.currencies_block{
+  z-index: 40000;
+  position: absolute;
+  display: none;
+  background-color: #ffffff;
+  -webkit-box-shadow: 0px 0px 6px rgba(45, 52, 52, 0.8);
+  -moz-box-shadow: 0px 0px 6px rgba(45, 52, 52, 0.8);
+  box-shadow: 0px 0px 6px rgba(45, 52, 52, 0.8);
+  behavior: url(/assets/PIE.htc);
+  top: 50px;
+  li{
+    float: none;
+    position: relative;
+    padding:0;
+    height: auto;
+    a:hover{
+      color: #ff793d;
+    }
+    img{
+      margin-bottom: -3px
+    }
+  }
+}
+.currencies_block.langs .rectangle{
+  left: 5px;
+}
+
+#login_form{
+  background: image-url("login_bg.png") no-repeat;
+  width: 648px;
+  height: 435px;
+  margin: 0 auto;
+  top: 50px;
+  position: relative;
+  .error{
+    border-bottom: 1px solid red;
+  }
+  .forgot{
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    a{
+      color: #ffffff;
+      border-bottom: 1px #ffffff dotted;
+      text-decoration: none;
+    }
+    a:hover{
+      //color: #ff793d;
+      border-bottom: 1px #ff793d dotted;
+    }
+  }
+  .buttons{
+    width: 90%;
+    margin: 0 auto;
+    height: 50px;
+    position: relative;
+    top: 25px;
+  }
+  .fields{
+    width: 90%;
+    top: 100px;
+    position: relative;
+    margin: 0 auto;
+    .icon_mail span, .icon_pass span, .icon_name span{
+      display: block;
+      height: 39px;
+      width: 44px;
+      float: left;
+      margin-left: 10px;
+      top: 11px;
+    }
+    .icon_pass span{
+      position: relative;
+    }
+    .icon_mail span{
+       background:  #6edbef image-url("icon_mail.png") no-repeat;
+    }
+    .icon_name span{
+      background: #6edbef image-url("icon_name.png") no-repeat;
+      margin-top: 11px;
+    }
+    .icon_pass {
+       input{
+        padding-top: 12px;
+       }
+        span{
+           background: #6edbef image-url("icon_password.png") no-repeat;
+
+        }
+    }
+
+
+    .b_form_text{
+      background:  image-url("field.png") no-repeat;
+      height: 62px;
+      border: none;
+      position: relative;
+      input{
+          margin-left: 7px;
+          margin-top: 19px;
+          font-size: 18px;
+          text-align: center;
+          width: 80%;
+      }
+    }
+  }
+  .button_login{
+    bottom: 70px;
+    position: absolute;
+    background: none;
+    color: #ffffff;
+    left: 36%;
+    width: 200px;
+    height: 42px;
+    border: 1px solid #ffffff;
+    cursor: pointer;
+    input{
+      background: none;
+      cursor: pointer;
+      color: #ffffff;
+      margin: 0 auto;
+      display: block;
+      font-size: 20px;
+      padding-top: 9px;
+    }
+    input:hover {
+      color: #ff793d;
+    }
+
+  }
+  .button_login:hover {
+      border: 1px solid #ff793d;
+  }
+  .button_login:hover input{
+    color: #ff793d;
+  }
+
+
+  .facebook,.register{
+    text-decoration:none;
+    color: #ffffff;
+    height: 62px;
+    width: 290px;
+    display: block;
+    float: left;
+    span{
+      text-align: center;
+      display: block;
+      padding-top: 20px;
+    }
+  }
+  .facebook{ 
+    background:  image-url("facebook.png") no-repeat;
+  }
+  .register{
+     background: image-url("register.png") no-repeat;
+  }
+}
+
+#login_form.registered{
+  display: none;
+  background-size: 100% 100%;
+  height: 460px;
+  .fields{
+    top:50px;
+  }
+  .button_login{
+    bottom: 65px;
+  }
+
+}
+#login_form.forgot{
+  display: none;
+  .fields{
+    top:100px;
+  }
+}
+  .icon_name input{
+    padding-top: 11px;
+  }
+.ui-corner-all.ui-state-focus{
+  background: none!important;
+border: none!important;
+
+}
+.form-text.ui-autocomplete-input, .ui-widget-content a{
+color: #696969!important;
 }

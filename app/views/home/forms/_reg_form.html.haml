@@ -1,0 +1,27 @@
+#login_form.registered
+  = form_tag user_register_path, :remote=>true, :"data-auto-controller"=>"RegisterController"  do 
+    .buttons
+      %a.facebook{:href=>"#",:onclick=>"window.doFbLogin()"} 
+        %span Sign with facebook
+      %a.register.enter{:href=>"#"} 
+        %span Enter
+    .fields
+      .b_form_text.icon_mail
+        %span
+        = text_field :user,:email  , :class=>"span12", :required=>true , :type=>"email"  ,:autocomplete=>"off"
+      .b_form_text.icon_name
+        %span
+        = text_field :user,:first_name , :class=>"span12", :required=>true,:autocomplete=>"off"
+      .b_form_text.icon_pass
+        %span
+        = text_field :user,:password , :class=>"span12", :required=>true, :type=>"password" ,:autocomplete=>"off"
+      .b_form_text.icon_pass
+        %span
+        = text_field :user,:password_confirmation , :class=>"span12", :required=>true, :type=>"password" ,:autocomplete=>"off"
+    .button_login
+      = submit_tag "Register", :class=>"submit btn-glow primary login"
+    .forgot
+      %a{:href=>"#"} forgot your pass?
+
+    
+

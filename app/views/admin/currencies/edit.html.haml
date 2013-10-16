@@ -1,0 +1,16 @@
+#tabs-wrapper
+  .row-fluid
+    %a.span2.tab{:href=>"/admin/currencies"}
+      = t("admin.currencies.list")
+    %a.span2.tab{:href=>"/admin/currencies/new"}
+      = t("admin.currencies.add_new")
+    %a.span2.tab.active{:href=>"#"}
+      = t("admin.currencies.show")
+#pad-wrapper.new-user
+  .row-fluid.header
+    %h3= t("admin.currencies.show")
+  .row-fluid.form-wrapper
+    = render 'currency_form'
+
+
+

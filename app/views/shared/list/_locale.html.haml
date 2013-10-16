@@ -1,0 +1,7 @@
+.currencies_block.langs 
+  %em.rectangle{:style=>"left: 16px;"}
+  - I18n.available_locales.in_groups_of(3,false) do |group|
+    %ul{:style=>" float: left; "}
+      - group.each do |locale|
+        %li{:style=>"margin: 5px;"}
+          %a.ch_lang{:href=>"/#{locale}"}=locale.upcase

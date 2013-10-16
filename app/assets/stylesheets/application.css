@@ -9,10 +9,12 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
+ *= require rating
  *= require jnice
  *= require jquery-ui-1.9.2.custom
  *= require style
  *= require jquery.ajaxformbar
  *= require tinyscrollbar
+
 
  */

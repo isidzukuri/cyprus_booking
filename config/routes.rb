@@ -1,11 +1,9 @@
 CyprusBooking::Application.routes.draw do
    get 'admin',  to: "admin#index" 
    get 'logout', to: "user#exit"
-   post 'login', to: "user#enter"
-   match "details",to:"home#details" , :via=>:post
-   match "check_details" , to: "home#check_details"
-
-
+   match "login",to: "user#enter", via:[:post]
+   match "login",to: "home#login", via:[:get]
+scope "(:locale)", :locale => /en|ru/ do
    namespace :admin do
      post "login_admin"
      post "users/pass_change"
@@ -15,6 +13,7 @@ CyprusBooking::Application.routes.draw do
      resources :facilities
      resources :apartaments
      resources :characteristics
+     resources :currencies
      get "apartaments",          to: "apartaments#index"
      get "apartaments/delete/:id",      to: "apartaments#delete"
      get "apartaments/remove_photo/:photo_id",  to: "apartaments#remove_photo"
@@ -23,6 +22,7 @@ CyprusBooking::Application.routes.draw do
      get "facilities",          to: "facilities#index"
      get "facilities/new",      to: "facilities#new"
      get "facilities/delete/:id",      to: "facilities#delete"
+     get "currencies/delete/:id",      to: "currencies#delete"
      get "characteristics",          to: "characteristics#index"
      get "characteristics/new",      to: "characteristics#new"
      get "characteristics/delete/:id",      to: "characteristics#delete"
@@ -33,11 +33,19 @@ CyprusBooking::Application.routes.draw do
    namespace :user do
     post "auth"
     post "forgot"
+    post "register"
+    post "fbregister"
    end
 
+  
+     root :to => "home#index"
+     match "apartments", to: "apartments#index", via: [:get]
+     match "apartments", to: "apartments#search", via: [:post]
+     post "apartments/show_index"
+     get  "apartments/show/:id", to: "apartments#show"
+     match "change_currency", to: "home#change_currency"
 
-   root :to => "home#index"
-
-   match "apartments", to: "home#apartments", via: [:get]
+     get "apartments/complete"
+   end
 
 end

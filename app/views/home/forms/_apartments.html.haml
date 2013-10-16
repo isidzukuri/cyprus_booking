@@ -1,8 +1,10 @@
-#apatments
-  = form_for @apartments_search ,:url => "apatments/search" ,:html => {:"data-auto-controller" => "ApartmentsController"} do |f|
+#apartments
+  %em.rectangle
+  = form_for @apartments_search ,:url => "apartments" ,:html => {:"data-auto-controller" => "ApartmentsController",:class=>"submit"} do |f|
     .form_line
       .b_form_text.icon_search
         = f.text_field :city ,:class=>"form-text", :required=>true,:placeholder=>"- Secelt city -"
+        = f.hidden_field :city_id,  :required=>true
     .dates
       %ul
         %li
@@ -17,13 +19,8 @@
           %ul
             %li.jNice
               .b_form_text.icon_guests
-                %select
-                  %option{value: "1"} 1 guest
-                  %option{value: "2"} 2 guest
-                  %option{value: "3"} 3 guest
-                  %option{value: "4"} 4 guest
-                  %option{value: "5"} 5 guest
-                  %option{value: "6"} 6 guest
+                = f.select :people_count , 6.times.map{|i| [pluralize((i+1),'guest'),(i+1)]}, :class=>"form-select"
+ 
             %li
               %a.search_btn{href: "#"}
                 %span search
@@ -34,17 +31,18 @@
           %ul
             %li
               .b_form_text.icon_money
-                = f.text_field :price_from ,:class=>"form-text" ,:required=>true,:placeholder=>"- 10 -"
+                = f.text_field :price_from ,:class=>"form-text" ,:placeholder=>"- 10 -"
             %li
               .b_form_text.icon_money
-                = f.text_field :price_to ,:class=>"form-text" ,:required=>true,:placeholder=>"- 1000 -"
+                = f.text_field :price_to ,:class=>"form-text" ,:placeholder=>"- 1000 -"
       - if @apartments_search.facilities.count > 0
         .facifitiles
           %ul
             - @apartments_search.facilities.each do |facility|
               = f.fields_for :facilities , facility do |ff|
                 %li.jNice
-                  = image_tag "facilfitiles/conditioner.png"
+                  = image_tag "#{facility.ico}"
                   %span.text=facility.name
                   = ff.check_box :active ,:value=>1, :checked=>false
+                  = ff.hidden_field :id
         .clear

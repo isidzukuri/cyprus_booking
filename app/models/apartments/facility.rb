@@ -1,9 +1,9 @@
 class Facility < ActiveRecord::Base
 
-  attr_accessible :id, :active, :name_ru, :name_uk, :name_en, :seo
+  attr_accessible :id, :active, :name_ru, :name_uk, :name_en, :seo ,:ico_file_name
   has_attached_file :ico,
-  	:url  => "/facilities/:id/:style.:extension",
-    :path => ":rails_root/public/facilities/:id/:style.:extension", 
+  	:url  => "/system/facilities/:id/:style.:extension",
+    :path => ":rails_root/public/system/facilities/:id/:style.:extension", 
     :styles => {
       :small  => "35x35>"
         }

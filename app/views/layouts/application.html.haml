@@ -8,40 +8,21 @@
     %meta{:content => "", :name => "author"}
     = stylesheet_link_tag "application", :media => "all"
     = javascript_include_tag "application"
-    = javascript_include_tag 'http://maps.googleapis.com/maps/api/js?sensor=false'
+    =# javascript_include_tag 'http://maps.googleapis.com/maps/api/js?sensor=false'
     = csrf_meta_tags
     /[if IE] <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    %script{:type => "text/javascript",
+        :src  => "https://connect.facebook.net/en_US/all.js"}
   %body
     #wrapper
       %header
         %figure
           %h1
             %a{href: "/"}
-              = image_tag "logo.png"
+              = image_tag "logo.png", :height=>50
+        =render "shared/header_right"
       %article
-        %section.main
-          %h1 Cyprus Short Stay
-          %p We are opening soon....
-          %a.btn_main{href: "#"}
-            %span About Us
-        %nav
-          %ul
-            %li
-              %a.apartments{href: "/apartments"}
-            %li
-              %a.hotels{href: "#"}
-            %li
-              %a.cars{href: "#"}
-            %li
-              %a.yahts{href: "#"}
-      %footer
-        %ul
-          %li
-            %a{href: "#"}
-              = image_tag "ic_facebook.png"
-          %li
-            %a{href: "#"}
-              = image_tag "ic_twitter.png"
-          %li
-            %a{href: "#"}
-              = image_tag "ic_google.png"
+        = yield
+      = render "shared/footer"  
+:javascript
+  FBappId = "#{Settings.fb.key}"

@@ -9,21 +9,24 @@
     = stylesheet_link_tag "application", :media => "all"
     = javascript_include_tag "application"
     = javascript_include_tag 'http://maps.googleapis.com/maps/api/js?sensor=false'
+    %script{:type => "text/javascript",
+        :src  => "https://connect.facebook.net/en_US/all.js"}
     = csrf_meta_tags
     /[if IE] <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-  %body
+  %body{:"data-auto-controller" =>"MapController"}
     #wrapper.map
       %header
         %figure
           %h1
             %a{href: "/"}
-              = image_tag "logo.png"
+              = image_tag "logo.png", :height=>50
+        =render "shared/header_right"
         .line
           %a.search{:href=>"#"}
           %nav
             %ul
               %li
-                %a.apartments{href: "#"}
+                %a.apartments{href: "#",:class=>( params[:controller] =~ /apartments/ ? "active" : "")}
               %li
                 %a.hotels{href: "#"}
               %li
@@ -32,7 +35,11 @@
                 %a.yahts{href: "#"}
 
       = yield
-      %section#map_apartments
+      #map_apartments
+    = render "shared/footer"  
+:javascript
+  window.type = "#{params[:controller]}"
+  FBappId = "#{Settings.fb.key}"
 
 
 

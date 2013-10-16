@@ -1,5 +1,10 @@
 ru:
   admin:
+    currencies:
+      list: Список валют
+      show: Редактирование валюты
+      add_new: Добавление валюты
+      curs: Курс
     penalties: 
       list: Список штрафов
       name: Пользователь

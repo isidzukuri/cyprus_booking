@@ -1,0 +1,9 @@
+.currencies_block.cur
+  %em.rectangle
+  - @currencies.in_groups_of(3,false) do |group|
+    %ul{:style=>" float: left;margin-bottom: 10px; "}
+      - group.each do |currency|
+        %li{:style=>"margin: 5px;"}
+          %a.currency{:href=>"/change_currency"}
+            = image_tag currency.ico
+            = currency.title

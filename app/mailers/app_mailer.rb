@@ -41,9 +41,11 @@ class AppMailer < ActionMailer::Base
 
   private
     def set_email_template action , data
-    	@template = EmailTemplate.find_by_email_type(action)
+    	@template = EmailTemplate.find_by_email_type("registration")
     	data.each_pair do |key,v|
-    		@template.html.gsub!("%#{key}%",v)
+        p v
+        p key
+    		@template.html.gsub!("%#{key}%",v) unless @template.html.nil?
     	end
     end
 end

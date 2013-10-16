@@ -1,0 +1,21 @@
+#apartments_view
+  %em.rectangle
+  .facifilites_list
+    %ul
+      - @apartment.facilities.each do |f|
+        %li
+          = image_tag f.ico
+    .price
+      = @apartment.period_price(@search)
+      %span.currency
+        = image_tag @currency.ico
+  .photos
+    = photos_min_dispay @apartment.photos
+  .desciption
+    %h2=@apartment.name
+    %p.text
+      = truncate(@apartment.description, length: 150, omission: '...')
+    .rating
+      = rating_display
+    %a.search_btn{:href=>"/apartments/show/#{@apartment.id}"} 
+      %span view details

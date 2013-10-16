@@ -1,14 +1,13 @@
 class HomeController < ApplicationController
-	include ActionView::Helpers::TagHelper
-	def index
+	def index 
 	end
 
-	def apartments
-		facilities = Facility.where(:active=>1).map do |item|
-			ApartmentFacifility.new({:name=>item.name_ru,:id=>item.id})
-		end
-		@apartments_search = ApartmentSearch.new(:facilities => facilities)
-		render :layout =>"map"
+	def change_currency
+		cookies.permanent[:currency] = params[:currency].strip
+		render :json => {:status=>true}
 	end
 
+	def login
+		redirect_to :root if logged_in?
+	end
 end

@@ -60,7 +60,7 @@ class Admin::ApartamentsController < AdminController
 					@reserved['client'] << r
 				end	
 			end
-			@disabled_days = disabled_days.join(', ')
+			@disabled_days = disabled_days.join(', ') if disabled_days.any?
 		end
 		@custom_prices = {}
 		@prices = @apartament.house_prices.where("to_date > ?", Time.now.to_i)
@@ -77,7 +77,7 @@ class Admin::ApartamentsController < AdminController
 				end while curent_day <= r.to_date
 			end
 		end
-		@price_calendar_disabled_days = price_calendar_disabled_days.join(', ')
+		@price_calendar_disabled_days = price_calendar_disabled_days.join(', ') if !price_calendar_disabled_days.nil? && price_calendar_disabled_days.any?
 		@price_calendar_values = @price_calendar_values.to_json
 		@currency = Currency.find(@apartament.currency_id)
 	end
