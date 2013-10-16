@@ -41,8 +41,15 @@ $(window).load(function(){
 	$('.admin_lang_menu a').click(function(){
 		switch_admin_lang($(this));
 	});	
-		
+
+	$(".validate_form").validate()
+	$('.number').filter_input({regex:'[0-9.]'});
+	$('.digits').filter_input({regex:'[0-9]'});	
 });
+
+
+
+
 
 function switch_admin_lang(button){
 	to_lang = button.attr('lang');

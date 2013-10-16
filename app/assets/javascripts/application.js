@@ -27,7 +27,7 @@
 //= require jquery.rating
 //= require_tree .
 
-
+//= require jquery.filter_input
 //= require datapicker_ru	
 //= require apartments
 
