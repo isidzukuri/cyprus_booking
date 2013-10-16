@@ -38,26 +38,18 @@ $(window).load(function(){
 	$('#add_employment').click(function(){ admin_add_range($(this),'employment',disabledDays); });
 	$('#add_price').click(function(){ admin_add_range($(this),'price',price_disabledDays); });
 	$('#price_calendar td a').click(function(){ return false;});
-	$('.admin_lang_menu a').click(function(){
-		switch_admin_lang($(this));
-	});	
-
-	$(".validate_form").validate()
-	$('.number').filter_input({regex:'[0-9.]'});
-	$('.digits').filter_input({regex:'[0-9]'});	
+	
+	$('#house_street, #house_house_number, #house_flat_number').keyup(function() {
+	  fill_address();
+	});
 });
 
-
-
-
-
-function switch_admin_lang(button){
-	to_lang = button.attr('lang');
-	$('.lang_active').removeClass('lang_active');
-	button.addClass('lang_active');
-	$('.many_langs').addClass('lang_hidden');
-	$('.many_langs[lang='+to_lang+']').removeClass('lang_hidden');
+function fill_address(photo_id, house_id){
+	adr_str = $('#house_street').val()+' '+$('#house_house_number').val();
+	if($.trim($('#house_flat_number').val()) != '') adr_str += '/'+$('#house_flat_number').val();
+	$('#house_full_address').val(adr_str);
 }
+
 
 function delete_photo(photo_id, house_id){
 	$.ajax({
@@ -161,10 +153,11 @@ function admin_price_calendar(){
 
 
 function admin_add_range(button,type,disabled){
-	custom_field = (type == 'price') ? '<div class="range_inputs"><label>'+adm_apartments_langs.ru.price+'</label> <input type="text" class="'+type+'_inp" required name="'+type+'_range_value[]" /></div>' : '';
+	custom_field = (type == 'price') ? '<div class="range_inputs"><label>'+adm_apartments_langs.ru.price+'</label> <input type="text" class="'+type+'_inp number" required name="'+type+'_range_value[]" /></div>' : '';
 	emp_p_inputs = '<div><div class="range_inputs"><label for="from">'+adm_apartments_langs.ru.from+'</label> <input type="text" class="'+type+'_from" required name="'+type+'_from[]" /></div><div class="range_inputs"><label for="to">'+adm_apartments_langs.ru.to+'</label> <input type="text" class="'+type+'_to" required name="'+type+'_to[]" /></div>'+custom_field+'<div class="ui-state-default ui-corner-all range_inputs remove_range"><span class="ui-icon ui-icon-circle-close"></span></div><div class="clear"></div></div>';
 	button.before(emp_p_inputs);
 	admin_atach_from_to_datepicker(button,type,disabled);
+	attach_filter_input();
 }
 
 
