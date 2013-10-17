@@ -110,6 +110,21 @@ class Admin::ApartamentsController < AdminController
 		redirect_to admin_apartaments_path
 	end
 
+	def upload_photos
+		if params[:cur_id].present?
+			id = params[:cur_id]
+		else
+			house = House.create(:city_id => 1, :name_ru => "temporary", :active => 0)
+			id = house.id
+		end
+		
+		@photo = Photo.new()
+		@photo.house_id = id
+		@photo.file = params[:one_photo]
+		
+		render :json => {:saved => @photo.save, :id => @photo.id, :cur_id => id, :form_id => "edit_house_#{id}"}.to_json
+	end
+
 	def remove_photo
 		@photo = Photo.find(params[:photo_id])
 		@photo.file.destroy

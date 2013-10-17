@@ -4,7 +4,7 @@
   - url =  params[:action] =~ /new/ ? admin_apartaments_path : admin_apartament_path(@apartament)
   .container
     = form_for @apartament ,:url => url  ,:html=>{:class=>"validate_form new_user_form inline-input" , :multipart => true} do |f|
-      = f.hidden_field :id
+      = f.hidden_field :id ,:class => "cur_id"
       = f.hidden_field :user_id
       
       :javascript
@@ -148,8 +148,10 @@
                  
       .span12.field-box
         = f.label :photos , "#{t("admin.apartaments.photos")}"  
-        %input(type="file" name="house[photos][]" multiple)
-      
+        /%input(type="file" name="house[photos][]" multiple)
+        #adminDropzone.dropzone.btn-glow.secondary.dropzone_holder{"action" => "/admin/apartaments/upload_photos"}    
+        
+
 
       .span12.field-box
         - @apartament.photos.each do |photo|
