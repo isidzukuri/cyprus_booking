@@ -15,6 +15,6 @@
  *= require style
  *= require jquery.ajaxformbar
  *= require tinyscrollbar
-
+ *= require dropzone
 
  */

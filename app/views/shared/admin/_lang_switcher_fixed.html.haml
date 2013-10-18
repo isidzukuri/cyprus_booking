@@ -1,0 +1,7 @@
+- I18n.available_locales.in_groups_of(3,false) do |group|
+  .admin_lang_menu
+    .lang_menu_title
+      Выбрать язык
+    - group.each do |locale|
+      %a.ch_lang{:class=>"lang_ico_#{locale} #{p locale == I18n.locale ? 'lang_active' : ''}", :lang =>"#{locale}"}
+        =locale.upcase

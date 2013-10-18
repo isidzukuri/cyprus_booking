@@ -16,6 +16,7 @@ scope "(:locale)", :locale => /en|ru/ do
      resources :currencies
      get "apartaments",          to: "apartaments#index"
      get "apartaments/delete/:id",      to: "apartaments#delete"
+     post "apartaments/upload_photos",  to: "apartaments#upload_photos"
      get "apartaments/remove_photo/:photo_id",  to: "apartaments#remove_photo"
      get "apartaments/remove_employment/:id",  to: "apartaments#remove_employment"
      get "apartaments/remove_price/:id",  to: "apartaments#remove_price"

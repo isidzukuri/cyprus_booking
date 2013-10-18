@@ -28,6 +28,9 @@
 //= require_tree .
 
 
+//= require dropzone
+//= require admin/admin_global
+//= require jquery.filter_input
 //= require datapicker_ru	
 //= require apartments
 

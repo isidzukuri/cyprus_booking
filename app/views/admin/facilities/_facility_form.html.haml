@@ -1,3 +1,4 @@
+= render "shared/admin/lang_switcher_fixed"
 .span9.with-sidebar
   - url =  params[:action] =~ /new/ ? admin_facilities_path : admin_facility_path(@facility)
   .container
@@ -6,15 +7,12 @@
       .span12.field-box
         = f.label :active , t("admin.facilities.active")    
         = f.select :active , options_for_select([[t("admin.facilities.active_1"),1],[t("admin.facilities.active_0"),0]],@facility.active) ,{} ,:class=>"span9" , :required=>true
-      .span12.field-box
-        = f.label :name_ru , "#{t("admin.facilities.name")} [ru]"   
-        = f.text_field :name_ru , :class=>"span9" , :required=>true
-      .span12.field-box
-        = f.label :name_uk , "#{t("admin.facilities.name")} [uk]"   
-        = f.text_field :name_uk , :class=>"span9" , :required=>true
-      .span12.field-box
-        = f.label :name_en , "#{t("admin.facilities.name")} [en]"   
-        = f.text_field :name_en , :class=>"span9" , :required=>true
+
+      - I18n.available_locales.each do |locale|
+        .span12.field-box.many_langs{:class => ("lang_hidden" unless locale.to_s == I18n.locale.to_s), :lang=>"#{locale.to_s}"}
+          = f.label "name_#{locale.to_s}", "#{t("admin.facilities.name")} [#{locale.to_s}]"   
+          = f.text_field "name_#{locale.to_s}" , :class=>"span9 required"
+      
 
       .span12.field-box
         = f.label :seo , "SEO"   
