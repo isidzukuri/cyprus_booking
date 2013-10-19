@@ -38,6 +38,10 @@ scope "(:locale)", :locale => /en|ru/ do
     post "fbregister"
    end
 
+   namespace :cabinet do
+    get "houses"
+   end
+
   
      root :to => "home#index"
      match "apartments", to: "apartments#index", via: [:get]

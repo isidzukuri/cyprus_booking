@@ -8,7 +8,8 @@ class Photo < ActiveRecord::Base
       :original => ['1920x1680>', :jpg],
       :small    => ['220x100#',   :jpg],
       :medium   => ['450x285',    :jpg],
-      :large    => ['500x500>',   :jpg]
+      :large    => ['500x500>',   :jpg],
+      :cabinet  => ['310x260#',   :jpg],
   	}
 
 	Paperclip.interpolates :house_id do |attachment, style|

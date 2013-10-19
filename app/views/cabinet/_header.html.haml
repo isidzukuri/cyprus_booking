@@ -1,0 +1,20 @@
+.cabinet_header
+	%h2=@title
+	%nav#cab_nav
+		%a{:href=>"/cabinet/houses", :class=>"dashboard_ico"}
+		%a{:href=>"/cabinet/", :class=>"profile_ico"}
+		%a{:href=>"/cabinet/", :class=>"messages_ico"}
+		%a{:href=>"/cabinet/", :class=>"y_offers_ico"}
+		%a{:href=>"/cabinet/", :class=>"wishlist_ico"}
+	.clear
+#cab_filters
+	%input.cab_filter.filter_by{:name => "filter_by", :value => "filter by..."}
+	%input.cab_filter.filter_calendar{:name => "date_from", :value => "#{(Time.now - 2592000).strftime('%d.%m.%Y')}"}
+	%input.cab_filter.filter_calendar{:name => "date_to", :value => "#{Time.now.strftime('%d.%m.%Y') }"}
+	.clear
+#orange_nav
+	%a{:href=>"/cabinet/houses"} Houses
+	%a{:href=>"/cabinet/hotels"} Hotels
+	%a{:href=>"/cabinet/cars"} Cars
+	%a{:href=>"/cabinet/yachts"} Yachts
+	.clear

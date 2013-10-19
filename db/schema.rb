@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130827134025) do
+ActiveRecord::Schema.define(:version => 20131018232721) do
 
   create_table "admin_modules", :force => true do |t|
     t.string   "name"
@@ -39,6 +39,18 @@ ActiveRecord::Schema.define(:version => 20130827134025) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "apartments_bookings", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "seller"
+    t.integer  "from_date"
+    t.integer  "to_date"
+    t.integer  "total_cost"
+    t.integer  "house_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "status"
+  end
+
   create_table "banks", :force => true do |t|
     t.string   "name_ua"
     t.string   "name_ru"
@@ -61,6 +73,11 @@ ActiveRecord::Schema.define(:version => 20130827134025) do
     t.string "name_en"
   end
 
+  create_table "currencies", :force => true do |t|
+    t.float  "curs"
+    t.string "title"
+  end
+
   create_table "email_templates", :force => true do |t|
     t.string   "name"
     t.string   "email_type"
@@ -69,22 +86,39 @@ ActiveRecord::Schema.define(:version => 20130827134025) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "employments", :force => true do |t|
+    t.integer "house_id"
+    t.integer "from_date"
+    t.integer "to_date"
+    t.integer "status"
+  end
+
   create_table "facilities", :force => true do |t|
     t.string   "name_uk"
     t.string   "name_ru"
     t.string   "name_en"
     t.string   "ico"
-    t.string   "ico_file_name"
     t.text     "description"
-    t.integer  "active",      :default => 1, :null => false
+    t.integer  "active",           :default => 1, :null => false
     t.string   "seo"
-    t.datetime "created_at",                 :null => false
-    t.datetime "updated_at",                 :null => false
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
+    t.string   "ico_file_name"
+    t.string   "ico_content_type"
+    t.integer  "ico_file_size"
+    t.datetime "ico_updated_at"
   end
 
   create_table "facilities_houses", :force => true do |t|
     t.integer "house_id"
     t.integer "facility_id"
+  end
+
+  create_table "house_prices", :force => true do |t|
+    t.integer "house_id"
+    t.integer "from_date"
+    t.integer "to_date"
+    t.float   "cost"
   end
 
   create_table "houses", :force => true do |t|
@@ -104,7 +138,6 @@ ActiveRecord::Schema.define(:version => 20130827134025) do
     t.string  "floor_number"
     t.string  "house_number"
     t.string  "street"
-    t.integer "currency_id"
     t.string  "district"
     t.integer "floors"
     t.integer "rooms"
@@ -113,6 +146,7 @@ ActiveRecord::Schema.define(:version => 20130827134025) do
     t.integer "active",         :default => 1,   :null => false
     t.integer "user_id"
     t.integer "city_id"
+    t.integer "currency_id"
   end
 
   create_table "modules", :force => true do |t|
@@ -179,13 +213,7 @@ ActiveRecord::Schema.define(:version => 20130827134025) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
-  create_table "currencies", :force => true do |t|
-    t.string   "title"
-    t.string   "curs"
-    t.string   "ico_file_name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
+
   create_table "roles", :force => true do |t|
     t.string   "name"
     t.string   "role_type"
@@ -213,18 +241,7 @@ ActiveRecord::Schema.define(:version => 20130827134025) do
   add_index "transactions", ["penalty_id"], :name => "index_transactions_on_penalty_id"
   add_index "transactions", ["status"], :name => "index_transactions_on_status"
   add_index "transactions", ["user_id"], :name => "index_transactions_on_user_id"
-  create_table "employments", :force => true do |t|
-    t.integer   "house_id"
-    t.integer   "from_date"
-    t.integer   "to_date"
-    t.integer   "status"
-  end
- create_table "house_prices", :force => true do |t|
-    t.integer   "house_id"
-    t.integer   "from_date"
-    t.integer   "to_date"
-    t.float     "cost"
-  end
+
   create_table "users", :force => true do |t|
     t.string   "username"
     t.string   "first_name"
@@ -248,5 +265,31 @@ ActiveRecord::Schema.define(:version => 20130827134025) do
 
   add_index "users", ["remember_me_token"], :name => "index_users_on_remember_me_token"
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token"
+
+  create_table "yachts", :force => true do |t|
+    t.integer "yachts_type_id"
+    t.float   "length"
+    t.float   "width"
+    t.integer "engine_speed"
+    t.integer "speed_under_sail"
+    t.float   "sinking"
+    t.string  "engine"
+    t.string  "fuel_autonomy"
+    t.string  "electricity"
+    t.integer "passenger_capacity"
+    t.integer "user_id"
+    t.integer "currency_id"
+    t.string  "name"
+    t.string  "description_uk"
+    t.string  "description_ru"
+    t.string  "description_en"
+    t.float   "rating",             :default => 0.0, :null => false
+    t.float   "cost",               :default => 0.0, :null => false
+    t.integer "views",              :default => 0,   :null => false
+  end
+
+  create_table "yachts_types", :force => true do |t|
+    t.string "title"
+  end
 
 end

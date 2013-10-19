@@ -10,3 +10,12 @@
       = render "shared/list/currency"
     %li.icon_guests
       %a{:href=>(logged_in? ? "/user" : "/login"), :class=>(logged_in? ? "" : "login")}=logged_in? ? current_user.fio : "Login".upcase
+
+  #header_user_menu
+    #um_pointer
+    #um_wrap
+      %a{:href=>"/cabinet/houses", :class=>"dashboard_ico"} Dashboard
+      %a{:href=>"/cabinet/", :class=>"profile_ico"} Profile
+      %a{:href=>"/cabinet/", :class=>"messages_ico"} Messages
+      %a{:href=>"/cabinet/", :class=>"y_offers_ico"} Your offers
+      %a{:href=>"/cabinet/", :class=>"wishlist_ico"} Wishlist

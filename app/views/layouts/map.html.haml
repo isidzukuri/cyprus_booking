@@ -21,18 +21,7 @@
             %a{href: "/"}
               = image_tag "logo.png", :height=>50
         =render "shared/header_right"
-        .line
-          %a.search{:href=>"#"}
-          %nav
-            %ul
-              %li
-                %a.apartments{href: "#",:class=>( params[:controller] =~ /apartments/ ? "active" : "")}
-              %li
-                %a.hotels{href: "#"}
-              %li
-                %a.cars{href: "#"}
-              %li
-                %a.yahts{href: "#"}
+        =render "shared/search_and_services_icons"
 
       = yield
       #map_apartments

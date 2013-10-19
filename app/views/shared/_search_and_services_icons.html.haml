@@ -1,0 +1,13 @@
+.line
+  %a.search{:href=>"#"}
+  %nav
+    %ul
+      %li
+        %a.apartments{href: "#",:class=>( params[:controller] =~ /apartments/ ? "active" : "")}
+      %li
+        %a.hotels{href: "#"}
+      %li
+        %a.cars{href: "#"}
+      %li
+        %a.yahts{href: "#"}
+  .clear

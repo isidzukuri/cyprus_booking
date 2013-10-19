@@ -1,0 +1,20 @@
+=render "shared/search_and_services_icons"
+.clear	
+#cabinet
+	= render "cabinet/header"
+	.clear
+	.bookings_list
+		- @bookings.each do |b|
+			%a.item
+				%img{:src => "#{b.first_img.file.url(:cabinet)}"}
+				%div{:class=>"item_status status_ico_#{b.status}"}
+				.item_info
+					.item_petriod
+						="#{b.from} - #{b.to}"
+						%br
+						="#{b.address}"
+					.item_price
+						%b=b.total_cost
+						%br
+						Total cost
+		.clear
