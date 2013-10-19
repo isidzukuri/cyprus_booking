@@ -1,5 +1,4 @@
 $(window).load(function(){ 
-	user_menu = $('#header_user_menu')
 
 	set_blocks_position();
 
@@ -17,9 +16,41 @@ $(window).load(function(){
       }
     });
 
+    $('.custom_dropdown').mousedown(function(){
+    	$(this).blur();
+    	offset = $(this).offset();
+    	dropdown = $('.filters_select[related='+$(this).attr('name')+']');
+		if(!dropdown.hasClass('shown')){
+			dropdown.show().css(offset).toggleClass("shown");
+		}else{
+	    	dropdown.hide().toggleClass("shown");
+		}
+		return false;    	
+    });
+
+    $('.custom_dropdown').keydown(function(){
+    	$(this).blur()
+    	return false;
+    });
+
+    $('.filters_select a').mousedown(function(){
+		related = $(this).parents('.filters_select').attr('related');
+		$('[name='+related+'_value]').val($(this).attr('by'));
+		$('[name='+related+']').val($(this).text());	
+		$(this).parents('.filters_select').toggleClass("shown").hide();	
+		return false;
+	});
+
+    $('.filters_select').mouseleave(function(){
+    	if($(this).hasClass('shown')) $(this).toggleClass("shown").hide();
+	});
+	$('body').mousedown(function(){
+    	if($('.filters_select').hasClass('shown')) $('.filters_select').toggleClass("shown").hide();
+    	if(user_menu.hasClass('shown')) user_menu.stop().animate({top: -400 }, 300, function(){$(this).toggleClass("shown")});
+	});
 
 
-
+	user_menu = $('#header_user_menu');
 	$(".header_right li.icon_guests a").click(function(){
 		if(!$(this).hasClass('login')){
 			if(!user_menu.hasClass('shown')){
@@ -28,7 +59,6 @@ $(window).load(function(){
 		    	user_menu.stop().animate({top: -400 }, 300, function(){$(this).toggleClass("shown")});
 			}
 		}
-
 		return false;
 	});
 
@@ -43,7 +73,6 @@ $(window).resize(function(){
 });
 
 function set_blocks_position(){
-	// $('article').height($(window).height() -$('header').height()-$('footer').height());
 	if($('.bookings_list .item').length < 1){
 		$('#cab_filters').hide();
 		$('.bookings_list').css('overflow','hidden');	
@@ -55,7 +84,6 @@ function set_blocks_position(){
 	items_in_line = parseInt(list_w/item_w); 
 	ml = parseInt((list_w - item_w*items_in_line)/2);
 	$('.bookings_list .item:nth-child('+items_in_line+'n+1)').css('margin-left',ml);
-
 
 	if(parseInt($('.cab_filter').outerWidth())*$('.cab_filter').length < parseInt($('#cab_filters').width())){
 		if(!ml){

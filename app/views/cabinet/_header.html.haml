@@ -8,10 +8,17 @@
 		%a{:href=>"/cabinet/houses", :class=>"dashboard_ico #{['houses','hotels','cars','yachts'].include?(controller.action_name) ? 'act' : ''}"}
 	.clear
 #cab_filters
-	%input.cab_filter.filter_by{:name => "filter_by", :value => "filter by..."}
+	%input.cab_filter.filter_by.custom_dropdown{:name => "filter_by", :value => "filter by status"}
+	%input{:name => "filter_by_value", :type => "hidden"}
 	%input.cab_filter.filter_calendar{:name => "date_from", :value => "#{(Time.now - 2592000).strftime('%d.%m.%Y')}"}
 	%input.cab_filter.filter_calendar{:name => "date_to", :value => "#{Time.now.strftime('%d.%m.%Y') }"}
 	.clear
+	.filters_select{:related=>"filter_by"}
+		.um_pointer
+		.um_wrap
+			%a{:by=>"1", :class=>"by_ico_1"} Unpayed
+			%a{:by=>"2", :class=>"by_ico_2"} Payed
+			%a{:by=>"3", :class=>"by_ico_3"} Canceled
 #orange_nav
 	%a{:href=>"/cabinet/yachts", :class=>"#{controller.action_name == 'yachts' ? 'act' : ''}"} Yachts
 	%a{:href=>"/cabinet/cars", :class=>"#{controller.action_name == 'cars' ? 'act' : ''}"} Cars
