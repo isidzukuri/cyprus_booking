@@ -1,5 +1,11 @@
 class CabinetController < ApplicationController
 	before_filter :require_login
+
+	def initialize
+		super
+		@currency = Currency.find_by_title($currency.to_s)
+	end
+	
 	def houses
 		@title = "Dashboard"
 		@bookings = current_user.apartments_bookings

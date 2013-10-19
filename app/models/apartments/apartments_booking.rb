@@ -4,8 +4,13 @@ class ApartmentsBooking < ActiveRecord::Base
   belongs_to :house
   belongs_to :user
 
+  # statuses
+  # 1 - unpayed
+  # 2 - payed
+  # 3 - canceled
+
   def first_img
-  	return self.house.photos.first
+  	return self.house.photos.present? ? self.house.photos.first.file.url(:cabinet) : ''
   end
 
   def city_name
@@ -22,6 +27,10 @@ class ApartmentsBooking < ActiveRecord::Base
 
   def to
   	return Time.at(self.to_date).strftime('%d.%m.%Y')
+  end
+
+  def show_total_cost
+    return self.total_cost
   end
 
 end

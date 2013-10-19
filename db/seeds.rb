@@ -18,9 +18,9 @@ if City.count == 0
 end
 
 if Currency.count == 0
-	Currency.create(title:"UAH",curs:1)
-	Currency.create(title:"USD",curs:2)
-	Currency.create(title:"EUR",curs:3)
+	Currency.create(title:"UAH",curs:1,symbol:'₴')
+	Currency.create(title:"USD",curs:2,symbol:'$')
+	Currency.create(title:"EUR",curs:3,symbol:'€')
 end
 
 if Facility.count == 0

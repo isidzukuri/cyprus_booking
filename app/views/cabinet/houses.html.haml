@@ -6,15 +6,16 @@
 	.bookings_list
 		- @bookings.each do |b|
 			%a.item
-				%img{:src => "#{b.first_img.file.url(:cabinet)}"}
+				%img{:src => "#{b.first_img}"}
 				%div{:class=>"item_status status_ico_#{b.status}"}
 				.item_info
 					.item_petriod
-						="#{b.from} - #{b.to}"
+						%b="#{b.from} - #{b.to}"
 						%br
 						="#{b.address}"
 					.item_price
-						%b=b.total_cost
+						%b="#{b.show_total_cost}#{@currency.symbol}"
 						%br
 						Total cost
+					.clear
 		.clear

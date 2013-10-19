@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131018232721) do
+ActiveRecord::Schema.define(:version => 20131019093437) do
 
   create_table "admin_modules", :force => true do |t|
     t.string   "name"
@@ -76,6 +76,7 @@ ActiveRecord::Schema.define(:version => 20131018232721) do
   create_table "currencies", :force => true do |t|
     t.float  "curs"
     t.string "title"
+    t.string "symbol"
   end
 
   create_table "email_templates", :force => true do |t|
