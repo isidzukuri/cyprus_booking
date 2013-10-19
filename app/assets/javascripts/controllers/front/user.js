@@ -44,6 +44,10 @@ $(window).resize(function(){
 
 function set_blocks_position(){
 	// $('article').height($(window).height() -$('header').height()-$('footer').height());
+	if($('.bookings_list .item').length < 1){
+		$('#cab_filters').hide();
+		$('.bookings_list').css('overflow','hidden');	
+	} 
 	$('.cab_filter, .bookings_list .item').css('margin-left',0);
 
 	list_w = $('.bookings_list').width();
@@ -52,7 +56,14 @@ function set_blocks_position(){
 	ml = parseInt((list_w - item_w*items_in_line)/2);
 	$('.bookings_list .item:nth-child('+items_in_line+'n+1)').css('margin-left',ml);
 
+
 	if(parseInt($('.cab_filter').outerWidth())*$('.cab_filter').length < parseInt($('#cab_filters').width())){
+		if(!ml){
+			list_w = $('#cab_filters').width();
+			item_w = $('.cab_filter').width() + parseInt($('.cab_filter').css('margin-right'));
+			items_in_line = parseInt(list_w/item_w); 
+		}
+		ml = parseInt((list_w - item_w*items_in_line)/2);
 		$('.cab_filter').eq(0).css('margin-left',ml);
 	}else{
 		filter_m = (parseInt($('#cab_filters').width()) - parseInt($('.cab_filter').width()) )/2;
