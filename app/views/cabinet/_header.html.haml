@@ -8,6 +8,7 @@
 		%a{:href=>"/cabinet/houses", :class=>"dashboard_ico #{['houses','hotels','cars','yachts'].include?(controller.action_name) ? 'act' : ''}"}
 	.clear
 #cab_filters
+	%input{:type=>"hidden", :name=>"filter_action", :value=>"#{controller.action_name}/filter"}
 	%input.cab_filter.filter_by.custom_dropdown{:name => "filter_by", :value => "filter by status"}
 	%input{:name => "filter_by_value", :type => "hidden"}
 	%input.cab_filter.filter_calendar{:name => "date_from", :value => "#{(Time.now - 2592000).strftime('%d.%m.%Y')}"}

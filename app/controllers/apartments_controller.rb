@@ -4,7 +4,7 @@ class ApartmentsController < ApplicationController
 
 	def initialize
 		super
-		@currency = Currency.find_by_title('USD')
+		@currency = Currency.find_by_title($currency.to_s)
 	end
 
 	def index

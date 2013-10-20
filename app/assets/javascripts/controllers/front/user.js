@@ -36,7 +36,7 @@ $(window).load(function(){
     $('.filters_select a').mousedown(function(){
 		related = $(this).parents('.filters_select').attr('related');
 		$('[name='+related+'_value]').val($(this).attr('by'));
-		$('[name='+related+']').val($(this).text());	
+		$('[name='+related+']').val($(this).text()).trigger('change');	
 		$(this).parents('.filters_select').toggleClass("shown").hide();	
 		return false;
 	});
@@ -46,7 +46,7 @@ $(window).load(function(){
 	});
 	$('body').mousedown(function(){
     	if($('.filters_select').hasClass('shown')) $('.filters_select').toggleClass("shown").hide();
-    	if(user_menu.hasClass('shown')) user_menu.stop().animate({top: -400 }, 300, function(){$(this).toggleClass("shown")});
+    	//if(user_menu.hasClass('shown')) user_menu.stop().animate({top: -400 }, 300, function(){$(this).toggleClass("shown")});
 	});
 
 
@@ -58,12 +58,29 @@ $(window).load(function(){
 			}else{
 		    	user_menu.stop().animate({top: -400 }, 300, function(){$(this).toggleClass("shown")});
 			}
+			return false;
 		}
-		return false;
 	});
 
 	user_menu.mouseleave(function(){
 		$(this).stop().animate({top: -400 }, 300, function(){$(this).toggleClass("shown")});
+	});
+
+
+	$('.cab_filter').change(function(){
+		
+		// url = $('[name=filter_action]').val();
+		// alert($('meta[name="csrf-token"]').attr('content'))
+		// status = $('[name=filter_by_value]').val();
+		// from = $('[name=date_from]').val();
+		// to = $('[name=date_to]').val();
+		// $.ajax({
+		//   beforeSend: function(xhr){xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'));},
+		//   url: "/cabinet/"+url+"/"+status+"/"+from+"/"+to,
+		//   contentType: "application/json;",
+		//   dataType: "json",
+		//   type:"POST"
+		// });
 	});
 
 });

@@ -20,7 +20,10 @@ class CabinetController < ApplicationController
 		# end
 	end
 
-	
+	def filter
+		# @period = Employment.find(params[:id])
+		render :text => "@period.delete"
+	end
 
 	
 end
