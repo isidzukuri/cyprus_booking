@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131019093437) do
+ActiveRecord::Schema.define(:version => 20131021083520) do
 
   create_table "admin_modules", :force => true do |t|
     t.string   "name"
@@ -71,6 +71,8 @@ ActiveRecord::Schema.define(:version => 20131019093437) do
     t.string "name_ru"
     t.string "name_uk"
     t.string "name_en"
+    t.float  "lat"
+    t.float  "lng"
   end
 
   create_table "currencies", :force => true do |t|
