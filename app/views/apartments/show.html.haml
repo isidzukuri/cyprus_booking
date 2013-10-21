@@ -1,0 +1,4 @@
+#orange_nav{:'data-auto-controller'=>"ApartmentTabsController"}
+  - Hash[t("front_all.apartments_tabs").to_a.reverse].each_pair do |tab,lang|
+    = link_to lang, "##{tab}",:class=>(tab.to_s == "description" ?  "act" : "")
+.clear

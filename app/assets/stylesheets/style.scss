@@ -643,14 +643,6 @@ left: 45px;
   }
 }
 
-.ui-autocomplete.ui-menu.ui-widget.ui-widget-content.ui-corner-all{
-  width: 360px;
-background: none;
-border: none;
-  a{
-    font-size: 20px;
-  }
-}
 
 .facifilites_list{
   background: image-url("line_2.png") no-repeat 8px bottom;
@@ -1175,5 +1167,21 @@ a.item{
   background: image-url("kutyk.png") 80% 0 no-repeat;
 }
 
+.ui-autocomplete.myclass{
+  width: 380px!important;
+  background-color: #6edbef!important;
+  li{
+    margin: 5px 0;
+    border-bottom: 1px dotted #fff;
+  }
+  a{
+    font-size: 16px;
+    text-decoration: none;
+    color: #ffffff;
+    strong{
+      color: #ffffff;
+    }
+  }
+}
 
 

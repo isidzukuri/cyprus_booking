@@ -94,6 +94,8 @@ $.Controller "ApartmentsController", "FormController",
   init_autocomplete: ->
     @element.find("#apartment_search_city").autocomplete
       source: '/apartments/complete',
+      create: (a,b) -> 
+        $($(this).data("autocomplete").bindings[1]).addClass("myclass")
       search: (event, ui) ->
         $(event.target).siblings('input[type=hidden]').val('')
         G_map.setCenter(Base_coords)
