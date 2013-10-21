@@ -74,9 +74,12 @@ ActiveRecord::Schema.define(:version => 20131019093437) do
   end
 
   create_table "currencies", :force => true do |t|
-    t.float  "curs"
-    t.string "title"
-    t.string "symbol"
+    t.string   "title"
+    t.string   "curs"
+    t.string   "ico_file_name"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.string   "symbol"
   end
 
   create_table "email_templates", :force => true do |t|
@@ -99,15 +102,12 @@ ActiveRecord::Schema.define(:version => 20131019093437) do
     t.string   "name_ru"
     t.string   "name_en"
     t.string   "ico"
-    t.text     "description"
-    t.integer  "active",           :default => 1, :null => false
-    t.string   "seo"
-    t.datetime "created_at",                      :null => false
-    t.datetime "updated_at",                      :null => false
     t.string   "ico_file_name"
-    t.string   "ico_content_type"
-    t.integer  "ico_file_size"
-    t.datetime "ico_updated_at"
+    t.text     "description"
+    t.integer  "active",        :default => 1, :null => false
+    t.string   "seo"
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
   end
 
   create_table "facilities_houses", :force => true do |t|
@@ -139,6 +139,7 @@ ActiveRecord::Schema.define(:version => 20131019093437) do
     t.string  "floor_number"
     t.string  "house_number"
     t.string  "street"
+    t.integer "currency_id"
     t.string  "district"
     t.integer "floors"
     t.integer "rooms"
@@ -147,7 +148,6 @@ ActiveRecord::Schema.define(:version => 20131019093437) do
     t.integer "active",         :default => 1,   :null => false
     t.integer "user_id"
     t.integer "city_id"
-    t.integer "currency_id"
   end
 
   create_table "modules", :force => true do |t|
@@ -266,31 +266,5 @@ ActiveRecord::Schema.define(:version => 20131019093437) do
 
   add_index "users", ["remember_me_token"], :name => "index_users_on_remember_me_token"
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token"
-
-  create_table "yachts", :force => true do |t|
-    t.integer "yachts_type_id"
-    t.float   "length"
-    t.float   "width"
-    t.integer "engine_speed"
-    t.integer "speed_under_sail"
-    t.float   "sinking"
-    t.string  "engine"
-    t.string  "fuel_autonomy"
-    t.string  "electricity"
-    t.integer "passenger_capacity"
-    t.integer "user_id"
-    t.integer "currency_id"
-    t.string  "name"
-    t.string  "description_uk"
-    t.string  "description_ru"
-    t.string  "description_en"
-    t.float   "rating",             :default => 0.0, :null => false
-    t.float   "cost",               :default => 0.0, :null => false
-    t.integer "views",              :default => 0,   :null => false
-  end
-
-  create_table "yachts_types", :force => true do |t|
-    t.string "title"
-  end
 
 end
