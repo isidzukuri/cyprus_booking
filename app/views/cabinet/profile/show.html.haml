@@ -1,0 +1,16 @@
+=render "shared/search_and_services_icons"
+.clear	
+#cabinet
+	=render "cabinet/cabinet_header"
+	.clear
+	.user_profile 
+		.user_row_list
+			- @current_user.friends.each do |f|
+				%a.u_row{:href=>""}
+					.u_img
+					="#{f.friend_data.first_name} #{f.friend_data.last_name}"
+
+					.clear
+			
+
+		

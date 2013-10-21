@@ -1,0 +1,9 @@
+.cabinet_header
+	%h2=@title
+	%nav#cab_nav
+		%a{:href=>"/cabinet/", :class=>"wishlist_ico"}
+		%a{:href=>"/cabinet/", :class=>"y_offers_ico"}
+		%a{:href=>"/cabinet/", :class=>"messages_ico"}
+		%a{:href=>"/cabinet/profile/show", :class=>"profile_ico"}
+		%a{:href=>"/cabinet/houses", :class=>"dashboard_ico #{['index', 'houses','hotels','cars','yachts'].include?(controller.action_name) ? 'act' : ''}"}
+	.clear

@@ -1183,5 +1183,38 @@ a.item{
     }
   }
 }
+.user_profile{
+  width:94%;
+  margin: 0 0 0 3%;
+  overflow-y:scroll;
+  position:relative;
+    .user_row_list{
+      width:100%;
+      a.u_row{
+        display:block;
+        width:100%;
+        text-decoration: none;
+        color: #696969;
+        font-size: 18px;
+        line-height:70px;
+        border-bottom: 1px dotted #d8d8d8;
+        paddind:5px 0;
+        .u_img{
+          float:left;
+          width:70px;
+          height:70px;
+          background: image-url("guest.png") 50% 50% no-repeat;
+        }
+        .send_message{
+          float:right;
+          display:block;
+          line-height:50px;
+          margin:10px 10px 0 0;
+        }
+      }
+      a.u_row:hover{
+        color:#ff793d;
+      }
 
-
+    }
+}

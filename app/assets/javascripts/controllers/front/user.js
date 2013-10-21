@@ -116,4 +116,5 @@ function set_blocks_position(){
 	}
 	
 	$('.bookings_list').height($('article').height() - $('.line').height()- $('.cabinet_header').height() - $('#cab_filters').height()- $('#orange_nav').height() - 80);
+	$('.user_profile').height($('article').height() - $('.line').height()- $('.cabinet_header').height()-80);
 }

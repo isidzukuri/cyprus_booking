@@ -3,6 +3,10 @@ class User < ActiveRecord::Base
 
   has_and_belongs_to_many :roles
   has_many :apartments_bookings
+  has_many :friends
+  has_many :messages
+  has_many :received_messages, :foreign_key => "receiver", :class_name => "Message"
+
 
   validates :first_name, :presence => {:message=>I18n.t("user.errors.presense")}, :length => {:minimum => 3, :maximum => 254 ,:message=>I18n.t("user.errors.minimum_chars")}
   validates :email, :uniqueness => {:message=>I18n.t("user.errors.email_registered")}, :format => {:message=>I18n.t("user.errors.wrong_email"),:with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i}

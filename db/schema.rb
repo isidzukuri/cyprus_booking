@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131021083520) do
+ActiveRecord::Schema.define(:version => 20131021114922) do
 
   create_table "admin_modules", :force => true do |t|
     t.string   "name"
@@ -117,6 +117,14 @@ ActiveRecord::Schema.define(:version => 20131021083520) do
     t.integer "facility_id"
   end
 
+  create_table "friends", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "friend_id"
+    t.integer  "status"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "house_prices", :force => true do |t|
     t.integer "house_id"
     t.integer "from_date"
@@ -150,6 +158,15 @@ ActiveRecord::Schema.define(:version => 20131021083520) do
     t.integer "active",         :default => 1,   :null => false
     t.integer "user_id"
     t.integer "city_id"
+  end
+
+  create_table "messages", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "receiver"
+    t.integer  "status"
+    t.text     "text",       :limit => 255
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
   end
 
   create_table "modules", :force => true do |t|
