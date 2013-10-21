@@ -1,10 +1,12 @@
 $(window).load(function(){
-	$.datepicker.setDefaults($.datepicker.regional[default_lang]);
-	$('.validate_form').validate()
-	$('.admin_lang_menu a').click(function(){
-		switch_admin_lang($(this));
-	});	
-	attach_filter_input();
+	if (typeof(default_lang) !="undefined"){
+		$.datepicker.setDefaults($.datepicker.regional[default_lang]);
+		$('.validate_form').validate()
+		$('.admin_lang_menu a').click(function(){
+			switch_admin_lang($(this));
+		});	
+		attach_filter_input();
+	}
 });
 
 $(document).ready(function(){

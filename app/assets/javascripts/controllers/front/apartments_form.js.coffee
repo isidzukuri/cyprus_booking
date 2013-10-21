@@ -4,6 +4,7 @@ $.Controller "ApartmentsController", "FormController",
     @super_call("init")
     @element.find(".icon_date input").datepicker()
     @init_autocomplete()
+
       
 
 
@@ -95,6 +96,8 @@ $.Controller "ApartmentsController", "FormController",
       source: '/apartments/complete',
       search: (event, ui) ->
         $(event.target).siblings('input[type=hidden]').val('')
+        G_map.setCenter(Base_coords)
+        G_map.setZoom(9)
       minLength: 2,
       open: ->
         if $(".ui-menu-item:visible").length == 1
@@ -107,6 +110,9 @@ $.Controller "ApartmentsController", "FormController",
         code_input.val(ui.item.id)
         input.change()
         code_input.change()
+        lat_lng = new google.maps.LatLng(ui.item.lat, ui.item.lng);
+        G_map.setCenter(lat_lng)
+        G_map.setZoom(13)
         return false
     .each ->
       $(this).data("autocomplete")._renderItem = (ul, item) ->

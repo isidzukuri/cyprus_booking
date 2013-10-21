@@ -8,9 +8,10 @@ $(window).load(function(){
 
 
 function initialize() {
+	Base_coords   = new google.maps.LatLng(35, 33);
 	var mapCanvas = document.getElementById('map_apartments');
     var mapOptions = {
-      center: new google.maps.LatLng(35, 33),
+      center: Base_coords,
       zoom: 9,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     }
