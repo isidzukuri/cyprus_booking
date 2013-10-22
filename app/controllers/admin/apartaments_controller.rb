@@ -25,9 +25,12 @@ class Admin::ApartamentsController < AdminController
 		params[:house].delete(:photos)
 		facilities_ids = []
 		facilities_ids = params[:house][:facilities].keys unless !params[:house][:facilities].present?
+		nearbies_ids   = params[:house][:nearbies].present? ? params[:house][:nearbies].keys : [] 
 		params[:house].delete(:facilities)
+		params[:house].delete(:nearbies)
 		@apartament = House.new(params[:house])
 		@apartament.facilities = Facility.find(facilities_ids)
+		@apartament.nearbies   = Nearby.find(nearbies_ids)
 		# if @apartament.valid?
 			@apartament.save
 			save_dependencies()
@@ -43,6 +46,7 @@ class Admin::ApartamentsController < AdminController
 		@cities = City.all.map{|city| [city.name_ru,city.id]}
 		@currencies = Currency.all.map{|c| [c.title,c.id]}
 		@facilities = Facility.where("active = 1").map{|f| [f.name_ru,f.id]}
+		@nearbies   = Nearby.all.map{|f| [f.name_ru,f.id]}
 		employments = @apartament.employments.where(:status => [1,2,3]).where("to_date > ?", Time.now.to_i)
 		@reserved = {'owner' => [],'client' => []}
 
@@ -87,10 +91,13 @@ class Admin::ApartamentsController < AdminController
 		params[:house].delete(:photos)
 		facilities_ids = []
 		facilities_ids = params[:house][:facilities].keys unless !params[:house][:facilities].present?
+		nearbies_ids   = params[:house][:nearbies].present? ? params[:house][:nearbies].keys : [] 
 		params[:house].delete(:facilities)
+		params[:house].delete(:nearbies)
 		@apartament = House.find(params[:id])
 		@apartament.update_attributes(params[:house])
 		@apartament.facilities = Facility.find(facilities_ids)
+		@apartament.nearbies   = Nearby.find(nearbies_ids)
 		# if @apartament.valid?
 			save_dependencies()
 			flash[:notice] = t("apartament.actions.changed")

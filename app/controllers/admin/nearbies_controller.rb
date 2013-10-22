@@ -16,7 +16,7 @@ class Admin::NearbiesController < AdminController
 	end
 
 	def create
-		facility = Nearby.new(params[:facility])
+		facility = Nearby.new(params[:nearby])
 		p facility
 		if facility.valid?
 			facility.save
@@ -33,7 +33,7 @@ class Admin::NearbiesController < AdminController
 
 	def update
 		facility = Nearby.find(params[:id])
-		facility.update_attributes(params[:facility])
+		facility.update_attributes(params[:nearby])
 		if facility.valid?
 			if params[:ico].present? 
 				facility.ico = params[:ico]

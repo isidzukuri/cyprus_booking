@@ -145,7 +145,13 @@
           .ch_b 
             = fs[0]
             = check_box_tag "house[facilities[#{fs[1]}]]", fs[1], @apartament.facilities.include?(Facility.find(fs[1]))
-                 
+      .span12.field-box
+        = f.label :nearbies , "По близости"   
+        - @nearbies.each do |fs|
+          .ch_b 
+            = fs[0]
+            = check_box_tag "house[nearbies[#{fs[1]}]]", fs[1], @apartament.nearbies.include?(Nearby.find(fs[1]))
+                
       .span12.field-box
         = f.label :photos , "#{t("admin.apartaments.photos")}"  
         /%input(type="file" name="house[photos][]" multiple)

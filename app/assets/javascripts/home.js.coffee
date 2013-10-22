@@ -5,6 +5,10 @@ $(window).load ->
     $(".content").mCustomScrollbar("scrollTo","top")
   if /map/.test(window.location.hash)
     $(".mCSB_container").css("position","static")
+  if($(".bookings_list").size() > 0 )
+    $(".bookings_list").mCustomScrollbar advanced:
+      updateOnContentResize: true
+  
   
 
 $ ->

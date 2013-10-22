@@ -24,6 +24,7 @@ scope "(:locale)", :locale => /en|ru/ do
      get "facilities",          to: "facilities#index"
      get "facilities/new",      to: "facilities#new"
      get "facilities/delete/:id",      to: "facilities#delete"
+     get "nearbies/delete/:id",      to: "nearbies#delete"
      get "currencies/delete/:id",      to: "currencies#delete"
      get "characteristics",          to: "characteristics#index"
      get "characteristics/new",      to: "characteristics#new"

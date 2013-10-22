@@ -8,4 +8,8 @@ class Nearby < ActiveRecord::Base
     :styles => {
       :small  => "35x35>"
         }
+
+  def name
+    read_attribute("name_#{I18n.locale}")
+  end
 end

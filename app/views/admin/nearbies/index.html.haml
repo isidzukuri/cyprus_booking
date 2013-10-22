@@ -1,8 +1,8 @@
 #tabs-wrapper
   .row-fluid
-    %a.span2.tab.active{:href=>"/admin/facilities"}
+    %a.span2.tab.active{:href=>"/admin/nearbies"}
       = t("admin.facilities.list")
-    %a.span2.tab{:href=>"/admin/facilities/new"}
+    %a.span2.tab{:href=>"/admin/nearbies/new"}
       = t("admin.facilities.add_new")
     %a.span2.tab{:href=>"#"}
       = t("admin.facilities.add_edit")
@@ -32,22 +32,15 @@
               = t("admin.facilities.name")    
           %th.span2.sortable
             %span.line
-            = form_tag admin_facilities_path, :method=>:get do
-              = hidden_field_tag :sort , "active"
-              = hidden_field_tag :dir , @dir
-              = t("admin.facilities.active")
-          %th.span2.sortable
-            %span.line
               = t("facility.actions.delete") 
            
       %tbody
         - @facilities.each_with_index do |facility,i|
           %tr{:class=>("active" if i == 0)}
             %td
-              = link_to "#{facility.name_ru}" , "/admin/facilities/#{facility.id}/edit" , :class=>"name"
-            %td{:class=>"_user_active_#{facility.active}"}=t("admin.facilities.active_#{facility.active}")
+              = link_to "#{facility.name_ru}" , "/admin/nearbies/#{facility.id}/edit" , :class=>"name"
             %td
-              = link_to t("facility.actions.delete")  , "/admin/facilities/delete/#{facility.id}" , :class=>"name"
+              = link_to t("facility.actions.delete")  , "/admin/nearbies/delete/#{facility.id}" , :method => :delete, :class=>"name"
   .pagination.pull-right 
     = will_paginate @facilities         
 

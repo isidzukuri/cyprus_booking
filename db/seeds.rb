@@ -10,6 +10,7 @@ if AdminModule.count == 0
 	AdminModule.create(name:"Апартаменты",action:"apartaments",parent_id:0,:ico_cls=>"sidebar-widgets")
 	AdminModule.create(name:"Характеристики апартаментов",action:"characteristics",parent_id:0,:ico_cls=>"sidebar-widgets")
 	AdminModule.create(name:"Валюты",action:"currencies",parent_id:0,:ico_cls=>"sidebar-widgets")
+	AdminModule.create(name:"Учереждиния поблизости",action:"nearbies",parent_id:0,:ico_cls=>"sidebar-widgets")
 end
 
 if City.count == 0

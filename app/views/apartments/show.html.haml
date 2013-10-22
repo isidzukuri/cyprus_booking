@@ -24,7 +24,7 @@
               %td=t("front_all.city")
               %td=@apartment.city.name
       #amenities.tab.jNice
-        - @apartment.facilities.in_groups_of(2).each do |fc_group|
+        - @apartment.facilities.in_groups_of(2,false).each do |fc_group|
           - fc_group.each_with_index do |fc,index|
             - if index == 0
               .left
@@ -43,6 +43,19 @@
         = image_tag "alert.png" , :style=>"float: left;margin-top: 8px;"
         %p{:style=>"margin-top: 10px;"}
           = t("front_all.map_desc")
+        .nearbies
+          - @apartment.nearbies.in_groups_of(2,false).each do |fc_group|
+            - fc_group.each_with_index do |fc,index|
+              - if index == 0
+                .left
+                  = image_tag "#{fc.ico}"
+                  %span.text
+                    = fc.name
+              - else
+                .right
+                  = image_tag "#{fc.ico}"
+                  %span.text
+                    = fc.name
       #calendar.tab
         = image_tag "alert.png" , :style=>"float: left;margin-top: 15px;"
         %p{:style=>"margin-bottom: 10px;"}

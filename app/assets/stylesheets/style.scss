@@ -155,7 +155,8 @@ footer {
   width: 100%;
   background-color: #ffffff;
   position: absolute;
-  bottom: 0;
+ // bottom: 0;
+  z-index: 20000;
   height: 70px!important;
   -webkit-box-shadow: 0px -4px 11px rgba(50, 50, 50, 0.75);
   -moz-box-shadow:    0px -4px 11px rgba(50, 50, 50, 0.75);
@@ -187,7 +188,7 @@ article nav ul {
   right: 50px;
   bottom: 20px;
   bottom: 70px;
-  background: image-url("line.png") no-repeat center 50%;
+  background: image-url("line.png") no-repeat 49% 50%;
 }
 .line nav{
   float:right;
@@ -210,7 +211,7 @@ footer ul li, article ul li , nav ul li {
 #wrapper {
   height: 100%;
   position: relative;
-  z-index: 5000;
+  z-index: 40000;
 }
 
 html, article {
@@ -237,7 +238,7 @@ article {
 }
 
 .apartments, .hotels, .cars {
-  margin-right: 48px;
+  margin-right: 38px;
 }
 
 .apartments {
@@ -355,7 +356,7 @@ header figure{
   z-index: 10000;
   position: absolute!important;
   width: 100%;
-  height: 75%!important;
+  height: 83%!important;
   top:97px;
 }
 
@@ -404,7 +405,7 @@ form, fieldset, input, textarea, blockquote, th, td {
 
 #apartments ,#apartments_view {
   
-  z-index: 30000;
+  z-index: 40000;
   width: 462px;
   background-color: #ffffff;
   height: auto;
@@ -422,14 +423,15 @@ form, fieldset, input, textarea, blockquote, th, td {
   left: 120px
 }
 #apartments{
-  left: 23px;
+  left: 16px;
   display: none;
-  top: 55px;
+  top: 40px;
 }
 #apartments_view{
-top: 120px;
+top: 102px;
 position: absolute;
-right: 35px;
+right: 20px;
+z-index: 40000;
 }
 .rectangle{
   background: image-url("kutyk.png");
@@ -979,7 +981,7 @@ color: #696969!important;
 #cabinet{
   background:#fff;
   height:100%;
-  padding:20px 0 0 0;
+  //padding:20px 0 0 0;
 }
 .cabinet_header{
   width:94%;
@@ -1083,7 +1085,7 @@ a.item{
 .bookings_list{
   width:94%;
   margin: 0 0 0 3%;
-  overflow-y:scroll;
+  overflow-y:auto;
   position:relative;
 }
 #orange_nav{
@@ -1186,7 +1188,7 @@ a.item{
 .user_profile{
   width:94%;
   margin: 0 0 0 3%;
-  overflow-y:scroll;
+  overflow-y:auto;
   position:relative;
     .user_row_list{
       width:100%;
@@ -1376,6 +1378,27 @@ nav .rectangle{
   left: 0;
   height: 400px;
   width: 100%;
+  .nearbies{
+margin-top: 10px;
+height: 50px;
+text-align: center;
+left: 0;
+position: absolute;
+  }
+  img, span{
+    float: left;
+  }
+  span{
+    line-height: 45px;
+  }
+  .left{
+    float: left;
+    height: 50px;
+  }
+  .right{
+    float: left;
+    height: 50px;
+  }
 }
 #description {
   table{

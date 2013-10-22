@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131022112630) do
+ActiveRecord::Schema.define(:version => 20131022114902) do
 
   create_table "admin_modules", :force => true do |t|
     t.string   "name"
@@ -160,6 +160,13 @@ ActiveRecord::Schema.define(:version => 20131022112630) do
     t.integer "city_id"
   end
 
+  create_table "houses_nearbies", :id => false, :force => true do |t|
+    t.integer "house_id"
+    t.integer "nearby_id"
+  end
+
+  add_index "houses_nearbies", ["house_id", "nearby_id"], :name => "houses_nearbies_index", :unique => true
+
   create_table "messages", :force => true do |t|
     t.integer  "user_id"
     t.integer  "receiver"
@@ -183,10 +190,12 @@ ActiveRecord::Schema.define(:version => 20131022112630) do
   end
 
   create_table "nearbies", :force => true do |t|
+    t.integer  "house_id"
     t.string   "ico_file_name"
     t.string   "name_ru"
     t.string   "name_en"
-    t.string   "distance"
+    t.float    "lat"
+    t.float    "lng"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
   end
