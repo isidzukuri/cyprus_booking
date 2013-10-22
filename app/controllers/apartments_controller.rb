@@ -23,17 +23,29 @@ class ApartmentsController < ApplicationController
 	def search
 	  search = ApartmentSearch.new(params[:apartment_search])
 	  ids    = search.facilities.map{|e| e.active == 0 ? nil : e.id }.compact
-
+	  facilities = Facility.where("id IN (#{ids.join(",")})")
       cookies[:last_apartment_search] = {
         :value   => Marshal.dump(search),
         :expires => 24.hours.from_now
       }
       conditions = "places >= #{search.people_count}  AND city_id = #{search.city_id}" 
-      conditions << " AND 'facilities'.'id' IN (#{ids.join(",")})" if ids.any?
-      conditions << " AND cost BETWEEN #{search.price_from} AND #{search.price_to}" if search.price_from.to_i!=50 && search.price_to.to_i!=1000
       apartments = House.where(conditions)
+      apartments_ = []
+      apartments.each do |ap|
+      	facilities.each do |f|
+      		if ap.facilities.include?(f)
+      			if search.price_from.to_i!=0 && search.price_to.to_i!=1000
+      				price = ap.period_price(search)
+      				apartments_ << ap if price <= search.price_to.to_i && price >= search.price_from.to_i
+      			else
+      				apartments_ << ap
+      			end
+      			
+      		end      		
+      	end
+      end
       apartments = apartments.joins(:facilities) if ids.any?
-      render :json  => apartments.all.map{|a| a.to_search(search)}
+      render :json  => apartments_.map{|a| a.to_search(search)}
 	end 
 
 	def show_index
