@@ -8,6 +8,7 @@ class House < ActiveRecord::Base
   has_many :employments
   has_many :house_prices
   has_many :rewievs
+  has_many :nearbies
   has_and_belongs_to_many :facilities
 
   has_many :ratings

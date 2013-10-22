@@ -7,7 +7,7 @@ $.Controller "ApartmentItemController",
     @enable_left  = true
     @enable_right = true
     @calendar = @element.find('.b_calendar').attachCalendarController().controller()
-    @element.find(".content").mCustomScrollbar()
+    #@element.find
 
   init_rating: ->
   	url = ""
@@ -73,3 +73,11 @@ $.Controller "ApartmentItemController",
   	@enable_left = type
   set_right:(type)->
   	@enable_right = type
+
+  ".buttons a -> click":(ev)->
+    el = $(ev.target)
+    if el.hasClass("wish")
+      ev.preventDefault()
+      if window.logged_in
+      else
+        window.location.href = "/login" 

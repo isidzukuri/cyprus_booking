@@ -8,7 +8,8 @@
     .price
       = @apartment.period_price(@search)
       %span.currency
-        = image_tag @currency.ico
+        = @currency.symbol
+        -#= image_tag @currency.ico
   .photos
     = photos_min_dispay @apartment.photos
   .desciption

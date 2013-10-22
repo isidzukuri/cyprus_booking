@@ -26,4 +26,5 @@
       = render "shared/footer"  
 :javascript
   FBappId = "#{Settings.fb.key}"
-  window.default_lang = "#{p I18n.locale.to_s}";
+  window.default_lang = "#{I18n.locale.to_s}";
+  window.logged_in    =  #{logged_in?}

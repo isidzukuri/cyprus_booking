@@ -182,7 +182,7 @@ footer {
   }
 }
 
-article ul {
+article nav ul {
   position: absolute;
   right: 50px;
   bottom: 20px;
@@ -1263,18 +1263,21 @@ a.item{
     background-repeat: repeat-x;
     position: relative;
     a.navigation{
-      width: 20px;
+      width: 40px;
       display: none;
       height: 97%;
       display: block;
-      background: #ffffff;
+      
       z-index: 500;
       position: absolute;
-      opacity: 0.7;
-      filter:alpha(opacity=70);
+      background-color: rgba(255,255,255, 0.5);
     }
     .btn-next{
       right: 0;
+      background: image-url("right.png") no-repeat 25% 46%;
+    }
+    .btn-prev{
+      background: image-url("left.png") no-repeat 25% 46%;
     }
     .small_images{
       width: 353px;
@@ -1374,6 +1377,29 @@ nav .rectangle{
   height: 400px;
   width: 100%;
 }
+#description {
+  table{
+    width: 360px;
+  }
+  .options{
+  
+  float: right;
+  margin-left: 10px;
+  }
+  table{
+    tr{
+      td{
+        font-weight: bold;
+        height: 25px;
+        background: image-url("line_d.png") repeat-x 45px 20px;
+      }
+    }
+  }
+  p{
+    width: 600px;
+    float: left;
+  }
+}
 #rewiew{
   .characteristicks.rating , .text , .rew{
     clear: none;
@@ -1409,16 +1435,37 @@ nav .rectangle{
 }
 #calendar{
   height: 400px;
+  span{
+    display: block;
+    float: left;
+  }
+  span.square{
+    width: 50px;
+    height: 35px;
+    margin: 0 5px;
+  }
+  .booked{
+    border: 1px solid #ff793d;
+  }
+  .avalible{
+    border: 1px solid #c8d3dc;
+  }
+  .changed_price{
+    border: 1px solid #6edbef;
+  }
+  span.mane{
+    padding-top: 10px;
+  }
 }
 .b_calendar{
   position: relative;
   border: 1px solid #c8d3dc;
-  border-top: none;
   padding: 14px 12px 10px;
   overflow: hidden;
+  margin-bottom: 10px;
 }
 .b_calendar h2{
-  color: #016898;
+  color: #009cae;
   font-weight: normal;
   font-size: 18px;
   padding-bottom: 12px;
@@ -1427,31 +1474,35 @@ nav .rectangle{
 .b_months_strip {
   white-space: nowrap;
   float: left;
+  width: 100%;
 }
 .b_month{
   float: left;
-  margin-left: 12px;
+  margin-left: 0;
 }
 .b_month:first-child{
   margin-left: 0;
 }
+.b_month:last-child{
+ float: right;
+}
 .b_calendar .prev_month{
   display: block;
   position: absolute;
-  top: 14px;
+  top: 2px;
   left: 12px;
-  width: 24px;
-  height: 24px;
-  background:transparent image-url('sprite.png') no-repeat scroll 0 -160px;
+  width: 40px;
+  height: 40px;
+  background:  #009cae image-url("left.png") no-repeat 25% 46%;
 }
 .b_calendar .next_month{
   display: block;
   position: absolute;
-  top: 14px;
+  top: 2px;
   right: 12px;
-  width: 24px;
-  height: 24px;
-  background:transparent image-url('sprite.png') no-repeat scroll 0 -184px;
+  width: 40px;
+  height: 40px;
+  background: #009cae image-url("right.png") no-repeat 25% 46%;
 }
 .t_month{
   text-align: right;
@@ -1473,11 +1524,11 @@ nav .rectangle{
   width: 64px;
   height: 38px;
   font-size: 14px;
-  color: #a2a2a2;
+  color: #009cae;
   position: relative;
 }
 .t_month a{
-  color: #015898;
+  color: #009cae;
   text-decoration: none;
   display: block;
   height: 38px;

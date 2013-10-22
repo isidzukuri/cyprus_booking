@@ -1,5 +1,11 @@
-
-
+$(window).load ->
+  if($(".content").size() > 0 )
+    $(".content").mCustomScrollbar advanced:
+      updateOnContentResize: true
+    $(".content").mCustomScrollbar("scrollTo","top")
+  if /map/.test(window.location.hash)
+    $(".mCSB_container").css("position","static")
+  
 
 $ ->
   if typeof(google) isnt "undefined"

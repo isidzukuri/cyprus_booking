@@ -14,6 +14,7 @@ scope "(:locale)", :locale => /en|ru/ do
      resources :apartaments
      resources :characteristics
      resources :currencies
+     resources :nearbies
      get "apartaments",          to: "apartaments#index"
      get "apartaments/delete/:id",      to: "apartaments#delete"
      post "apartaments/upload_photos",  to: "apartaments#upload_photos"

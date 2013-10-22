@@ -12,7 +12,17 @@
       = link_to "", "#" ,:class=>"btn-next navigation"
     .tabs
       #description.tab
-        = @apartment.description
+        %p
+          = @apartment.description
+        %div.options
+          %table
+            - t("front_all.apartments_options").each_pair do |type,name|
+              %tr
+                %td=name
+                %td=@apartment.send(type)
+            %tr
+              %td=t("front_all.city")
+              %td=@apartment.city.name
       #amenities.tab.jNice
         - @apartment.facilities.in_groups_of(2).each do |fc_group|
           - fc_group.each_with_index do |fc,index|
@@ -29,8 +39,20 @@
                   = fc.name
                 = check_box_tag :active , 1 ,false, :checked=>true,:disabled=>true,:readonly=>true
       #map.tab{:"data-lat"=>@apartment.latitude,:"data-lng"=>@apartment.longitude}
+        #g_map{:style=>"height:350px"}
+        = image_tag "alert.png" , :style=>"float: left;margin-top: 8px;"
+        %p{:style=>"margin-top: 10px;"}
+          = t("front_all.map_desc")
       #calendar.tab
+        = image_tag "alert.png" , :style=>"float: left;margin-top: 15px;"
+        %p{:style=>"margin-bottom: 10px;"}
+          = t("front_all.calendar_desc")
         = render "shared/calendar_month"
+        - t("front_all.calendar_day_types").each_pair do |type,name|
+          %div
+            %span.square{:class=>type}
+            %span.mane=name
+
 
       #rewiew.tab
         = render_reviews_rating @apartment
@@ -44,7 +66,7 @@
 
   .buttons
     = link_to "Book it" , "#"
-    = link_to "Add to whish list" , "#"
+    = link_to "Add to whish list" , "#",:class=>"wish"
 
 
 #orange_nav{:'data-auto-controller'=>"ApartmentTabsController"}
