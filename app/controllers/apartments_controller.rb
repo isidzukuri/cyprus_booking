@@ -32,18 +32,28 @@ class ApartmentsController < ApplicationController
       apartments = House.where(conditions)
       apartments_ = []
       apartments.each do |ap|
-      	facilities.each do |f|
-      		if ap.facilities.include?(f)
-      			if search.price_from.to_i!=0 && search.price_to.to_i!=1000
-      				price = ap.period_price(search)
-      				apartments_ << ap if price <= search.price_to.to_i && price >= search.price_from.to_i
-      			else
-      				apartments_ << ap
-      			end
-      			
-      		end      		
+      	if facilities.any?
+	      	facilities.each do |f|
+	      		if ap.facilities.include?(f)
+	      			if search.price_from.to_i!=0 && search.price_to.to_i!=1000
+	      				price = ap.period_price(search)
+	      				apartments_ << ap if price <= search.price_to.to_i && price >= search.price_from.to_i
+	      			else
+	      				apartments_ << ap
+	      			end
+	      			
+	      		end      		
+	      	end
+	    else
+			if search.price_from.to_i!=0 && search.price_to.to_i!=1000
+				price = ap.period_price(search)
+				apartments_ << ap if price <= search.price_to.to_i && price >= search.price_from.to_i
+			else
+				apartments_ << ap
+			end
       	end
       end
+
       apartments = apartments.joins(:facilities) if ids.any?
       render :json  => apartments_.map{|a| a.to_search(search)}
 	end 
@@ -60,7 +70,7 @@ class ApartmentsController < ApplicationController
 	end
 
 	def booking
-		
+	  @apartment = House.find(params[:id])
 	end
 
 
