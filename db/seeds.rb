@@ -62,3 +62,27 @@ if AdminSettings.count == 0
 	AdminSettings.create(:setting=>:oferta_ru,:value=>"wef")
 	AdminSettings.create(:setting=>:oferta_ua,:value=>"wef")
 end
+
+
+if ApartmentsBooking.count == 0
+	ApartmentsBooking.create(:user_id=>User.first.id, :seller=>User.first.id, :house_id=>House.first.id, :total_cost=>1778, :from_date=>Time.now.to_i, :to_date=>Time.now.to_i, :status=>1)
+	ApartmentsBooking.create(:user_id=>User.first.id, :seller=>User.first.id, :house_id=>House.first.id, :total_cost=>589, :from_date=>Time.now.to_i, :to_date=>Time.now.to_i, :status=>2)
+	ApartmentsBooking.create(:user_id=>User.first.id, :seller=>User.first.id, :house_id=>House.first.id, :total_cost=>1200, :from_date=>Time.now.to_i, :to_date=>Time.now.to_i, :status=>1)
+	ApartmentsBooking.create(:user_id=>User.first.id, :seller=>User.first.id, :house_id=>House.first.id, :total_cost=>980, :from_date=>Time.now.to_i, :to_date=>Time.now.to_i, :status=>3)
+	ApartmentsBooking.create(:user_id=>User.first.id, :seller=>User.first.id, :house_id=>House.first.id, :total_cost=>400, :from_date=>Time.now.to_i, :to_date=>Time.now.to_i, :status=>1)
+	ApartmentsBooking.create(:user_id=>User.first.id, :seller=>User.first.id, :house_id=>House.first.id, :total_cost=>1778, :from_date=>Time.now.to_i, :to_date=>Time.now.to_i, :status=>2)
+	ApartmentsBooking.create(:user_id=>User.first.id, :seller=>User.first.id, :house_id=>House.first.id, :total_cost=>589, :from_date=>Time.now.to_i, :to_date=>Time.now.to_i, :status=>3)
+	ApartmentsBooking.create(:user_id=>User.first.id, :seller=>User.first.id, :house_id=>House.first.id, :total_cost=>1200, :from_date=>Time.now.to_i, :to_date=>Time.now.to_i, :status=>2)
+	ApartmentsBooking.create(:user_id=>User.first.id, :seller=>User.first.id, :house_id=>House.first.id, :total_cost=>980, :from_date=>Time.now.to_i, :to_date=>Time.now.to_i, :status=>1)
+	ApartmentsBooking.create(:user_id=>User.first.id, :seller=>User.first.id, :house_id=>House.first.id, :total_cost=>400, :from_date=>Time.now.to_i, :to_date=>Time.now.to_i, :status=>3)
+	ApartmentsBooking.create(:user_id=>User.first.id, :seller=>User.first.id, :house_id=>House.first.id, :total_cost=>1778, :from_date=>Time.now.to_i, :to_date=>Time.now.to_i, :status=>1)
+	ApartmentsBooking.create(:user_id=>User.first.id, :seller=>User.first.id, :house_id=>House.first.id, :total_cost=>589, :from_date=>Time.now.to_i, :to_date=>Time.now.to_i, :status=>2)
+	ApartmentsBooking.create(:user_id=>User.first.id, :seller=>User.first.id, :house_id=>House.first.id, :total_cost=>1200, :from_date=>Time.now.to_i, :to_date=>Time.now.to_i, :status=>1)
+	ApartmentsBooking.create(:user_id=>User.first.id, :seller=>User.first.id, :house_id=>House.first.id, :total_cost=>980, :from_date=>Time.now.to_i, :to_date=>Time.now.to_i, :status=>3)
+	ApartmentsBooking.create(:user_id=>User.first.id, :seller=>User.first.id, :house_id=>House.first.id, :total_cost=>400, :from_date=>Time.now.to_i, :to_date=>Time.now.to_i, :status=>1)
+	ApartmentsBooking.create(:user_id=>User.first.id, :seller=>User.first.id, :house_id=>House.first.id, :total_cost=>1778, :from_date=>Time.now.to_i, :to_date=>Time.now.to_i, :status=>2)
+	ApartmentsBooking.create(:user_id=>User.first.id, :seller=>User.first.id, :house_id=>House.first.id, :total_cost=>589, :from_date=>Time.now.to_i, :to_date=>Time.now.to_i, :status=>3)
+	ApartmentsBooking.create(:user_id=>User.first.id, :seller=>User.first.id, :house_id=>House.first.id, :total_cost=>1200, :from_date=>Time.now.to_i, :to_date=>Time.now.to_i, :status=>2)
+	ApartmentsBooking.create(:user_id=>User.first.id, :seller=>User.first.id, :house_id=>House.first.id, :total_cost=>980, :from_date=>Time.now.to_i, :to_date=>Time.now.to_i, :status=>1)
+	ApartmentsBooking.create(:user_id=>User.first.id, :seller=>User.first.id, :house_id=>House.first.id, :total_cost=>400, :from_date=>Time.now.to_i, :to_date=>Time.now.to_i, :status=>3)
+end
