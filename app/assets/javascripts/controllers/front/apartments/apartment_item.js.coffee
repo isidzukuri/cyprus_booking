@@ -24,10 +24,10 @@ $.Controller "ApartmentItemController",
   set_photos_slider: ->
     ph_count   = @element.find(".photos img").size()
     f_ph_count = Math.round(ph_count/5) 
-    if f_ph_count > 0
+    if f_ph_count > 0 && ph_count >= 5
       width = (980 * f_ph_count) + ((ph_count - (f_ph_count * 5)) * 640)
     else
-      width = ph_count * @element.find(".photos img").last().size()
+      width = ph_count * @element.find(".photos img").last().width() + 100
     @element.find(".list").width(width)
     @element.find(".navigation").show() if ph_count > 5
     @element.find(".list img").each (i,el) ->
