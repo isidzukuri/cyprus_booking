@@ -1305,9 +1305,10 @@ a.item{
     }
   }
   .buttons{
-    position: absolute;
-    bottom: 20px;
-    right: 10px;
+    //position: absolute;
+   // bottom: 20px;
+    //right: 10px;
+    margin:15px 0 0 65%;
     a{
       background: #6edbef;
       color: #ffffff;
@@ -1569,4 +1570,6 @@ position: absolute;
   background-color: #ff793d;
 }
 
-
+.apartments_body #orange_nav{
+  margin-top:-35px;
+}

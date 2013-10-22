@@ -11,6 +11,7 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
+//= require controllers/front/front_global
 
 //= require twitter/bootstrap
 //= require wysiwug
@@ -39,5 +40,6 @@
 //= require jquery.mousewheel
 //= require jquery.jscrollpane.min
 //= require jquery.fancybox-1.3.4.pack
+
 
 
