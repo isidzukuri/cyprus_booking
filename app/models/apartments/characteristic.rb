@@ -4,4 +4,7 @@ class Characteristic < ActiveRecord::Base
   has_many :ratings
   has_many :houses, :through => :ratings
 
+  def name
+    read_attribute("name_#{I18n.locale}")
+  end
 end

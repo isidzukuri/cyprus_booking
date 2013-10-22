@@ -17,5 +17,5 @@
       = truncate(@apartment.description, length: 150, omission: '...')
     .rating
       = rating_display
-    %a.search_btn{:href=>"/apartments/show/#{@apartment.id}"} 
+    %a.search_btn{:href=>"/apartments/show/#{@apartment.id}#description"} 
       %span view details

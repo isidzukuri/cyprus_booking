@@ -33,4 +33,6 @@
 //= require jquery.filter_input
 //= require datapicker_ru	
 //= require apartments
+//= require jquery.mousewheel
+//= require jquery.jscrollpane.min
 

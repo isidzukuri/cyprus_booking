@@ -48,6 +48,9 @@ class Admin::UsersController < AdminController
 		user.update_attributes(params[:user])
 		user.roles = [role]
 		if user.valid?
+			if params[:file].present? 
+				user.file = params[:file]
+			end
 			user.save
 			flash[:notice] = t("user.actions.changed")
 		else

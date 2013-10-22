@@ -5,12 +5,23 @@ class User < ActiveRecord::Base
   has_many :apartments_bookings
   has_many :friends
   has_many :messages
+  has_many :rewievs
   has_many :received_messages, :foreign_key => "receiver", :class_name => "Message"
 
 
   validates :first_name, :presence => {:message=>I18n.t("user.errors.presense")}, :length => {:minimum => 3, :maximum => 254 ,:message=>I18n.t("user.errors.minimum_chars")}
   validates :email, :uniqueness => {:message=>I18n.t("user.errors.email_registered")}, :format => {:message=>I18n.t("user.errors.wrong_email"),:with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i}
-
+  
+  has_attached_file :file, 
+  :url  => "/system/avatars/:id/:style.:extension",
+  :path => ":rails_root/public/system/avatars/:id/:style.:extension",    
+  :styles => {
+      :original => ['1920x1680>', :jpg],
+      :small    => ['220x100',   :jpg],
+      :medium   => ['450x285',    :jpg],
+      :large    => ['500x500>',   :jpg],
+      :cabinet  => ['100x100',   :jpg],
+    }
   def modules
   	modules = []
   	self.roles.each do |role|

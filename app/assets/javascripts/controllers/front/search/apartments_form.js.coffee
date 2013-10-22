@@ -1,4 +1,4 @@
-#= require ../form
+#= require ../../form
 $.Controller "ApartmentsController", "FormController",
   init: ->
     @super_call("init")

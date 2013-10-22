@@ -8,7 +8,7 @@
     %meta{:content => "", :name => "author"}
     = stylesheet_link_tag "application", :media => "all"
     = javascript_include_tag "application"
-    =# javascript_include_tag 'http://maps.googleapis.com/maps/api/js?sensor=false'
+    = javascript_include_tag 'http://maps.googleapis.com/maps/api/js?sensor=false'
     = csrf_meta_tags
     /[if IE] <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     %script{:type => "text/javascript",
@@ -19,9 +19,9 @@
         %figure
           %h1
             %a{href: "/"}
-              = image_tag "logo.png", :height=>50
+              = image_tag "logo.png", :height=>35
         =render "shared/header_right"
-      %article
+      %article{:class=>"#{params[:controller]}_body"}
         = yield
       = render "shared/footer"  
 :javascript

@@ -68,7 +68,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, nav, sectio
 
 html {
   height: 100%;
-  min-width: 700px;
+  min-width: 980px;
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
 }
@@ -138,9 +138,9 @@ figure{
 header {
   z-index:9;
   position:relative;
-  height: 8%;
+  //height: 8%;
   background-color: #ffffff;
-  min-height: 60px!important;
+  height: 50px!important;
   -webkit-box-shadow: 1px 0px 3px rgba(50, 50, 50, 0.18);
   -moz-box-shadow:    1px 0px 3px rgba(50, 50, 50, 0.18);
   box-shadow:         1px 0px 3px rgba(50, 50, 50, 0.18);
@@ -156,7 +156,7 @@ footer {
   background-color: #ffffff;
   position: absolute;
   bottom: 0;
-  height: 105px!important;
+  height: 70px!important;
   -webkit-box-shadow: 0px -4px 11px rgba(50, 50, 50, 0.75);
   -moz-box-shadow:    0px -4px 11px rgba(50, 50, 50, 0.75);
   box-shadow:         0px -4px 11px rgba(50, 50, 50, 0.75);
@@ -164,11 +164,11 @@ footer {
   ul.nav {
     position: absolute;
     right: 50px;
-    bottom: 20px;
+    bottom: 10px;
   }
   ul.left{
     margin-left: 50px;
-    margin-top: 50px;
+    margin-top: 25px;
     li{
       margin-left: 20px;
       a{
@@ -222,7 +222,7 @@ html {
 }
 
 article {
-  height: 80%;
+  height: 90%;
   min-height: 450px;
   background: image-url("background.png") no-repeat;
   background-size: 100% 100%;
@@ -230,10 +230,10 @@ article {
 }
 
 .apartments, .hotels, .cars, .yahts {
-  height: 50px;
-  width: 50px;
+  height: 40px;
+  width: 40px;
   display: block;
-  background-size: 50px!important;
+  background-size: 40px!important;
 }
 
 .apartments, .hotels, .cars {
@@ -334,21 +334,21 @@ header figure{
 .line{
   background: image-url("head_line.png") transparent no-repeat;
   background-size: 100% 100%;
-  height: 60px;
+  height: 50px;
   overflow:hidden;
 }
 .line .search{
-    width:50px;
-    height:50px;
+    width:40px;
+    height:40px;
     display:block;
     float: left;
     margin-left: 50px;
     background: image-url("ic_search.png") no-repeat center 50%;
-    background-size: 50px;
+    background-size: 40px;
 }
 .line .search:hover,.line .search.active {
     background: image-url("hover_ic_search.png") no-repeat center 50%;
-    background-size: 50px;
+    background-size: 40px;
 }
 
 #map_apartments{
@@ -356,7 +356,7 @@ header figure{
   position: absolute!important;
   width: 100%;
   height: 75%!important;
-  top:115px;
+  top:97px;
 }
 
 
@@ -696,7 +696,7 @@ left: 45px;
   float: right;
   right: 35px;
   position: absolute;
-  top: 20px;
+  top: 10px;
   
 
   li{
@@ -1091,7 +1091,7 @@ a.item{
   top:100%;
   left:0;
   margin:-70px 0 0 0;
-  height:35px;
+  height:25px;
   width:100%;
   background:#ff793d;
   z-index:10;
@@ -1099,12 +1099,12 @@ a.item{
 }
 #orange_nav a{
   color: #007e95; 
-  font-size:24px;
+  font-size:17px;
   text-decoration:none;
   display:block;
   float:right;
   margin-right:30px;
-  line-height:33px;
+  line-height:25px;
 }
 #orange_nav a:hover, #orange_nav a.act{
   color: #fff; 
@@ -1218,3 +1218,174 @@ a.item{
 
     }
 }
+
+#apartmnet_content{
+  min-width: 700px;
+  width: 1000px;
+  margin: 0 auto;
+  position: relative;
+  height: 81%;
+  .content{
+  height: 83%;
+  margin-top: 10px;
+  overflow: auto;
+  position: relative;
+  .list{
+      z-index: 400;
+      position: relative;
+  }
+
+  }
+  .header_name{
+    background: image-url("line_2.png") repeat-x 0 24px;
+    padding-bottom: 10px;
+    position: relative;
+    margin-right: 20px;
+    h2{
+      color:#ff793d;
+    }
+    .rating{
+      margin: 0;
+      float: right;
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+  }
+
+  .photos{
+    height: 300px;
+    float: left;
+    width: 980px;
+    overflow: hidden;
+    padding-bottom: 20px;
+    background-repeat: repeat-x;
+    position: relative;
+    a{
+      width: 20px;
+      display: none;
+      height: 97%;
+      display: block;
+      background: #ffffff;
+      z-index: 500;
+      position: absolute;
+      opacity: 0.7;
+      filter:alpha(opacity=70);
+    }
+    .btn-next{
+      right: 0;
+    }
+    .small_images{
+      width: 353px;
+      float: left;
+    }
+    .big_image{
+      float: left;
+    }
+    img{
+      float: left;
+      cursor: pointer;
+      -webkit-box-shadow: 1px 1px 2px rgba(50, 50, 50, 0.75);
+      -moz-box-shadow:    1px 1px 2px rgba(50, 50, 50, 0.75);
+      box-shadow:         1px 1px 2px rgba(50, 50, 50, 0.75);
+      behavior: url(/assets/PIE.htc);
+    }
+  }
+  .tabs{
+    float: left;
+    .tab{
+      display: none;
+      color: #696969;
+    }
+  }
+  .buttons{
+    position: absolute;
+    bottom: 20px;
+    right: 10px;
+    a{
+      background: #6edbef;
+      color: #ffffff;
+      font-weight: bold;
+      padding: 2px 15px;
+      text-decoration: none;
+      -webkit-box-shadow: 1px 1px 2px rgba(50, 50, 50, 0.75);
+      -moz-box-shadow:    1px 1px 2px rgba(50, 50, 50, 0.75);
+      box-shadow:         1px 1px 2px rgba(50, 50, 50, 0.75);
+      behavior: url(/assets/PIE.htc);
+    }
+  }
+
+}
+.apartments_body{
+  background: #ffffff;
+  nav{
+    a{
+        position: relative;
+        .rectangle{
+          top:47px;
+          left: 19px;
+          display: none;
+        }
+
+    }
+    a.active .rectangle{
+      display: block;
+    }
+
+  }
+}
+nav .rectangle{
+  display: none;
+}
+
+#amenities{
+  div{
+    width: 490px;
+    background: image-url("line_d.png") repeat-x 45px 36px;
+   
+    span.text, img{
+      float: left;
+    }
+    span{
+      margin-top: 20px;
+    }
+    input{
+      float: right;
+    }
+    .jNiceWrapper{
+      float: right;
+      margin-right: 10px;
+    }
+    .jNiceCheckbox{
+      top: -30px;
+    }
+  }
+  .left{
+    float: left;
+  }
+  .right{
+    float: right;
+  }
+}
+#map{
+  position: absolute;
+  left: 0;
+  height: 400px;
+  width: 100%;
+}
+#rewiew{
+  .characteristicks.rating , .text{
+    clear: none;
+    float: left;
+  }
+  .text{
+    width: 300px;
+  }
+  .rating{
+    margin: 0;
+    margin-right: 10px;
+  }
+}
+
+
+
