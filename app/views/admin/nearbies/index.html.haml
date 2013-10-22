@@ -1,0 +1,54 @@
+#tabs-wrapper
+  .row-fluid
+    %a.span2.tab.active{:href=>"/admin/facilities"}
+      = t("admin.facilities.list")
+    %a.span2.tab{:href=>"/admin/facilities/new"}
+      = t("admin.facilities.add_new")
+    %a.span2.tab{:href=>"#"}
+      = t("admin.facilities.add_edit")
+
+
+#pad-wrapper.users-list
+  .row-fluid.header
+    %h3= t("admin.facilities.search")
+    .span10.pull-right
+      = form_tag admin_facilities_path, :method=>:get do
+        = text_field_tag  :name_ru ,params[:name_ru],  :class=>"span5 search" , :required=>true
+        .ui-dropdown
+          = submit_tag t("admin.facilities.search") ,:class=>"btn-flat success"     
+      %p{:style=>"font-weight: bold;color:green"}=flash[:notice] 
+      %p{:style=>"font-weight: bold;color:red"}=flash[:error] 
+      - unless flash[:errors].nil? 
+        - flash[:errors].each_pair do |field,mes|
+          %p{:style=>"font-weight: bold;color:red"}=t("admin.facilities.#{field}") + ": " + mes.first
+  .row-fluid.table{:"data-auto-controller"=>"AdminUsersController"}
+    %table.table.table-hover
+      %thead
+        %tr
+          %th.span2.sortable
+            = form_tag admin_facilities_path, :method=>:get do
+              = hidden_field_tag :sort , "name_ru"
+              = hidden_field_tag :dir , @dir
+              = t("admin.facilities.name")    
+          %th.span2.sortable
+            %span.line
+            = form_tag admin_facilities_path, :method=>:get do
+              = hidden_field_tag :sort , "active"
+              = hidden_field_tag :dir , @dir
+              = t("admin.facilities.active")
+          %th.span2.sortable
+            %span.line
+              = t("facility.actions.delete") 
+           
+      %tbody
+        - @facilities.each_with_index do |facility,i|
+          %tr{:class=>("active" if i == 0)}
+            %td
+              = link_to "#{facility.name_ru}" , "/admin/facilities/#{facility.id}/edit" , :class=>"name"
+            %td{:class=>"_user_active_#{facility.active}"}=t("admin.facilities.active_#{facility.active}")
+            %td
+              = link_to t("facility.actions.delete")  , "/admin/facilities/delete/#{facility.id}" , :class=>"name"
+  .pagination.pull-right 
+    = will_paginate @facilities         
+
+

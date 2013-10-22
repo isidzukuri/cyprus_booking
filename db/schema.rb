@@ -183,12 +183,10 @@ ActiveRecord::Schema.define(:version => 20131022112630) do
   end
 
   create_table "nearbies", :force => true do |t|
-    t.integer  "house_id"
     t.string   "ico_file_name"
     t.string   "name_ru"
     t.string   "name_en"
-    t.float    "lat"
-    t.float    "lng"
+    t.string   "distance"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
   end

@@ -37,6 +37,7 @@ group :development do
   gem 'capistrano'
   gem 'capistrano-unicorn', :require => false
   gem 'rvm-capistrano'
+  gem 'habtm_generator'
 end
 group :production do
   gem 'unicorn'
