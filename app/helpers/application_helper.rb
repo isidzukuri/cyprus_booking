@@ -65,21 +65,21 @@ module ApplicationHelper
       size.times do |i|
         content << content_tag(:div,:class=>"small_images") do 
           photos_.shift.map do |photo|
-            image_tag( photo.file(:medium) ,:style=>"margin-right: 8px;margin-bottom: 8px;",:size=>"167x150")
+            image_tag( photo.file(:medium) ,:style=>"margin-right: 8px;margin-bottom: 8px;",:size=>"167x120")
           end.join("").html_safe
         end
         content<< content_tag(:div,:class=>"big_image")do
-          image_tag( big_photos.shift.file(:medium) ,:size=>"627x309",:style=>"margin-right: 8px;")
+          image_tag( big_photos.shift.file(:medium) ,:size=>"627x250",:style=>"margin-right: 8px;")
         end
       end
       big_photos.each do |photo|
         content<< content_tag(:div,:class=>"big_image")do
-          image_tag( photo.file(:medium) ,:size=>"627x309",:style=>"margin-right: 8px;")
+          image_tag( photo.file(:medium) ,:size=>"627x250",:style=>"margin-right: 8px;")
         end
       end
     else
       photos.each do |photo|
-        content << image_tag( photo.file(:medium) ,:size=>"627x309",:style=>"margin-right: 8px;")
+        content << image_tag( photo.file(:medium) ,:size=>"627x250",:style=>"margin-right: 8px;")
       end
     end
     content.join("").html_safe

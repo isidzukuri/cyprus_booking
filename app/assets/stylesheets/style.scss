@@ -1226,7 +1226,7 @@ a.item{
   position: relative;
   height: 81%;
   .content{
-  height: 83%;
+  height: 85%;
   margin-top: 10px;
   overflow: auto;
   position: relative;
@@ -1254,14 +1254,15 @@ a.item{
   }
 
   .photos{
-    height: 300px;
+    height: 250px;
+    min-height: 250px;
     float: left;
-    width: 980px;
+    width: 970px;
     overflow: hidden;
     padding-bottom: 20px;
     background-repeat: repeat-x;
     position: relative;
-    a{
+    a.navigation{
       width: 20px;
       display: none;
       height: 97%;
@@ -1322,8 +1323,8 @@ a.item{
     a{
         position: relative;
         .rectangle{
-          top:47px;
-          left: 19px;
+          top:37px;
+          left: 13px;
           display: none;
         }
 
@@ -1374,9 +1375,19 @@ nav .rectangle{
   width: 100%;
 }
 #rewiew{
-  .characteristicks.rating , .text{
+  .characteristicks.rating , .text , .rew{
     clear: none;
     float: left;
+  }
+  .rew p{
+    padding: 10px 0;
+    float: left;
+    width: 90%;
+    small{
+      float: right;
+      padding-top: 10px;
+      color: #ff793d;
+    }
   }
   .text{
     width: 300px;
@@ -1385,7 +1396,103 @@ nav .rectangle{
     margin: 0;
     margin-right: 10px;
   }
+  .img-circle {
+    -webkit-border-radius: 500px;
+    -moz-border-radius: 500px;
+    border-radius: 500px;
+    width: 50px;
+    height: 50px;
+    float: left;
+    margin-top: 10px;
+    margin-right: 10px;
+  }
 }
-
+#calendar{
+  height: 400px;
+}
+.b_calendar{
+  position: relative;
+  border: 1px solid #c8d3dc;
+  border-top: none;
+  padding: 14px 12px 10px;
+  overflow: hidden;
+}
+.b_calendar h2{
+  color: #016898;
+  font-weight: normal;
+  font-size: 18px;
+  padding-bottom: 12px;
+  text-align: center;
+}
+.b_months_strip {
+  white-space: nowrap;
+  float: left;
+}
+.b_month{
+  float: left;
+  margin-left: 12px;
+}
+.b_month:first-child{
+  margin-left: 0;
+}
+.b_calendar .prev_month{
+  display: block;
+  position: absolute;
+  top: 14px;
+  left: 12px;
+  width: 24px;
+  height: 24px;
+  background:transparent image-url('sprite.png') no-repeat scroll 0 -160px;
+}
+.b_calendar .next_month{
+  display: block;
+  position: absolute;
+  top: 14px;
+  right: 12px;
+  width: 24px;
+  height: 24px;
+  background:transparent image-url('sprite.png') no-repeat scroll 0 -184px;
+}
+.t_month{
+  text-align: right;
+  background-color: white;
+}
+.t_month th{
+  color: #5a5a5a;
+  font-size: 11px;
+  padding: 4px 8px;
+  background-color: #f5f7f8;
+  font-weight: normal;
+  border: 1px solid #c8d3dc;
+  width: 48px;
+  height: 14px;
+  vertical-align: bottom;
+}
+.t_month td{
+  border: 1px solid #c8d3dc;
+  width: 64px;
+  height: 38px;
+  font-size: 14px;
+  color: #a2a2a2;
+  position: relative;
+}
+.t_month a{
+  color: #015898;
+  text-decoration: none;
+  display: block;
+  height: 38px;
+  line-height: 38px;
+  padding: 0 8px;
+}
+.t_month a.disabled{
+  color: #aaa;
+  cursor: default;
+}
+.t_month td.in_range{
+  background-color: #e2e9ef;
+}
+.t_month td.active{
+  background-color: #ff793d;
+}
 
 

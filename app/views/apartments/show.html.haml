@@ -30,9 +30,18 @@
                 = check_box_tag :active , 1 ,false, :checked=>true,:disabled=>true,:readonly=>true
       #map.tab{:"data-lat"=>@apartment.latitude,:"data-lng"=>@apartment.longitude}
       #calendar.tab
+        = render "shared/calendar_month"
+
       #rewiew.tab
         = render_reviews_rating @apartment
+        .rew
+          - @apartment.rewievs.each do |item|
+            = image_tag item.user.file ,:class=>"img-circle"
+            %p
+              = item.text
+              %small=l(item.created_at,:format=>:short)
       #rules.tab
+
   .buttons
     = link_to "Book it" , "#"
     = link_to "Add to whish list" , "#"

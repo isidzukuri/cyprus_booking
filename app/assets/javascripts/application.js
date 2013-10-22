@@ -23,6 +23,9 @@
 //= require ajaxformbar/js/jquery.ajaxformbar.min
 //= require jquery.tinyscrollbar.min
 //= require jquery.maskedinput.min
+//= require underscore
+//= require sprintf-0.7-beta1
+//= require ICanHaz.min
 //= require jquery.mvc
 //= require jquery.rating
 //= require_tree .
@@ -35,4 +38,6 @@
 //= require apartments
 //= require jquery.mousewheel
 //= require jquery.jscrollpane.min
+//= require jquery.fancybox-1.3.4.pack
+
 

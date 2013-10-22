@@ -63,7 +63,7 @@ if AdminSettings.count == 0
 	AdminSettings.create(:setting=>:oferta_ua,:value=>"wef")
 end
 
-if Rewiev.count = 0
+if Rewiev.count == 0
 	Rewiev.create(:user_id=>User.first.id,:house_id=>House.first.id,:text=>" This is a jQuery plugin for star rating systems. The initial inspiration for this script came from Wil Stuckey's star rating system. But the original script requires too much coding. Also it does not have provision for developing a star system (such as GMail, where you star or un-star an email). I have modified the original ")
 	Rewiev.create(:user_id=>User.first.id,:house_id=>House.first.id,:text=>" This is a jQuery plugin for star rating systems. The initial inspiration for this script came from Wil Stuckey's star rating system. But the original script requires too much coding. Also it does not have provision for developing a star system (such as GMail, where you star or un-star an email). I have modified the original ")
 	Rewiev.create(:user_id=>User.first.id,:house_id=>House.first.id,:text=>" This is a jQuery plugin for star rating systems. The initial inspiration for this script came from Wil Stuckey's star rating system. But the original script requires too much coding. Also it does not have provision for developing a star system (such as GMail, where you star or un-star an email). I have modified the original ")

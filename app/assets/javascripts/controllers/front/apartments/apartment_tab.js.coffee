@@ -18,10 +18,9 @@ $.Controller "ApartmentTabsController",
     $(".tab" + tab.attr("href")).show()
     @check_map(tab.attr("href"))
 
-  check_map: (hash) ->
-    console.log(hash)
-    if /map/.test(window.location.hash)
-      $(".photos").hide()
+  check_map: (_hash_) ->
+    if /map/.test(_hash_) then $(".photos").hide() else $(".photos").show()
+    if /map/.test(_hash_)
       mapCanvas = document.getElementById("map")
       Latlng    = new google.maps.LatLng($("#map").data("lat"), $("#map").data("lng"))
       mapOptions =
@@ -33,5 +32,4 @@ $.Controller "ApartmentTabsController",
         position: Latlng
         icon: '/assets/ic_map.png'
         map: G_map
-    else
-      $(".photos").show()
+      

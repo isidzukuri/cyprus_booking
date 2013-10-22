@@ -6,6 +6,8 @@ $.Controller "ApartmentItemController",
     @start_left_offset = @element.find(".list")
     @enable_left  = true
     @enable_right = true
+    @calendar = @element.find('.b_calendar').attachCalendarController().controller()
+    @element.find(".content").mCustomScrollbar()
 
   init_rating: ->
   	url = ""
@@ -26,6 +28,14 @@ $.Controller "ApartmentItemController",
       width = (980 * f_ph_count) + ((ph_count - (f_ph_count * 5)) * 640)
       @element.find(".list").width(width)
     @element.find(".navigation").show() if ph_count > 5
+    @element.find(".list img").each (i,el) ->
+      $(el).wrap($("<a rel='slider' href=" + $(el).attr("src").replace("medium","original") + ">"))
+    $("a[rel=slider]").fancybox
+      transitionIn: "none"
+      transitionOut: "none"
+      titlePosition: "over"
+      titleFormat: (title, currentArray, currentIndex, currentOpts) ->
+        "<span id=\"fancybox-title-over\">Image " + (currentIndex + 1) + " / " + currentArray.length + ((if title.length then " &nbsp; " + title else "")) + "</span>"
 
   ".navigation -> click":(ev)->
     ev.preventDefault()
