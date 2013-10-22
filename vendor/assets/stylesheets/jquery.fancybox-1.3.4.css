@@ -349,7 +349,7 @@
 
 .fancybox-ie .fancybox-bg { background: transparent !important; }
 #fancybox-wrap{
-	z-index: 5000!important;
+	z-index: 40000!important;
 }
 .fancybox-ie #fancybox-bg-n { filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/fancybox/fancy_shadow_n.png', sizingMethod='scale'); }
 .fancybox-ie #fancybox-bg-ne { filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/fancybox/fancy_shadow_ne.png', sizingMethod='scale'); }
