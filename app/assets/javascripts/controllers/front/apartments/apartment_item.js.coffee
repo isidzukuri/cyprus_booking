@@ -26,7 +26,9 @@ $.Controller "ApartmentItemController",
     f_ph_count = Math.round(ph_count/5) 
     if f_ph_count > 0
       width = (980 * f_ph_count) + ((ph_count - (f_ph_count * 5)) * 640)
-      @element.find(".list").width(width)
+    else
+      width = ph_count * @element.find(".photos img").last().size()
+    @element.find(".list").width(width)
     @element.find(".navigation").show() if ph_count > 5
     @element.find(".list img").each (i,el) ->
       $(el).wrap($("<a rel='slider' href=" + $(el).attr("src").replace("medium","original") + ">"))
