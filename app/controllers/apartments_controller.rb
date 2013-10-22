@@ -44,12 +44,11 @@ class ApartmentsController < ApplicationController
 	end
 
 	def show 
-	  house = House.find(params[:id])
-	  unless house.nil?
+	  @apartment = House.find(params[:id])
+	end
 
-	  else
-
-	  end 
+	def booking
+		
 	end
 
 

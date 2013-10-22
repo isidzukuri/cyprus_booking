@@ -1,4 +1,54 @@
+=render "shared/search_and_services_icons"
+#apartmnet_content{:'data-auto-controller'=>"ApartmentItemController"}
+  .header_name
+    %h2=@apartment.name
+    .rating
+      = rating_display
+  .content
+    .photos
+      .list
+        = render_photos @apartment.photos
+      = link_to "", "#" ,:class=>"btn-prev navigation"
+      = link_to "", "#" ,:class=>"btn-next navigation"
+    .tabs
+      #description.tab
+        = @apartment.description
+      #amenities.tab.jNice
+        - @apartment.facilities.in_groups_of(2).each do |fc_group|
+          - fc_group.each_with_index do |fc,index|
+            - if index == 0
+              .left
+                = image_tag "#{fc.ico}"
+                %span.text
+                  = fc.name
+                = check_box_tag :active ,  1 ,false, :checked=>true,:disabled=>:disabled,:readonly=>true
+            - else
+              .right
+                = image_tag "#{fc.ico}"
+                %span.text
+                  = fc.name
+                = check_box_tag :active , 1 ,false, :checked=>true,:disabled=>true,:readonly=>true
+      #map.tab{:"data-lat"=>@apartment.latitude,:"data-lng"=>@apartment.longitude}
+      #calendar.tab
+        = render "shared/calendar_month"
+
+      #rewiew.tab
+        = render_reviews_rating @apartment
+        .rew
+          - @apartment.rewievs.each do |item|
+            = image_tag item.user.file ,:class=>"img-circle"
+            %p
+              = item.text
+              %small=l(item.created_at,:format=>:short)
+      #rules.tab
+
+  .buttons
+    = link_to "Book it" , "#"
+    = link_to "Add to whish list" , "#"
+
+
 #orange_nav{:'data-auto-controller'=>"ApartmentTabsController"}
   - Hash[t("front_all.apartments_tabs").to_a.reverse].each_pair do |tab,lang|
     = link_to lang, "##{tab}",:class=>(tab.to_s == "description" ?  "act" : "")
 .clear
+

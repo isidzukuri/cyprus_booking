@@ -1,7 +1,7 @@
 .span9.with-sidebar
   - url =  params[:action] =~ /new/ ? admin_users_path : admin_user_path(@user)
   .container
-    = form_for @user ,:url => url  ,:html=>{:class=>"new_user_form inline-input"} do |f|
+    = form_for @user ,:url => url  ,:html=>{:class=>"new_user_form inline-input",:multipart=>true} do |f|
       = f.hidden_field :id
       - if params[:action] =~ /new/
         = f.hidden_field :password,:value=>@pass
@@ -29,5 +29,11 @@
           = f.text_field :city , :class=>"span12 small" , :required=>true , :placeholder=> t("admin.users.city")  
           = f.text_field :street , :class=>"span12 small" , :required=>true  , :placeholder=>t("admin.users.street")
           = f.text_field :building , :class=>"span12 small" , :required=>true  , :placeholder=>t("admin.users.building")
+      .span6.field-box
+        = f.label :file , "#{t("admin.facilities.ico")}"  
+        = @user.file
+        -if @user.file.present?
+          =image_tag "#{@user.file.url(:small)}"
+        %input(type="file" name="file")
       .span11.field-box.actions
         = f.submit t("admin.users.#{params[:action]}"), :class=>"btn-glow primary"

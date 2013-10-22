@@ -7,6 +7,12 @@ GIT
       activesupport (>= 3.0.2, < 4.1)
 
 GIT
+  remote: git://github.com/rweng/underscore-rails.git
+  revision: 96445de2b87fa056ad76cadd89fd0215c99b5382
+  specs:
+    underscore-rails (1.5.2)
+
+GIT
   remote: git://github.com/seyhunak/twitter-bootstrap-rails.git
   revision: 4aa0f0e661bc4664f59fd3e4287f7acf4d1330e8
   specs:
@@ -233,6 +239,7 @@ DEPENDENCIES
   thin
   twitter-bootstrap-rails!
   uglifier (>= 1.0.3)
+  underscore-rails!
   unicorn
   will_paginate
   wrest

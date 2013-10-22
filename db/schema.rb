@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131021114922) do
+ActiveRecord::Schema.define(:version => 20131021235150) do
 
   create_table "admin_modules", :force => true do |t|
     t.string   "name"
@@ -234,6 +234,15 @@ ActiveRecord::Schema.define(:version => 20131021114922) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "rewievs", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "house_id"
+    t.integer  "status"
+    t.string   "text"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "roles", :force => true do |t|
     t.string   "name"
     t.string   "role_type"
@@ -281,6 +290,7 @@ ActiveRecord::Schema.define(:version => 20131021114922) do
     t.string   "reset_password_token"
     t.datetime "reset_password_token_expires_at"
     t.datetime "reset_password_email_sent_at"
+    t.string   "file_file_name"
   end
 
   add_index "users", ["remember_me_token"], :name => "index_users_on_remember_me_token"

@@ -1,0 +1,22 @@
+.b_calendar
+  %a.prev_month{:href => "#"}
+  %a.next_month{:href => "#"}
+  .b_months_strip
+  .clear
+%script#calendar_month{ :type => "text/html" }
+  %h2 {{month}} {{year}}
+  %table.t_month
+    %tr
+      {{#day_names}}
+      %th {{.}}
+      {{/day_names}}
+    {{#weeks}}
+    %tr
+      {{#days}}
+      %td
+        {{#date}}
+        %a{:href => "#\{{href}}", :class => "{{css_class}}"}
+          {{day}}
+        {{/date}}
+      {{/days}}
+    {{/weeks}}
