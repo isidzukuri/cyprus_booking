@@ -3,12 +3,21 @@ $(window).load ->
     $(".content").mCustomScrollbar advanced:
       updateOnContentResize: true
     $(".content").mCustomScrollbar("scrollTo","top")
+  if($("#apartments").size() > 0 )
+    $("#apartments").mCustomScrollbar advanced:
+      updateOnContentResize: true
+    $("#apartments").mCustomScrollbar("scrollTo","top")
+  #if($("#apartments_view").size() > 0 )
+   # $("#apartments_view").mCustomScrollbar advanced:
+    #  updateOnContentResize: true
+    #$("#apartments_view").mCustomScrollbar("scrollTo","top")
+
+
   if /map/.test(window.location.hash)
     $(".mCSB_container").css("position","static")
   if($(".bookings_list").size() > 0 )
     $(".bookings_list").mCustomScrollbar advanced:
       updateOnContentResize: true
-  
   
 
 $ ->

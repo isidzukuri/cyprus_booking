@@ -13,16 +13,17 @@
     /[if IE] <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     %script{:type => "text/javascript",
         :src  => "https://connect.facebook.net/en_US/all.js"}
-  %body
+  %body{:"data-auto-controller" =>"MapController"}
     #wrapper
-      %header
+      %header{:style=>"z-index:21000"}
         %figure
           %h1
             %a{href: "/"}
               = image_tag "logo.png", :height=>35
         =render "shared/header_right"
-      %article{:class=>"#{params[:controller]}_body"}
+      %article{:class=>"#{params[:controller]}_body",:style=>"z-index:20000"}
         = yield
+      #map_apartments
       = render "shared/footer"  
 :javascript
   FBappId = "#{Settings.fb.key}"

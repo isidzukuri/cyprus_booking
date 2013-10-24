@@ -56,7 +56,6 @@ $.Controller "ApartmentsController", "FormController",
         i++
       marker.set "icon", '/assets/ic_map_hover.png'
       self.show_apart(data)
-
     $(".content_box").find(".text:eq(0)").text(data.price)
     $(".content_box").find(".text:eq(1)").text(data.rooms)
     $(".content_box").find(".text:eq(2)").text(data.rating)
@@ -91,6 +90,12 @@ $.Controller "ApartmentsController", "FormController",
         url = ""
         $(".rating").rating url ,
           curvalue: 3
+        map_height  = $("footer").offset().top - $("#map_apartments").offset().top
+        view_height = $("#apartments_view").height()
+        offset = view_height - map_height
+        console.log(view_height)
+        if offset > 0
+          $("footer").css("bottom","-" + offset + "px")
   init_autocomplete: ->
     @element.find("#apartment_search_city").autocomplete
       source: '/apartments/complete',

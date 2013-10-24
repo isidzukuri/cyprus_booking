@@ -406,7 +406,7 @@ form, fieldset, input, textarea, blockquote, th, td {
 #apartments ,#apartments_view {
   
   z-index: 40000;
-  width: 462px;
+  max-width: 480px;
   background-color: #ffffff;
   height: auto;
   min-height: 200px;
@@ -418,6 +418,7 @@ form, fieldset, input, textarea, blockquote, th, td {
   -moz-border-radius: 6px;
   border-radius: 6px;
   behavior: url(/assets/PIE.htc);
+  //overflow-y: hidden;
 }
 #apartments_view .rectangle{
   left: 120px
@@ -1571,5 +1572,5 @@ position: absolute;
 }
 
 .apartments_body #orange_nav{
-  margin-top:-35px;
+ // margin-top:-35px;
 }
