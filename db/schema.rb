@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131022114902) do
+ActiveRecord::Schema.define(:version => 20131025132738) do
 
   create_table "admin_modules", :force => true do |t|
     t.string   "name"
@@ -136,14 +136,14 @@ ActiveRecord::Schema.define(:version => 20131022114902) do
     t.string  "name_uk"
     t.string  "name_ru"
     t.string  "name_en"
-    t.string  "description_uk"
-    t.string  "description_ru"
-    t.string  "description_en"
-    t.float   "rating",         :default => 0.0, :null => false
-    t.float   "cost",           :default => 0.0, :null => false
-    t.integer "views",          :default => 0,   :null => false
-    t.string  "longitude",      :default => "0", :null => false
-    t.string  "latitude",       :default => "0", :null => false
+    t.text    "description_uk", :limit => 255
+    t.text    "description_ru", :limit => 255
+    t.text    "description_en", :limit => 255
+    t.float   "rating",                        :default => 0.0, :null => false
+    t.float   "cost",                          :default => 0.0, :null => false
+    t.integer "views",                         :default => 0,   :null => false
+    t.string  "longitude",                     :default => "0", :null => false
+    t.string  "latitude",                      :default => "0", :null => false
     t.string  "full_address"
     t.string  "flat_number"
     t.string  "floor_number"
@@ -155,9 +155,10 @@ ActiveRecord::Schema.define(:version => 20131022114902) do
     t.integer "rooms"
     t.integer "places"
     t.integer "showers"
-    t.integer "active",         :default => 1,   :null => false
+    t.integer "active",                        :default => 1,   :null => false
     t.integer "user_id"
     t.integer "city_id"
+    t.string  "rules"
   end
 
   create_table "houses_nearbies", :id => false, :force => true do |t|
