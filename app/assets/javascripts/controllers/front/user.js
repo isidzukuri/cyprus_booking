@@ -68,19 +68,23 @@ $(window).load(function(){
 
 
 	$('.cab_filter').change(function(){
-		
-		// url = $('[name=filter_action]').val();
-		// alert($('meta[name="csrf-token"]').attr('content'))
-		// status = $('[name=filter_by_value]').val();
-		// from = $('[name=date_from]').val();
-		// to = $('[name=date_to]').val();
-		// $.ajax({
-		//   beforeSend: function(xhr){xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'));},
-		//   url: "/cabinet/"+url+"/"+status+"/"+from+"/"+to,
-		//   contentType: "application/json;",
-		//   dataType: "json",
-		//   type:"POST"
-		// });
+		items_container = $('.bookings_list>div>div');
+		items_container.empty().append("<div class='basic_loader'></div>");
+		url = $('[name=filter_action]').val();
+		status = $('[name=filter_by_value]').val();
+		from = $('[name=date_from]').val();
+		to = $('[name=date_to]').val();
+		$.ajax({
+		  beforeSend: function(xhr){xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'));},
+		  url: "/cabinet/"+url,
+		  data: JSON.stringify({status:status,to:to,from:from}),
+		  contentType: "application/json;",
+		  dataType: "json",
+		  type:"POST",
+		  success:function(response){
+		  	items_container.empty().append(response.html);
+		  }
+		});
 	});
 
 });
@@ -100,7 +104,8 @@ function set_blocks_position(){
 	item_w = $('.bookings_list .item').width() + parseInt($('.bookings_list .item').css('margin-right'));
 	items_in_line = parseInt(list_w/item_w); 
 	ml = parseInt((list_w - item_w*items_in_line)/2);
-	$('.bookings_list .item:nth-child('+items_in_line+'n+1)').css('margin-left',ml);
+	// $('.bookings_list .item:nth-child('+items_in_line+'n+1)').css('margin-left',ml);
+	$('.bookings_list').css('padding-left',ml).width($('.bookings_list').width()-ml);
 
 	if(parseInt($('.cab_filter').outerWidth())*$('.cab_filter').length < parseInt($('#cab_filters').width())){
 		if(!ml){

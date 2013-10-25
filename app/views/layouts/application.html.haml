@@ -21,9 +21,8 @@
             %a{href: "/"}
               = image_tag "logo.png", :height=>35
         =render "shared/header_right"
-      %article{:class=>"#{params[:controller]}_body",:style=>"z-index:20000"}
+      %article{:class=>"#{params[:controller]}_body"}
         = yield
-      #map_apartments
       = render "shared/footer"  
 :javascript
   FBappId = "#{Settings.fb.key}"

@@ -3,7 +3,7 @@ class Cabinet::HousesController < UserController
 
 	def initialize
 		super
-		@currency = Currency.find_by_title($currency.to_s)
+		@currency = $currency.present? ? Currency.find_by_title($currency.to_s) : Currency.find_by_title('USD')
 	end
 	
 	def index
@@ -20,9 +20,12 @@ class Cabinet::HousesController < UserController
 		# end
 	end
 
-	def filter
-		# @period = Employment.find(params[:id])
-		render :text => "@period.delete"
+	def houses_filter
+		# @bookings = ApartmentsBooking.where("created_at > #{Date.strptime(params[:from],"%d.%m.%Y").to_time} AND created_at < #{Date.strptime(params[:to],"%d.%m.%Y").to_time}")
+		conditions = {:created_at => Date.strptime(params[:from],"%d.%m.%Y").beginning_of_day..Date.strptime(params[:to],"%d.%m.%Y").end_of_day, :status => [params[:status].split(',')]}
+		@bookings = ApartmentsBooking.find(:all, :conditions => conditions, :order => 'created_at DESC')
+		html = render_to_string partial: 'items'
+		render :json => { :html => html, :status => true}
 	end
 
 	def show

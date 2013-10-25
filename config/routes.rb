@@ -43,6 +43,7 @@ scope "(:locale)", :locale => /en|ru/ do
    namespace :cabinet do
     resources "houses", :only=>[:index,:show]
     resources "profile", :only=>[:show]
+    post "index/filter",  to: "houses#houses_filter"
    end
 
   

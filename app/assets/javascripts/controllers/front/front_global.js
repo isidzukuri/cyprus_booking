@@ -9,12 +9,12 @@ $(document).ready(function(){
 	calculete_dom_pos()
 })
 function calculete_dom_pos(){
-	map_height  = $("footer").offset().top - $("#map_apartments").offset().top
-	view_height = $("#apartments_view").height()
-	offset = view_height - map_height
-	if(offset > 0){
-		$("footer").css("bottom","-" + offset + "px")
-	}
+	// map_height  = $("footer").offset().top - $("#map_apartments").offset().top
+	// view_height = $("#apartments_view").height()
+	// offset = view_height - map_height
+	// if(offset > 0){
+	// 	$("footer").css("bottom","-" + offset + "px")
+	// }
 	/*$("#apartments_view").size() > 0 ? $("#apartments_view").css("max-height",map_height) : ""
 	$("#apartments").size() > 0 ? $("#apartments_view").css("max-height",map_height) : ""
 	$(".apartments_body").height($(window).height() - $('header').height() - $('footer').height());

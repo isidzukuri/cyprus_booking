@@ -1145,6 +1145,9 @@ a.item{
   a:hover, a.act{
     color:#ff793d;
   }
+  a.by_ico_0{
+    background-position: 0 8px;
+  }
   a.by_ico_1{
     background-position: 0 -448px;
   }
@@ -1573,4 +1576,13 @@ position: absolute;
 
 .apartments_body #orange_nav{
  // margin-top:-35px;
+}
+.basic_loader{
+  width:100px;
+  height:100px;
+  margin:0 auto;
+  background: image-url("loading.gif") no-repeat 0 0;
+}
+.booking_list .basic_loader{
+  margin-top: 30px;
 }
