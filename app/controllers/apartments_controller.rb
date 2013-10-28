@@ -23,7 +23,7 @@ class ApartmentsController < ApplicationController
 	def search
 	  search = ApartmentSearch.new(params[:apartment_search])
 	  ids    = search.facilities.map{|e| e.active == 0 ? nil : e.id }.compact
-	  facilities = Facility.where("id IN (#{ids.join(",")})")
+	  facilities = Facility.where("id IN (#{ids.join(",")})") if ids.any?
       cookies[:last_apartment_search] = {
         :value   => Marshal.dump(search),
         :expires => 24.hours.from_now
