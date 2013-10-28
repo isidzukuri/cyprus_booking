@@ -3,10 +3,10 @@ $(window).load ->
     $(".content").mCustomScrollbar advanced:
       updateOnContentResize: true
     $(".content").mCustomScrollbar("scrollTo","top")
-  if($("#apartments").size() > 0 )
-    $("#apartments").mCustomScrollbar advanced:
-      updateOnContentResize: true
-    $("#apartments").mCustomScrollbar("scrollTo","top")
+  #if($("#apartments").size() > 0 )
+    #$("#apartments").mCustomScrollbar advanced:
+     # updateOnContentResize: true
+   # $("#apartments").mCustomScrollbar("scrollTo","top")
   #if($("#apartments_view").size() > 0 )
    # $("#apartments_view").mCustomScrollbar advanced:
     #  updateOnContentResize: true
