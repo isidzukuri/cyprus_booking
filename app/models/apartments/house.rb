@@ -43,6 +43,10 @@ class House < ActiveRecord::Base
     read_attribute("name_#{I18n.locale}")
   end
 
+  def first_img
+    return self.photos.present? ? self.photos.first.file.url(:cabinet) : ''
+  end
+
   def to_search search
     {
       :id        => self.id,

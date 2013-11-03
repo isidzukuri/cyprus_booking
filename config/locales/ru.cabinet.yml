@@ -2,3 +2,24 @@ ru:
   cabinet:
     not_found: Бронирований не найдено
     total_cost: Сумма
+    offers: Ваши предложения
+    add: Добавить предложение
+    dashboard: Список бронирований
+    new_add: Новое предложение
+    city: Город
+    places: Количество мест
+    free: Свободно
+    booked: Забронировано
+    spec_price: Специальная цена
+    room_type: Тип комнаты
+    bedrooms: Спален
+    bathrooms: Ванных комнат
+    description: Описание
+    remove: Удалить
+    edit: Редактировать
+    upload_photo: Загрузить фото
+    full_address: Полный адрес
+    flat_number: Квартира
+    house_number: Номер дома
+    street: Улица
+    title: Название

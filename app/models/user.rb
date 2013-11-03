@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   has_many :messages
   has_many :rewievs
   has_many :received_messages, :foreign_key => "receiver", :class_name => "Message"
+  has_many :houses
 
 
   validates :first_name, :presence => {:message=>I18n.t("user.errors.presense")}, :length => {:minimum => 3, :maximum => 254 ,:message=>I18n.t("user.errors.minimum_chars")}

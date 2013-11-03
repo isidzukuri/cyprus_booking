@@ -1,7 +1,8 @@
 $(window).load ->
   if($(".content").size() > 0 )
     $(".content").mCustomScrollbar advanced:
-      updateOnContentResize: true
+      updateOnContentResize: true,
+      updateOnBrowserResize:true 
     $(".content").mCustomScrollbar("scrollTo","top")
   #if($("#apartments").size() > 0 )
     #$("#apartments").mCustomScrollbar advanced:
@@ -17,7 +18,8 @@ $(window).load ->
     $(".mCSB_container").css("position","static")
   if($(".bookings_list").size() > 0 )
     $(".bookings_list").mCustomScrollbar advanced:
-      updateOnContentResize: true
+      updateOnContentResize: true,
+      updateOnBrowserResize:true 
   
 
 $ ->

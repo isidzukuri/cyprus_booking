@@ -1,6 +1,6 @@
 =render "cabinet/cabinet_header"
 #cab_filters
-	%input{:type=>"hidden", :name=>"filter_action", :value=>"#{controller.action_name}/filter"}
+	%input{:type=>"hidden", :name=>"filter_action", :value=>"index/filter"}
 	%input.cab_filter.filter_by.custom_dropdown{:name => "filter_by", :value => "filter by status"}
 	%input{:name => "filter_by_value", :type => "hidden"}
 	%input.cab_filter.filter_calendar{:name => "date_from", :value => "#{(Time.now - 2592000).strftime('%d.%m.%Y')}"}
@@ -13,9 +13,4 @@
 			%a{:by=>"1", :class=>"by_ico_1"} Unpayed
 			%a{:by=>"2", :class=>"by_ico_2"} Payed
 			%a{:by=>"3", :class=>"by_ico_3"} Canceled
-#orange_nav
-	%a{:href=>"/cabinet/yachts", :class=>"#{controller.action_name == 'yachts' ? 'act' : ''}"} Yachts
-	%a{:href=>"/cabinet/cars", :class=>"#{controller.action_name == 'cars' ? 'act' : ''}"} Cars
-	%a{:href=>"/cabinet/hotels", :class=>"#{controller.action_name == 'hotels' ? 'act' : ''}"} Hotels
-	%a{:href=>"/cabinet/houses", :class=>"#{controller.action_name == 'index' ? 'act' : ''}"} Houses
-	.clear
+=render "cabinet/cabinet_orange_services"

@@ -4,10 +4,11 @@ class Cabinet::HousesController < UserController
 	def initialize
 		super
 		@currency = $currency.present? ? Currency.find_by_title($currency.to_s) : Currency.find_by_title('USD')
+		@service = 'houses'
 	end
 	
 	def index
-		@title = "Dashboard"
+		@title = t("cabinet.dashboard")
 		@bookings = current_user.apartments_bookings
 
 		# per_page = 20
@@ -30,6 +31,21 @@ class Cabinet::HousesController < UserController
 
 	def show
 		
+	end
+
+	def offers
+		@title = t("cabinet.offers")
+		@offers = current_user.houses
+	end
+
+	def new
+		@title = t("cabinet.new_add")
+		@apartament = House.new
+		@apartament.user_id = @apartament.user_id.present? ? @apartament.user_id : @current_user.id 
+		@cities = City.all.map{|city| [city.name_ru,city.id]}
+		# @currencies = Currency.all.map{|c| [c.title,c.id]}
+		@facilities = Facility.where("active = 1").map{|f| [f.name_ru,f.id]}
+		# @currency = Currency.find(1)
 	end
 
 	

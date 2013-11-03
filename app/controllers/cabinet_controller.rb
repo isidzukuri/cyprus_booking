@@ -26,4 +26,6 @@ class CabinetController < ApplicationController
 	end
 
 	
+
+	
 end

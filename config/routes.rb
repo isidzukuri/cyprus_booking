@@ -41,9 +41,11 @@ scope "(:locale)", :locale => /en|ru/ do
    end
 
    namespace :cabinet do
-    resources "houses", :only=>[:index,:show]
+    resources "houses", :only=>[:index,:show,:new]
     resources "profile", :only=>[:show]
     post "index/filter",  to: "houses#houses_filter"
+    get "index/offers",  to: "houses#offers"
+    # get ':controller/offers'
    end
 
   

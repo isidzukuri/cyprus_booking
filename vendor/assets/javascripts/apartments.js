@@ -72,10 +72,6 @@ function initialize_map(lat,lng){
 	LAT = lat != '' && lat != 0 ? lat : Number(35);
 	LNG = lng != '' && lng != 0 ? lng : Number(33);
 	var center = new google.maps.LatLng(LAT,LNG);
-	// balloon = new google.maps.InfoWindow({
-	// 	size: new google.maps.Size(80,20),
-	// 	content: "Не выбрана станция"
-	// });
 	var myOptions = {
 		zoom: 9,
 		center: center,
@@ -95,10 +91,6 @@ function initialize_map(lat,lng){
 		lng_inp.val(pos.lng())
 	}
 	});
-	// balloon.content = "Не выбрана станция";
-	// balloon.maxWidth = 50;
-	// balloon.open(Gmap, marker);
-
 }
 
 // mat_set_center = function(lat,lng,title){

@@ -1,6 +1,13 @@
 $(window).load(function(){ 
 
 	set_blocks_position();
+	init_city_autocomplete();
+	$(".cabinet_form").mCustomScrollbar({
+	  advanced: {
+	    updateOnContentResize: true,
+	    updateOnBrowserResize: true
+	  }
+	});
 
 	$.datepicker.setDefaults($.datepicker.regional['ru']);
 	$('[name=date_from]').datepicker({
@@ -83,8 +90,17 @@ $(window).load(function(){
 		  type:"POST",
 		  success:function(response){
 		  	items_container.empty().append(response.html);
+		  	$('.bookings_list').mCustomScrollbar("destroy");
+		  	$(".bookings_list").mCustomScrollbar();
 		  }
 		});
+	});
+
+
+	$('#cabinet .edit_ico').click(function(){
+		drop = $(this).parent().find('.filters_select');
+		drop.show();
+		drop.parent().mouseleave(function(){drop.hide()})
 	});
 
 });
@@ -93,12 +109,18 @@ $(window).resize(function(){
 	set_blocks_position();
 });
 
+function show_item_actions(){
+
+}
+
 function set_blocks_position(){
+	$('.bookings_list').removeAttr('style');
+	$('#cab_filters').removeAttr('style');
 	if($('.bookings_list .item').length < 1){
 		$('#cab_filters').hide();
 		$('.bookings_list').css('overflow','hidden');	
 	} 
-	$('.cab_filter, .bookings_list .item').css('margin-left',0);
+	// $('.cab_filter, .bookings_list .item').css('margin-left',0);
 
 	list_w = $('.bookings_list').width();
 	item_w = $('.bookings_list .item').width() + parseInt($('.bookings_list .item').css('margin-right'));
@@ -107,19 +129,66 @@ function set_blocks_position(){
 	// $('.bookings_list .item:nth-child('+items_in_line+'n+1)').css('margin-left',ml);
 	$('.bookings_list').css('padding-left',ml).width($('.bookings_list').width()-ml);
 
-	if(parseInt($('.cab_filter').outerWidth())*$('.cab_filter').length < parseInt($('#cab_filters').width())){
-		if(!ml){
-			list_w = $('#cab_filters').width();
-			item_w = $('.cab_filter').width() + parseInt($('.cab_filter').css('margin-right'));
-			items_in_line = parseInt(list_w/item_w); 
-		}
-		ml = parseInt((list_w - item_w*items_in_line)/2);
-		$('.cab_filter').eq(0).css('margin-left',ml);
-	}else{
-		filter_m = (parseInt($('#cab_filters').width()) - parseInt($('.cab_filter').width()) )/2;
-		$('.cab_filter').css('margin-left',filter_m);
-	}
-	
+	// if(parseInt($('.cab_filter').outerWidth())*$('.cab_filter').length < parseInt($('#cab_filters').width())){
+	// 	// if(!ml){
+	// 	// 	list_w = $('#cab_filters').width();
+	// 	// 	item_w = $('.cab_filter').width() + parseInt($('.cab_filter').css('margin-right'));
+	// 	// 	items_in_line = parseInt(list_w/item_w); 
+	// 	// }
+	// 	// ml = parseInt((list_w - item_w*items_in_line)/2);
+	// 	// $('.cab_filter').eq(0).css('margin-left',ml);
+
+	// }else{
+	// 	// filter_m = (parseInt($('#cab_filters').width()) - parseInt($('.cab_filter').width()) )/2;
+	// 	// $('.cab_filter').css('margin-left',filter_m);
+	// }
+	$('#cab_filters').css('padding-left',ml).width($('#cab_filters').width()-ml);
+	$('article').height($(window).height() - $('header').height() - $('footer').height())
 	$('.bookings_list').height($('article').height() - $('.line').height()- $('.cabinet_header').height() - $('#cab_filters').height()- $('#orange_nav').height() - 80);
-	$('.user_profile').height($('article').height() - $('.line').height()- $('.cabinet_header').height()-80);
+	$('.user_profile, .cabinet_form').height($('article').height() - $('.line').height()- $('.cabinet_header').height()-80);
+
+	// $('.cabinet_form').height($('article').height() - $('.line').height()- $('.cabinet_header').height()-80);
+	
+	// $('#wrapper').height($(window).height())
+	
 }
+
+
+function init_city_autocomplete() {
+	$("[name=city_name]").autocomplete({
+	  source: '/apartments/complete',
+	  create: function(a, b) {
+	    return $($(this).data("autocomplete").bindings[1]).addClass("myclass");
+	  },
+	  search: function(event, ui) {
+	    $(event.target).prev().val('');
+	    // G_map.setCenter(Base_coords);
+	    // return G_map.setZoom(9);
+	  },
+	  minLength: 2,
+	  open: function() {
+	    if ($(".ui-menu-item:visible").length === 1) {
+	      return $($(this).data('autocomplete').menu.active).find('a:visible').trigger('click');
+	    }
+	  },
+	  select: function(event, ui) {
+	    var code_input, input, lat_lng, text;
+	    input = $(event.target);
+	    code_input = input.siblings('input[type=hidden]');
+	    text = ui.item.name_ru + ", " + ui.item.country;
+	    input.val(text);
+	    code_input.val(ui.item.id);
+	    input.change();
+	    code_input.change();
+	    lat_lng = new google.maps.LatLng(ui.item.lat, ui.item.lng);
+	    // G_map.setCenter(lat_lng);
+	    // G_map.setZoom(13);
+	    return false;
+	  }
+	}).each(function() {
+	  return $(this).data("autocomplete")._renderItem = function(ul, item) {
+	    return $("<li></li>").data("item.autocomplete", item).append("<a><strong>" + item.name_ru + "</strong>  " + item.country + "</a>").appendTo(ul);
+	  };
+	});
+}
+
