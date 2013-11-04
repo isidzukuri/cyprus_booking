@@ -1247,4 +1247,13 @@ $.format = $.validator.format;
 			});
 		}
 	});
+	
+$.validator.addMethod("cityIdCheck", function(value, element) {
+	return $('.city_id_val').val() != '';
+}, "hidden city id is nil");
+
+$.validator.classRuleSettings.cityIdCheck = { cityIdCheck: true };	
+
 }(jQuery));
+
+

@@ -1628,8 +1628,8 @@ position: absolute;
   z-index: 40001;
 }
 .cabinet_form{
-  width:94%;
-  margin: 10px 0 0 3%;
+  width:785px;
+  margin: 10px auto 0;
 
   #google_map{
     height:300px;
@@ -1638,20 +1638,23 @@ position: absolute;
 
   input{
     border:2px solid #009cae;
-    width:350px;
+    width:324px;
     line-height:30px;
     padding-left:38px;
     background: #fff image-url("inputs_icons.png") no-repeat 0 0;
-    margin:5px 20px 0 0;
+    margin:5px 10px 0 0;
+  }
+  .nmr {
+    margin-right:0px;
   }
   textarea{
     border:2px solid #009cae;
-    width:788px;
+    width:741px;
     background: #fff;
     margin:5px 20px 5px 0;
   }
   .wide_cab_input{
-    width:750px;
+    width:703px;
   }
   input[type=hidden]{
     display:none;
@@ -1676,4 +1679,28 @@ position: absolute;
     background: #009cae;
     padding:0 0 5px 5px;
   }
+  .cabinet_submit{
+    background: #ff793d;
+    color:#fff;
+    line-height:30px;
+    padding:0 30px;
+    border:none;
+    width:auto;
+    float:right;
+    margin-right:0;
+    font-size:17px;
+    cursor:pointer;
+  }
+}
+hr{
+  border-top: 1px solid #c1c1c1;
+  height: 1px;
+  margin: 7px 0;
+}
+#orange_nav.edit_nav{
+  margin-top:-43px;
+  z-index: 40001;
+}
+.red_border{
+  border-color:red !important;
 }

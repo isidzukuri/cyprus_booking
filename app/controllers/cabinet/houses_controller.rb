@@ -24,7 +24,7 @@ class Cabinet::HousesController < UserController
 	def houses_filter
 		# @bookings = ApartmentsBooking.where("created_at > #{Date.strptime(params[:from],"%d.%m.%Y").to_time} AND created_at < #{Date.strptime(params[:to],"%d.%m.%Y").to_time}")
 		conditions = {:created_at => Date.strptime(params[:from],"%d.%m.%Y").beginning_of_day..Date.strptime(params[:to],"%d.%m.%Y").end_of_day, :status => [params[:status].split(',')]}
-		@bookings = ApartmentsBooking.find(:all, :conditions => conditions, :order => 'created_at DESC')
+		@bookings = current_user.apartments_bookings.find(:all, :conditions => conditions, :order => 'created_at DESC')
 		html = render_to_string partial: 'items'
 		render :json => { :html => html, :status => true}
 	end

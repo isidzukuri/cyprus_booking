@@ -1,34 +1,30 @@
-= form_for @apartament ,:url => params[:action] =~ /new/ ? admin_apartaments_path : admin_apartament_path(@apartament)  ,:html=>{:class=>"validate_form" , :multipart => true} do |f|
+= form_for @apartament ,:url => params[:action] =~ /new/ ? admin_apartaments_path : admin_apartament_path(@apartament)  ,:html=>{:class=>"front_validate_form" , :multipart => true} do |f|
 	= f.hidden_field :user_id
 
 	.cab_input_bg
-		= f.hidden_field :city_id
-		%input{:name => "city_name", :class=>"city_ico", :value => "", :placeholder => t("cabinet.city")}
-
-		= f.text_field :street , :placeholder => t("cabinet.street"), :class=>"city_ico"
-
-		= f.text_field :house_number , :placeholder => t("cabinet.house_number"), :class=>"city_ico"
-
-		= f.text_field :flat_number , :placeholder => t("cabinet.flat_number"), :class=>"city_ico"
-
-		%br
-		= f.text_field :full_address , :placeholder => t("cabinet.full_address"), :class=>"city_ico"
+		= f.hidden_field :city_id, :class => "city_id_val"
+		%input{:name => "city_name", :class=>"city_ico cityIdCheck", :value => "", :placeholder => t("cabinet.city"), :type=>"text"}
+		= f.text_field :street , :placeholder => t("cabinet.street"), :class=>"city_ico nmr required"
+		= f.text_field :house_number , :placeholder => t("cabinet.house_number"), :class=>"city_ico required"
+		= f.text_field :flat_number , :placeholder => t("cabinet.flat_number"), :class=>"city_ico nmr"
+		= f.text_field :full_address , :placeholder => t("cabinet.full_address"), :class=>"city_ico required"
+		= f.text_field :places , :placeholder => t("cabinet.places"), :class=>"places_ico number nmr required"
 
 	%br  
 	= f.hidden_field :latitude
 	= f.hidden_field :longitude
 	#google_map
 
-	.cab_input_bg{:style =>"width: 800px;"}
+	.cab_input_bg
 		= f.text_field "name_#{locale.to_s}", :placeholder => t("cabinet.title"), :class=>"house_ico wide_cab_input"
 		%br
 		= f.text_area "description_#{locale.to_s}", :placeholder => t("cabinet.description")
 
 	.cab_input_bg
-		= f.text_field :places , :placeholder => t("cabinet.places"), :class=>"places_ico number"
-
 		= f.text_field :rooms , :placeholder => t("cabinet.bedrooms"), :class=>"rooms_ico number"
+		= f.text_field :showers , :placeholder => t("cabinet.bathrooms"), :class=>"showers_ico number nmr"
 
-		= f.text_field :showers , :placeholder => t("cabinet.bathrooms"), :class=>"showers_ico number"
-
-	= f.submit t("admin.apartaments.#{params[:action]}"), :class=>"btn-glow primary"
+	%hr
+	.clear
+	= f.submit t("cabinet.save"), :class=>"cabinet_submit"
+	.clear

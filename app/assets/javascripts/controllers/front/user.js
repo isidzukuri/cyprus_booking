@@ -103,6 +103,20 @@ $(window).load(function(){
 		drop.parent().mouseleave(function(){drop.hide()})
 	});
 
+
+
+	attach_filter_input();
+
+	$('.front_validate_form').validate({
+	  errorPlacement: function(error, element) { 
+	    element.addClass("red_border");
+	  }
+	});
+
+	$("input").bind("keydown change", function() {
+		$(this).removeClass("red_border");
+	})
+
 });
 
 $(window).resize(function(){ 
@@ -111,6 +125,11 @@ $(window).resize(function(){
 
 function show_item_actions(){
 
+}
+
+function attach_filter_input(){
+	$('.number').filter_input({regex:'[0-9.]'});
+	$('.digits').filter_input({regex:'[0-9]'});
 }
 
 function set_blocks_position(){
