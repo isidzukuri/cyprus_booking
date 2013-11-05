@@ -1,5 +1,7 @@
 $(window).load(function(){ 
 
+
+	$('.b_calendar').attachCalendarController();
 	set_blocks_position();
 	init_city_autocomplete();
 	$(".cabinet_form").mCustomScrollbar({

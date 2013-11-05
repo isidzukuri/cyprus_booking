@@ -1,15 +1,17 @@
-= form_for @apartament ,:url => params[:action] =~ /new/ ? admin_apartaments_path : admin_apartament_path(@apartament)  ,:html=>{:class=>"front_validate_form" , :multipart => true} do |f|
+= form_for @apartament ,:url => params[:action] =~ /new/ ? admin_apartaments_path : admin_apartament_path(@apartament)  ,:html=>{:class=>"front_validate_form jNice" , :multipart => true} do |f|
 	= f.hidden_field :user_id
 
 	.cab_input_bg
-		= f.hidden_field :city_id, :class => "city_id_val"
-		%input{:name => "city_name", :class=>"city_ico cityIdCheck", :value => "", :placeholder => t("cabinet.city"), :type=>"text"}
-		= f.text_field :street , :placeholder => t("cabinet.street"), :class=>"city_ico nmr required"
-		= f.text_field :house_number , :placeholder => t("cabinet.house_number"), :class=>"city_ico required"
-		= f.text_field :flat_number , :placeholder => t("cabinet.flat_number"), :class=>"city_ico nmr"
-		= f.text_field :full_address , :placeholder => t("cabinet.full_address"), :class=>"city_ico required"
-		= f.text_field :places , :placeholder => t("cabinet.places"), :class=>"places_ico number nmr required"
-
+		.l_part
+			= f.hidden_field :city_id, :class => "city_id_val"
+			%input{:name => "city_name", :class=>"city_ico cityIdCheck", :value => "", :placeholder => t("cabinet.city"), :type=>"text"}
+			= f.text_field :house_number , :placeholder => t("cabinet.house_number"), :class=>"city_ico required"
+			= f.text_field :full_address , :placeholder => t("cabinet.full_address"), :class=>"city_ico required"
+		.r_part
+			= f.text_field :street , :placeholder => t("cabinet.street"), :class=>"city_ico required"
+			= f.text_field :flat_number , :placeholder => t("cabinet.flat_number"), :class=>"city_ico"
+			= f.text_field :places , :placeholder => t("cabinet.places"), :class=>"places_ico number required"
+		.clear
 	%br  
 	= f.hidden_field :latitude
 	= f.hidden_field :longitude
@@ -17,12 +19,57 @@
 
 	.cab_input_bg
 		= f.text_field "name_#{locale.to_s}", :placeholder => t("cabinet.title"), :class=>"house_ico wide_cab_input"
-		%br
 		= f.text_area "description_#{locale.to_s}", :placeholder => t("cabinet.description")
 
 	.cab_input_bg
-		= f.text_field :rooms , :placeholder => t("cabinet.bedrooms"), :class=>"rooms_ico number"
-		= f.text_field :showers , :placeholder => t("cabinet.bathrooms"), :class=>"showers_ico number nmr"
+		.l_part
+			= f.text_field :rooms , :placeholder => t("cabinet.bedrooms"), :class=>"rooms_ico number"
+		.r_part
+			= f.text_field :showers , :placeholder => t("cabinet.bathrooms"), :class=>"showers_ico number"
+		.clear
+
+	%br
+	%div 
+		.l_part
+			#{t("cabinet.facilities")}
+			%hr 
+			- @facilities.each do |fs|
+				.ch_b 
+					.check_ico
+						=image_tag "#{fs[2]}"
+					.check_label
+						= fs[0]
+					.check_input
+						= check_box_tag "house[facilities[#{fs[1]}]]", fs[1], @apartament.facilities.include?(Facility.find(fs[1]))
+					.clear 
+		.r_part
+			#{t("cabinet.nearbies")}
+			%hr 
+			- @nearbies.each do |fs|
+				.ch_b 
+					.check_ico
+						=image_tag "#{fs[2]}"
+					.check_label
+						= fs[0]
+					.check_input
+						= check_box_tag "house[nearbies[#{fs[1]}]]", fs[1], @apartament.nearbies.include?(Nearby.find(fs[1]))
+					.clear 
+			
+		.clear 
+		%br
+		%br
+		.block_info
+			#{t("cabinet.select_nearbies_and_facilities")}
+
+		= render "shared/calendar_month"
+		.calendar_map
+			%p #{t("cabinet.free")}
+			%p #{t("cabinet.booked")}
+			%p #{t("cabinet.special_price")}
+		.block_info
+			#{t("cabinet.calendar_comment")}
+
+		 
 
 	%hr
 	.clear

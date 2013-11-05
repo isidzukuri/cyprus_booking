@@ -1524,17 +1524,19 @@ position: absolute;
 }
 .b_calendar{
   position: relative;
-  border: 1px solid #c8d3dc;
-  padding: 14px 12px 10px;
+  //border: 1px solid #c8d3dc;
+  //padding: 14px 12px 10px;
   overflow: hidden;
   margin-bottom: 10px;
 }
 .b_calendar h2{
-  color: #009cae;
+  color: #fff;
   font-weight: normal;
   font-size: 18px;
-  padding-bottom: 12px;
   text-align: center;
+  line-height:27px;
+  background: #009cae;
+  padding: 10px 0 0 0;
 }
 .b_months_strip {
   white-space: nowrap;
@@ -1555,50 +1557,58 @@ position: absolute;
   display: block;
   position: absolute;
   top: 2px;
-  left: 12px;
+  left: 2px;
   width: 40px;
-  height: 40px;
-  background:  #009cae image-url("left.png") no-repeat 25% 46%;
+  height: 34px;
+  background:  #009cae image-url("calendar_arrows.png") no-repeat 0 0px;
 }
 .b_calendar .next_month{
   display: block;
   position: absolute;
   top: 2px;
-  right: 12px;
+  right: 2px;
   width: 40px;
-  height: 40px;
-  background: #009cae image-url("right.png") no-repeat 25% 46%;
+  height: 34px;
+  background: #009cae image-url("calendar_arrows.png") no-repeat 6px -49px;
 }
 .t_month{
   text-align: right;
   background-color: white;
+  background: image-url("month_bg.png") no-repeat 0 0;
 }
 .t_month th{
-  color: #5a5a5a;
-  font-size: 11px;
-  padding: 4px 8px;
-  background-color: #f5f7f8;
+  color: #fff;
+  padding: 4px 0 0 0;
   font-weight: normal;
-  border: 1px solid #c8d3dc;
-  width: 48px;
-  height: 14px;
+  width: 28px;
+  height: 26px;
   vertical-align: bottom;
+  text-align: center;
+  font-size: 12px;
+  text-transform:uppercase;
+}
+.t_month th:nth-child(1n+6){
+  color: #ff793d;
 }
 .t_month td{
-  border: 1px solid #c8d3dc;
-  width: 64px;
-  height: 38px;
+  border: 1px solid transparent;
+  width: 52px;
+  height: 40px;
   font-size: 14px;
   color: #009cae;
   position: relative;
 }
+.t_month td:hover{
+  background: #ff793d;
+}
 .t_month a{
-  color: #009cae;
+  color: #fff;
   text-decoration: none;
   display: block;
   height: 38px;
   line-height: 38px;
-  padding: 0 8px;
+  text-align: center;
+  font-size:18px;
 }
 .t_month a.disabled{
   color: #aaa;
@@ -1609,6 +1619,15 @@ position: absolute;
 }
 .t_month td.active{
   background-color: #ff793d;
+}
+.calendar_map{
+  background: image-url("calendar_map.jpg") no-repeat 0 0;
+  font-size:16px;
+  line-height:25px;
+  padding:0 0 5px 35px;
+  p{
+    margin-bottom:8px;
+  }
 }
 
 .apartments_body #orange_nav{
@@ -1624,12 +1643,21 @@ position: absolute;
   margin-top: 30px;
 }
 #cabinet #orange_nav{
-  margin: -40px 0 0 0;
+  margin: -25px 0 0 0;
   z-index: 40001;
 }
 .cabinet_form{
   width:785px;
   margin: 10px auto 0;
+  color: #696969;
+
+  .block_info{
+    font-size:12px;
+    border-top: 1px dotted #ccc;
+    padding-left:40px;
+    min-height:40px;
+    background: image-url("block_info.png") no-repeat 0 5px;
+  }
 
   #google_map{
     height:300px;
@@ -1642,10 +1670,17 @@ position: absolute;
     line-height:30px;
     padding-left:38px;
     background: #fff image-url("inputs_icons.png") no-repeat 0 0;
-    margin:5px 10px 0 0;
+    margin:5px 0 0 0;
   }
   .nmr {
     margin-right:0px;
+  }
+  .l_part, .r_part{
+    width:362px;
+    float:left;
+  }
+  .l_part{
+    margin-right:10px;
   }
   textarea{
     border:2px solid #009cae;
@@ -1691,6 +1726,24 @@ position: absolute;
     font-size:17px;
     cursor:pointer;
   }
+  .ch_b{
+    .check_ico{
+      width:45px;
+    }
+    .check_label{
+      width:290px;
+      color: #696969;
+      border-bottom:1px dotted #c1c1c1;
+      line-height:35px;
+    }
+    .check_input{
+      width:25px;
+      padding-top:8px;
+    }
+  }
+  .ch_b > div{
+    float:left;
+  }
 }
 hr{
   border-top: 1px solid #c1c1c1;
@@ -1698,9 +1751,10 @@ hr{
   margin: 7px 0;
 }
 #orange_nav.edit_nav{
-  margin-top:-43px;
+  margin-top:-25px;
   z-index: 40001;
 }
 .red_border{
   border-color:red !important;
 }
+
