@@ -1,0 +1,19 @@
+= form_for @apartament ,:url => params[:action] = cabinet_house_path(@apartament)  ,:html=>{:class=>"front_validate_form jNice" , :multipart => true} do |f|
+	
+
+	.cab_input_bg
+		= f.text_field "name_#{locale.to_s}", :placeholder => t("cabinet.title"), :class=>"house_ico wide_cab_input"
+		= f.text_area "description_#{locale.to_s}", :placeholder => t("cabinet.description")
+
+	.cab_input_bg
+		.l_part
+			= f.text_field :rooms , :placeholder => t("cabinet.bedrooms"), :class=>"rooms_ico number"
+		.r_part
+			= f.text_field :showers , :placeholder => t("cabinet.bathrooms"), :class=>"showers_ico number"
+		.clear
+
+	%hr
+	.clear
+	%input{ :type => "hidden", :name=>"step", :value => "#{@step}"}
+	= f.submit t("cabinet.save"), :class=>"cabinet_submit"
+	.clear
