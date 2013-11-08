@@ -1029,7 +1029,7 @@ color: #696969!important;
 .cab_filter.filter_calendar{
   background: #009cae image-url("filtr_2.jpg") 2px 2px no-repeat;
 }
-a.item{
+a.item, div.item{
   display:block;
   float:left;
   position:relative;
@@ -1093,6 +1093,7 @@ a.item{
       background: #009cae image-url("more_icons.png") 50% -816px no-repeat;
     }
     .edit_ico{
+      cursor:pointer;
       background: #009cae image-url("edit_ico.png") 7px 7px no-repeat;
     }
     .edit_ico:hover, .edit_ico.act{
@@ -1717,7 +1718,7 @@ position: absolute;
   .cabinet_submit{
     background: #ff793d;
     color:#fff;
-    line-height:30px;
+    line-height:37px;
     padding:0 30px;
     border:none;
     width:auto;
@@ -1761,4 +1762,23 @@ hr{
   cursor:default;
   opacity:0.7;
 }
-
+div.item.item_loader{
+  background: image-url("loading.gif") no-repeat 50% 50%;
+}
+#cabinetDropzone{
+  width:0px;
+  height:0px;
+  border: none;
+  padding:0;
+  overflow:hidden;
+  margin:0px;
+}
+#call_uploder{
+  background: #009cae image-url("download_ico.jpg") 2px 2px no-repeat;
+  padding: 0 25px 0 50px;
+  line-height: 37px;
+  width:auto;
+  float: left;
+  color:#fff;
+  cursor: pointer;
+}

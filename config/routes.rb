@@ -46,6 +46,8 @@ scope "(:locale)", :locale => /en|ru/ do
     post "index/filter",  to: "houses#houses_filter"
     get "index/offers",  to: "houses#offers"
     # get ':controller/offers'
+    post "houses/:id/upload_photos" ,  to: "houses#upload_photos"
+    get "houses/:id/delete_photo" ,  to: "houses#delete_photo"
     
    end
 

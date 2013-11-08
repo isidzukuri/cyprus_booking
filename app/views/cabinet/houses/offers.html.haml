@@ -5,7 +5,7 @@
 	.clear
 	.bookings_list.offers_list
 		- @offers.each do |b|
-			%a.item{:href=>"/cabinet/houses/#{b.id}/edit?step=address"}
+			%div.item
 				%div{:class=>"item_status edit_ico"}
 				%img{:src => "#{b.first_img}"}
 				.item_info
@@ -16,8 +16,8 @@
 				.filters_select
 					.um_pointer
 					.um_wrap
-						%b{:href=>"#", :class=>"by_ico_edit"} #{t("cabinet.edit")}
-						%b{:href=>"#", :class=>"by_ico_delete"} #{t("cabinet.remove")}
+						%a{:href=>"#{cabinet_house_path(b)}/edit?step=address", :class=>"by_ico_edit standart_link"} #{t("cabinet.edit")}
+						= link_to t("cabinet.remove"), cabinet_house_path(b), :method => :delete, :class=>"by_ico_delete standart_link"
 		%a.item.add_offer{:href=>"/cabinet/#{@service}/new", :title => t("cabinet.add")}
 		.clear
 	=render "cabinet/cabinet_orange_services"

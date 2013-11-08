@@ -1,7 +1,4 @@
 #orange_nav.edit_nav
-	%a{:href=>"#{@link_base}/edit?step=photos", :class=>"#{@step == 'photos'? 'act' : ''} #{@link_base.present? ? '' : 'disabled_link'}"} #{t("cabinet.photos")}
-	%a{:href=>"#{@link_base}/edit?step=details", :class=>"#{@step == 'details'? 'act' : ''} #{@link_base.present? ? '' : 'disabled_link'}"} #{t("cabinet.details")}
-	%a{:href=>"#{@link_base}/edit?step=price", :class=>"#{@step == 'price'? 'act' : ''} #{@link_base.present? ? '' : 'disabled_link'}"} #{t("cabinet.calendar_n_price")}
-	%a{:href=>"#{@link_base}/edit?step=facilities", :class=>"#{@step == 'facilities'? 'act' : ''} #{@link_base.present? ? '' : 'disabled_link'}"} #{t("cabinet.facilities")}
-	%a{:href=>"#{@link_base}/edit?step=address", :class=>"#{@step == 'address'? 'act' : ''} #{@link_base.present? ? '' : 'disabled_link'}"} #{t("cabinet.address")}
+	- @steps.reverse.each do |s|
+		%a{:href=>"#{@link_base}/edit?step=#{s}", :class=>"#{@step == s ? 'act' : ''} #{@link_base.present? ? '' : 'disabled_link'}"} #{t("cabinet.#{s}")}
 	.clear

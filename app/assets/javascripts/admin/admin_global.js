@@ -10,6 +10,7 @@ $(window).load(function(){
 });
 
 $(document).ready(function(){
+	if($('#adminDropzone').length)
 	Dropzone.options.adminDropzone = {
 		headers: {"X-CSRF-Token" : $('meta[name="csrf-token"]').attr('content')},
 		paramName: "one_photo", // The name that will be used to transfer the file

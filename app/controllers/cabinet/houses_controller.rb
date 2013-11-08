@@ -64,10 +64,21 @@ class Cabinet::HousesController < UserController
 
  	def edit
  		@step = params[:step]
+ 		@title = t("cabinet.#{@step}")
 		@apartament = House.find(params[:id])
 		@facilities = Facility.where("active = 1").map{|f| [f.name_ru,f.id]}
 		@nearbies   = Nearby.all.map{|f| [f.name_ru,f.id]}
 		@link_base = cabinet_house_path(@apartament)
+	end
+
+	def delete
+		abort
+		@apartament = House.find(params[:id])
+		@apartament.destroy
+		respond_to do |format|
+		  format.html { redirect_to "/cabinet/index/offers" }
+		  format.xml  { head :ok }
+		end
 	end
 
 	def update
@@ -96,6 +107,21 @@ class Cabinet::HousesController < UserController
 		else
 			abort
 		end
+	end
+
+	def upload_photos		
+		@photo = Photo.new()
+		@photo.house_id = params[:id]
+		@photo.file = params[:one_photo]
+		
+		render :json => {:saved => @photo.save, :id => @photo.id, :path => @photo.file.url(:cabinet)}.to_json
+	end
+
+	def delete_photo
+		@photo = Photo.find(params[:id])
+		@photo.file.destroy
+		@photo.delete
+		render :text => @photo.delete
 	end
 
 	

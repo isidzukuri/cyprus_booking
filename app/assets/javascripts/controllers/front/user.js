@@ -4,6 +4,7 @@ $(window).load(function(){
 	$('.b_calendar').attachCalendarController();
 	set_blocks_position();
 	init_city_autocomplete();
+	if($(".cab_photos_list").length == 0)
 	$(".cabinet_form").mCustomScrollbar({
 	  advanced: {
 	    updateOnContentResize: true,
@@ -47,11 +48,13 @@ $(window).load(function(){
     });
 
     $('.filters_select a').mousedown(function(){
-		related = $(this).parents('.filters_select').attr('related');
-		$('[name='+related+'_value]').val($(this).attr('by'));
-		$('[name='+related+']').val($(this).text()).trigger('change');	
-		$(this).parents('.filters_select').toggleClass("shown").hide();	
-		return false;
+    	if(!$(this).hasClass('standart_link')){
+			related = $(this).parents('.filters_select').attr('related');
+			$('[name='+related+'_value]').val($(this).attr('by'));
+			$('[name='+related+']').val($(this).text()).trigger('change');	
+			$(this).parents('.filters_select').toggleClass("shown").hide();	
+			return false;
+		}
 	});
 
     $('.filters_select').mouseleave(function(){
@@ -96,19 +99,10 @@ $(window).load(function(){
 		  type:"POST",
 		  success:function(response){
 		  	items_container.empty().append(response.html);
-		  	$('.bookings_list').mCustomScrollbar("destroy");
-		  	$(".bookings_list").mCustomScrollbar();
+		  	reinitScrollbar();
 		  }
 		});
 	});
-
-
-	$('#cabinet .edit_ico').click(function(){
-		drop = $(this).parent().find('.filters_select');
-		drop.show();
-		drop.parent().mouseleave(function(){drop.hide()});
-	});
-
 
 
 	attach_filter_input();
@@ -123,6 +117,43 @@ $(window).load(function(){
 		$(this).removeClass("red_border");
 	});
 
+	init_clicks();
+
+});
+
+$(document).ready(function(){
+
+	$('#call_uploder').click(function(){
+		$('#cabinetDropzone').click();
+	});
+	
+	if($('#cabinetDropzone').length)
+	Dropzone.options.cabinetDropzone = {
+		headers: {"X-CSRF-Token" : $('meta[name="csrf-token"]').attr('content')},
+		paramName: "one_photo", // The name that will be used to transfer the file
+		parallelUploads:10,
+		init: function() {
+			this_dz = this;
+			this.on("sending", function(file, xhr, formData) { 
+				// $('input[type=submit]').hide();
+				$('.mCSB_container').append('<div class="item_loader item"></div>');
+				reinitScrollbar();
+			});
+			this.on("success", function(file, response) {
+				$('input[type=submit]').show();
+				if(response.saved == true){
+					$('.item_loader').first().remove();
+					item_html = '<div class="item"><div class="item_status edit_ico"></div> <img src="'+response.path+'"> <div class="filters_select"> <div class="um_pointer"></div> <div class="um_wrap"> <a class="by_ico_edit standart_link" href="/ru/cabinet/houses/'+response.id+'/edit?step=address">Удалить</a> </div> </div> </div>'
+					$('.mCSB_container').append(item_html);
+					init_clicks();
+				}else{
+					alert('[upload error]')
+					console.error(response)
+				}
+				
+			});
+		}
+	}
 });
 
 $(window).resize(function(){ 
@@ -214,6 +245,30 @@ function init_city_autocomplete() {
 	  return $(this).data("autocomplete")._renderItem = function(ul, item) {
 	    return $("<li></li>").data("item.autocomplete", item).append("<a><strong>" + item.name_ru + "</strong>  " + item.country + "</a>").appendTo(ul);
 	  };
+	});
+}
+
+function reinitScrollbar(){
+	$('.bookings_list').mCustomScrollbar("destroy");
+	$(".bookings_list").mCustomScrollbar();
+}
+
+function init_clicks(){
+
+	$('#cabinet .edit_ico').click(function(){
+		drop = $(this).parent().find('.filters_select');
+		drop.show();
+		drop.parent().mouseleave(function(){drop.hide()});
+	});
+
+	$('.delete_photo').click(function(){
+		$.ajax({
+		  url: $(this).attr('href'),
+		  contentType: "application/json;",
+		  dataType: "json"
+		});
+		$(this).parents('.item').remove();
+		return false;
 	});
 }
 
