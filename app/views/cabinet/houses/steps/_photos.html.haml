@@ -1,0 +1,9 @@
+= form_for @apartament ,:url => params[:action] = cabinet_house_path(@apartament)  ,:html=>{:class=>"front_validate_form jNice" , :multipart => true} do |f|
+	
+	= f.hidden_field :city_id
+	
+	%hr
+	.clear
+	%input{ :type => "hidden", :name=>"step", :value => "#{@step}"}
+	= f.submit t("cabinet.save"), :class=>"cabinet_submit"
+	.clear

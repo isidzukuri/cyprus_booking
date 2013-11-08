@@ -14,7 +14,7 @@ class House < ActiveRecord::Base
   has_many :ratings
   has_many :characteristics, :through => :ratings
 
-
+  validates_presence_of :city_id, :full_address, :house_number, :street
 
   def concerted_price total
     Exchange.convert(self.currency.title, $currency) * total
@@ -45,6 +45,10 @@ class House < ActiveRecord::Base
 
   def first_img
     return self.photos.present? ? self.photos.first.file.url(:cabinet) : ''
+  end
+
+  def city_name
+    return self.city["name_#{I18n.locale}"]
   end
 
   def to_search search

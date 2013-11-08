@@ -1,0 +1,20 @@
+= form_for @apartament ,:url => params[:action] = cabinet_house_path(@apartament)  ,:html=>{:class=>"front_validate_form jNice" , :multipart => true} do |f|
+	
+	.cab_input_bg
+		= f.text_field :cost , :class=>"number city_ico required" , :placeholder => t("cabinet.default_price")
+	%br
+	= render "shared/calendar_month"
+	.calendar_map
+		%p #{t("cabinet.free")}
+		%p #{t("cabinet.booked")}
+		%p #{t("cabinet.special_price")}
+	.block_info
+		#{t("cabinet.calendar_comment")}
+
+		 
+
+	%hr
+	.clear
+	%input{ :type => "hidden", :name=>"step", :value => "#{@step}"}
+	= f.submit t("cabinet.save"), :class=>"cabinet_submit"
+	.clear

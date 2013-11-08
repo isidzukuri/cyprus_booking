@@ -11,6 +11,10 @@ $(window).load(function(){
 	  }
 	});
 
+	$('.disabled_link').click(function(){
+		return false;
+	});
+
 	$.datepicker.setDefaults($.datepicker.regional['ru']);
 	$('[name=date_from]').datepicker({
       dateFormat: "dd.mm.yy",
@@ -102,7 +106,7 @@ $(window).load(function(){
 	$('#cabinet .edit_ico').click(function(){
 		drop = $(this).parent().find('.filters_select');
 		drop.show();
-		drop.parent().mouseleave(function(){drop.hide()})
+		drop.parent().mouseleave(function(){drop.hide()});
 	});
 
 
@@ -117,7 +121,7 @@ $(window).load(function(){
 
 	$("input").bind("keydown change", function() {
 		$(this).removeClass("red_border");
-	})
+	});
 
 });
 
@@ -195,7 +199,7 @@ function init_city_autocomplete() {
 	  select: function(event, ui) {
 	    var code_input, input, lat_lng, text;
 	    input = $(event.target);
-	    code_input = input.siblings('input[type=hidden]');
+	    code_input = input.parents(".jNiceInputWrapper").siblings('input[type=hidden]');
 	    text = ui.item.name_ru + ", " + ui.item.country;
 	    input.val(text);
 	    code_input.val(ui.item.id);

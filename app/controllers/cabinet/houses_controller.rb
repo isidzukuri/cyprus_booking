@@ -5,6 +5,7 @@ class Cabinet::HousesController < UserController
 		super
 		@currency = $currency.present? ? Currency.find_by_title($currency.to_s) : Currency.find_by_title('USD')
 		@service = 'houses'
+		@steps = ['address','facilities','price','details','photos']
 	end
 	
 	def index
@@ -39,14 +40,62 @@ class Cabinet::HousesController < UserController
 	end
 
 	def new
+		@link_base = ""
+		@step = "address"
 		@title = t("cabinet.new_add")
 		@apartament = House.new
 		@apartament.user_id = @apartament.user_id.present? ? @apartament.user_id : @current_user.id 
 		@cities = City.all.map{|city| [city.name_ru,city.id]}
-		# @currencies = Currency.all.map{|c| [c.title,c.id]}
 		@facilities = Facility.where("active = 1").map{|f| [f.name_ru,f.id,f.ico]} 
 		@nearbies = Nearby.all.map{|f| [f.name_ru,f.id,f.ico]} 
-		# @currency = Currency.find(1)
+	end
+
+	def create
+		@apartament = House.new(params[:house])
+		@apartament.active = 0
+		@apartament.currency_id = @currency.id
+		if @apartament.valid?
+			@apartament.save
+			redirect_to "#{cabinet_house_path(@apartament)}/edit?step=facilities"
+		else
+			abort
+		end
+ 	end
+
+ 	def edit
+ 		@step = params[:step]
+		@apartament = House.find(params[:id])
+		@facilities = Facility.where("active = 1").map{|f| [f.name_ru,f.id]}
+		@nearbies   = Nearby.all.map{|f| [f.name_ru,f.id]}
+		@link_base = cabinet_house_path(@apartament)
+	end
+
+	def update
+		next_step_id = @steps.index(params[:step]).to_i
+
+		@apartament = House.find(params[:id])
+		if(params[:house][:facilities].present? || params[:house][:nearbies].present?)
+			facilities_ids = params[:house][:facilities].keys unless !params[:house][:facilities].present?
+			nearbies_ids   = params[:house][:nearbies].present? ? params[:house][:nearbies].keys : [] 
+			params[:house].delete(:facilities)
+			params[:house].delete(:nearbies)
+			@apartament.facilities = Facility.find(facilities_ids) unless facilities_ids.nil?
+			@apartament.nearbies   = Nearby.find(nearbies_ids) unless facilities_ids.nil?
+		end
+		@apartament.update_attributes(params[:house])
+		
+		if @apartament.valid?
+			@apartament.save
+			# save_dependencies()
+			flash[:notice] = t("apartament.actions.changed")
+			if (@steps[next_step_id+1].present?)
+				redirect_to "#{cabinet_house_path(@apartament)}/edit?step=#{@steps[next_step_id+1]}"
+			else
+				redirect_to "/cabinet/index/offers"
+			end
+		else
+			abort
+		end
 	end
 
 	

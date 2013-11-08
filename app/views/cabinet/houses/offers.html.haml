@@ -5,7 +5,7 @@
 	.clear
 	.bookings_list.offers_list
 		- @offers.each do |b|
-			%a.item
+			%a.item{:href=>"/cabinet/houses/#{b.id}/edit?step=address"}
 				%div{:class=>"item_status edit_ico"}
 				%img{:src => "#{b.first_img}"}
 				.item_info
