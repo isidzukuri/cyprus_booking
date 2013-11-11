@@ -85,13 +85,15 @@ class Cabinet::HousesController < UserController
 		next_step_id = @steps.index(params[:step]).to_i
 
 		@apartament = House.find(params[:id])
-		if(params[:house][:facilities].present? || params[:house][:nearbies].present?)
-			facilities_ids = params[:house][:facilities].keys unless !params[:house][:facilities].present?
-			nearbies_ids   = params[:house][:nearbies].present? ? params[:house][:nearbies].keys : [] 
-			params[:house].delete(:facilities)
-			params[:house].delete(:nearbies)
-			@apartament.facilities = Facility.find(facilities_ids) unless facilities_ids.nil?
-			@apartament.nearbies   = Nearby.find(nearbies_ids) unless facilities_ids.nil?
+		if !params[:house].nil?
+			if(params[:house][:facilities].present? || params[:house][:nearbies].present?)
+				facilities_ids = params[:house][:facilities].keys unless !params[:house][:facilities].present?
+				nearbies_ids   = params[:house][:nearbies].present? ? params[:house][:nearbies].keys : [] 
+				params[:house].delete(:facilities)
+				params[:house].delete(:nearbies)
+				@apartament.facilities = Facility.find(facilities_ids) unless facilities_ids.nil?
+				@apartament.nearbies   = Nearby.find(nearbies_ids) unless facilities_ids.nil?
+			end
 		end
 		@apartament.update_attributes(params[:house])
 		
