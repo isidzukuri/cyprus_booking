@@ -7,7 +7,7 @@
       - @facilities.each do |fs|
         .ch_b 
           .check_ico
-            =image_tag "#{fs[2]}"
+            %img{:src=>fs[2]}
           .check_label
             = fs[0]
           .check_input
@@ -19,7 +19,7 @@
       - @nearbies.each do |fs|
         .ch_b 
           .check_ico
-            =image_tag "#{fs[2]}"
+            %img{:src=>fs[2]}
           .check_label
             = fs[0]
           .check_input
