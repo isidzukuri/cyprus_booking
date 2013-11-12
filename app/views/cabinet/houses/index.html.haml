@@ -1,21 +1,24 @@
-=render "shared/search_and_services_icons"
+=render "cabinet/cabinet_header"
 .clear	
 #cabinet
 	=render "header"
 	.clear
 	.bookings_list
+		- if @bookings.count < 1
+			%h2.nothing_found=t("cabinet.not_found")
 		- @bookings.each do |b|
 			%a.item
-				%img{:src => "#{b.first_img}"}
+				%img{:src => "#{b.first_img}",:style=>"width:300px"}
 				%div{:class=>"item_status status_ico_#{b.status}"}
 				.item_info
 					.item_petriod
 						%b="#{b.from} - #{b.to}"
 						%br
-						="#{b.address}"
+						= truncate b.address , :length=>25 , :omission=>"..."
 					.item_price
+						=t("cabinet.total_cost")
 						%b="#{b.show_total_cost}#{@currency.symbol}"
 						%br
-						=t("cabinet.total_cost")
+						
 					.clear
 		.clear

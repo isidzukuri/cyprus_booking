@@ -1,0 +1,40 @@
+= form_for @apartament ,:url => params[:action] =  cabinet_offer_path(@apartament)  ,:html=>{:class=>"front_validate_form jNice" , :multipart => true} do |f|
+	
+  %div 
+    .l_part
+      #{t("cabinet.facilities")}
+      %hr 
+      - @facilities.each do |fs|
+        .ch_b 
+          .check_ico
+            %img{:src=>fs[2]}
+          .check_label
+            = fs[0]
+          .check_input
+            = check_box_tag "house[facilities[#{fs[1]}]]", fs[1], @apartament.facilities.include?(Facility.find(fs[1]))
+          .clear 
+    .r_part
+      #{t("cabinet.nearbies")}
+      %hr 
+      - @nearbies.each do |fs|
+        .ch_b 
+          .check_ico
+            %img{:src=>fs[2]}
+          .check_label
+            = fs[0]
+          .check_input
+            = check_box_tag "house[nearbies[#{fs[1]}]]", fs[1], @apartament.nearbies.include?(Nearby.find(fs[1]))
+          .clear 
+			
+    .clear 
+      %br
+      %br
+    .block_info
+      #{t("cabinet.select_nearbies_and_facilities")}
+
+
+    %hr
+    .clear
+    %input{ :type => "hidden", :name=>"step", :value => "#{@step}"}
+    = f.submit t("cabinet.save"), :class=>"cabinet_submit"
+    .clear

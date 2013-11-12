@@ -78,11 +78,22 @@ $.Controller "ApartmentItemController",
   	@enable_left = type
   set_right:(type)->
   	@enable_right = type
+  add_to_wish: (el) ->
+    $.ajax
+      url: "/apartments/to_wish",
+      type: "get"
+      success: (resp) ->
+        if resp.success
+          el.addClass("disable")
+        else
+          alert("error")
 
   ".buttons a -> click":(ev)->
     el = $(ev.target)
     if el.hasClass("wish")
       ev.preventDefault()
+      return if el.hasClass("disable")
       if window.logged_in
+        @add_to_wish(el)
       else
         window.location.href = "/login" 

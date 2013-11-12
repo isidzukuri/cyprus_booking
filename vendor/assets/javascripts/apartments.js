@@ -1,6 +1,6 @@
 $(window).load(function(){
 	if($('#map_apartments').length){
-		$('#map_apartments').height($(window).height() - $('#header').height())
+		$('#map_apartments').height($(window).height() - $("header").height() - $("footer").height() + 50)
 		initialize();
 	}
 });

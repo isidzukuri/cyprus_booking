@@ -41,11 +41,14 @@ scope "(:locale)", :locale => /en|ru/ do
    end
 
    namespace :cabinet do
-    resources "houses"
+    resources :houses
+    resources :offers
+    resources :messages
+    resources :whishes
+
+    
     resources "profile", :only=>[:show]
     post "index/filter",  to: "houses#houses_filter"
-    get "index/offers",  to: "houses#offers"
-    # get ':controller/offers'
     post "houses/:id/upload_photos" ,  to: "houses#upload_photos"
     get "houses/:id/delete_photo" ,  to: "houses#delete_photo"
     
@@ -55,7 +58,9 @@ scope "(:locale)", :locale => /en|ru/ do
      root :to => "home#index"
      match "apartments", to: "apartments#index", via: [:get]
      match "apartments", to: "apartments#search", via: [:post]
+     match "apartments/booking/:id", to: "apartments#booking"
      post "apartments/show_index"
+     get "apartments/to_wish"
      get  "apartments/show/:id", to: "apartments#show"
      match "change_currency", to: "home#change_currency"
 

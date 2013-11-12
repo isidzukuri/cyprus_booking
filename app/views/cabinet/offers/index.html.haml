@@ -1,0 +1,18 @@
+=render "cabinet/cabinet_header"
+.clear	
+#cabinet
+	.clear
+	.bookings_list.offers_list
+		- @offers.each do |b|
+			%div.item
+				%div{:class=>"item_status edit_ico"}
+				%img{:src => "#{b.first_img}",:style=>"width:300px"}
+				.item_info
+					.item_petriod
+						%br
+						="#{b.full_address}"
+					.clear
+				.filters_select
+					.um_pointer
+
+	=render "cabinet/cabinet_orange_services"

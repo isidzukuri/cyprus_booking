@@ -12,10 +12,8 @@
         = f.text_field :curs , :class=>"span9" , :required=>true
 
       .span6.field-box
-        = f.label :ico , "#{t("admin.facilities.ico")}"  
-        -if @facility.ico.present?
-          =image_tag "#{@facility.ico.url(:small)}"
-        %input(type="file" name="ico")
+        = f.label :symbol , "Символ"  
+        = f.text_field :symbol , :class=>"span9" , :required=>true
       
       
       .span11.field-box.actions

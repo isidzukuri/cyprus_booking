@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   has_many :rewievs
   has_many :received_messages, :foreign_key => "receiver", :class_name => "Message"
   has_many :houses
+  has_many :wishes
 
 
   validates :first_name, :presence => {:message=>I18n.t("user.errors.presense")}, :length => {:minimum => 3, :maximum => 254 ,:message=>I18n.t("user.errors.minimum_chars")}
@@ -15,7 +16,8 @@ class User < ActiveRecord::Base
   
   has_attached_file :file, 
   :url  => "/system/avatars/:id/:style.:extension",
-  :path => ":rails_root/public/system/avatars/:id/:style.:extension",    
+  :path => ":rails_root/public/system/avatars/:id/:style.:extension",  
+   :default_url => "/system/missings/avatar.png",  
   :styles => {
       :original => ['1920x1680>', :jpg],
       :small    => ['220x100',   :jpg],
@@ -23,6 +25,7 @@ class User < ActiveRecord::Base
       :large    => ['500x500>',   :jpg],
       :cabinet  => ['100x100',   :jpg],
     }
+
   def modules
   	modules = []
   	self.roles.each do |role|
@@ -45,6 +48,10 @@ class User < ActiveRecord::Base
 
   def address
     "#{self.city}, #{self.street},#{self.building}"
+  end
+
+  def apart_in_wish? apartment
+    self.wishes.map{|w| w.house_id == apartment.id ? true : nil}.compact.count > 0
   end
 
 end

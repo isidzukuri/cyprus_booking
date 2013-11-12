@@ -1,16 +1,2 @@
-=render "cabinet/cabinet_header"
-#cab_filters
-	%input{:type=>"hidden", :name=>"filter_action", :value=>"index/filter"}
-	%input.cab_filter.filter_by.custom_dropdown{:name => "filter_by", :value => "filter by status"}
-	%input{:name => "filter_by_value", :type => "hidden"}
-	%input.cab_filter.filter_calendar{:name => "date_from", :value => "#{(Time.now - 2592000).strftime('%d.%m.%Y')}"}
-	%input.cab_filter.filter_calendar{:name => "date_to", :value => "#{Time.now.strftime('%d.%m.%Y') }"}
-	.clear
-	.filters_select{:related=>"filter_by"}
-		.um_pointer
-		.um_wrap
-			%a{:by=>"1,2,3", :class=>"by_ico_0"} All
-			%a{:by=>"1", :class=>"by_ico_1"} Unpayed
-			%a{:by=>"2", :class=>"by_ico_2"} Payed
-			%a{:by=>"3", :class=>"by_ico_3"} Canceled
+=#render "cabinet/houses/filter"
 =render "cabinet/cabinet_orange_services"

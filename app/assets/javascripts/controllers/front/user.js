@@ -1,16 +1,10 @@
 $(window).load(function(){ 
 
 
-	$('.b_calendar').attachCalendarController();
+	$('.cabinet_form .b_calendar').attachCalendarController();
 	set_blocks_position();
 	init_city_autocomplete();
 	if($(".cab_photos_list").length == 0)
-	$(".cabinet_form").mCustomScrollbar({
-	  advanced: {
-	    updateOnContentResize: true,
-	    updateOnBrowserResize: true
-	  }
-	});
 
 	$('.disabled_link').click(function(){
 		return false;
@@ -67,20 +61,17 @@ $(window).load(function(){
 
 
 	user_menu = $('#header_user_menu');
-	$(".header_right li.icon_guests a").click(function(){
-		if(!$(this).hasClass('login')){
+	$(".header_right a.user").click(function(){
 			if(!user_menu.hasClass('shown')){
-				user_menu.stop().animate({top: 30 }, 300, function(){$(this).toggleClass("shown")});
+				user_menu.stop().animate({top: 25 }, 300, function(){$(this).toggleClass("shown")});
 			}else{
 		    	user_menu.stop().animate({top: -400 }, 300, function(){$(this).toggleClass("shown")});
 			}
+			$(".currencies_block").hide();
 			return false;
-		}
 	});
 
-	user_menu.mouseleave(function(){
-		$(this).stop().animate({top: -400 }, 300, function(){$(this).toggleClass("shown")});
-	});
+
 
 
 	$('.cab_filter').change(function(){
@@ -99,7 +90,6 @@ $(window).load(function(){
 		  type:"POST",
 		  success:function(response){
 		  	items_container.empty().append(response.html);
-		  	reinitScrollbar();
 		  }
 		});
 	});
@@ -109,8 +99,20 @@ $(window).load(function(){
 
 	$('.front_validate_form').validate({
 	  errorPlacement: function(error, element) { 
-	    element.addClass("red_border");
-	  }
+	   
+	  },
+      highlight:function (el, e_cls){
+        $(el).addClass(e_cls)
+      },
+      unhighlight:function (el, e_cls){
+        $(el).removeClass(e_cls)
+      },
+      ignore: "",
+      onkeyup: false,
+      onfocusout: false,
+      focusCleanup: true,
+      focusInvalid: false,
+      minlength: 1,
 	});
 
 	$("input").bind("keydown change", function() {
@@ -136,15 +138,14 @@ $(document).ready(function(){
 			this_dz = this;
 			this.on("sending", function(file, xhr, formData) { 
 				// $('input[type=submit]').hide();
-				$('.mCSB_container').append('<div class="item_loader item"></div>');
-				reinitScrollbar();
+				$('.bookings_list').append('<div class="item_loader item"></div>');
 			});
 			this.on("success", function(file, response) {
 				$('input[type=submit]').show();
 				if(response.saved == true){
 					$('.item_loader').first().remove();
-					item_html = '<div class="item"><div class="item_status edit_ico"></div> <img src="'+response.path+'"> <div class="filters_select"> <div class="um_pointer"></div> <div class="um_wrap"> <a class="by_ico_edit standart_link" href="/ru/cabinet/houses/'+response.id+'/edit?step=address">Удалить</a> </div> </div> </div>'
-					$('.mCSB_container').append(item_html);
+					item_html = '<div class="item"><div class="item_status edit_ico "></div> <img src="'+response.path+'"> <div class="filters_select"> <div class="um_pointer"></div> <div class="um_wrap"> <a class="by_ico_edit standart_link delete_photo" href="/ru/cabinet/houses/'+response.id+'/edit?step=address">Удалить</a> </div> </div> </div>'
+					$('.bookings_list').append(item_html);
 					init_clicks();
 				}else{
 					alert('[upload error]')
@@ -153,7 +154,7 @@ $(document).ready(function(){
 				
 			});
 		}
-	}
+	} 
 });
 
 $(window).resize(function(){ 
@@ -171,42 +172,15 @@ function attach_filter_input(){
 
 function set_blocks_position(){
 	$('.bookings_list').removeAttr('style');
-	$('#cab_filters').removeAttr('style');
-	if($('.bookings_list .item').length < 1){
-		$('#cab_filters').hide();
-		$('.bookings_list').css('overflow','hidden');	
-	} 
-	// $('.cab_filter, .bookings_list .item').css('margin-left',0);
 
 	list_w = $('.bookings_list').width();
 	item_w = $('.bookings_list .item').width() + parseInt($('.bookings_list .item').css('margin-right'));
 	items_in_line = parseInt(list_w/item_w); 
+	console.log(item_w)
 	ml = parseInt((list_w - item_w*items_in_line)/2);
 	// $('.bookings_list .item:nth-child('+items_in_line+'n+1)').css('margin-left',ml);
-	$('.bookings_list').css('padding-left',ml).width($('.bookings_list').width()-ml);
-
-	// if(parseInt($('.cab_filter').outerWidth())*$('.cab_filter').length < parseInt($('#cab_filters').width())){
-	// 	// if(!ml){
-	// 	// 	list_w = $('#cab_filters').width();
-	// 	// 	item_w = $('.cab_filter').width() + parseInt($('.cab_filter').css('margin-right'));
-	// 	// 	items_in_line = parseInt(list_w/item_w); 
-	// 	// }
-	// 	// ml = parseInt((list_w - item_w*items_in_line)/2);
-	// 	// $('.cab_filter').eq(0).css('margin-left',ml);
-
-	// }else{
-	// 	// filter_m = (parseInt($('#cab_filters').width()) - parseInt($('.cab_filter').width()) )/2;
-	// 	// $('.cab_filter').css('margin-left',filter_m);
-	// }
-	$('#cab_filters').css('padding-left',ml).width($('#cab_filters').width()-ml);
-	$('article').height($(window).height() - $('header').height() - $('footer').height())
-	$('.bookings_list').height($('article').height() - $('.line').height()- $('.cabinet_header').height() - $('#cab_filters').height()- $('#orange_nav').height() - 80);
-	$('.user_profile, .cabinet_form').height($('article').height() - $('.line').height()- $('.cabinet_header').height()-80);
-
-	// $('.cabinet_form').height($('article').height() - $('.line').height()- $('.cabinet_header').height()-80);
-	
-	// $('#wrapper').height($(window).height())
-	
+	//$('.bookings_list').css('padding-left',ml)
+	$('.buttons_upload').css('padding-left',ml)
 }
 
 
@@ -246,11 +220,6 @@ function init_city_autocomplete() {
 	    return $("<li></li>").data("item.autocomplete", item).append("<a><strong>" + item.name_ru + "</strong>  " + item.country + "</a>").appendTo(ul);
 	  };
 	});
-}
-
-function reinitScrollbar(){
-	$('.bookings_list').mCustomScrollbar("destroy");
-	$(".bookings_list").mCustomScrollbar();
 }
 
 function init_clicks(){

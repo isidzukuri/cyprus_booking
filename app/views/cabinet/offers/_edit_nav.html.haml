@@ -1,0 +1,4 @@
+#orange_nav.edit_nav
+	- @steps.reverse.each do |s|
+		%a{:href=> @apartament.nil? ? "#{cabinet_offers_path}?step=#{s}" : "#{edit_cabinet_offer_path(@apartament)}?step=#{s}", :class=>"#{@step == s ? 'act' : ''} #{@link_base.present? ? '' : 'disabled_link'}"} #{t("cabinet.#{s}")}
+	.clear

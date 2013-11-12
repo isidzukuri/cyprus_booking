@@ -1,13 +1,34 @@
+set_article_height = ->
+  window.article_height = $(window).height() - $("header").height() - $("footer").height()
+  $("article").height(window.article_height + 50) ;
+
+$(window).resize ->
+  set_article_height();
+  ap_form = $("#apartments")
+  if(ap_form.size() > 0 )
+    ap_form.css("max-height",window.article_height - 40);
+    $('#apartments').mCustomScrollbar("destroy");
+    $('#apartments').mCustomScrollbar();
+    $("#apartments").mCustomScrollbar("scrollTo","top");
+  if($("#apartments_view").size() > 0 )
+    $("#apartments_view").mCustomScrollbar("destroy");
+    $("#apartments_view").mCustomScrollbar advanced:
+      updateOnContentResize: true
+    $("#apartments_view").css("left",$(window).width() - 480)
+  if($('#map_apartments').length)
+    $('#map_apartments').height($(window).height() - $("header").height() - $("footer").height() + 50)
+    initialize();
+  
+
+
+
 $(window).load ->
-  if($(".content").size() > 0 )
-    $(".content").mCustomScrollbar advanced:
-      updateOnContentResize: true,
-      updateOnBrowserResize:true 
-    $(".content").mCustomScrollbar("scrollTo","top")
-  #if($("#apartments").size() > 0 )
-    #$("#apartments").mCustomScrollbar advanced:
-     # updateOnContentResize: true
-   # $("#apartments").mCustomScrollbar("scrollTo","top")
+  set_article_height()
+  if($("#apartments").size() > 0 )
+    $("#apartments").css("max-height",window.article_height - 40);
+    $("#apartments").mCustomScrollbar advanced:
+      updateOnContentResize: true
+    $("#apartments").mCustomScrollbar("scrollTo","top")
   #if($("#apartments_view").size() > 0 )
    # $("#apartments_view").mCustomScrollbar advanced:
     #  updateOnContentResize: true
@@ -16,10 +37,10 @@ $(window).load ->
 
   if /map/.test(window.location.hash)
     $(".mCSB_container").css("position","static")
-  if($(".bookings_list").size() > 0 )
-    $(".bookings_list").mCustomScrollbar advanced:
-      updateOnContentResize: true,
-      updateOnBrowserResize:true 
+  #if($(".bookings_list").size() > 0 )
+    #$(".bookings_list").mCustomScrollbar advanced:
+     # updateOnContentResize: true,
+      #updateOnBrowserResize:true 
   
 
 $ ->
@@ -52,12 +73,14 @@ $ ->
   $(document).click (ev) ->
     if $(ev.target).parents(".header_right").size() < 1
       $(".currencies_block").hide() if $(".currencies_block").is(":visible")
-
+    if $(ev.target).parents("#header_user_menu").size() < 1
+      $("#header_user_menu").stop().animate top: -400 , 300, -> $(this).toggleClass "shown" if $("#header_user_menu").is(":visible")
 
   $(".currency").click (ev) ->
     ev.preventDefault()
     data = "currency=" + $(ev.target).text()
-    url  = $(ev.target).attr("href")
+    url  = $(ev.target).parent().attr("href")
+    console.log(url)
     $.ajax
       url: url 
       data: data
@@ -71,9 +94,6 @@ $ ->
     $(".currencies_block").hide()
     
     block = if  $(ev.target).hasClass("lang") then $(".currencies_block.langs") else $(".currencies_block.cur") 
-    left =   - (block.width() / 4) + 40
-    block.css "left",left  
-    block.find(".rectangle").css("left", (-left + 96)) unless  $(ev.target).hasClass("lang")
     $(".header_right ul:eq(0)").after block
 
     block.show()

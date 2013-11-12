@@ -1,0 +1,7 @@
+.clear	
+=render "cabinet/cabinet_header"
+#cabinet
+	.clear
+	.cabinet_form{:class=>@step}
+		=render "cabinet/offers/steps/#{@step}"
+=render "cabinet/offers/edit_nav"

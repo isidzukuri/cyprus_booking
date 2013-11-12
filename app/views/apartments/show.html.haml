@@ -1,9 +1,13 @@
-=render "shared/search_and_services_icons"
+
 #apartmnet_content{:'data-auto-controller'=>"ApartmentItemController"}
   .header_name
     %h2=@apartment.name
     .rating
       = rating_display
+    .buttons
+      = link_to "Book it" , "/apartments/booking/#{@apartment.id}"
+      = link_to "Add to whish list" , "#",:class=>"wish #{(logged_in? ? current_user.apart_in_wish?(@apartment) ? "disable" : '' : '')}"
+
   .content
     .photos
       .list
@@ -77,9 +81,7 @@
               %small=l(item.created_at,:format=>:short)
       #rules.tab
 
-  .buttons
-    = link_to "Book it" , "#"
-    = link_to "Add to whish list" , "#",:class=>"wish"
+
 
 
 #orange_nav{:'data-auto-controller'=>"ApartmentTabsController"}

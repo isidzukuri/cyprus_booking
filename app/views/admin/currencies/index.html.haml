@@ -31,8 +31,7 @@
               = hidden_field_tag :dir , @dir
               = t("admin.facilities.name")    
           %th.span2.sortable
-            %span.line
-              = t("admin.currencies.curs") 
+            %span.line Символ
           %th.span2.sortable
             %span.line
               = t("facility.actions.delete") 
@@ -43,7 +42,7 @@
           %tr{:class=>("active" if i == 0)}
             %td
               = link_to "#{facility.title}" , "/admin/currencies/#{facility.id}/edit" , :class=>"name"
-            %td=facility.curs
+            %td=facility.symbol
             %td
               = link_to t("facility.actions.delete")  , "/admin/currencies/delete/#{facility.id}" , :class=>"name"
   .pagination.pull-right 

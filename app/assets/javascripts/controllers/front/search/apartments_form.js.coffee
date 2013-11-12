@@ -1,6 +1,7 @@
 #= require ../../form
 $.Controller "ApartmentsController", "FormController",
   init: ->
+    $("html").css("min-height","742px")
     @super_call("init")
     @element.find(".icon_date input").datepicker()
     @init_autocomplete()
@@ -34,7 +35,7 @@ $.Controller "ApartmentsController", "FormController",
   ".adv_but -> click":(ev) ->
     ev.preventDefault()
     if $(ev.target).hasClass("active") then $(ev.target).removeClass("active") else $(ev.target).addClass("active")
-    @element.find(".advanced").slideToggle()
+    @element.find(".advanced").toggle()
 
   ".search_btn -> click":(ev) ->
     ev.preventDefault()
@@ -85,17 +86,17 @@ $.Controller "ApartmentsController", "FormController",
       data: "id=" + data.id
       dataType: "json"
       success: (resp) ->
-        $("#apartments_view").remove()
+        $("#apartments_view").remove();
+        w = $(window).width() 
         $(".map").append(resp.html)
+        $("#apartments_view").css("left",w)
+        $("#apartments_view").animate left:"-=480px" , 300, ->
+        if($("#apartments_view").size() > 0 )
+          $("#apartments_view").mCustomScrollbar advanced:
+            updateOnContentResize: true
         url = ""
         $(".rating").rating url ,
           curvalue: 3
-        map_height  = $("footer").offset().top - $("#map_apartments").offset().top
-        view_height = $("#apartments_view").height()
-        offset = view_height - map_height
-        console.log(view_height)
-        if offset > 0
-          $("footer").css("bottom","-" + offset + "px")
   init_autocomplete: ->
     @element.find("#apartment_search_city").autocomplete
       source: '/apartments/complete',
@@ -107,8 +108,9 @@ $.Controller "ApartmentsController", "FormController",
         G_map.setZoom(9)
       minLength: 2,
       open: ->
+        console.log($(".ui-menu-item:visible").length)
         if $(".ui-menu-item:visible").length == 1
-          $($(this).data('autocomplete').menu.active).find('a:visible').trigger('click');
+          $(".ui-menu-item:visible").trigger('click');
       select: (event, ui) =>
         input      = $(event.target)
         code_input = input.siblings('input[type=hidden]')

@@ -65,6 +65,16 @@ class ApartmentsController < ApplicationController
 		render :json  => {:html=>render_to_string( "apartments/_min_view", :layout => false)}
 	end
 
+	def to_wish
+	  ap = House.find(request.referer.split("/").last.to_i)
+	  json = {:succes=>false}
+	  unless current_user.apart_in_wish? ap
+	  	Wish.create(:house_id=>ap.id,:user_id=>current_user.id)
+	  	json = {:success=>true}
+	  end
+	  render :json => json
+	end
+
 	def show 
 	  @apartment = House.find(params[:id])
 	end

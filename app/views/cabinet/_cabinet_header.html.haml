@@ -1,9 +1,11 @@
 .cabinet_header
-	%h2=@title
-	%nav#cab_nav
-		%a{:href=>"/cabinet/", :class=>"wishlist_ico"}
-		%a{:href=>"/cabinet/index/offers", :class=>"y_offers_ico #{['offers'].include?(controller.action_name) || @step.present? ? 'act' : ''}"}
-		%a{:href=>"/cabinet/", :class=>"messages_ico"}
-		%a{:href=>"/cabinet/profile/show", :class=>"profile_ico"}
-		%a{:href=>"/cabinet/houses", :class=>"dashboard_ico #{['index', 'houses','hotels','cars','yachts'].include?(controller.action_name) ? 'act' : ''}"}
-	.clear
+  %h2
+    =@title
+
+  %nav#cab_nav
+    %a.wishlist_ico{:href=>cabinet_whishes_path,   :class  => params[:controller] =~ /whishes/ ? "act" : ""}
+    %a.y_offers_ico{:href=>cabinet_offers_path,    :class  => params[:controller] =~ /offers/ ? "act" : ""}
+    %a.messages_ico{:href=>cabinet_messages_path,  :class  => params[:controller] =~ /messages/ ? "act" : ""}
+    %a.profile_ico{:href=>"/cabinet/profile/show", :class  => params[:controller] =~ /profile/ ? "act" : ""}
+    %a.dashboard_ico{:href=>cabinet_houses_path,   :class  => params[:controller] =~ /houses/ ? "act" : ""}
+  .clear

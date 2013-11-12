@@ -1,0 +1,34 @@
+= form_for @apartament ,:url => params[:action] = cabinet_offer_path(@apartament)  ,:html=>{:class=>"front_validate_form jNice" , :multipart => true} do |f|
+	
+	= f.hidden_field :city_id
+
+	
+	.clear
+	.bookings_list.offers_list.cab_photos_list
+		- @apartament.photos.each do |f|
+			%div.item
+				%div{:class=>"item_status edit_ico"}
+				%img{:src => "#{f.file.url(:cabinet)}"}
+				/ .item_info
+				/ 	.item_petriod
+				/ 		%br
+				/ 		/ ="#{f.full_address}"
+				/ 	.clear
+				.filters_select
+					.um_pointer
+					.um_wrap
+						/ %a{:href=>"#{cabinet_house_path(f)}/edit?step=address", :class=>"by_ico_edit standart_link"} #{t("cabinet.edit")}
+						%a{:href=>"#{cabinet_house_path(f)}/delete_photo", :class=>"by_ico_edit standart_link delete_photo"} #{t("cabinet.remove")}
+
+	#cabinetDropzone.dropzone{:action => "/cabinet/houses/#{@apartament.id}/upload_photos"}    
+	
+	
+	.clear
+	.buttons_upload
+		%input{ :type => "hidden", :name=>"step", :value => "#{@step}"}
+		#call_uploder
+			= t("cabinet.upload")
+		= f.submit t("cabinet.save"), :class=>"cabinet_submit"
+
+	.clear
+	%hr

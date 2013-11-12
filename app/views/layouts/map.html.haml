@@ -21,10 +21,11 @@
             %a{href: "/"}
               = image_tag "logo.png", :height=>35
         =render "shared/header_right"
-        =render "shared/search_and_services_icons"
+      =render "shared/search_and_services_icons"
 
       = yield
-      #map_apartments
+      %article
+        #map_apartments
     = render "shared/footer"  
 :javascript
   window.type = "#{params[:controller]}"

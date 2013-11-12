@@ -1,21 +1,28 @@
 .header_right
   %ul
-    %li.icon_search
+    %li
       %a.lang{:href=>"#"}
         = I18n.locale.upcase
         = render "shared/list/locale"
-    %li.icon_money
+    %li
       %a.cur{:href=>"#"}
         = $currency.upcase
       = render "shared/list/currency"
-    %li.icon_guests
-      %a{:href=>(logged_in? ? "/user" : "/login"), :class=>(logged_in? ? "" : "login")}=logged_in? ? current_user.fio : "Login".upcase
+    %li
+      %a{:href=>(logged_in? ? "/user" : "/login"), :class=>(logged_in? ? "user" : "login")}
+        =logged_in? ? current_user.fio : "Login".upcase
+        - if logged_in?
+          = image_tag current_user.file(:cabinet) ,:size=>"20x20"
+        - else
+          - if params[:action] =~ /login/
+            %em.rectangle_v
 
   #header_user_menu
     #um_pointer
     #um_wrap
-      %a{:href=>"/cabinet/houses", :class=>"dashboard_ico"} Dashboard
-      %a{:href=>"/cabinet/profile/show", :class=>"profile_ico"} Profile
-      %a{:href=>"/cabinet/", :class=>"messages_ico"} Messages
-      %a{:href=>"/cabinet/", :class=>"y_offers_ico"} Your offers
-      %a{:href=>"/cabinet/", :class=>"wishlist_ico"} Wishlist
+      %a.dashboard_ico{:href=>cabinet_houses_path} Dashboard
+      %a.profile_ico{:href=>"/cabinet/profile/show"} Profile
+      %a.messages_ico{:href=>cabinet_messages_path} Messages
+      %a.y_offers_ico{:href=>cabinet_offers_path} Your offers
+      %a.wishlist_ico{:href=>cabinet_whishes_path} Wishlist
+      %a.logout{:href=>"/logout",:style=>"background: none!important;"} Logout

@@ -1,18 +1,16 @@
 - @bookings.each do |b|
 	%a.item
-		%img{:src => "#{b.first_img}",:style=>"width:300px"}
+		%img{:src => "#{b.first_img}"}
 		%div{:class=>"item_status status_ico_#{b.status}"}
 		.item_info
 			.item_petriod
 				%b="#{b.from} - #{b.to}"
 				%br
-				= truncate b.address , :length=>25 , :omission=>"..."
+				="#{b.address}"
 			.item_price
-			    =t("cabinet.total_cost")
-			    %br
 				%b="#{b.show_total_cost}#{@currency.symbol}"
-				
-				
+				%br
+				=t("cabinet.total_cost")
 			.clear
 - if !@bookings.present?
 	%h2=t("cabinet.not_found")

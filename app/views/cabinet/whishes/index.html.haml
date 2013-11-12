@@ -1,0 +1,20 @@
+=render "cabinet/cabinet_header"
+.clear	
+#cabinet
+	.clear
+	.bookings_list
+		- if @whishes.count < 1
+			%h2.nothing_found=t("cabinet.not_found")
+		- @whishes.each do |b|
+			%a.item{:href=>"/#{I18n.locale}/apartments/show/#{b.house_id}#description"}
+				%img{:src => "#{b.house.first_img}",:style=>"width:300px"}
+				.item_info
+					.item_petriod
+						= truncate b.house.address , :length=>25 , :omission=>"..."
+					.item_price
+						=t("cabinet.total_cost")
+						%b="#{b.house.default_cost_string}"
+						%br
+						
+					.clear
+		.clear

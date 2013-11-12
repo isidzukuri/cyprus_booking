@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131025132738) do
+ActiveRecord::Schema.define(:version => 20131112012954) do
 
   create_table "admin_modules", :force => true do |t|
     t.string   "name"
@@ -314,5 +314,15 @@ ActiveRecord::Schema.define(:version => 20131025132738) do
 
   add_index "users", ["remember_me_token"], :name => "index_users_on_remember_me_token"
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token"
+
+  create_table "wishes", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "house_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "wishes", ["house_id"], :name => "index_wishes_on_house_id"
+  add_index "wishes", ["user_id"], :name => "index_wishes_on_user_id"
 
 end

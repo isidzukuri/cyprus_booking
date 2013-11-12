@@ -43,6 +43,15 @@ class House < ActiveRecord::Base
     read_attribute("name_#{I18n.locale}")
   end
 
+  def address
+    "#{self.city_name} #{self.name}"
+  end
+
+  def default_cost_string
+    "#{concerted_price(self.cost).round(1)}#{self.currency.symbol}"
+  end
+
+
   def first_img
     return self.photos.present? ? self.photos.first.file.url(:cabinet) : ''
   end
