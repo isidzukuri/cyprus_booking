@@ -14,5 +14,8 @@
 					.clear
 				.filters_select
 					.um_pointer
+					.um_wrap
+						%a{:href=>"#{edit_cabinet_offer_path(b)}?step=address", :class=>"by_ico_edit standart_link"} #{t("cabinet.edit")}
+						= link_to t("cabinet.remove"), cabinet_offer_path(b), :class => 'by_ico_delete standart_link', :method => :delete
 
 	=render "cabinet/cabinet_orange_services"
