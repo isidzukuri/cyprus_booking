@@ -1,4 +1,5 @@
 #apartments_view
+  %a.close.black{:href=>"#"} &times; 
   %em.rectangle
   .facifilites_list
     %ul
@@ -9,7 +10,6 @@
       = @apartment.period_price(@search)
       %span.currency
         = @currency.symbol
-        -#= image_tag @currency.ico
   .photos
     = photos_min_dispay @apartment.photos
   .desciption
@@ -19,4 +19,4 @@
     .rating
       = rating_display
     %a.search_btn{:href=>"/apartments/show/#{@apartment.id}#description"} 
-      %span view details
+      %span=t("front_all.view_details")

@@ -1,0 +1,57 @@
+=render "cabinet/cabinet_header"
+#cabinet
+  =render "cabinet/cabinet_orange_services"
+  #apartments_booking{:"data-auto-controller"=>""}
+    .head_info
+      %h2=t("front_all.your_book")
+      %ul.list
+        %li.book_image
+          = image_tag( @apartment.photos.first.file(:medium),:size=>"100x100")
+        %li.width_250
+          %h4=@apartment.name
+          %span=I18n.localize(Time.at(@booking.from_date),:format=>:long)
+          %span →
+          %span=I18n.localize(Time.at(@booking.to_date),:format=>:long)
+        %li.width_250
+          %h4=t("front_all.destanation")
+          %span=@apartment.address(true)
+        %li
+          %ul
+            %li
+              %span=t("front_all.check_in",:time=>"13:00").html_safe
+            %li
+              %span=t("front_all.check_out",:time=>"13:00").html_safe
+        %li
+          %h4=t("front_all.to_pay")
+          %span
+            = @booking.show_total_cost
+          %span.currency
+            = @currency.symbol
+    .guests_data
+      %h2=t("front_all.guests")
+      .guest_block
+        %ul.guests
+          - @booking.travelers.each_with_index do |tr,i|
+            %li.traveler
+              %ul
+                %li.name Гость №#{i+1}:
+                %li.name=tr.name
+                %li.name=tr.email
+    .contact_user
+      %h2=t("front_all.contact_to_owner")
+      .text_area
+        %ul
+          %li.book_image
+            = image_tag( @apartment.user.file(:medium),:size=>"100x100")
+          %li
+            %span=@apartment.user.name
+          %li.user_info
+            = @apartment.user.info
+            %span
+              = link_to t("front_all.write") , "#",:class=>"pay"
+        
+    .book_block
+      .block_info=t("front_all.payment_desc")
+      .buttons
+        = link_to t("front_all.back") , "/apartments/show/#{@apartment.id}",:class=>"grey"
+        = link_to t("front_all.cancel_it") , "#",:class=>"pay"

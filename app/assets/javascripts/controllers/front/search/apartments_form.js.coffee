@@ -3,7 +3,15 @@ $.Controller "ApartmentsController", "FormController",
   init: ->
     $("html").css("min-height","742px")
     @super_call("init")
-    @element.find(".icon_date input").datepicker()
+    @element.find(".icon_date input").datepicker
+      dateFormat: "dd.mm.yy"
+      minDate: 0
+      onSelect: (selected) ->
+        idx = ($(".icon_date input").index($(this)) + 1)
+        if $(".icon_date input").size() >= idx
+          next_dp = $(".icon_date input:eq(" + idx + ")")
+          next_dp.datepicker "option", "minDate", selected
+          next_dp.datepicker "setDate", selected
     @init_autocomplete()
 
       
@@ -16,18 +24,45 @@ $.Controller "ApartmentsController", "FormController",
     alert resp.error
 
   search: ->
-    @LatLngList = [] 
+    $("#apartments_view").remove()
+    window.LatLngList = [] 
     data = @element.serialize()
     self = @
+    show_loader I18n.aparts.search
     $.ajax
       url:"/apartments"
       type: "post"
       data: data
+      beforeSend: ->
+        show_loader I18n.aparts.search
       dataType: "json"
       success: (resp) ->
-        G_map.clearMarkers()
-        for m in resp
-          self.add_marker(m)
+        if resp.success
+          if resp.data.length > 0
+            G_map.clearMarkers()
+            if($("#list_view").size() > 0 )
+              $("#map_apartments").animate width:"+=480px" , 300, ->
+
+            $("#list_view").remove()
+            $(".map").append(resp.html)
+            w = $(window).width() 
+            $("#list_view").css("left",w)
+            $("#list_view").css("height",window.article_height)
+            
+            $("#list_view").animate left:"-=500px", 300, ->
+            $("#map_apartments").animate width:"-=480px" , 300, ->
+              initialize()
+              for m in resp.data
+                self.add_marker(m)
+              $(".search.active").click()
+            if($("#list_view").size() > 0 )
+              $("#list_view").mCustomScrollbar advanced:
+                updateOnContentResize: true
+            hide_loader()
+          else
+            show_notice(I18n.notice,I18n.aparts_notice)
+        else
+          show_notice(I18n.error,I18n.aparts_error)
 
         
 
@@ -44,7 +79,7 @@ $.Controller "ApartmentsController", "FormController",
   add_marker: (data) ->
     self = @
     Latlng = new google.maps.LatLng(Number(data.latitude),Number(data.longitude))
-    @LatLngList.push Latlng
+    window.LatLngList.push Latlng
     marker = new google.maps.Marker
       position: Latlng
       icon: '/assets/ic_map.png'
@@ -74,15 +109,15 @@ $.Controller "ApartmentsController", "FormController",
 
 
     bounds = new google.maps.LatLngBounds()
-    for i of @LatLngList
-      bounds.extend @LatLngList[i]
+    for i of window.LatLngList
+      bounds.extend window.LatLngList[i]
       G_map.fitBounds bounds
 
   show_apart: (data) ->
     self = @
     $.ajax
       url:"/apartments/show_index"
-      type: "post"
+      type: "get"
       data: "id=" + data.id
       dataType: "json"
       success: (resp) ->
@@ -108,7 +143,6 @@ $.Controller "ApartmentsController", "FormController",
         G_map.setZoom(9)
       minLength: 2,
       open: ->
-        console.log($(".ui-menu-item:visible").length)
         if $(".ui-menu-item:visible").length == 1
           $(".ui-menu-item:visible").trigger('click');
       select: (event, ui) =>

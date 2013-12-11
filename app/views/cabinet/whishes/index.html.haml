@@ -6,8 +6,10 @@
 		- if @whishes.count < 1
 			%h2.nothing_found=t("cabinet.not_found")
 		- @whishes.each do |b|
-			%a.item{:href=>"/#{I18n.locale}/apartments/show/#{b.house_id}#description"}
+			%a.item{:style=>(@whishes.count < 3 ? "width:980px" : ""), :href=>"/#{I18n.locale}/apartments/show/#{b.house_id}#description"}
 				%img{:src => "#{b.house.first_img}",:style=>"width:300px"}
+				- if @whishes.count < 3
+					%div{:class=>"item_desc"}=truncate(b.house.description, length: 325, omission: '...')
 				.item_info
 					.item_petriod
 						= truncate b.house.address , :length=>25 , :omission=>"..."

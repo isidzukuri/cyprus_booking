@@ -1,0 +1,26 @@
+- @results.each do |hotel|
+  - price = hotel[:price].nil? ? hotel[:highRate] : hotel[:price]
+  %li.h_item{ :id=>"_#{hotel[:id]}",:"data-stars"=>hotel[:stars].to_i  , :"data-_id"=>hotel[:id] , :"data-price"=>price.to_i   ,:"data-rating"=>hotel[:trip_adv_rating].to_i        ,             :"data-hotel_type"=>hotel[:hotel_type],:"data-lat"=>hotel[:lat],:"data-lng"=>hotel[:lng]    }
+    .b_photo
+      - url = hotel[:image] =~ /t.jpg/ ? hotel[:image].gsub!("t.jpg","b.jpg") : hotel[:image]
+      - url = url == "" || url.nil? || Net::HTTP.get_response(URI(url)).code.to_i > 200 ? "/assets/hotel_not_found.png" : url
+      %a.photo_link{:href=>"/hotels/get_hotel_info?session_id=#{params[:session_id]}&id=#{hotel[:id]}",:target=>"_blank"}
+        = image_tag url ,:size => "70x70"
+      = image_tag url ,:class=>"img_hotel_popup"
+    .b_text
+      %h5 #{raw hotel[:name]}
+      - unless hotel[:low_avability].nil? or hotel[:low_avability].to_i == 0
+        .b_free_num (свободно номеров: #{hotel[:low_avability]})
+      .b_address #{hotel[:city]}, #{hotel[:address]}
+      .b_description
+        %strong #{(hotel[:distance].to_f * 1.609).round(2)} км от центра города
+      %strong.price #{(Exchange.convert(hotel[:currency], $currency) * hotel[:price].to_i).round(2)} #{$currency}
+    .b_order
+      
+      = form_tag("/hotels/get_hotel_info/") do
+        = hidden_field_tag :session_id , @session_id
+        = hidden_field_tag :id , hotel[:id]
+        = submit_tag "Бронировать" , :class=>"form-submit"
+      %a{:href=>"#", :target=>"_blank" ,:style=>"display:none" , :onclick=>"window.open('http://good-travel.ua','_blank');return false"} CLICK
+    .clear
+

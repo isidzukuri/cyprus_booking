@@ -1,6 +1,6 @@
 #orange_nav
-	%a{:href=>"/cabinet/yachts", :class=>"#{controller.action_name == 'yachts'? 'act' : ''}"} Yachts
-	%a{:href=>"/cabinet/cars", :class=>"#{controller.action_name == 'cars' ? 'act' : ''}"} Cars
-	%a{:href=>"/cabinet/hotels", :class=>"#{controller.action_name == 'hotels' ? 'act' : ''}"} Hotels
-	%a{:href=>"/cabinet/houses", :class=>"#{@service == 'houses'  ? 'act' : ''}"} Houses
+	%a{:href=>"/cabinet/yachts", :class=>"#{@service == 'yachts'? 'act' : ''}"}=t("user.yachts")
+	%a{:href=>"/cabinet/cars", :class=>"#{@service == 'cars' ? 'act' : ''}"}=t("user.cars")
+	%a{:href=>"/cabinet/hotels", :class=>"#{@service == 'hotels' ? 'act' : ''}"}=t("user.hotels")
+	%a{:href=>"/cabinet/houses", :class=>"#{@service == 'houses'  ? 'act' : ''}"}=t("user.aparts")
 	.clear

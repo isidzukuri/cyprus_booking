@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131112012954) do
+ActiveRecord::Schema.define(:version => 20131211200559) do
 
   create_table "admin_modules", :force => true do |t|
     t.string   "name"
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(:version => 20131112012954) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.integer  "status"
+    t.string   "currency"
   end
 
   create_table "banks", :force => true do |t|
@@ -73,6 +74,14 @@ ActiveRecord::Schema.define(:version => 20131112012954) do
     t.string "name_en"
     t.float  "lat"
     t.float  "lng"
+  end
+
+  create_table "countries", :force => true do |t|
+    t.string "code"
+    t.string "name_ru"
+    t.string "name_en"
+    t.string "name_uk"
+    t.string "country_phone"
   end
 
   create_table "currencies", :force => true do |t|
@@ -121,6 +130,61 @@ ActiveRecord::Schema.define(:version => 20131112012954) do
     t.integer  "user_id"
     t.integer  "friend_id"
     t.integer  "status"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "hotel_booking_payeds", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "sesion_id"
+    t.string   "reservation_id"
+    t.string   "conf_numbers"
+    t.boolean  "with_confirmation"
+    t.string   "s_type"
+    t.string   "status"
+    t.boolean  "reservation_exist"
+    t.string   "rooms"
+    t.text     "checkin_inst"
+    t.string   "arrival_date"
+    t.string   "departure_date"
+    t.string   "hotel_name"
+    t.string   "hotel_address"
+    t.string   "room_desc"
+    t.text     "cancel_policy"
+    t.boolean  "non_refunable"
+    t.string   "occupancy_pre_room"
+    t.string   "total_price"
+    t.string   "price_per_night"
+    t.string   "rooms_adt"
+    t.string   "rooms_chd"
+    t.string   "rooms_names"
+    t.boolean  "canceled",           :default => false
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
+    t.string   "img_url"
+  end
+
+  create_table "hotel_docs", :force => true do |t|
+    t.integer  "adult"
+    t.integer  "child"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.integer  "bed_type"
+    t.string   "bed_type_desc"
+    t.string   "smoking_pref"
+    t.string   "conf_number"
+    t.integer  "hotel_booking_payed_id"
+    t.boolean  "canceled",               :default => false
+    t.string   "canceled_rooms"
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
+  end
+
+  create_table "hotel_locations", :force => true do |t|
+    t.string   "name"
+    t.integer  "code"
+    t.float    "lat"
+    t.float    "lng"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -290,6 +354,16 @@ ActiveRecord::Schema.define(:version => 20131112012954) do
   add_index "transactions", ["status"], :name => "index_transactions_on_status"
   add_index "transactions", ["user_id"], :name => "index_transactions_on_user_id"
 
+  create_table "travelers", :force => true do |t|
+    t.integer  "apartments_booking_id",                :null => false
+    t.string   "name"
+    t.string   "email"
+    t.integer  "gender",                :default => 1
+    t.integer  "is_child",              :default => 0
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
+  end
+
   create_table "users", :force => true do |t|
     t.string   "username"
     t.string   "first_name"
@@ -310,6 +384,8 @@ ActiveRecord::Schema.define(:version => 20131112012954) do
     t.datetime "reset_password_token_expires_at"
     t.datetime "reset_password_email_sent_at"
     t.string   "file_file_name"
+    t.string   "phone"
+    t.text     "info"
   end
 
   add_index "users", ["remember_me_token"], :name => "index_users_on_remember_me_token"

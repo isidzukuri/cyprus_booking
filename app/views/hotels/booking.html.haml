@@ -1,0 +1,70 @@
+#apartments_booking{:"data-auto-controller"=>"HotelBooking"}
+  .head_info
+    %h2=t("front_all.your_book")
+    %ul.list
+      %li.book_image
+        = image_tag( @hotel[:images].first[:big],:size=>"100x100")
+      %li.width_250
+        %h4=@hotel[:name]
+        %span=I18n.localize(@search.arrival,:format=>:long)
+        %span →
+        %span=I18n.localize(@search.departure,:format=>:long)
+      %li.width_250
+        %h4=t("front_all.destanation")
+        %span #{@hotel[:city]} #{@hotel[:address]}
+      %li
+        %ul
+          %li
+            %span=t("front_all.check_in",:time=>"13:00").html_safe
+          %li
+            %span=t("front_all.check_out",:time=>"13:00").html_safe
+      %li
+        %h4=t("front_all.to_pay")
+        %span
+          = exchange(@booking.chargeable_rate.to_f,"EUR")
+        %span.currency
+          = @currency.symbol
+  .contact_user
+    %h2=t("front_all.contact_owner")
+    .text_area
+      %ul
+        %li.book_image
+          = image_tag( @hotel[:images].last[:big],:size=>"100x100")
+        %li
+          %span=@hotel[:name]
+      %textarea
+  .guests_data
+    %h2=t("front_all.guests")
+    .guest_block
+      = form_for @booking, :url => hotels_pay_path do |f|
+        = f.hidden_field :hotel_id
+        = f.hidden_field :rate_code
+        = f.hidden_field :supplier_type
+        = f.hidden_field :room_type
+        = f.hidden_field :chargeable_rate
+        = f.hidden_field :arrival
+        = f.hidden_field :departure
+        = f.hidden_field :session_id
+        = f.hidden_field :rate_key 
+        = f.hidden_field :image 
+        %ul.guests
+          - @booking.rooms.each_with_index do |room,idx|
+            = f.fields_for :rooms , room do |fr|
+              %li.traveler
+                = fr.fields_for :adult ,HotelAdult.new  do |a|
+                  %ul
+                    %li.name
+                      = a.text_field :first_name  ,:required =>true ,:placeholder=>t("front_all.name_plc") ,:style=>"line-height: 3;text-align: center;" ,:class=>"only_latin"
+                    %li.name
+                      = a.text_field :last_name  ,:required =>true ,:placeholder=>t("front_all.name_plc"),:style=>"line-height: 3;text-align: center;",:class=>"only_latin"
+                    %li.name
+                      = a.text_field :birth_day  ,:required =>true ,:placeholder=>"12",:style=>"line-height: 3;text-align: center;width:50px",:"data-max"=>31,:class=>"only_numbers max_chars", :"data-max_length"=>2
+                      = a.text_field :birth_month  ,:required =>true ,:placeholder=>"12",:style=>"line-height: 3;text-align: center;width:50px",:"data-max"=> 12,:class=>"only_numbers max_chars", :"data-max_length"=>2
+                      = a.text_field :birth_year  ,:required =>true ,:placeholder=>"2012",:style=>"line-height: 3;text-align: center;width:100px" ,:"data-max"=>(Date.today.year - 18),:class=>"only_numbers max_chars", :"data-max_length"=>4
+                    %li.name=t("front_all.b_day")
+
+  .book_block
+    .block_info=t("front_all.payment_desc")
+    .buttons
+      = link_to t("front_all.back") , "/hotels/info?session_id=#{@booking.session_id}&id=@booking.hotel_id",:class=>"grey"
+      = link_to t("front_all.pay_it") , "#",:class=>"pay"

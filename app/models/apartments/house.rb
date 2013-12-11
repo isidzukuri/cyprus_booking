@@ -8,6 +8,7 @@ class House < ActiveRecord::Base
   has_many :employments
   has_many :house_prices
   has_many :rewievs
+  has_many :wishes
   has_and_belongs_to_many :nearbies
   has_and_belongs_to_many :facilities
 
@@ -43,8 +44,8 @@ class House < ActiveRecord::Base
     read_attribute("name_#{I18n.locale}")
   end
 
-  def address
-    "#{self.city_name} #{self.name}"
+  def address full = false
+    "#{self.city_name} #{full ? ",#{street}" : ""} #{self.name}"
   end
 
   def default_cost_string
@@ -60,15 +61,49 @@ class House < ActiveRecord::Base
     return self.city["name_#{I18n.locale}"]
   end
 
+  def is_busy? search
+    return false if busy_dates.nil?
+    (search.arrival..search.departure).map do |d|
+        busy_dates.include?(d.strftime("%e%-m%Y"))
+     end.include?(true)
+  end
+
+
+  def busy_dates
+    dates = []
+    dates = self.employments.map do|price| 
+      while price.to_date >= price.from_date
+        dates << Time.at(price.from_date).strftime("%e%-m%Y")
+        price.from_date += 1.day
+      end
+      dates
+    end.flatten!    
+  end
+
+  def changed_prices
+    data = [{:dates=>[],:price=>0}]
+    data = self.house_prices.map do|price| 
+    dates = []
+     while price.to_date >= price.from_date
+       dates << Time.at(price.from_date).strftime("%e%-m%Y")
+       price.from_date += 1.day
+     end
+     {:dates=>dates,:price=>price.cost}
+    end
+  end
+
   def to_search search
     {
       :id        => self.id,
       :rooms     => self.rooms,
       :places    => self.places,
       :rating    => total_rating,
+      :name      => self.name,
       :price     => period_price(search),
       :latitude  => self.latitude,
-      :longitude => self.longitude
+      :longitude => self.longitude,
+      :img       => self.first_img,
+      :city      => self.city_name,
     }
   end
 

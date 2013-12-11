@@ -1,9 +1,9 @@
 $.Controller "ApartmentTabsController",
   init: ->
     @setup_active_tab()  
-    
   "a -> click": (ev) ->
     @change_tab($(ev.target))
+    $("html, body").animate({ scrollTop: 0 }, "slow");
 
   setup_active_tab: ->
     @element.find("a").removeClass("act")
@@ -11,15 +11,17 @@ $.Controller "ApartmentTabsController",
     $(window.location.hash).show()
     @check_map(window.location.hash)
 
+
   change_tab:(tab) ->
     tab.siblings().removeClass("act")
     tab.addClass("act")
     $('.tab').hide()
     $(".tab" + tab.attr("href")).show()
     @check_map(tab.attr("href"))
+    $("html,body").scrollTop(0)
 
   check_map: (_hash_) ->
-    #$(".content").mCustomScrollbar("scrollTo","top")
+    $("html,body").scrollTop(0)
     if /map|calendar|rewiew/.test(_hash_) then $(".photos").hide() else $(".photos").show()
     if /map/.test(_hash_)
       $(".mCSB_container").css("position","static")

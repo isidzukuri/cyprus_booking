@@ -6,9 +6,36 @@ $.Controller "ApartmentItemController",
     @start_left_offset = @element.find(".list")
     @enable_left  = true
     @enable_right = true
-    @calendar = @element.find('.b_calendar').attachCalendarController().controller()
-    #@element.find
+    @calendar = @element.find('.b_calendar').attachCalendarController().controller();
+    self = @
+    @element.find(".icon_date input").datepicker
+      dateFormat: "dd.mm.yy"
+      minDate: 0
+      onSelect: (selected) ->
+        idx = ($(".icon_date input").index($(this)) + 1)
+        if $(".icon_date input").size() >= idx
+          next_dp = $(".icon_date input:eq(" + idx + ")")
+          next_dp.datepicker "option", "minDate", selected
+          next_dp.datepicker "setDate", selected
+        if idx == 2
+          self.change_price()
 
+  change_price: ->
+    self = @
+    $.ajax
+      url:"/apartments/refresh_price"
+      beforeSend: ->
+        show_loader I18n.aparts.price_change
+      data: id:self.element.data("id"),arrival:self.element.find(".icon_date input:eq(0)").val(),departure:self.element.find(".icon_date input:eq(1)").val()
+      success: (resp) ->
+        if(resp.changed)
+          hide_loader()
+          self.element.find(".header_name .price span:eq(0)").text(resp.price)
+        else
+          if resp.busy
+            show_notice(I18n.notice,I18n.aparts.aparts_busy)
+          else
+            show_notice(I18n.error,I18n.aparts.apart_price_error)
   init_rating: ->
   	url = ""
   	@element.find(".header_name .rating").rating url ,
@@ -17,6 +44,9 @@ $.Controller "ApartmentItemController",
   	@element.find(".characteristicks.rating").each (i,el) ->
   	  $(el).rating "#" ,
   	    curvalue: $(el).data("value")
+    @element.find(".header_name .rating").each (i,el) ->
+      $(el).rating "#" ,
+        curvalue: $(el).data("value")
   	@element.find(".characteristicks").each (i,el) ->
   	  prev = $(el).prev()
   	  $(el).wrap(prev,$("<div class='rating_wrapper'>"))
@@ -24,10 +54,8 @@ $.Controller "ApartmentItemController",
   set_photos_slider: ->
     ph_count   = @element.find(".photos img").size()
     f_ph_count = Math.floor(ph_count/5) 
-    console.log(f_ph_count)
     if f_ph_count > 0 && ph_count >= 5
       width = (980 * f_ph_count) + ((ph_count - (f_ph_count * 5)) * 640)
-      console.log((ph_count - (f_ph_count * 5)))
     else
       
       width = ph_count * @element.find(".photos img").last().width() + 100
@@ -78,13 +106,22 @@ $.Controller "ApartmentItemController",
   	@enable_left = type
   set_right:(type)->
   	@enable_right = type
+  remove_from_wish: (el) ->
+    $.ajax
+      url: "/apartments/remove_from_wish",
+      type: "get"
+      success: (resp) ->
+        if resp.success
+           window.location.reload()
+        else
+          alert("error") 
   add_to_wish: (el) ->
     $.ajax
       url: "/apartments/to_wish",
       type: "get"
       success: (resp) ->
         if resp.success
-          el.addClass("disable")
+          window.location.reload()
         else
           alert("error")
 
@@ -92,8 +129,11 @@ $.Controller "ApartmentItemController",
     el = $(ev.target)
     if el.hasClass("wish")
       ev.preventDefault()
-      return if el.hasClass("disable")
+      if el.hasClass("disable")
+        @remove_from_wish() 
+        return
       if window.logged_in
         @add_to_wish(el)
       else
-        window.location.href = "/login" 
+        show_notice I18n.notice, I18n.user.login
+

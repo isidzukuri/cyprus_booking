@@ -9,17 +9,8 @@ class Cabinet::HousesController < UserController
 	end
 	
 	def index
-		@title = t("cabinet.dashboard")
-		@bookings = current_user.apartments_bookings
-
-		# per_page = 20
-		# sort = params[:sort] || :id
-		# @dir = params[:dir] == 'DESC' ? 'ASC' : 'DESC'
-		# unless params[:name_ru].nil?
-		# 	@apartaments = House.where("name_ru LIKE ?","#{params[:name_ru]}%").paginate(:per_page=>per_page,:page => params[:page]).order("#{sort} #{@dir}")
-		# else
-		# 	@apartaments = House.paginate(:per_page=>per_page,:page => params[:page]).order("#{sort} #{@dir}")
-		# end
+		@title = t("cabinet.apart_books")
+		@bookings = current_user.apartments_bookings.reverse
 	end
 
 	def houses_filter
@@ -31,7 +22,10 @@ class Cabinet::HousesController < UserController
 	end
 
 	def show
-		
+		@booking = current_user.apartments_bookings.find(params[:id])
+		@title = t("cabinet.apart_booking",:number=>@booking.id)
+		#raise
+		@apartment = @booking.house
 	end
 
 	def offers

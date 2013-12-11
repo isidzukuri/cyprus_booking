@@ -1,0 +1,71 @@
+#apartments_booking{:"data-auto-controller"=>"ApartBooking"}
+  .head_info
+    %h2=t("front_all.your_book")
+    %ul.list
+      %li.book_image
+        = image_tag( @apartment.photos.first.file(:medium),:size=>"100x100")
+      %li.width_250
+        %h4=@apartment.name
+        %span=I18n.localize(@search.arrival,:format=>:long)
+        %span →
+        %span=I18n.localize(@search.departure,:format=>:long)
+      %li.width_250
+        %h4=t("front_all.destanation")
+        %span=@apartment.address(true)
+      %li
+        %ul
+          %li
+            %span=t("front_all.check_in",:time=>"13:00").html_safe
+          %li
+            %span=t("front_all.check_out",:time=>"13:00").html_safe
+      %li
+        %h4=t("front_all.to_pay")
+        %span
+          = @apartment.period_price(@search)
+        %span.currency
+          = @currency.symbol
+  .contact_user
+    %h2=t("front_all.contact_owner")
+    .text_area
+      %ul
+        %li.book_image
+          = image_tag( @apartment.user.file(:medium),:size=>"100x100")
+        %li
+          %span=@apartment.user.name
+      %textarea
+  .guests_data
+    %h2=t("front_all.guests")
+    .guest_block
+      = form_for @booking, :url=>"/apartments/pay" do |f|
+        = f.hidden_field :house_id
+        = f.hidden_field :seller
+        = f.hidden_field :from_date
+        = f.hidden_field :to_date
+        = f.hidden_field :total_cost
+        %ul.guests
+          - @booking.travelers.each do |tr|
+            %li.traveler
+              = fields_for "travelers[]" ,tr do |fr|
+                = fr.hidden_field :name, :class=>"i_name"
+                = fr.hidden_field :email,:class=>"i_email"
+                =# fr.hidden_field :phone,:class=>"i_phone"
+              %ul
+                %li.name
+                %li.email
+                -#%li.phone
+                %li.delete
+                  %a{:href=>"#"}
+                    &times; 
+      %ul.guests_add
+        %li.traveler_add
+          %form#traveler
+            %input{:required=>:required, :type=>"text",:id=>"tr_name",:name=>"tr_name",:placeholder=>t("front_all.name_plc")}
+            %input{:required=>:required,:type=>"email",:id=>"tr_email",:name=>"tr_email",:placeholder=>t("front_all.email_plc")}
+            -#%input{:required=>:required,:type=>"text",:id=>"tr_phone",:name=>"tr_phone",:placeholder=>t("front_all.phone_plc")}
+            %input{:type=>"button",:value=>"+",:class=>"add"}
+
+  .book_block
+    .block_info=t("front_all.payment_desc")
+    .buttons
+      = link_to t("front_all.back") , "/apartments/show/#{@apartment.id}",:class=>"grey"
+      = link_to t("front_all.pay_it") , "#",:class=>"pay"

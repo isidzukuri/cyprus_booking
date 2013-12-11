@@ -1,0 +1,42 @@
+.b_content
+  .apart_list_page.search_results_page.hotel_page
+    .right_side
+      = form_for @card ,:url=> "/hotels/create_booking" ,:html=>{"data-auto-controller"=>"HotelBooking" } do |f|
+        = f.hidden_field :session_id
+        .b_data_orenda{:style=>"overflow: visible"}
+          .b_data_pay
+            %ul.list
+              %li.jNice{:style=>"margin-right:20px;z-index:5"}
+                = f.label t("front_all.country")
+                = f.select :country, @countries ,{:selected=>$country_code} , :class=>"form_pay"
+              %li.jNice.phone_code{:style=>"z-index:4"}
+                = f.label t("front_all.phone_code")
+                = f.select :phone_code, @codes ,{:selected=>@current_code} , :class=>"form_pay phone_code"
+              %li{:style=>"margin-left: 10px;width:100px"}
+                = f.label t("front_all.phone_num")
+                = f.text_field :phone ,:class=>"form-text only_numbers max_chars" ,:required=>true,:"data-error-text"=>"Bведите номер карты.",:"data-popup-info" =>"16 значный код без пробелов",:"data-max"=>999999999
+            %ul.list
+              %li{:style=>""}
+                = f.label t("front_all.zip")
+                = f.text_field :zip_code ,:class=>"form-text only_chars_and_numbers" ,:required=>true,:"data-error-text"=>"Bведите номер карты.",:"data-popup-info" =>"16 значный код без пробелов", :style=>"width: 60px;"
+              %li
+                = f.label t("front_all.address")
+                = f.text_field :address ,:class=>"form-text only_chars_and_numbers" ,:required=>true,:"data-error-text"=>"Bведите номер карты.",:"data-popup-info" =>"16 значный код без пробелов"
+              %li.jNice{:style=>"z-index:3"}
+                = f.label t("front_all.card_type")
+                = f.select :card_type, @payments ,{} , :class=>"form_pay"
+
+            .b_pay_hotel_03
+              = f.label t("front_all.card_num")
+              = f.text_field :card_number ,:class=>"form-text" ,:required=>true,:"data-error-text"=>"Bведите номер карты.",:"data-popup-info" =>"16 значный код без пробелов"
+            .b_pay_hotel_04
+              = f.label t("front_all.card_exp")
+              = f.text_field :exp_date ,:class=>"form-text",:required=>true,:"data-error-text"=>"Месяц / Год",:"data-popup-info" =>"Месяц / Год действия карты"
+            .b_pay_hotel_05
+              = f.label t("front_all.card_hold")
+              = f.text_field :card_holder ,:class=>"form-text only_latin_with_spaces",:required=>true,:"data-error-text"=>"Пожалуйста, введите корректные данные.",:"data-popup-info" =>"Данные владельца карты 'Card Holder'"
+            .b_pay_hotel_06
+              = f.label t("front_all.cvv")
+              = f.text_field :cvv ,:class=>"form-text only_chars_and_numbers",:required=>true,:"data-error-text"=>"CVV",:"data-popup-info" =>"3 значный код"
+            .clear   
+    .clear

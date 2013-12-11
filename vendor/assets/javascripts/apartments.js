@@ -1,3 +1,4 @@
+window.LatLngList = []
 $(window).load(function(){
 	if($('#map_apartments').length){
 		$('#map_apartments').height($(window).height() - $("header").height() - $("footer").height() + 50)
@@ -15,7 +16,24 @@ function initialize() {
       zoom: 9,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     }
+
+    var bounds = new google.maps.LatLngBounds();
+    if(typeof(G_map)!="undefined"){
+    	var markers = G_map.markers
+    	 G_map.clearMarkers();
+    }
     G_map = new google.maps.Map(mapCanvas, mapOptions);
+   
+    if(typeof(G_map)!="undefined"){
+    	for (i in G_map.markers){
+    		var m = G_map.markers[i]
+    		m.setMap(G_map)
+    	}
+    }
+	for (i in window.LatLngList) {
+	  bounds.extend(window.LatLngList[i]);
+	  G_map.fitBounds(bounds);
+	}
 }
 
 

@@ -1,0 +1,14 @@
+.bg_loader
+  #circularG
+    - 8.times do |i|
+      %div.circularG{:id=>"circularG_#{(i+1)}"}
+  #loader_text
+    %p text
+
+  #loader_notice 
+    %h2
+      = image_tag "orange_notice.png"
+      %span
+        header 
+      %a{:href=>"#"} &times; 
+    %p text

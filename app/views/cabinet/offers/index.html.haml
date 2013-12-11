@@ -3,8 +3,9 @@
 #cabinet
 	.clear
 	.bookings_list.offers_list
+		%a.item.add_offer{:href=>"/cabinet/#{@service}/new", :title => t("cabinet.add"),:style=>(@offers.count < 3 ? "width:980px" : "")}
 		- @offers.each do |b|
-			%div.item
+			%div.item{:style=>(@offers.count < 3 ? "width:980px" : "")}
 				%div{:class=>"item_status edit_ico"}
 				%img{:src => "#{b.first_img}",:style=>"width:300px"}
 				.item_info
@@ -16,6 +17,7 @@
 					.um_pointer
 					.um_wrap
 						%a{:href=>"#{edit_cabinet_offer_path(b)}?step=address", :class=>"by_ico_edit standart_link"} #{t("cabinet.edit")}
-						= link_to t("cabinet.remove"), cabinet_offer_path(b), :class => 'by_ico_delete standart_link', :method => :delete
-
+						= link_to t("cabinet.remove"), "/cabinet/offers/#{b.id}/delete", :class => 'by_ico_delete standart_link',  :confirm => "are you sure?", :method => :delete
+		
+		.clear
 	=render "cabinet/cabinet_orange_services"

@@ -7,5 +7,5 @@
     %a.y_offers_ico{:href=>cabinet_offers_path,    :class  => params[:controller] =~ /offers/ ? "act" : ""}
     %a.messages_ico{:href=>cabinet_messages_path,  :class  => params[:controller] =~ /messages/ ? "act" : ""}
     %a.profile_ico{:href=>"/cabinet/profile/show", :class  => params[:controller] =~ /profile/ ? "act" : ""}
-    %a.dashboard_ico{:href=>cabinet_houses_path,   :class  => params[:controller] =~ /houses/ ? "act" : ""}
+    %a.dashboard_ico{:href=>cabinet_houses_path,   :class  => params[:controller] =~ /houses|hotels/ ? "act" : ""}
   .clear

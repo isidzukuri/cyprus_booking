@@ -1,0 +1,14 @@
+- @apartments.each do |house|
+  %li.h_item{ :"data-lat"=>house[:latitude],:"data-lng"=>house[:longitude] ,:style=>"height: 100px;"   }
+    .b_photo
+      %a.photo_link{:href=>"/apartments/show/#{house[:id]}",:target=>"_blank"}
+        = image_tag house[:img] ,:size => "70x70"
+      = image_tag  house[:img] ,:class=>"img_hotel_popup"
+    .b_text
+      %h5 #{house[:name]}
+      .b_address #{house[:city]}
+      %strong.price #{house[:price]} #{$currency}
+      .b_order
+        %a.form-submit{:href=>"/apartments/show/#{house[:id]}",:target=>"_blank"}=t("front_all.view_details")
+    .clear
+

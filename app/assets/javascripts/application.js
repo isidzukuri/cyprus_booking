@@ -11,8 +11,6 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
-//= require controllers/front/front_global
-
 //= require twitter/bootstrap
 //= require wysiwug
 //= require bootstrap-wysihtml5
@@ -27,10 +25,13 @@
 //= require underscore
 //= require sprintf-0.7-beta1
 //= require ICanHaz.min
+//= require jquery.event.drag
+//= require jquery.event.drag.live
+//= require maskedinput
 //= require jquery.mvc
 //= require jquery.rating
 //= require_tree .
-
+//= require controllers/front/front_global
 
 //= require dropzone
 //= require admin/admin_global
@@ -40,6 +41,7 @@
 //= require jquery.mousewheel
 //= require jquery.jscrollpane.min
 //= require jquery.fancybox-1.3.4.pack
+
 
 
 

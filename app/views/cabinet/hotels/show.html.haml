@@ -1,0 +1,75 @@
+=render "cabinet/cabinet_header"
+#cabinet
+  =render "cabinet/cabinet_orange_services"
+
+  #apartments_booking{:"data-auto-controller"=>"HotelBooking"}
+    %form{:action=>"/cabinet/hotels/booking_cancel"}
+      %input{:type=>"hidden",:name=>"id",:value=>"#{@booking.id}"}
+      .head_info
+        %h2=t("front_all.your_book")
+        %ul.list
+          %li.book_image
+            = image_tag( @booking.img_url ,:size=>"100x100")
+          %li.width_250
+            %h4=@booking.hotel_name
+            %span=I18n.localize(Date.parse(@booking.arrival_date),:format=>:long)
+            %span →
+            %span=I18n.localize(Date.parse(@booking.departure_date),:format=>:long)
+          %li.width_250
+            %h4=t("front_all.destanation")
+            %span #{@booking.hotel_address}
+          %li
+            %ul
+              %li
+                %span=t("front_all.check_in",:time=>"13:00").html_safe
+              %li
+                %span=t("front_all.check_out",:time=>"13:00").html_safe
+          %li
+            %h4=t("front_all.was_pay")
+            %span
+              = @booking.show_total_cost.to_i
+            %span.currency
+              = @currency.symbol
+      .guests_data
+        %h2=t("front_all.guests")
+        .guest_block
+          %ul.guests
+            - @booking.hotel_doc.each do |room|
+              %li.traveler
+                %ul
+                  %li.name=@booking.room_desc
+                  %li.name 
+                    #{room.first_name}
+                  %li.name
+                    #{room.last_name}
+                  %li.name{:style=>( room.canceled ? "color:#ff793d;font-weight: bold;" : "")}
+                    - if room.canceled
+                      = t("front_all.room_canceled")
+                    - else
+                      = t("front_all.conf_number")
+                      #{room.conf_number} 
+      - unless @booking.canceled
+        .book_block{:style=>"height: inherit;"}
+          %h2=t("front_all.hotel_events")
+          .block_info
+            =@booking.cancel_policy
+          .b_data_pay
+            %ul.tickets_data
+              %li.jNice{:style=>"z-index: 5;"}
+                .left
+                  %label=t("front_all.cancelation_type")
+                  %select{:name=>"reason",:style=>"width:150px;"}
+                    %option{:value=>"COP"}=t("front_all.cancelation_types.t_1") 
+                    %option{:value=>"ILL"}=t("front_all.cancelation_types.t_2") 
+                    %option{:value=>"DEA"}=t("front_all.cancelation_types.t_3") 
+                    %option{:value=>"OTH"}=t("front_all.cancelation_types.t_4") 
+                .left
+                  %label Номер
+                  %select{:name=>"room"}
+                    - @booking.hotel_doc.each_with_index do |doc,i|
+                      - unless doc.canceled
+                        %option{:value=>i} Номер #{(i+1)}
+      
+          .buttons
+            = link_to t("front_all.back") , cabinet_hotels_path,:class=>"grey"
+            = link_to t("front_all.cancel_it") , "#",:class=>"pay to_cancel"

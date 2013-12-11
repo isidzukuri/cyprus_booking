@@ -1,13 +1,26 @@
 $.Controller "CalendarController",
-
+  house_data: prices:[],employtments:[]
   init: ->
+    CalendarMonthController.max_date = new Date((new Date).setHours(0,0,0,0) + 365*86400*1000)
+    CalendarMonthController.min_date = new Date();
     @months_strip = @element.find('.b_months_strip')
     @months_ctrls = []
     today = new Date
-    @add_month(2012, today.getMonth())
-    @add_month(2012, today.getMonth() + 1)
+    @get_prices()
+    @add_month(2013, today.getMonth())
+    @add_month(2013, today.getMonth() + 1)
     @check_height()
-
+    
+  get_prices: ->
+    self = @
+    $.ajax
+      url:"/apartments/get_prices"
+      data:"id="+$("#apartmnet_content").data("id")
+      async:false
+      success: (resp)->
+       self.set_data(resp)
+  set_data: (data) ->
+    @parent.house_data = data
   add_month: (year, month) ->
     new_month = $('<div class="b_month"></div>').attachCalendarMonthController({year: year, month: month, calendar: this})
     @months_strip.append(new_month)

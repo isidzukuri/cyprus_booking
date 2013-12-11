@@ -1,12 +1,18 @@
 
-#apartmnet_content{:'data-auto-controller'=>"ApartmentItemController"}
+#apartmnet_content{:'data-auto-controller'=>"ApartmentItemController",:"data-id"=>@apartment.id}
   .header_name
     %h2=@apartment.name
-    .rating
-      = rating_display
-    .buttons
-      = link_to "Book it" , "/apartments/booking/#{@apartment.id}"
-      = link_to "Add to whish list" , "#",:class=>"wish #{(logged_in? ? current_user.apart_in_wish?(@apartment) ? "disable" : '' : '')}"
+    %ul
+      -#  %li.rating{:"data-value"=>@apartment.total_rating}
+        = rating_display
+      %li.price
+        %span
+          = @apartment.period_price(@search)
+        %span.currency
+          = @currency.symbol
+      %li.buttons
+        = link_to t("front_all.book_it") , "/apartments/booking/#{@apartment.id}"
+        = link_to (logged_in? ? current_user.apart_in_wish?(@apartment) ? t("front_all.remove_to_wish") : t("front_all.add_to_wish") : t("front_all.add_to_wish"))  , "#",:class=>"wish #{(logged_in? ? current_user.apart_in_wish?(@apartment) ? "disable" : '' : '')}"
 
   .content
     .photos
@@ -28,26 +34,31 @@
               %td=t("front_all.city")
               %td=@apartment.city.name
       #amenities.tab.jNice
-        - @apartment.facilities.in_groups_of(2,false).each do |fc_group|
-          - fc_group.each_with_index do |fc,index|
-            - if index == 0
-              .left
-                = image_tag "#{fc.ico}"
-                %span.text
-                  = fc.name
-                = check_box_tag :active ,  1 ,false, :checked=>true,:disabled=>:disabled,:readonly=>true
-            - else
-              .right
-                = image_tag "#{fc.ico}"
-                %span.text
-                  = fc.name
-                = check_box_tag :active , 1 ,false, :checked=>true,:disabled=>true,:readonly=>true
+        - if @apartment.facilities.count < 1
+          = t("front_all.no_info")
+        - else
+          - @apartment.facilities.in_groups_of(2,false).each do |fc_group|
+            - fc_group.each_with_index do |fc,index|
+              - if index == 0
+                .left
+                  = image_tag "#{fc.ico}"
+                  %span.text
+                    = fc.name
+                  = check_box_tag :active ,  1 ,false, :checked=>true,:disabled=>:disabled,:readonly=>true
+              - else
+                .right
+                  = image_tag "#{fc.ico}"
+                  %span.text
+                    = fc.name
+                  = check_box_tag :active , 1 ,false, :checked=>true,:disabled=>true,:readonly=>true
       #map.tab{:"data-lat"=>@apartment.latitude,:"data-lng"=>@apartment.longitude}
         #g_map{:style=>"height:350px"}
         = image_tag "alert.png" , :style=>"float: left;margin-top: 8px;"
         %p{:style=>"margin-top: 10px;"}
           = t("front_all.map_desc")
         .nearbies
+          - if @apartment.nearbies.count > 0
+            %h5= t("front_all.nearbies")
           - @apartment.nearbies.in_groups_of(2,false).each do |fc_group|
             - fc_group.each_with_index do |fc,index|
               - if index == 0
@@ -74,12 +85,16 @@
       #rewiew.tab
         = render_reviews_rating @apartment
         .rew
-          - @apartment.rewievs.each do |item|
-            = image_tag item.user.file ,:class=>"img-circle"
-            %p
-              = item.text
-              %small=l(item.created_at,:format=>:short)
-      #rules.tab
+          - if @apartment.rewievs.count > 1
+            %p.nothing
+              = t("front_all.no_info")
+          - else
+            - @apartment.rewievs.each do |item|
+              = image_tag item.user.file ,:class=>"img-circle"
+              %p
+                = item.text
+                %small=l(item.created_at,:format=>:short)
+      -#rules.tab
 
 
 

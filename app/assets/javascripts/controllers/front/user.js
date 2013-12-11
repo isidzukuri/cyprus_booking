@@ -176,7 +176,6 @@ function set_blocks_position(){
 	list_w = $('.bookings_list').width();
 	item_w = $('.bookings_list .item').width() + parseInt($('.bookings_list .item').css('margin-right'));
 	items_in_line = parseInt(list_w/item_w); 
-	console.log(item_w)
 	ml = parseInt((list_w - item_w*items_in_line)/2);
 	// $('.bookings_list .item:nth-child('+items_in_line+'n+1)').css('margin-left',ml);
 	//$('.bookings_list').css('padding-left',ml)

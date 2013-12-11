@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   has_many :received_messages, :foreign_key => "receiver", :class_name => "Message"
   has_many :houses
   has_many :wishes
+  has_many :hotel_booking_payeds
 
 
   validates :first_name, :presence => {:message=>I18n.t("user.errors.presense")}, :length => {:minimum => 3, :maximum => 254 ,:message=>I18n.t("user.errors.minimum_chars")}
@@ -25,7 +26,7 @@ class User < ActiveRecord::Base
       :large    => ['500x500>',   :jpg],
       :cabinet  => ['100x100',   :jpg],
     }
-
+  attr_accessible :info ,:email,:first_name
   def modules
   	modules = []
   	self.roles.each do |role|
@@ -48,6 +49,10 @@ class User < ActiveRecord::Base
 
   def address
     "#{self.city}, #{self.street},#{self.building}"
+  end
+
+  def name
+    "#{self.last_name} #{self.first_name}"
   end
 
   def apart_in_wish? apartment

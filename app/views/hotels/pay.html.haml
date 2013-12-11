@@ -1,0 +1,54 @@
+#apartments_booking{:"data-auto-controller"=>"HotelBooking"}
+  .head_info
+    %h2=t("front_all.your_book")
+    %ul.list
+      %li.book_image
+        = image_tag( @hotel[:images].first[:big],:size=>"100x100")
+      %li.width_250
+        %h4=@hotel[:name]
+        %span=I18n.localize(@search.arrival,:format=>:long)
+        %span →
+        %span=I18n.localize(@search.departure,:format=>:long)
+      %li.width_250
+        %h4=t("front_all.destanation")
+        %span #{@hotel[:city]} #{@hotel[:address]}
+      %li
+        %ul
+          %li
+            %span=t("front_all.check_in",:time=>"13:00").html_safe
+          %li
+            %span=t("front_all.check_out",:time=>"13:00").html_safe
+      %li
+        %h4=t("front_all.to_pay")
+        %span
+          = exchange(@booking.chargeable_rate.to_f,"EUR")
+        %span.currency
+          = @currency.symbol
+  .guests_data
+    %h2=t("front_all.guests")
+    .guest_block
+      %ul.guests
+        - @booking.rooms.each_with_index do |room,idx|
+          %li.traveler
+            %ul
+              %li.name=@rooms.first[:type]
+              %li.name 
+                #{room.adult.first_name}
+              %li.name
+                #{room.adult.last_name}
+              %li.name 
+                #{room.adult.birth_day}.
+                #{room.adult.birth_month}.
+                #{room.adult.birth_year} 
+
+  .book_block{:style=>"height: inherit;"}
+    
+    .block_info
+      =@rooms.first[:cancel]
+      %br
+      =t("front_all.hotel_price_desc",:price=>@rooms[0][:price].to_i)
+    %h2=t("front_all.payer_data")
+    = render 'card_form'
+    .buttons
+      = link_to t("front_all.back") , "/hotels/info?session_id=#{@booking.session_id}&id=@booking.hotel_id",:class=>"grey"
+      = link_to t("front_all.pay_it") , "#",:class=>"pay to_book"

@@ -58,7 +58,6 @@ class Cabinet::OffersController < UserController
 	end
 
 	def destroy
-		abort
 		@apartament = House.find(params[:id])
 		@apartament.destroy
 		respond_to do |format|

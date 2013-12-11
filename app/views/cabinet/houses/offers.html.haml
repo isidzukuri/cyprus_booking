@@ -3,6 +3,7 @@
 	=render "cabinet/cabinet_header"
 	.clear
 	.bookings_list.offers_list
+		%a.item.add_offer{:href=>"/cabinet/#{@service}/new", :title => t("cabinet.add")}
 		- @offers.each do |b|
 			%div.item
 				%div{:class=>"item_status edit_ico"}
@@ -17,6 +18,5 @@
 					.um_wrap
 						%a{:href=>"#{cabinet_house_path(b)}/edit?step=address", :class=>"by_ico_edit standart_link"} #{t("cabinet.edit")}
 						= link_to t("cabinet.remove"), cabinet_house_path(b), :method => :delete, :class=>"by_ico_delete standart_link"
-		%a.item.add_offer{:href=>"/cabinet/#{@service}/new", :title => t("cabinet.add")}
 		.clear
 	=render "cabinet/cabinet_orange_services"

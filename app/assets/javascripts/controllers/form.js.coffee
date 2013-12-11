@@ -21,7 +21,7 @@ $.Controller "FormController",
       onkeyup: false
       onfocusout: false
       focusCleanup: true
-      focusInvalid: false
+      focusInvalid: true
       minlength: 3
     )
 
@@ -126,9 +126,10 @@ $.Controller "FormController",
 #TODO
   ".max_chars -> keyup": (ev) ->
     el  = $(ev.target)
-    max = el.data("max")
-    if el.val().length == max
-      el.change()
+    val = Number($(ev.target).val())
+    if val < 0 or val > $(ev.target).data("max")
+      $(ev.target).val String(val).slice(0, -1)
+    $(ev.target).next().focus()  if String(val).length is Number($(ev.target).data("max_length"))
 
   ".min_chars -> keyup": (ev) ->
     el  = $(ev.target)

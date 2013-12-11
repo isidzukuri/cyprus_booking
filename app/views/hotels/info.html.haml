@@ -1,0 +1,131 @@
+
+#apartmnet_content{:'data-auto-controller'=>"HotelItemController",:"data-id"=>@hotel[:id]}
+  .header_name
+    %h2=@hotel[:name]
+    %ul
+      -#  %li.rating{:"data-value"=>@apartment.total_rating}
+        = rating_display
+      %li.price
+        %span
+          - curren_room = @rooms.first
+          - price = curren_room[:price].nil? ? (curren_room[:max_price].to_i * (@search.departure - @search.arrival).to_i) : curren_room[:price].to_i
+          = exchange(price.to_f,"EUR")
+          = @currency.symbol
+      %li.buttons
+        %a.form-submit{:href=>"#"}=t("front_all.book_it")
+        = form_for @booking, :url => hotels_booking_path do |f|
+          = f.hidden_field :hotel_id, :value=> @hotel[:id]
+          = f.hidden_field :rate_code, :value=>curren_room[:rate_code]
+          = f.hidden_field :supplier_type, :value=>curren_room[:s_type]
+          = f.hidden_field :room_type, :value=>curren_room[:code]
+          = f.hidden_field :chargeable_rate, :value=>curren_room[:price]
+          = f.hidden_field :arrival, :value=>@search.arrival.strftime("%m/%d/%Y")
+          = f.hidden_field :departure, :value=>@search.departure.strftime("%m/%d/%Y")
+          = f.hidden_field :session_id, :value=>params[:session_id]
+          = f.hidden_field :rate_key ,:value=> curren_room[:rate_key]
+  .content
+    .photos
+      .list
+        = render_hotel_photos @hotel[:images]
+      = link_to "", "#" ,:class=>"btn-prev navigation"
+      = link_to "", "#" ,:class=>"btn-next navigation"
+    .tabs
+      #description.tab
+        %p
+          = raw CGI::unescapeHTML @hotel[:desc]
+      #amenities.tab.jNice
+        - if @hotel[:amenities].size / 3 == 0
+          = t("front_all.no_info")
+        - else
+          - @hotel[:amenities].in_groups_of(2,false) do |fc_group|
+            - fc_group.each_with_index do |fc,index|
+              - if index == 0
+                .left
+                  %span.text
+                    = fc[:amenity]
+                  = check_box_tag :active ,  1 ,false, :checked=>true,:disabled=>:disabled,:readonly=>true
+              - else
+                .right
+                  %span.text
+                    = fc[:amenity]
+                  = check_box_tag :active , 1 ,false, :checked=>true,:disabled=>:disabled,:readonly=>true
+        .clear
+      #map.tab{:"data-lat"=>@hotel[:lat],:"data-lng"=>@hotel[:lng]}
+        #g_map{:style=>"height:350px"}
+        %p{:style=>"margin-top: 10px;"}
+          = @hotel[:loc_desc]
+        .nearbies
+        - data = @hotel[:area_info].nil? ? [] : CGI::unescapeHTML(@hotel[:area_info]).match(/<p>(.*?)<\/p>/ui).to_s.gsub("<p>","").gsub("</p>","").split('<br />')
+        - if data.count > 0
+          %h5= t("front_all.nearbies")
+          - data.in_groups_of(2,false).each do |fc_group|
+            - fc_group.each_with_index do |fc,index|
+              - if index == 0
+                .left{:style=>"width: 50%;"}
+                  %span.text
+                    = fc
+              - else
+                .left{:style=>"width: 50%;"}
+                  %span.text
+                    = fc
+        .clear
+      #rooms.tab
+        .sum_num_hotel
+          %strong=t("front_all.avalible_rooms") 
+          = @search.arrival.strftime("%d.%m.%Y")
+          →
+          = @search.departure.strftime("%d.%m.%Y")
+          ;
+          ="#{t("front_all.rooooms")} #{@search.rooms_count}"
+        - @rooms.each_with_index do |room,idx|
+          .b_hotel_num_item
+            %h5 #{t("front_all.room")} "#{ raw room[:type]}"
+            - total_price = room[:price].nil? ? (room[:max_price].to_i * (@search.departure - @search.arrival).to_i) : room[:price].to_i
+            .b_hotel_num_description
+              %ul
+                %li
+                  .b_photo
+                    = image_tag room[:image] ,:size =>"70x70"
+                    %a.link_icon{:href=>"#"}
+                %li
+                  - room[:options].each do |opt|
+                    %span.item.include #{opt.gsub("Gratis trådlös Internet","Бесплатный Wi-FI")}
+                %li.last
+                  .b_order
+                    %strong.price{:style=>"font-size: 15px"}
+                      = exchange(price.to_f,"EUR")
+                      = @currency.symbol
+                    .clear
+                    - if room[:total_prc]
+                      %span.text=t("front_all.price_with_nds") 
+                    - if room[:price].nil?
+                      %span.text=t("front_all.price_in_hotel_1")   
+                      %span.text=t("front_all.price_in_hotel")  
+                    %a.form-submit{:href=>"#"}=t("front_all.book_it")
+                    = form_for @booking, :url => hotels_booking_path do |f|
+                      = f.hidden_field :hotel_id, :value=> @hotel[:id]
+                      = f.hidden_field :rate_code, :value=>room[:rate_code]
+                      = f.hidden_field :supplier_type, :value=>room[:s_type]
+                      = f.hidden_field :room_type, :value=>room[:code]
+                      = f.hidden_field :chargeable_rate, :value=>room[:price]
+                      = f.hidden_field :arrival, :value=>@search.arrival.strftime("%m/%d/%Y")
+                      = f.hidden_field :departure, :value=>@search.departure.strftime("%m/%d/%Y")
+                      = f.hidden_field :session_id, :value=>params[:session_id]
+                      = f.hidden_field :rate_key ,:value=> room[:rate_key]
+
+                      
+
+                      
+
+
+            - unless room[:avail].to_i == 0
+              .b_free_room= "#{t("front_all.free_rooms")}" "#{room[:avail]}"
+            %a.rules{:href=>"#"}=t("front_all.cancel_rules") 
+            .cancelations_rules{:style=>"display:none"}
+              = room[:cancel]   
+
+#orange_nav{:'data-auto-controller'=>"ApartmentTabsController"}
+  - Hash[t("front_all.hotel_tabs").to_a.reverse].each_pair do |tab,lang|
+    = link_to lang, "##{tab}",:class=>(tab.to_s == "description" ?  "act" : "")
+.clear
+

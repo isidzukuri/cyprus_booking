@@ -26,8 +26,7 @@ $.Controller "CalendarMonthController",
     days = [0,0,0,0,0,0,0]
     while cur_day <= last_day
       days[@to_normal(cur_day.getDay())] = {date: cur_day}
-
-      cur_day = new Date(new Date(cur_day.getTime()).setDate(cur_day.getDate() + 1)) # next day
+      cur_day  = new Date(new Date(cur_day.getTime()).setDate(cur_day.getDate() + 1)) # next day
       
       if @to_normal(cur_day.getDay()) == 0 or cur_day > last_day
         weeks.push { days: days }
@@ -37,6 +36,7 @@ $.Controller "CalendarMonthController",
 
     max_date = @parent.max_date
     min_date = @parent.min_date
+    Math.round((+new Date) / 1000)
     @element.empty().append ich.calendar_month
       month: $.datepicker.formatDate('MM', new Date(@year, @month))
       year: @year
@@ -45,17 +45,25 @@ $.Controller "CalendarMonthController",
       day: -> this.getDate()
       href: -> sprintf("%02s_%02s_%4s", this.getDate(), this.getMonth()+1, this.getFullYear())
       css_class: ->
+        cls = ""
+        date_str = String(this.getDate()) + String(this.getMonth() + 1) + String(this.getFullYear());
+        for item in CalendarController.house_data.prices
+          if $.inArray(date_str,CalendarController.house_data.employtments) != -1
+            cls += "booked "
+          else if $.inArray(date_str,item.dates) != -1
+            cls += "changed_price "
+
+
+
         if this < (new Date).setHours(0,0,0,0) or (min_date and this < min_date) or (max_date and this > max_date)
-          "disabled"
-        else ""
+          cls += "disabled"
+        cls
 
     @update_selection()
         
   update_selection: ->
     @element.find('td').removeClass()
     @parent.selected_days.sort (a,b) -> a.getTime() - b.getTime()
-    if @parent.type == 'hotels' || @parent.type == 'apartments'
-      @parent.selected_days = [@parent.selected_days[0],_(@parent.selected_days).last()]
     for day in @parent.selected_days
       
       @element
@@ -66,7 +74,7 @@ $.Controller "CalendarMonthController",
       for lnk in @element.find('td a')
         day = $.datepicker.parseDate('dd_mm_yy', $(lnk).attr('href').slice(1))
         if @parent.selected_days[0] < day < _(@parent.selected_days).last()
-          $(lnk).parent().removeClass().addClass('in_range')
+          $(lnk).parent().removeClass().addClass('active')
 
     @element.find('.active:eq(1)').addClass('back') if @options.calendar.secod_is_back
 
@@ -80,7 +88,7 @@ $.Controller "CalendarMonthController",
     return if td.hasClass('active')
     @options.calendar.update_all()
     td.addClass('active')
-    if @element.find('.active').length == 2 and @options.calendar.secod_is_back
+    if @element.find('.active').length == 1 and @options.calendar.secod_is_back
       td.addClass('back')
     $.publish("calendar/day/checked", [td, this])
 
@@ -88,15 +96,15 @@ $.Controller "CalendarMonthController",
     @parent.drag_element = false
 
   "td a -> draginit": (ev) ->
+    
     el = $(ev.target)
-    return false unless el.parent().hasClass('selected')
+    return false unless el.parent().hasClass('active')
     @parent.drag_element = el
 
   "td a -> dragend": (ev) ->
     @parent.drag_element = false
 
   "td a -> mouseenter": (ev) ->
-    return if @parent.type is 'cars'
     if @parent.drag_element
       return false if $(ev.target).hasClass('disabled')
       day = $.datepicker.parseDate('dd_mm_yy', @parent.drag_element.attr('href').slice(1))

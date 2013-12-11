@@ -2,14 +2,14 @@
   = form_tag user_forgot_path, :remote=>true, :"data-auto-controller"=>"ForgotController"  do 
     .buttons
       %a.facebook{:href=>"#" ,:onclick=>"window.doFbLogin()"} 
-        %span Sign with facebook
+        %span=t("user.fb_login")
       %a.register{:href=>"#"} 
-        %span Login
+        %span=t("user.enter")
     .fields
       .b_form_text.icon_mail
         %span
         = text_field :user,:email , :class=>"span12", :required=>true, :type=>"email" ,:autocomplete=>"off"
     .button_login
-      = submit_tag "Restore", :class=>"submit btn-glow primary login"
+      = submit_tag t("user.restore"), :class=>"submit btn-glow primary login"
 
     

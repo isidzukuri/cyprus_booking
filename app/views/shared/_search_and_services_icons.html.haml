@@ -3,16 +3,16 @@
   %nav
     %ul
       %li
-        %a.apartments{href: "#",:class=>( params[:controller] =~ /apartments/ ? "active" : "")}
+        %a.apartments{href: apartments_path ,:class=>( params[:controller] =~ /apartments/ ? "active" : "")}
           %em.rectangle
       %li
-        %a.hotels{href: "#"}
+        %a.hotels{href: hotels_path ,:class=>( params[:controller] =~ /hotels/ ? "active" : "")}
           %em.rectangle
       %li
-        %a.cars{href: "#"}
+        %a.cars{href: cars_path ,:class=>( params[:controller] =~ /cars/ ? "active" : "")}
           %em.rectangle
       %li
-        %a.yahts{href: "#"}
+        %a.yahts{href: yahts_path ,:class=>( params[:controller] =~ /yahts/ ? "active" : "")}
           %em.rectangle
   .clear
 

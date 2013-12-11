@@ -7,8 +7,11 @@
 		- if @bookings.count < 1
 			%h2.nothing_found=t("cabinet.not_found")
 		- @bookings.each do |b|
-			%a.item
+			%a.item{:href=>cabinet_house_path(b),:style=>(@bookings.count < 3 ? "width:980px" : "")}
 				%img{:src => "#{b.first_img}",:style=>"width:300px"}
+				- if @bookings.count < 3
+					%div{:class=>"item_desc"}=truncate(b.house.description, length: 325, omission: '...')
+				 
 				%div{:class=>"item_status status_ico_#{b.status}"}
 				.item_info
 					.item_petriod

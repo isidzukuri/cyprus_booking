@@ -13,8 +13,8 @@
         :src  => "https://connect.facebook.net/en_US/all.js"}
     = csrf_meta_tags
     /[if IE] <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-  %body{:"data-auto-controller" =>"MapController"}
-    #wrapper.map
+  %body{:"data-auto-controller" =>"MapController",:class=>"#{@cls}"}
+    #wrapper.map.b_data_orenda
       %header
         %figure
           %h1
@@ -26,9 +26,12 @@
       = yield
       %article
         #map_apartments
+        = render "shared/loader"
     = render "shared/footer"  
+    
 :javascript
   window.type = "#{params[:controller]}"
+  window.logged_in = "#{logged_in?}"
   FBappId = "#{Settings.fb.key}"
 
 

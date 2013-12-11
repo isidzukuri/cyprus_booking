@@ -1,7 +1,15 @@
 ru:
   user:
+    yachts: Яхты
+    cars: Авто
+    hotels: Отели
+    aparts: Апартаменты
     enter: Вход
     enter_submit: Войти
+    fb_login: Войти через Facebook
+    forgot_pass: Забыли свой пароль?
+    register: Регистрация
+    restore: Возобновить
     list: Список квитанций
     back_to_list: вернутся к списку квитанций
     penalty: Квитанция

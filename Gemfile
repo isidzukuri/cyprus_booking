@@ -23,6 +23,7 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
   gem "less-rails" 
   gem 'bootstrap-sass'
+  gem 'maskedinput-rails'
   gem 'execjs'
   gem "twitter-bootstrap-rails",:git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
   gem 'therubyracer', :platforms => :ruby

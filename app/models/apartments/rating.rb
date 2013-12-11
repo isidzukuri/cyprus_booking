@@ -3,7 +3,7 @@ class Rating < ActiveRecord::Base
   belongs_to :characteristic
 
   def self.koef
-  	0.01
+  	0.5
   end
 
 end

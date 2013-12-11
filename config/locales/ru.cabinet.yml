@@ -1,5 +1,9 @@
 ru:
   cabinet:
+    booking: "Бронирование отеля №%{number}"
+    apart_booking: "Бронирование апартамента №%{number}"
+    hotel_books: Список бронирований отелей
+    apart_books: Список бронирований апартаментов
     not_found: Бронирований не найдено
     total_cost: Сумма
     offers: Ваши предложения

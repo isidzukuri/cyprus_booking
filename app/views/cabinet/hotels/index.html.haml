@@ -1,0 +1,27 @@
+=render "cabinet/cabinet_header"
+.clear	
+#cabinet
+	=render "cabinet/cabinet_orange_services"
+	.clear
+	.bookings_list
+		- if @bookings.count < 1
+			%h2.nothing_found=t("cabinet.not_found")
+		- @bookings.each do |b|
+			%a.item{:href=>cabinet_hotel_path(b),:style=>(@bookings.count < 3 ? "width:980px" : "")}
+				%img{:src => "#{b.img_url}",:style=>"width:300px"}
+				- if @bookings.count < 3
+					%div{:class=>"item_desc"}=truncate(b.cancel_policy, length: 325, omission: '...')
+				 
+				%div{:class=>"item_status status_ico_#{b.status}"}
+				.item_info
+					.item_petriod
+						%b="#{Date.parse(b.arrival_date).strftime("%d.%m.%y")} - #{Date.parse(b.departure_date).strftime("%d.%m.%y")}"
+						%br
+						= truncate b.hotel_name , :length=>25 , :omission=>"..."
+					.item_price
+						=t("cabinet.total_cost")
+						%b="#{b.show_total_cost.to_i}#{@currency.symbol}"
+						%br
+						
+					.clear
+		.clear

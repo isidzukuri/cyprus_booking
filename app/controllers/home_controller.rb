@@ -14,4 +14,8 @@ class HomeController < ApplicationController
 	def login
 		redirect_to :root if logged_in?
 	end
+
+	def routing
+		 render :status => 404
+	end
 end

@@ -14,6 +14,10 @@ module ApplicationHelper
 
   end
 
+  def exchange total,currency
+    (Exchange.convert(currency, $currency) * total).round(2)
+  end
+
   def rating_display value = 3.0
   	rating = []
   	5.times do |i|
@@ -84,6 +88,41 @@ module ApplicationHelper
     end
     content.join("").html_safe
   end
+
+
+  def render_hotel_photos photos
+    content = []
+    if photos.count >= 5
+      size       = (photos.count/5)
+      big_photos = photos.pop(size)
+      photos_    = photos.in_groups_of(4,false)
+      big_photos << photos_.last if photos_.last.size < 4
+      big_photos.flatten!
+      size.times do |i|
+        content << content_tag(:div,:class=>"small_images") do 
+          photos_.shift.map do |photo|
+            image_tag( photo[:big] ,:style=>"margin-right: 8px;margin-bottom: 8px;",:size=>"167x120")
+          end.join("").html_safe
+        end
+        content<< content_tag(:div,:class=>"big_image")do
+          image_tag( big_photos.shift[:big] ,:size=>"627x250",:style=>"margin-right: 8px;")
+        end
+      end
+      big_photos.each do |photo|
+        content<< content_tag(:div,:class=>"big_image")do
+          image_tag( photo[:big] ,:size=>"627x250",:style=>"margin-right: 8px;")
+        end
+      end
+    else
+      photos.each do |photo|
+        content << image_tag( photo[:big] ,:size=>"627x250",:style=>"margin-right: 8px;")
+      end
+    end
+    content.join("").html_safe
+  end
+
+
+
 
   def render_reviews_rating apartment
     content = []

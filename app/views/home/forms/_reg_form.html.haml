@@ -2,9 +2,9 @@
   = form_tag user_register_path, :remote=>true, :"data-auto-controller"=>"RegisterController"  do 
     .buttons
       %a.facebook{:href=>"#",:onclick=>"window.doFbLogin()"} 
-        %span Sign with facebook
+        %span=t("user.fb_login")
       %a.register.enter{:href=>"#"} 
-        %span Enter
+        %span=t("user.enter")
     .fields
       .b_form_text.icon_mail
         %span
@@ -19,9 +19,9 @@
         %span
         = text_field :user,:password_confirmation , :class=>"span12", :required=>true, :type=>"password" ,:autocomplete=>"off"
     .button_login
-      = submit_tag "Register", :class=>"submit btn-glow primary login"
+      = submit_tag t("user.register"), :class=>"submit btn-glow primary login"
     .forgot
-      %a{:href=>"#"} forgot your pass?
+      %a{:href=>"#"}=t("user.forgot_pass")
 
     
 

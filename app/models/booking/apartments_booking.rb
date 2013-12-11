@@ -1,8 +1,10 @@
 class ApartmentsBooking < ActiveRecord::Base
-  attr_accessible :id, :user_id, :seller, :house_id, :total_cost, :from_date, :to_date, :status
+  attr_accessible :id, :user_id, :seller, :house_id, :total_cost, :from_date, :to_date, :status,:travelers,:currency
 
   belongs_to :house
   belongs_to :user
+  has_many   :travelers
+  before_save :set_status
 
   # statuses
   # 1 - unpayed
@@ -11,6 +13,10 @@ class ApartmentsBooking < ActiveRecord::Base
 
   def first_img
   	return self.house.photos.present? ? self.house.photos.first.file.url(:cabinet) : ''
+  end
+  def set_status
+    self.status = 1
+    
   end
 
   def city_name
@@ -30,7 +36,7 @@ class ApartmentsBooking < ActiveRecord::Base
   end
 
   def show_total_cost
-    return self.total_cost
+    return Exchange.convert(self.currency, $currency) * self.total_cost
   end
 
 end
