@@ -147,7 +147,7 @@ class ApartmentsController < ApplicationController
 	  ApartmentSearch.new
 	  search = Marshal.load(cookies[:last_apartment_search])
 	  booking = ApartmentsBooking.new(params[:apartments_booking])
-	  return if booking.house.is_busy?(is_busy)
+	  return if booking.house.is_busy?(search)
 	  booking.user_id = current_user.id
 	  booking.save
 	  booking.travelers <<  params[:travelers].map{|tr| tr = Traveler.new(tr);tr.apartments_booking_id = booking.id; tr}
