@@ -17,6 +17,7 @@ class Admin::ApartamentsController < AdminController
 		@cities = City.all.map{|city| [city.name_ru,city.id]}
 		@currencies = Currency.all.map{|c| [c.title,c.id]}
 		@facilities = Facility.where("active = 1").map{|f| [f.name_ru,f.id]}
+		@nearbies   = Nearby.all.map{|f| [f.name_ru,f.id]}
 		@currency = Currency.find(1)
 	end
 
