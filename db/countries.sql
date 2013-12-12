@@ -1,4 +1,3 @@
- 
 insert into `countries` ( `name_en`, `name_ru`, `name_uk`, `country_phone`, `code`) values('Andorra','Андорра','Андора','376','AD');
 insert into `countries` ( `name_en`, `name_ru`, `name_uk`, `country_phone`, `code`) values('United Arab Emirates','ОАЭ','Обєднані Арабські Емірати','971','AE');
 insert into `countries` ( `name_en`, `name_ru`, `name_uk`, `country_phone`, `code`) values('Afghanistan','Афганистан','Афганістан','93','AF');
