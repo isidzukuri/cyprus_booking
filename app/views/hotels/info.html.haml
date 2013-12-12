@@ -54,20 +54,21 @@
         #g_map{:style=>"height:350px"}
         %p{:style=>"margin-top: 10px;"}
           = @hotel[:loc_desc]
-        .nearbies
-        - data = @hotel[:area_info].nil? ? [] : CGI::unescapeHTML(@hotel[:area_info]).match(/<p>(.*?)<\/p>/ui).to_s.gsub("<p>","").gsub("</p>","").split('<br />')
-        - if data.count > 0
-          %h5= t("front_all.nearbies")
-          - data.in_groups_of(2,false).each do |fc_group|
-            - fc_group.each_with_index do |fc,index|
-              - if index == 0
-                .left{:style=>"width: 50%;"}
-                  %span.text
-                    = fc
-              - else
-                .left{:style=>"width: 50%;"}
-                  %span.text
-                    = fc
+        .nearbies{:style=>"float: left;height: auto;padding-bottom: 150px;"}
+          - data = @hotel[:area_info].nil? ? [] : CGI::unescapeHTML(@hotel[:area_info]).match(/<p>(.*?)<\/p>/ui).to_s.gsub("<p>","").gsub("</p>","").split('<br />')
+          - if data.count > 0
+            %h5{:style=>"color: #ff793d;font-size: 16px;"}= t("front_all.nearbies")
+            - data.in_groups_of(2,false).each do |fc_group|
+              - fc_group.each_with_index do |fc,index|
+                - if index == 0
+                  .left{:style=>"width: 50%;"}
+                    %span.text
+                      = fc
+                - else
+                  .left{:style=>"width: 50%;"}
+                    %span.text
+                      = fc
+          .clear
         .clear
       #rooms.tab
         .sum_num_hotel

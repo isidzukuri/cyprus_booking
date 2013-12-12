@@ -53,8 +53,8 @@ class  HotelsBooking
       :creditCardExpirationMonth => self.card.exp_date.split("/").first(),
       :creditCardExpirationYear  => "20" + self.card.exp_date.split("/").last(),
       :address1 => self.card.address,
-      :city=> "wefewfew",
-      :stateProvinceCode=>"qwdqw",
+      :city=> "none",
+      :stateProvinceCode=>"none",
       :countryCode=>self.card.country,
       :postalCode=>self.card.zip_code,
       
