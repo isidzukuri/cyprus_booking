@@ -43,8 +43,8 @@ class  HotelsBooking
       :email          => self.user.email,
       :firstName      => "Test Booking",#self.user.username.split(" ").first(),
       :lastName       => "Test Booking",#self.user.username.split(" ").last(),
-      :homePhone      => "#{self.card.phone_code}#{self.user.phone}",
-      :workPhone      => "#{self.card.phone_code}#{self.user.phone}",
+      :homePhone      => "#{self.card.phone_code}#{self.card.phone}",
+      :workPhone      => "#{self.card.phone_code}#{self.card.phone}",
       
       
       :creditCardType            => self.card.card_type,

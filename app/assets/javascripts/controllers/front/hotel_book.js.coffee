@@ -4,6 +4,9 @@ $.Controller "HotelBooking", "FormController",
     @booking_form = @element.find("form")
     @setup_validation(@booking_form)
     @setup_mask()
+    if @element.find(".b_data_pay").size() > 0
+      @element.css("margin-top",0)
+      @element.css("padding-bottom",0)
   setup_validation: (el) ->
     el.validate(
       ignore: ""
