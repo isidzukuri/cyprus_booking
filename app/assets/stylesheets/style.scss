@@ -1358,7 +1358,6 @@ a.item.add_offer:hover{
 .user_profile{
   width:94%;
   margin: 0 0 0 3%;
-  overflow-y:auto;
   position:relative;
     .user_row_list{
       width:100%;
@@ -1961,6 +1960,7 @@ float: left;
   height: 500px;
   background: #ffffff;
   margin: 0 auto;
+  margin-top: 50px;
 }
 
 .ui-datepicker{
@@ -2149,7 +2149,7 @@ float: left;
     }
   textarea{
     margin: 6px;
-    width: 700px; 
+    width: 695px; 
     height: 112px;
     float: right;
     resize: none;
@@ -2343,6 +2343,7 @@ float: left;
   font-weight: 500;
 }
 #loader_notice{
+  line-height: 1;
   position:relative;
   width:300px;
   min-height:150px;

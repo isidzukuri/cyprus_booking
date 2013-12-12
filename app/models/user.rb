@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
 
   validates :first_name, :presence => {:message=>I18n.t("user.errors.presense")}, :length => {:minimum => 3, :maximum => 254 ,:message=>I18n.t("user.errors.minimum_chars")}
   validates :email, :uniqueness => {:message=>I18n.t("user.errors.email_registered")}, :format => {:message=>I18n.t("user.errors.wrong_email"),:with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i}
-  
+  has_private_messages
   has_attached_file :file, 
   :url  => "/system/avatars/:id/:style.:extension",
   :path => ":rails_root/public/system/avatars/:id/:style.:extension",  
@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
       :large    => ['500x500>',   :jpg],
       :cabinet  => ['100x100',   :jpg],
     }
-  attr_accessible :info ,:email,:first_name
+  attr_accessible :info ,:email,:first_name ,:last_name, :patronic, :username, :password, :city, :street, :building
   def modules
   	modules = []
   	self.roles.each do |role|

@@ -41,6 +41,11 @@ scope "(:locale)", :locale => /en|ru/ do
     post "fbregister"
    end
    get     "cabinet/hotels/booking_cancel"
+   get     "cabinet/messages/outbox"
+   get     "cabinet/messages/delete/:id", to: "cabinet/messages#delete"
+   get     "cabinet/messages/delete_my/:id", to: "cabinet/messages#delete_my"
+   get     "cabinet/messages/new/:recepient_id/:id", to: "cabinet/messages#new"
+   get     "/cabinet/index/offers", to: "cabinet/offers#index"
    namespace :cabinet do
     resources :houses
     resources :offers

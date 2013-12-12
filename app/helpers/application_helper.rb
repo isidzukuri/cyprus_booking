@@ -137,4 +137,17 @@ module ApplicationHelper
     content.join("").html_safe
   end
 
+  def baners_block
+    baners = ["baners/1.jpg","baners/2.jpg","baners/3.jpg"]
+    content_tag :div, :class => 'steps' do
+      content_tag :ul  do
+        baners.each_with_index.map do |img, i|
+          content_tag :li , :class=>("last" if i == baners.size - 1 ) do
+           image_tag( img ,:size=>"320x250")
+          end
+        end.join("").html_safe
+      end
+    end
+  end
+
 end

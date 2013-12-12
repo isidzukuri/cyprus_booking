@@ -48,7 +48,7 @@
           %li.user_info
             = @apartment.user.info
             %span
-              = link_to t("front_all.write") , "#",:class=>"pay"
+              = link_to t("front_all.write") , "#{new_cabinet_message_path}/#{@apartment.user.id}/#{@apartment.id}" ,:class=>"pay"
         
     .book_block
       .block_info=t("front_all.payment_desc")

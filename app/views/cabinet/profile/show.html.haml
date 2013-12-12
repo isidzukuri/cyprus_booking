@@ -1,16 +1,31 @@
 =render "cabinet/cabinet_header"
 .clear	
-#cabinet
-	
-	.clear
-	.user_profile 
-		.user_row_list
-			- @current_user.friends.each do |f|
-				%a.u_row{:href=>""}
-					.u_img
-					="#{f.friend_data.first_name} #{f.friend_data.last_name}"
-
-					.clear
+#cabinet.new-user
+  .user_profile.form-wrapper
+    .header_actions
+      %a{:href=>cabinet_profile_path}
+        = t("front_all.user_data")
+        - if params[:action] =~ /show/
+          %em.blu_rec
+      %a{:href=>cabinet_profile_path}
+        = t("front_all.friends_list")
+        - if params[:action] =~ /friends/
+          %em.blu_rec
+    .user_data.users-list
+      .contact_user
+        .text_area
+          %ul
+            %li.book_image
+              = image_tag( current_user.file(:medium),:size=>"100x100")
+            %li
+              %span=current_user.name
+              %small= "#{t("front_all.created_at")}" "#{l(current_user.created_at,:format=>:short)}"
+      = render "form"
+      .clear
+    .book_block
+      .block_info=t("front_all.payment_desc")
+      .buttons
+        = link_to t("front_all.save") , "#",:class=>"pay"
 			
 
 		

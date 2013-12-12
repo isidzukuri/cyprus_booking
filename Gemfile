@@ -16,6 +16,7 @@ gem 'wrest'
 gem 'builder'
 gem "paperclip", "~> 3.0"
 gem 'active_attr', :git => "git://github.com/chromov/active_attr.git"
+gem 'simple-private-messages', '0.0.0', :git => 'git://github.com/jongilbraith/simple-private-messages.git'
 # gem 'rmagick', '2.13.2'
 
 group :assets do

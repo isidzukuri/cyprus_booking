@@ -1,0 +1,38 @@
+=render "cabinet/cabinet_header"
+.clear	
+.messages_list{:"data-auto-controller"=>"Message"}
+  .header_actions
+    %a{:href=>cabinet_messages_path}
+      = t("front_all.inbox")
+      - if @active == "inbox"
+        %em.blu_rec
+    %a{:href=>cabinet_messages_outbox_path}
+      = t("front_all.outbox")
+      - if @active == "outbox"
+        %em.blu_rec
+    %a
+      = t("front_all.message")
+      - if @active == "new"
+        %em.blu_rec
+  .messages
+    = form_for @message ,:url=>cabinet_messages_path(@message) do |f|
+      = f.hidden_field :recipient_id, :value=>@recepient.id
+      = f.hidden_field :sender_id,    :value=>current_user.id
+      = f.hidden_field :subject,      :value=>@apartment.name
+      = f.hidden_field :house_id
+
+      
+      .contact_user
+        .text_area
+          %ul
+            %li.book_image
+              = image_tag( @recepient.file(:medium),:size=>"100x100")
+            %li
+              %span=@recepient.name
+            %li
+              = f.text_area :body ,:required=>:required
+  .book_block
+    .block_info=t("front_all.payment_desc")
+    .buttons
+      = link_to t("front_all.send") , "#",:class=>"pay"
+  =baners_block

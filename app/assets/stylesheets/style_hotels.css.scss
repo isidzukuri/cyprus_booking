@@ -2501,3 +2501,185 @@ span{
   margin-top: 0;
   padding-bottom: 0;
 }
+.cabinet_messages_body{
+  background: none;
+  
+
+}
+.messages_list {
+  .block_info{
+    line-height: 1.5;
+  }
+  .header_actions{
+    background: #009cae;
+    min-height: 58px;
+    a{
+      text-decoration: none;
+      color: #ffffff;
+      width: 33%;
+      display: block;
+      float: left;
+      text-align: center;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      position: relative;
+      line-height: 4;
+    }
+  }
+  .blu_rec{
+      width: 0; 
+      height: 0; 
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-top: 10px solid #009cae;
+      position: absolute;
+      bottom: -10px;
+      left: 44%;
+  }
+  .messages{
+    .lll li{
+      float: none;
+      height: 70px;
+      line-height: 4;
+      border-bottom: 1px dotted #ccc;
+      .rew{
+        margin-left: 20px;
+        p{
+          color: #696969;
+          width: 500px;
+          float: left;
+        }
+        i{
+          color: #ff793d;
+          border-right: 1px solid #009cae;
+          padding-right: 5px;
+        }
+        small{
+          float: right;
+          margin-right: 20px;
+          color: #ff793d;
+        }
+        .buttons{
+          float: left;
+          .grey{
+            background: #AAA8A8;
+            color: #ffffff;
+            font-weight: bold;
+            padding: 7px 15px;
+            text-decoration: none;
+          }
+        }
+      }
+    }
+      min-height: 50px;
+      border: 1px solid #009cae;
+      border-radius: 7px;
+      margin-top: 8px;
+      h1{
+        text-align: center;
+        color: #ff793d;
+      }
+      .text_area{
+        width: 99%;
+        margin: 5px auto;
+      }
+      .contact_user textarea{
+        width: 640px;
+      }
+      .error{
+        border: 1px solid red;
+      }
+  .img-circle {
+    -webkit-border-radius: 500px;
+    -moz-border-radius: 500px;
+    border-radius: 500px;
+    width: 50px;
+    height: 50px;
+    float: left;
+    margin-top: 10px;
+    margin-right: 10px;
+  }
+  }
+
+}
+.not_read{
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+  filter: alpha(opacity=50);
+  -moz-opacity: 0.5;
+  -khtml-opacity: 0.5;
+  opacity: 0.8; 
+}
+
+
+.cabinet_profile_body{
+  background: none;
+  .user_profile{
+    width: 980px;
+    margin: 0 auto;
+    min-height: 500px;
+    .book_image{
+      border: 2px solid #ff793d;
+    }
+    .text_area{
+      background: none;
+      color: #AAA8A8;
+      span{
+        color: #AAA8A8;
+      }
+      small{
+        text-align: center;
+        margin-left: 10px;
+      }
+    }
+  }
+  .blu_rec{
+      width: 0; 
+      height: 0; 
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-top: 10px solid #009cae;
+      position: absolute;
+      bottom: -10px;
+      left: 44%;
+  }
+  .header_actions{
+    background: #009cae;
+    min-height: 58px;
+     a {
+        text-decoration: none;
+        color: #ffffff;
+        width: 49.5%;
+        display: block;
+        float: left;
+        text-align: center;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        position: relative;
+        line-height: 4;
+    }
+  }
+}
+
+.steps{margin-top: 10px;}
+
+.steps img{
+  margin-right: 5px;
+  -webkit-box-shadow: 0 1px 5px rgba(0,0,0,0.23);
+  -moz-box-shadow: 0 1px 5px rgba(0,0,0,0.23);
+  box-shadow: 0 1px 5px rgba(0,0,0,0.23);
+}
+#hotels .advanced{
+  z-index: 4;
+  position: relative;
+}
+#hotels .dates{
+  z-index: 5
+}
+
+
+
+
+
+
+
+
+
+

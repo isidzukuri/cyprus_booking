@@ -3,15 +3,17 @@
 #cabinet
 	.clear
 	.bookings_list.offers_list
-		%a.item.add_offer{:href=>"/cabinet/#{@service}/new", :title => t("cabinet.add"),:style=>(@offers.count < 3 ? "width:980px" : "")}
+		%a.item.add_offer{:href=>"/cabinet/offers/new", :title => t("cabinet.add"),:style=>(@offers.count < 3 ? "width:980px" : "")}
 		- @offers.each do |b|
 			%div.item{:style=>(@offers.count < 3 ? "width:980px" : "")}
 				%div{:class=>"item_status edit_ico"}
 				%img{:src => "#{b.first_img}",:style=>"width:300px"}
+				- if @offers.count < 3
+					%div{:class=>"item_desc"}=truncate(b.description, length: 325, omission: '...')
 				.item_info
 					.item_petriod
 						%br
-						="#{b.full_address}"
+						= b.full_address
 					.clear
 				.filters_select
 					.um_pointer

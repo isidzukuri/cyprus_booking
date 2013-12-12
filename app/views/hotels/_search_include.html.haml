@@ -8,9 +8,9 @@
           %ul.triple
             %li.jNice
               .icon_guests.b_form_text
-                = select(nil,nil,options_for_select([["ВЗРОСЛЫЕ",0]] + (1..4).to_a) ,{} ,{:name => "hotels_search[rooms_attributes][#{e}][adults]"})
+                = select(nil,nil,options_for_select([[t("front_all.adt"),0]] + (1..4).to_a) ,{} ,{:name => "hotels_search[rooms_attributes][#{e}][adults]"})
             %li.jNice.last
               .icon_guests.b_form_text
-                = select(nil,nil,options_for_select([["ДЕТИ",0]] + (1..4).to_a) ,{},{:name => "hotels_search[rooms_attributes][#{e}][childs]"} )
+                = select(nil,nil,options_for_select([[t("front_all.chd"),0]] + (1..4).to_a) ,{},{:name => "hotels_search[rooms_attributes][#{e}][childs]"} )
       .clear
         

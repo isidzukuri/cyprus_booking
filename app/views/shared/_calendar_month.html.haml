@@ -1,17 +1,19 @@
+
 .b_calendar
   %a.prev_month{:href => "#"}
   %a.next_month{:href => "#"}
   .b_months_strip
-  .change_dates
-    .dates
-      %ul
-        %li
-          .b_form_text.icon_date
-            = text_field_tag :arrival ,@search.arrival.strftime("%d.%m.%Y"),:class=>"form-text"
-        %li
-          .b_form_text.icon_date
-            = text_field_tag :departure, @search.departure.strftime("%d.%m.%Y"),:class=>"form-text"
-    %h2=t("front_all.change_dates")
+  - unless params[:controller] =~ /cabinet/
+    .change_dates
+      .dates
+        %ul
+          %li
+            .b_form_text.icon_date
+              = text_field_tag :arrival ,@search.arrival.strftime("%d.%m.%Y"),:class=>"form-text"
+          %li
+            .b_form_text.icon_date
+              = text_field_tag :departure, @search.departure.strftime("%d.%m.%Y"),:class=>"form-text"
+      %h2=t("front_all.change_dates")
   .clear
 %script#calendar_month{ :type => "text/html" }
   %h2 {{month}} {{year}}

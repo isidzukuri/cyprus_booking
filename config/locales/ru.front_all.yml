@@ -8,7 +8,21 @@ ru:
     phone_num: Номер телефона
     zip: Индекс
     cancel_it: Отменить
+    user_profile: Профиль пользователя
+    user_data: Личные данные
+    created_at: "На сайте от:"
+    save: Сохранить
+    friends_list: Список друзей
+    inbox: Входящие сообщения
+    outbox: Исходящие сообщения
+    message: Сообщение
+    send: Отправить
+    read_it: Прочесть
+    answer_it: Ответить
+    delete_it: Удалить
     hotel_events: Управление бронью
+    no_messages: Нет входящих сообщений
+    no_outbox_messages: Нет исходящих сообщений
     cancelation_type: Причина отказа
     room_canceled: Отменено
     contact_to_owner: Связаться с владельцем

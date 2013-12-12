@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131211200559) do
+ActiveRecord::Schema.define(:version => 20131211232918) do
 
   create_table "admin_modules", :force => true do |t|
     t.string   "name"
@@ -233,12 +233,16 @@ ActiveRecord::Schema.define(:version => 20131211200559) do
   add_index "houses_nearbies", ["house_id", "nearby_id"], :name => "houses_nearbies_index", :unique => true
 
   create_table "messages", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "receiver"
-    t.integer  "status"
-    t.text     "text",       :limit => 255
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
+    t.integer  "sender_id"
+    t.integer  "recipient_id"
+    t.boolean  "sender_deleted",    :default => false
+    t.boolean  "recipient_deleted", :default => false
+    t.string   "subject"
+    t.text     "body"
+    t.datetime "read_at"
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
+    t.integer  "house_id"
   end
 
   create_table "modules", :force => true do |t|

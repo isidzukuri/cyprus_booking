@@ -26,9 +26,8 @@
               %p
                 %i=message.recipient.name
                 = truncate(message.body, length: 30, omission: '...') 
-                .buttons{:"data-id"=>message.id,:"data-action"=>"delete"}
+                .buttons{:"data-id"=>message.id,:"data-action"=>"delete_my"}
                   = link_to t("front_all.read_it") , cabinet_message_path(message),:class=>"grey read_it"
-                  = link_to t("front_all.answer_it") , "#{new_cabinet_message_path}/#{message.recipient.id}/#{message.house_id}",:class=>"pay answer_it"
-                  = link_to t("front_all.delete_it") , "#",:class=>"grey delete_it"
+                  = link_to t("front_all.delete_it") , "#",:class=>"pay delete_it"
                 %small=l(message.created_at,:format=>:short)
   =baners_block

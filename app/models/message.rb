@@ -1,6 +1,7 @@
 class Message < ActiveRecord::Base
-  attr_accessible :user_id, :text, :status, :receiver
 
-  belongs_to :user
+  is_private_message
 
+  attr_accessible :recipient_id, :sender_id, :body, :subject, :house_id
+  
 end

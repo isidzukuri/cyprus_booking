@@ -4,7 +4,7 @@ class Cabinet::ProfileController < UserController
 
 	
 	def show
-		@title = "#{current_user.first_name} #{current_user.last_name}"
+		@title = t("front_all.user_profile")
 	end
 
 

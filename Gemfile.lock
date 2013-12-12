@@ -7,6 +7,12 @@ GIT
       activesupport (>= 3.0.2, < 4.1)
 
 GIT
+  remote: git://github.com/jongilbraith/simple-private-messages.git
+  revision: 7ba7d3c9f7670ef3bddfc90390a49556a94f7013
+  specs:
+    simple-private-messages (0.0.0)
+
+GIT
   remote: git://github.com/rweng/underscore-rails.git
   revision: 96445de2b87fa056ad76cadd89fd0215c99b5382
   specs:
@@ -238,6 +244,7 @@ DEPENDENCIES
   rails_config
   rvm-capistrano
   sass-rails (~> 3.2.3)
+  simple-private-messages (= 0.0.0)!
   sorcery
   sqlite3
   therubyracer
