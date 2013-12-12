@@ -31,7 +31,7 @@
     
 :javascript
   window.type = "#{params[:controller]}"
-  window.logged_in = "#{logged_in?}"
+  window.logged_in = #{logged_in?}
   FBappId = "#{Settings.fb.key}"
 
 
