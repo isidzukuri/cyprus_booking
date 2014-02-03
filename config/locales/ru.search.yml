@@ -1,0 +1,48 @@
+ru:
+  search:
+    results: "Результаты поиска"
+    main_map: "Стандартный поиск"
+    main: "Поиск по карте"
+    submit: "Начать поиск"
+    do_submit: "Поиск"
+    aparts_: "Апартамент"
+    hotels_: "Отель"
+    title: "Поиск путешествий"
+    hotels_title: "Отели"
+    cars_title: "Авто"
+    aparts_title: "Апартаменты"
+    cars:
+      default_error: "На заданую дату отсутсвуют результаты"
+      dont_work: "Выбранный пункт проката не работает в заданую дату"
+      airport: "аэропорт"
+      time: "Время"
+      date: "31.12.2014"
+      time_plc: "08-00"
+      pick_up: "Взять"
+      dropp_off: "Вернуть"
+      pick_up_country: "Выберите страну получения"
+      pick_up_city: "Выберите город получения"
+      pick_up_place: "Выберите место получения"
+      dropp_off_country: "Выберите страну получения"
+      dropp_off_city: "Выберите город возврата"
+      dropp_off_place: "Выберите место возврата"
+      same_place: "Возрат тамже"
+    aparts:
+      city_name: "Введите название города"
+      city: "Город"
+      departure: "Заезд"
+      arrival: "Отъезд"
+      people_count: "Колличество гостей"
+      p_count: "Гостей"
+      guest: "Гость(я)"
+    hotels:
+      city_name: "Введите город или отель"
+      departure: "Заезд"
+      arrival: "Отъезд"
+      rooms_count: "К-во номеров"
+      room: Номер
+      adt: Взрослые
+      chd: Дети
+      chd_age: Возраст ребенка
+      all_period: "За весь период"
+      rooms_avail: "К-во номеров"

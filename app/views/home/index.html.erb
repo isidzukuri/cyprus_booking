@@ -1,0 +1,49 @@
+        <div class="choose_buttons action_div" data-action="set_active_tab">
+            <ul>
+                <li>
+                    <a href="#main_map"><%=t("search.main_map")%></a>
+                </li>
+                <li>
+                    <a href="#main"><%=t("search.main")%></a>
+                </li>
+            </ul>
+        </div>
+        <div id="main_content">
+            <div id="main_map">
+                <%=render "home/forms/top"%>
+                <div id="g_map"></div>
+            </div>
+            <div id="main" >
+                <div id="main_wrap">
+                    <div class="left column">
+                        <div class="search action_div" data-action="set_active_form">
+                            <h3><%=t("search.title")%></h3>
+                            <ul class="list">
+                                <li class="hotels active">
+                                    <a href="#hotels"><%=t("search.hotels_title")%><em class="rectangle"></em></a>
+                                </li>
+                                <li class="cars">
+                                    <a href="#cars"><%=t("search.cars_title")%><em class="rectangle"></em></a>
+                                </li>
+                                <li class="apartments">
+                                    <a href="#apartments"><%=t("search.aparts_title")%><em class="rectangle"></em></a>
+                                </li>
+                            </ul>
+                            <div class="search_forms">
+                                <%=render "home/forms/hotels"%>
+                                <%=render "home/forms/cars"%>
+                                <%=render "home/forms/aparts"%>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="right column">
+                        <ul id="slider">
+                            <li><%= image_tag "1.jpg" %></li>
+                            <li><%= image_tag "2.jpg" %></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>

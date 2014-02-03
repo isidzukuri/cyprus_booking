@@ -1,0 +1,18 @@
+ru:
+  mail:
+    subjects:
+      registration: Регистрация на %{domain}
+      password_change: Изменение пароля на %{domain}
+    vars:
+      registration:
+        name: Имя
+        pass: Пароль
+        domain: Сайт
+        created_at: Дата регистрации
+        email: Email
+      password_change:
+        name: Имя
+        pass: Пароль
+        domain: Сайт
+        updated_at: Дата изменения
+        email: Email

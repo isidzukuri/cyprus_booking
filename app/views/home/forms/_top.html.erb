@@ -1,0 +1,50 @@
+                <div class="top_search_form" data-auto-controller="TopSearchForm">
+                    <%=form_for @apart_search,:url=>aparts_search_path,html:{:"data-complete"=>aparts_complete_path} do |f|%>
+                        <ul>
+                            <li class="from_item">
+                                <%=f.text_field :city,class:"city_name",placeholder:t("search.aparts.city_name"),required:true%>
+                                <%=f.hidden_field :city_id,required:true%>
+                            </li>
+                            <li class="from_item">
+                                <%=f.text_field :arrival,class:"date_input",required:true%>
+                                
+                            </li>
+                            <li class="from_item">
+                                <%=f.text_field :departure,class:"date_input",required:true%>
+                            </li>
+                            <li class="from_item">
+                                <%=f.select :people_count, (1..7).to_a.map{|i|["#{i} #{t("search.aparts.guest")}",i]}%>
+                            </li>
+                            <li class="from_item">
+                                <input type="submit" class="submit" value="<%=t("search.do_submit")%>"/>
+                            </li>
+                        </ul>
+                    <%end%>
+                    <%=form_for @hotels_search,:url=>hotels_search_path,html:{:"data-complete"=>hotels_complete_path,:class=>"hidden"} do |f|%>
+                        <ul>
+                            <li class="from_item">
+                                <%=f.text_field :city,class:"city_name",placeholder:t("search.hotels.city_name"),required:true%>
+                                <%=f.hidden_field :place_code,required:true%>
+                            </li>
+                            <li class="from_item">
+                                <%=f.text_field :arrival,class:"date_input",required:true%>
+                            </li>
+                            <li class="from_item">
+                                <%=f.text_field :departure,class:"date_input",required:true%>
+                            </li>
+                            <li class="from_item">
+                                <%= f.fields_for :rooms , @hotels_search.rooms.first do |fr|%>
+                                    <%= fr.select :adults , (1..4).to_a.map{|i|["#{i} #{t("search.aparts.guest")}",i]}%>
+                                <%end%>
+                            </li>
+                            <li class="from_item">
+                                <input type="submit" class="submit" value="<%=t("search.do_submit")%>"/>
+                            </li>
+                        </ul>
+                    <%end%>
+                    <ul>
+                            <li class="from_item">
+                                <%=select_tag :search__type,options_for_select([[t("search.aparts_"),0],[t("search.hotels_"),1]]),:class=>"search_type"%>
+                            </li>
+                    </ul>
+                </div>

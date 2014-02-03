@@ -1,0 +1,32 @@
+<li class="res_item" id="hotel_<%=hotel[:id]%>">
+    <ul class="item_elms">
+        <li class="desc">
+            <div class="lft">
+                <%=image_tag hotel[:image],:size=>"102x102"%>
+            </div>
+            <div class="rt">
+                <h5><%= raw hotel[:name]%></h5>
+                <div class="rating"><span style="width:<%=hotel[:stars].to_f*20%>%"></span></div>
+                <p class="addr"><%="#{hotel[:city]}, #{hotel[:address]} #{hotel[:zip]}"%></p>
+            </div>
+        </li>
+        <li class="amount">
+            <ul>
+                <%unless hotel[:low_avability].nil? or hotel[:low_avability].to_i == 0%>
+                <li class="plc_count">
+                    <p><%=t("search.hotels.rooms_avail")%></p>
+                    <span><%=image_tag "plc_count.png"%></span>
+                    <span><%=hotel[:low_avability]%></span>
+                </li>
+                <%end%>
+                <li class="price">
+                    <span><%="#{(Exchange.convert(hotel[:currency], $currency) * hotel[:price].to_i).round(2)} #{t("all.currencies_symbols.#{$currency}")}"%></span>
+                    <p><%=t("search.hotels.all_period")%></p>
+                </li>
+            </ul>
+        </li>
+        <li class="pay_btn">
+            <a target="_blank" href="<%=hotels_path(hotel[:id],{:session_id=>@session_id})%>"><%=t("all.more")%>..<span>></span></a>
+        </li>
+    </ul>
+</li>

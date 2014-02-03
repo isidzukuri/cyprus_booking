@@ -1,0 +1,69 @@
+                                <div class="cars hidden" data-auto-controller="CarsSearchForm">
+                                    <%=form_for @cars_search,:url=>cars_search_path do |f|%>
+                                        <ul class="top_ul">
+                                            <%= f.fields_for :pick_up, @cars_search.pick_up do |fr|%>
+                                                <li>
+                                                    <%= fr.select :country , @pick_up_countries.reverse.push([t("search.cars.pick_up_country"),""]).reverse, {},:"data-action"=>cars_pick_up_city_path,:"data-call-back"=>"render_pick_up_city" %>
+                                                </li>
+                                                <li>
+                                                    <%= fr.select :city ,[t("search.cars.pick_up_city"),""],{},disabled:true,:"data-action"=>cars_pick_up_location_path,:"data-call-back"=>"render_pick_up_location" %>
+                                                </li>
+                                                <li>
+                                                    <%= fr.select :location ,[t("search.cars.pick_up_place"),""],{},disabled:true,:"data-action"=>cars_dropp_off_country_path,:"data-call-back"=>"render_dropp_off_country" %>
+                                                    <%=fr.hidden_field :place%>
+                                                </li>
+                                            <% end %>
+                                        </ul>
+                                        <div class="advaced_from">
+                                            <ul class="top_ul">
+                                            <%= f.fields_for :dropp_off, @cars_search.dropp_off do |fr|%>
+                                                <li>
+                                                    <%= fr.select :country ,[t("search.cars.dropp_off_country"),""],{},disabled:true,:"data-action"=>cars_dropp_off_city_path,:"data-call-back"=>"render_dropp_off_city"%>
+                                                </li>
+                                                <li>
+                                                    <%= fr.select :city ,[t("search.cars.dropp_off_city"),""],{},disabled:true,:"data-action"=>cars_dropp_off_location_path,:"data-call-back"=>"render_dropp_off_location" %>
+                                                </li>
+                                                <li>
+                                                    <%= fr.select :location ,[t("search.cars.dropp_off_place"),""],{},disabled:true,:"data-action"=>false,:"data-call-back"=>false,required:true %>
+                                                    <%=fr.hidden_field :place%>
+                                                </li>
+                                            <% end %>
+                                            </ul>
+                                        </div>
+                                        <ul class="bottom_ul">
+                                            <%= f.fields_for :pick_up  , @cars_search.pick_up do |fr|%>
+                                                <li>
+                                                    <div class="dates">
+                                                        <label><%=t("search.cars.pick_up")%></label>
+                                                        <%= fr.text_field :date, class:"city_name  date_input",autocomplete:"off",required:true,placeholder:t("search.cars.date"),disabled:true,:"data-action"=>cars_pick_up_open_time_path,:"data-call-back"=>"render_pick_up_time"%>
+                                                    </div>
+                                                    <div class="dates car_time">
+                                                        <label><%=t("search.cars.time")%></label>
+                                                        <%= fr.select :time  , [[t("search.cars.time_plc") , ""]],{},disabled:true,:"data-call-back"=>false,required:true%>
+                                                    </div>
+                                                </li>
+                                            <% end %>
+                                            <%= f.fields_for :dropp_off  , @cars_search.dropp_off do |fr|%>
+                                                <li>
+                                                    <div class="dates">
+                                                        <label><%=t("search.cars.dropp_off")%></label>
+                                                        <%= fr.text_field :date, class:"city_name  date_input",autocomplete:"off",required:true,placeholder:t("search.cars.date"),disabled:true,:"data-action"=>cars_dropp_off_open_time_path,:"data-call-back"=>"render_dropp_off_time"%>
+                                                    </div>
+                                                    <div class="dates car_time">
+                                                        <label><%=t("search.cars.time")%></label>
+                                                         <%= fr.select :time  , [[t("search.cars.time_plc") , ""]],{},disabled:true,:"data-call-back"=>false,required:true%>
+                                                    </div>
+                                                </li>
+                                            <% end %>
+                                            <li class="chk">
+                                                <label><%=t("search.cars.same_place")%></label>
+                                                <%= f.check_box :same_place ,value:1,checked:true%>
+                                            </li>
+                                        </ul>
+                                        <ul class="submit_ul">
+                                            <li class="submit">
+                                                <a href="#"><%=t("search.submit")%></a>
+                                            </li>
+                                        </ul>
+                                    <% end %>
+                                </div>

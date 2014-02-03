@@ -1,0 +1,37 @@
+ru:
+  all:
+    user:
+      first_name: "Имя"
+      last_name: "Фамилия"
+      email: "E-mail"
+      password: "Пароль"
+      password_confirm: "Подтверждение"
+      phone: "Телефон"
+    popup:
+      register_title: "Регистрация"
+      login_title: "Вход"
+      send: "отправить"
+      restore_title: "Восстановление пароля"
+      remember: "Запомнить меня"
+      forgot: "Забыли пароль?"
+      social_enter: "Или войдите через социальную сеть"
+      capthca: "Код на картринке"
+    more: "Больше"
+    footer_links:
+      faq: "FAQ"
+      contacts: "Контакты"
+      about: "О нас"
+    login_header: "вход/регистрация"
+    langs:
+      ru: "RU"
+      en: "EN"
+    currencies:
+      USD: "USD"
+      EUR: "EUR"
+      UAH: "UAH"
+      RUR: "RUR"
+    currencies_symbols:
+      USD: "$"
+      EUR: "$"
+      UAH: "$"
+      RUR: "$"

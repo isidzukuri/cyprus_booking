@@ -1,0 +1,27 @@
+payment:
+  ip: http://10.6.11.89:8080/WebMainApp/MainServlet
+fb:
+  key: 241786189310909
+  url: https://graph.facebook.com/me
+hotels_api:
+  host: http://api.ean.com/ean-services/rs/hotel/v3/
+  book_host: https://book.api.ean.com/ean-services/rs/hotel/v3/
+  ip: 127.0.0.1
+  cid: 55505
+  key: u82xeps9fe4q6nmzfwuxgjuz
+  secret: 9DtutZxu
+  search_url: http://www.trip.ru/hotels/searches/new/autocomplete
+  trip_advisor_url: http://www.tripadvisor.com/WidgetEmbed-cdspropertysummary
+  trip_advisor_key: 1A065E1528EF4FCFB99FCAF44AFECAB9
+  cid_old: 401454
+
+google_api:
+  geocoder_url: http://maps.googleapis.com/maps/api/geocode/xml
+auto_api:
+  host: http://www.rentalcars.com/service/ServiceRequest.do
+  secure: https://secure.rentalcars.com/service/ServiceRequest.do
+  provider_email: reservations-ru@rentalcars.com
+  provider_name: Rentalcars
+  user: modernmedia
+  pass: 2modernmedia123
+  ip: 5.9.59.86

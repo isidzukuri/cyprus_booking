@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title><%=t("meta.main_title") %></title>
+    <meta name="description" content="<%=t("meta.main_desc") %>">
+    <meta name="keywords" content="<%=t("meta.main_keyw") %>">
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&libraries=geometry&language=<%= I18n.locale %>"></script>
+	<%= stylesheet_link_tag    "application", media: "all" %>
+	<%= javascript_include_tag "application", debug: true %>
+	<%= csrf_meta_tags %>
+</head>
+
+<body style="">
+    <div id="fb-root"></div>
+    <div class="page" data-auto-controller="Main">
+        <div id="header">
+            <div class="header-center">
+                <div id="logo"></div>
+                <div class="menucontainer">
+                    <ul class="menu"> 
+                        <li>
+                            <% unless logged_in?%>
+                            <a class="login" href="#">
+                                <%=t("all.login_header")%>
+                            </a>
+                            <%else%>
+                                <a class="" href="<%=user_path%>"><%=current_user.fio%></a>
+                            <%end%>
+                        </li>             
+                        <li><a class="lang"     href="#"><%=t("all.langs.#{I18n.locale}")%></a></li>
+                        <li><a class="currency" href="#"><%=t("all.currencies.#{$currency}")%></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="lang_block">
+            <em class="rectangle"></em>
+                <% t("all.langs").to_a.in_groups_of(3,false) do |group|%>
+                    <ul>
+                        <% group.each do |lang|%>
+                            <li>
+                                <a href="<%=url_for(params.merge(:locale => lang.first))%>"><%=lang.last%></a>
+                            </li>
+                        <%end%>
+                    </ul>
+                <%end%>
+        </div>
+        <div class="currency_block">
+            <em class="rectangle"></em>
+                <% t("all.currencies").to_a.in_groups_of(3,false) do |group|%>
+                    <ul>
+                        <% group.each do |lang|%>
+                            <li>
+                                <a href="<%=url_for(params.merge(:currency => lang.first))%>"><%=lang.last%></a>
+                            </li>
+                        <%end%>
+                    </ul>
+                <%end%>
+        </div>
+        <%= yield %>
+        <div id="footer">
+            <div class="header-center">
+            <div class="bottom-menu">
+                <div class="bottom-menu-column">
+                    <div class="bottom-menu-column-header">
+                        <%=link_to t("all.footer_links.faq"), faq_path%>
+                    </div>
+                </div>
+                <div class="bottom-menu-column">
+                    <div class="bottom-menu-column-header">
+                        <%=link_to t("all.footer_links.contacts"), "/#{I18n.locale}/page/contacts"%>
+                    </div>
+
+                </div>
+                <div class="bottom-menu-column">
+                    <div class="bottom-menu-column-header">
+                        <%=link_to t("all.footer_links.about"), "/#{I18n.locale}/page/about"%>
+                    </div>
+
+                </div>
+               
+            </div>
+                
+            </div>
+        </div>
+    </div>
+
+    <div id="shadow" data-auto-controller="Popup">
+        <%unless logged_in?%>
+    	   <%= render "shared/login_form" %>
+        <%end%>
+    	<%= render "shared/loader" %>
+    	<%= render "shared/notice" %>
+    </div>
+
+</body></html>
+
+
+
+
+
+
+
+

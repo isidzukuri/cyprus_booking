@@ -1,0 +1,210 @@
+        <div class="popup" id="login_window" >
+            <div class="p_body">
+                <div class="register" data-auto-controller="Registr">
+                    <h2><%=t("all.popup.register_title")%></h2>
+                    <%=form_for @user,:url=>"/login" do |f|%>
+                    <table>
+                        <tr>
+                            <td>
+                                <ul>
+                                    <li>
+                                        <label><%=t("all.user.first_name")%></label>
+                                    </li>
+                                    <li>
+                                        <input required="required" type="text" name="" placeholder="vasya"/>
+                                    </li>
+                                </ul>
+                                
+                                
+                            </td>
+                            <td>
+                                <ul>
+                                    <li>
+                                        <label for=""><%=t("all.user.last_name")%></label>
+                                    </li>
+                                    <li>
+                                        <input required="required" type="text" name="" placeholder="pupkin"/>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <ul>
+                                    <li>
+                                        <label for=""><%=t("all.user.email")%></label>
+                                    </li>
+                                    <li>
+                                        <input required="required" type="text" name="" placeholder="test@example.com"/>
+                                    </li>
+                                </ul>
+                                
+                                
+                            </td>
+                            <td>
+                                <ul>
+                                    <li>
+                                        <label for=""><%=t("all.user.phone")%></label>
+                                    </li>
+                                    <li class="phone">
+                                        <select><option>+38</option></select>
+                                        <input required="required" type="text" name="" placeholder="093779996"/>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                        </tr>
+                        <tr>
+                            <td>
+                                <ul>
+                                    <li>
+                                        <label for=""><%=t("all.user.password")%></label>
+                                    </li>
+                                    <li>
+                                        <input required="required" type="text" name="" placeholder="********"/>
+                                    </li>
+                                </ul>
+                                
+                                
+                            </td>
+                            <td>
+                                <ul>
+                                    <li>
+                                        <label for=""><%=t("all.user.password_confirm")%></label>
+                                    </li>
+                                    <li>
+                                        <input type="text" name="" placeholder="********"/>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                        </tr>
+                        <tr>
+                            <td>
+                                <%= show_simple_captcha(:object=>"user") %>
+                            </td>
+                            <td>
+                                <ul>
+                                    <li>
+                                        <label><%=t("popup.capthca")%></label>
+                                    </li>
+                                    <li>
+                                        <input required="required" type="text" name="" placeholder="454545"/>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td  class="float" >
+                                <label  for="agrement" class="">Я принимаю услови япользования сервисом</label>           
+                                <input type="checkbox" name="agrement"/>
+                            </td>
+                            <td>
+
+                                
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="bottom">
+                        <a href="#"><%=t("all.popup.send")%></a>
+                        <span class="right_square"></span>
+                    </div>
+                    <%end%>
+                </div>
+                <div class="login" data-auto-controller="Login">
+                    <h2><%=t("all.popup.login_title")%></h2>
+                    <form action="#">
+                    <table>
+                        <tr>
+                            <td>
+                                <ul>
+                                    <li>
+                                        <label for=""><%=t("all.user.email")%></label>
+                                    </li>
+                                    <li>
+                                        <input required="required" type="text" name="email" placeholder="test@example.com"/>
+                                    </li>
+                                </ul>             
+                            </td>
+                        </tr>
+                        </tr>
+                        <tr>
+                            <td>
+                                <ul>
+                                    <li>
+                                        <label for=""><%=t("all.user.password")%></label>
+                                    </li>
+                                    <li>
+                                        <input required="required" type="password" name="password" placeholder="********"/>
+                                    </li>
+                                </ul>   
+                            </td>  
+                        </tr>
+                        <tr>
+                            <td class="float">
+                                <label  for="agrement" class=""><%=t("popup.remember")%></label>
+                                <input type="checkbox" name="agrement"/>
+                                <a class="forgot_pass" href="#"><%=t("popup.forgot")%></a>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>
+                                <p class="soc"><%=t("popup.social_enter")%></p>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>
+                                <%=image_tag "fb.png"%>
+                            </td>
+
+                        </tr>
+                    </table>
+                    <div class="bottom">
+                        <a href="#"><%=t("all.popup.send")%></a>
+                        <span class="right_square"></span>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="popup" id="restore" data-auto-controller="Restore">
+
+            <div class="p_body">
+                <div class="register">
+                    <h2><%=t("all.popup.restore_title")%></h2>
+                    <form action="#">
+                        <ul class="email">
+                            <li>
+                                <label for=""><%=t("all.user.email")%></label>
+                            </li>
+                            <li>
+                                <input type="text" name="" placeholder="test@example.com"/>
+                            </li>
+                        </ul>
+                        <table>
+                            <tr>
+                                <td>
+                                    <%= show_simple_captcha(:object=>"restore") %>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>
+                                            <label><%=t("popup.capthca")%></label>
+                                        </li>
+                                        <li>
+                                            <input type="text" name="" placeholder="454545"/>
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                    <div class="bottom">
+                        <a href="#"><%=t("all.popup.send")%></a>
+                        <span class="right_square"></span>
+                    </div>
+                </div>
+            </div>
+        </div>

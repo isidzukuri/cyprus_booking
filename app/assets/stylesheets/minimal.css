@@ -1,0 +1,29 @@
+/* iCheck plugin Minimal skin, black
+----------------------------------- */
+.icheckbox_minimal,
+.iradio_minimal {
+    display: block;
+    margin: 3px 5px 0 0;
+    padding: 0;
+    width: 13px;
+    height: 13px;
+    border: none;
+    cursor: pointer;
+}
+
+.icheckbox_minimal {background: url(/assets/form_elements/checkbox.png) no-repeat left top;}
+.icheckbox_minimal.hover {background: url(/assets/form_elements/checkbox.png) no-repeat left top;}
+.icheckbox_minimal.checked {background: url(/assets/form_elements/checkbox_checked.png) no-repeat left top;}
+.icheckbox_minimal.disabled {background: url(/assets/form_elements/checkbox_disabled.png) no-repeat left top; cursor: default;}
+.icheckbox_minimal.checked.disabled {background: url(/assets/form_elements/checkbox_checked_disabled.png) no-repeat left top;}
+
+.iradio_minimal {
+	width: 14px;
+	height: 14px;
+    background: url(/assets/form_elements/radio.png) no-repeat left top;
+}
+.iradio_minimal.hover {background: url(/assets/form_elements/radio.png) no-repeat left top;}
+.iradio_minimal.checked {background: url(/assets/form_elements/radio_checked.png) no-repeat left top;}
+.iradio_minimal.disabled {background: url(/assets/form_elements/radio_disabled.png) no-repeat left top; cursor: default;}
+.iradio_minimal.checked.disabled {background: url(/assets/form_elements/radio_checked_disabled.png) no-repeat left top;}
+
