@@ -329,6 +329,8 @@ ActiveRecord::Schema.define(:version => 20140203020248) do
     t.string   "city"
     t.string   "street"
     t.string   "building"
+    t.string   "phone_code"
+    t.string   "phone"
     t.string   "crypted_password"
     t.string   "salt"
     t.datetime "created_at",                                     :null => false

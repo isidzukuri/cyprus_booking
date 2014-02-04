@@ -1,6 +1,13 @@
 ru:
+  simple_captcha:
+    placeholder: ""
+    label: "Enter the code in the box:"
+    message:
+      default: "Secret Code did not match with the Image"
+      user: "Код с картинки введен не верно"
   all:
     user:
+      agrement_off: "Вы должны принять условия пользования сервисом"
       first_name: "Имя"
       last_name: "Фамилия"
       email: "E-mail"
@@ -8,14 +15,17 @@ ru:
       password_confirm: "Подтверждение"
       phone: "Телефон"
     popup:
+      do_reg: "Зарегистрироваться"
+      do_enter: "Войти"
       register_title: "Регистрация"
       login_title: "Вход"
-      send: "отправить"
+      send: "Отправить"
       restore_title: "Восстановление пароля"
       remember: "Запомнить меня"
       forgot: "Забыли пароль?"
       social_enter: "Или войдите через социальную сеть"
-      capthca: "Код на картринке"
+      captcha: "Код на картринке"
+      i_agree: "Я принимаю условия пользования сервисом"
     more: "Больше"
     footer_links:
       faq: "FAQ"

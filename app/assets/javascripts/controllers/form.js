@@ -30,7 +30,7 @@ $.Controller("FormController",{
   },
 
   setup_submit:function(){
-    console.log("You can redifine this method and submit method")
+    //console.log("You can redifine this method and submit method")
   },
   
   ".submit -> click":function(ev){
@@ -55,7 +55,7 @@ $.Controller("FormController",{
       self = this
       $.ajax({
         url:      self.form.attr("action"),
-        data:     self.form.serialize() + "&map_search=" + self.parent.map_search,
+        data:     self.form.serialize(),
         type:     "post",
         dataType: "json",
 
@@ -73,6 +73,9 @@ $.Controller("FormController",{
   failure_call_back:function(){
     console.error("Redefine this method")
   },
+  show_error:function(text){
+    alert(text)
+  },
   /******************************************************/
 
 
@@ -87,7 +90,7 @@ $.Controller("FormController",{
   },
   ".only_chars -> keyup":function(ev){
     el = $(ev.target)
-    el.val(el.val().replace(/[^а-яА-ЯA-zA-Z]/, ""))
+    el.val(el.val().replace(/[^а-яА-ЯA-zA-Z-]/, ""))
   },
   ".only_chars_and_numbers -> keyup":function(ev){
     el = $(ev.target)

@@ -285,7 +285,7 @@ legend
     padding: 2px 4px 8px 4px;
 }
 
-input[type="text"] 
+input[type="text"],input[type="email"]
 {
     width: 200px;
     border: 1px solid #CCC;
@@ -842,7 +842,7 @@ ul {
 .search_forms .icheckbox_minimal{
     background: #004b8d url("/assets/form_elements/un_ch_blue.jpg");
 }
-.search_forms .icheckbox_minimal.checked {
+.search_forms .icheckbox_minimal.checked,.search_forms .icheckbox_minimal:hover {
     background: #004b8d url("/assets/form_elements/ch_blue.jpg");
 }
 .search_forms .hotels .advaced_from {
@@ -865,6 +865,7 @@ ul {
 .search_forms .cars .advaced_from {
     height: 165px;
     width: 100%;
+    top:135px;
     display: none;
 }
 /*.search_forms .hotels,.search_forms .cars{
@@ -2115,7 +2116,7 @@ fieldset{
     padding-left: 15px;
 }
 #restore ul.email input{
-    width: 370px;
+    width: 420px;
 }
 .popup{
     position: absolute;
@@ -2135,7 +2136,7 @@ fieldset{
     border-radius: 2px;
      background-image: none;
 }
-.popup .icheckbox_minimal.checked{
+.popup .icheckbox_minimal.checked,.popup .icheckbox_minimal:hover{
     background-image: url("/assets/form_elements/chk.png");
     background-repeat: no-repeat;
 }
@@ -2222,9 +2223,11 @@ fieldset{
 }
 .popup .register .bottom{
     background-color: #45b0e8;
+    cursor: pointer;
 }
 .popup .login .bottom{
     background-color: #9dd710;
+    cursor: pointer;
 }
 .popup .register .bottom a,.popup .login .bottom a{
     color: #ffffff
@@ -2511,8 +2514,18 @@ transform:scale(.3)}
     top: 7px;
     content: '';
     display: block;
-    width: 20px;
-    height: 20px;
+    width: 23px;
+    height: 23px;
     background: url("/assets/wait.gif") no-repeat center;
     z-index: 25
+}
+.rrrr{
+    left: 48%;
+}
+.header-center .menu img{
+    border-radius: 500px;
+    width: 20px;
+    height: 20px;
+    /*float: right;*/
+    margin-left: 10px;
 }

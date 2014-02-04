@@ -33,9 +33,9 @@ $.Controller("Main",{
 		this.element.find(".currency_block").show()
 	},
 	".currency_block a -> click":function(ev){
-		ev.preventDefault();
-		var currency = $.trim($(ev.target).text())
-		this.change_data("currency",{currency:currency});
+		// ev.preventDefault();
+		// var currency = $.trim($(ev.target).text())
+		// this.change_data("currency",{currency:currency});
 	},
 	".lang_block a -> click":function(ev){
 		// ev.preventDefault();

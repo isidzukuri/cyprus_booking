@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
-  authenticates_with_sorcery!
   apply_simple_captcha
+  authenticates_with_sorcery!
+  
   has_and_belongs_to_many :roles
   has_many :apartments_bookings
   has_many :friends
@@ -26,7 +27,7 @@ class User < ActiveRecord::Base
       :large    => ['500x500>',   :jpg],
       :cabinet  => ['100x100',   :jpg],
     }
-  attr_accessible :key,:info ,:email,:first_name ,:last_name, :patronic, :username, :password, :city, :street, :building
+  attr_accessible :phone_code, :phone,:info ,:email,:first_name ,:last_name, :patronic, :username, :password, :city, :street, :building
   def modules
   	modules = []
   	self.roles.each do |role|
@@ -57,6 +58,13 @@ class User < ActiveRecord::Base
 
   def apart_in_wish? apartment
     self.wishes.map{|w| w.house_id == apartment.id ? true : nil}.compact.count > 0
+  end
+
+  def to_login
+    {
+      name:self.fio,
+      avatar:self.file(:cabinet)
+    }
   end
 
 end

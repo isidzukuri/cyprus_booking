@@ -12,7 +12,7 @@
 }
 
 .icheckbox_minimal {background: url(/assets/form_elements/checkbox.png) no-repeat left top;}
-.icheckbox_minimal.hover {background: url(/assets/form_elements/checkbox.png) no-repeat left top;}
+/*.icheckbox_minimal.hover {background: url(/assets/form_elements/checkbox.png) no-repeat left top;}*/
 .icheckbox_minimal.checked {background: url(/assets/form_elements/checkbox_checked.png) no-repeat left top;}
 .icheckbox_minimal.disabled {background: url(/assets/form_elements/checkbox_disabled.png) no-repeat left top; cursor: default;}
 .icheckbox_minimal.checked.disabled {background: url(/assets/form_elements/checkbox_checked_disabled.png) no-repeat left top;}

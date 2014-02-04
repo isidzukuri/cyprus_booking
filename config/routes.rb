@@ -1,7 +1,11 @@
 Cypr::Application.routes.draw do
+  get 'admin',  to: "admin#index" 
+  get 'logout', to: "users#exit"
+  post "login",to: "users#auth"
+  post "register", to: "users#register"
+  post "restore", to: "users#forgot"
   scope :path =>"(:locale)", :locale => /ru|ua|en/ do
     root :to => "home#index"
-    get "home/search"
     resource "user"
     namespace "hotels" do
         %w(complete results booking).each do |action|

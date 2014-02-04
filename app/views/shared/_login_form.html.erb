@@ -1,8 +1,8 @@
-        <div class="popup" id="login_window" >
+        <div class="popup rrrr" id="login_window" >
             <div class="p_body">
                 <div class="register" data-auto-controller="Registr">
                     <h2><%=t("all.popup.register_title")%></h2>
-                    <%=form_for @user,:url=>"/login" do |f|%>
+                    <%=form_for @user,:url=>"/register" do |f|%>
                     <table>
                         <tr>
                             <td>
@@ -11,7 +11,7 @@
                                         <label><%=t("all.user.first_name")%></label>
                                     </li>
                                     <li>
-                                        <input required="required" type="text" name="" placeholder="vasya"/>
+                                        <%=f.text_field :first_name,required:true,placeholder:"vasya",autocomplete:"off",class:"only_chars"%>
                                     </li>
                                 </ul>
                                 
@@ -23,7 +23,7 @@
                                         <label for=""><%=t("all.user.last_name")%></label>
                                     </li>
                                     <li>
-                                        <input required="required" type="text" name="" placeholder="pupkin"/>
+                                        <%=f.text_field :last_name,required:true,placeholder:"vasya",autocomplete:"off",class:"only_chars"%>
                                     </li>
                                 </ul>
                             </td>
@@ -35,7 +35,7 @@
                                         <label for=""><%=t("all.user.email")%></label>
                                     </li>
                                     <li>
-                                        <input required="required" type="text" name="" placeholder="test@example.com"/>
+                                        <%=f.email_field :email,required:true,placeholder:"someone@example.com",autocomplete:"off"%>
                                     </li>
                                 </ul>
                                 
@@ -47,8 +47,8 @@
                                         <label for=""><%=t("all.user.phone")%></label>
                                     </li>
                                     <li class="phone">
-                                        <select><option>+38</option></select>
-                                        <input required="required" type="text" name="" placeholder="093779996"/>
+                                        <%=f.select :phone_code,@codes,:selected=>@current_code,required:true,placeholder:"093779996"%>
+                                        <%=f.text_field :phone,required:true,placeholder:"093779996",autocomplete:"off",class:"only_numbers",:"maxlength"=>10%>
                                     </li>
                                 </ul>
                             </td>
@@ -61,7 +61,7 @@
                                         <label for=""><%=t("all.user.password")%></label>
                                     </li>
                                     <li>
-                                        <input required="required" type="text" name="" placeholder="********"/>
+                                        <%=f.password_field :password,required:true,placeholder:"******",autocomplete:"off"%>
                                     </li>
                                 </ul>
                                 
@@ -73,31 +73,19 @@
                                         <label for=""><%=t("all.user.password_confirm")%></label>
                                     </li>
                                     <li>
-                                        <input type="text" name="" placeholder="********"/>
+                                        <%=f.password_field :password_confirm,required:true,placeholder:"******",autocomplete:"off"%>
                                     </li>
                                 </ul>
                             </td>
                         </tr>
                         </tr>
                         <tr>
-                            <td>
-                                <%= show_simple_captcha(:object=>"user") %>
-                            </td>
-                            <td>
-                                <ul>
-                                    <li>
-                                        <label><%=t("popup.capthca")%></label>
-                                    </li>
-                                    <li>
-                                        <input required="required" type="text" name="" placeholder="454545"/>
-                                    </li>
-                                </ul>
-                            </td>
+                             <%= show_simple_captcha%>
                         </tr>
                         <tr>
                             <td  class="float" >
-                                <label  for="agrement" class="">Я принимаю услови япользования сервисом</label>           
-                                <input type="checkbox" name="agrement"/>
+                                <label  for="agrement" class=""><%=t("all.popup.i_agree")%></label>   
+                                <%=check_box_tag :agrement%>       
                             </td>
                             <td>
 
@@ -106,14 +94,19 @@
                         </tr>
                     </table>
                     <div class="bottom">
-                        <a href="#"><%=t("all.popup.send")%></a>
+                        <a href="#"><%=t("all.popup.do_reg")%></a>
                         <span class="right_square"></span>
                     </div>
                     <%end%>
                 </div>
+            </div>
+        </div>
+        <div class="popup" id="login_window" >
+            <div class="p_body">
+
                 <div class="login" data-auto-controller="Login">
                     <h2><%=t("all.popup.login_title")%></h2>
-                    <form action="#">
+                    <%=form_for @user,:url=>"/login" do |f|%>
                     <table>
                         <tr>
                             <td>
@@ -122,7 +115,7 @@
                                         <label for=""><%=t("all.user.email")%></label>
                                     </li>
                                     <li>
-                                        <input required="required" type="text" name="email" placeholder="test@example.com"/>
+                                         <%=f.email_field :email,required:true,placeholder:"someone@example.com",autocomplete:"off"%>
                                     </li>
                                 </ul>             
                             </td>
@@ -135,22 +128,22 @@
                                         <label for=""><%=t("all.user.password")%></label>
                                     </li>
                                     <li>
-                                        <input required="required" type="password" name="password" placeholder="********"/>
+                                         <%=f.password_field :password,required:true,placeholder:"******",autocomplete:"off"%>
                                     </li>
                                 </ul>   
                             </td>  
                         </tr>
                         <tr>
                             <td class="float">
-                                <label  for="agrement" class=""><%=t("popup.remember")%></label>
-                                <input type="checkbox" name="agrement"/>
-                                <a class="forgot_pass" href="#"><%=t("popup.forgot")%></a>
+                                <label  for="agrement" class=""><%=t("all.popup.remember")%></label>
+                                <%=check_box_tag :remember%>
+                                <a class="forgot_pass" href="#"><%=t("all.popup.forgot")%></a>
                             </td>
 
                         </tr>
                         <tr>
                             <td>
-                                <p class="soc"><%=t("popup.social_enter")%></p>
+                                <p class="soc"><%=t("all.popup.social_enter")%></p>
                             </td>
 
                         </tr>
@@ -162,45 +155,32 @@
                         </tr>
                     </table>
                     <div class="bottom">
-                        <a href="#"><%=t("all.popup.send")%></a>
+                        <a href="#"><%=t("all.popup.do_enter")%></a>
                         <span class="right_square"></span>
                     </div>
-                    </form>
+                    <%end%>
                 </div>
             </div>
         </div>
         <div class="popup" id="restore" data-auto-controller="Restore">
-
             <div class="p_body">
                 <div class="register">
                     <h2><%=t("all.popup.restore_title")%></h2>
-                    <form action="#">
+                    <%=form_for @restore,:url=>"/restore" do |f|%>
                         <ul class="email">
                             <li>
                                 <label for=""><%=t("all.user.email")%></label>
                             </li>
                             <li>
-                                <input type="text" name="" placeholder="test@example.com"/>
+                                 <%=f.email_field :email,required:true,placeholder:"someone@example.com",autocomplete:"off"%>
                             </li>
                         </ul>
                         <table>
                             <tr>
-                                <td>
-                                    <%= show_simple_captcha(:object=>"restore") %>
-                                </td>
-                                <td>
-                                    <ul>
-                                        <li>
-                                            <label><%=t("popup.capthca")%></label>
-                                        </li>
-                                        <li>
-                                            <input type="text" name="" placeholder="454545"/>
-                                        </li>
-                                    </ul>
-                                </td>
+                               <%= show_simple_captcha %>
                             </tr>
                         </table>
-                    </form>
+                    <%end%>
                     <div class="bottom">
                         <a href="#"><%=t("all.popup.send")%></a>
                         <span class="right_square"></span>

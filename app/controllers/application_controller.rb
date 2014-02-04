@@ -3,7 +3,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   before_filter :set_locale
   before_filter :set_currency
-  before_filter :set_user
+  before_filter :check_ip
+  before_filter :set_popup_data
 
   protected
 
@@ -16,7 +17,9 @@ class ApplicationController < ActionController::Base
   private
   
   def set_currency
-  	@currencies = Currency.all
+  	if params[:currency].present? && Settings.avail_currencies.include?(params[:currency])
+      cookies[:currency] = params[:currency]
+    end
     $currency   = cookies[:currency] || :USD
   end
 
@@ -29,7 +32,17 @@ class ApplicationController < ActionController::Base
     Rails.application.routes.default_url_options[:locale]= I18n.locale 
   end
 
-  def set_user
-    @user = User.new unless logged_in?
+  def check_ip
+    data = "http://ip-api.com/json".to_uri.get.deserialize
+    $country_code = data["status"] == "success" ? data["countryCode"] : "RU"
+  end
+
+  def set_popup_data
+    unless logged_in?
+      @codes       = Country.get_phones
+      @current_code= Country.find_by_code($country_code).country_phone
+      @user = User.new 
+      @restore = Restore.new
+    end
   end
 end

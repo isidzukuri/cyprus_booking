@@ -25,7 +25,8 @@
                                 <%=t("all.login_header")%>
                             </a>
                             <%else%>
-                                <a class="" href="<%=user_path%>"><%=current_user.fio%></a>
+                                <a class="" href="<%=user_path%>"><%=current_user.fio%><%=image_tag current_user.file(:cabinet)%></a>
+                                
                             <%end%>
                         </li>             
                         <li><a class="lang"     href="#"><%=t("all.langs.#{I18n.locale}")%></a></li>
@@ -93,8 +94,14 @@
     	<%= render "shared/loader" %>
     	<%= render "shared/notice" %>
     </div>
+<script type="text/javascript">
+  FBappId = "<%="#{Settings.fb.key}"%>";
+  window.current_lang = "<%="#{I18n.locale.to_s}"%>";
+  window.logged_in = <%="#{logged_in?}"%>
+</script>
+</body>
 
-</body></html>
+</html>
 
 
 
