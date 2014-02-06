@@ -1,0 +1,20 @@
+= render "shared/admin/lang_switcher_fixed"
+.span9.with-sidebar
+  - url =  params[:action] =~ /new/ ? admin_nearbies_path : admin_nearby_path(@facility)
+  .container
+    = form_for @facility ,:url => url  ,:html=>{:class=>"new_user_form inline-input" , :multipart => true} do |f|
+      = f.hidden_field :id
+      - I18n.available_locales.each do |locale|
+        .span12.field-box.many_langs{:class => ("lang_hidden" unless locale.to_s == I18n.locale.to_s), :lang=>"#{locale.to_s}"}
+          = f.label "name_#{locale.to_s}", "#{t("admin.facilities.name")} [#{locale.to_s}]"   
+          = f.text_field "name_#{locale.to_s}" , :class=>"span9 required"
+
+      .span6.field-box
+        = f.label :ico , "#{t("admin.facilities.ico")}"  
+        -if @facility.ico.present?
+          =image_tag "#{@facility.ico.url(:small)}"
+        %input(type="file" name="ico")
+      
+      
+      .span11.field-box.actions
+        = f.submit t("admin.facilities.#{params[:action]}"), :class=>"btn-glow primary"

@@ -1,0 +1,19 @@
+= render "shared/admin/lang_switcher_fixed"
+.span9.with-sidebar
+  - url =  params[:action] =~ /new/ ? admin_characteristics_path : admin_characteristic_path(@characteristic)
+  .container
+    = form_for @characteristic ,:url => url  ,:html=>{:class=>"new_user_form inline-input" , :multipart => true} do |f|
+      = f.hidden_field :id
+      
+      - I18n.available_locales.each do |locale|
+        .span12.field-box.many_langs{:class => ("lang_hidden" unless locale.to_s == I18n.locale.to_s), :lang=>"#{locale.to_s}"}
+          = f.label "name_#{locale.to_s}", "#{t("admin.characteristics.name")} [#{locale.to_s}]"   
+          = f.text_field "name_#{locale.to_s}" , :class=>"span9 required"
+      
+      
+
+      
+      
+      
+      .span11.field-box.actions
+        = f.submit t("admin.characteristics.#{params[:action]}"), :class=>"btn-glow primary"

@@ -1,0 +1,20 @@
+.span9.with-sidebar
+  - url =  params[:action] =~ /new/ ? admin_currencies_path : "#{admin_currencies_path}/#{@facility.id}"
+  .container
+    = form_for @facility ,:url => url  ,:html=>{:class=>"new_user_form inline-input" , :multipart => true} do |f|
+      = f.hidden_field :id
+      .span12.field-box
+        = f.label :title , "#{t("admin.facilities.name")}"   
+        = f.text_field :title , :class=>"span9" , :required=>true
+
+      .span12.field-box
+        = f.label :curs , "Курс"   
+        = f.text_field :curs , :class=>"span9" , :required=>true
+
+      .span6.field-box
+        = f.label :symbol , "Символ"  
+        = f.text_field :symbol , :class=>"span9" , :required=>true
+      
+      
+      .span11.field-box.actions
+        = f.submit t("admin.facilities.#{params[:action]}"), :class=>"btn-glow primary"

@@ -1,0 +1,15 @@
+#tabs-wrapper
+  .row-fluid
+    %a.span2.tab{:href=>"/admin/characteristics"}
+      = t("admin.characteristics.list")
+    %a.span2.tab.active{:href=>"/admin/characteristics/new"}
+      = t("admin.characteristics.add_new")
+    %a.span2.tab{:href=>"#"}
+      = t("admin.characteristics.add_edit")
+#pad-wrapper.new-user
+  .row-fluid.header
+    %h3= t("admin.characteristics.add_new")
+  .row-fluid.form-wrapper
+    = render 'characteristic_form'
+
+

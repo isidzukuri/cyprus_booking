@@ -1,0 +1,31 @@
+#tabs-wrapper
+  .row-fluid
+    %a.span2.tab.active{:href=>"/admin/emails"}
+      = t("admin.settings.index")
+#pad-wrapper.users-list{:"data-auto-controller"=>"AdminSettingsController",:"data-locale"=>I18n.locale}
+  .row-fluid.header
+    %h3= t("admin.settings.index")
+  %p{:style=>"font-weight: bold;color:green"}=flash[:notice] 
+  .row-fluid.table 
+    .span8.column
+      = form_tag "/admin/settings/save" , :method=>:post do 
+        %label=t("admin.settings.shop_link")
+        = text_field_tag :shop_link , @settings[:shop_link] , :class=>"span8",:required=>true
+        %label Апи ключ
+        = text_field_tag :shop_api_key , @settings[:shop_api_key] , :class=>"span8",:required=>true
+        %label=t("admin.settings.shop_secret_key")
+        = text_field_tag :shop_secret_key , @settings[:shop_secret_key] , :class=>"span8",:required=>true
+        = submit_tag t("admin.settings.save") ,:class=>"btn-flat success" ,:style=>"margin-bottom: 10px;"
+      = form_tag "/admin/settings/save" , :method=>:post do 
+        %label=t("admin.settings.lang")
+        = select_tag :lang , options_for_select([["RU",:ru],["UA",:ua]],@settings[:lang]) , :class=>"span8",:required=>true
+        = submit_tag t("admin.settings.save") ,:class=>"btn-flat success" ,:style=>"margin-bottom: 10px;"
+
+
+    .span3.form-sidebar.pull-right
+      %h6{:style=>"margin-top: 80px;"}=t("admin.settings.key_desc")
+      %h6{:style=>"margin-top: 135px;"}=t("admin.settings.lang_desc")
+
+    
+
+

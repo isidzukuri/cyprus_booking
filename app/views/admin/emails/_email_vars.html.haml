@@ -1,0 +1,10 @@
+.span3.form-sidebar.pull-right
+  %h6=t("admin.emails.vars")
+  - if @vars.respond_to?(:each_pair)
+    .alert.alert-info.hidden-tablet
+      %i.icon-lightbulb.pull-left
+      = t("admin.emails.vars_info")
+    .ui-group
+      - @vars.each_pair do |k,v|
+        %li{:style=>'list-style-type: none;'}
+          %a{:href=>"##{k}",:class=>"btn-flat primary",:style=>"width: 50%;margin-bottom: 5px;"}=v

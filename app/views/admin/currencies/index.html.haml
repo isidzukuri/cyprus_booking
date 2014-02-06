@@ -1,0 +1,51 @@
+#tabs-wrapper
+  .row-fluid
+    %a.span2.tab.active{:href=>"/admin/currencies"}
+      = t("admin.currencies.list")
+    %a.span2.tab{:href=>"/admin/currencies/new"}
+      = t("admin.currencies.add_new")
+    %a.span2.tab{:href=>"#"}
+      = t("admin.currencies.show")
+
+
+#pad-wrapper.users-list
+  .row-fluid.header
+    %h3= t("admin.facilities.search")
+    .span10.pull-right
+      = form_tag admin_currencies_path, :method=>:get do
+        = text_field_tag  :title ,params[:title],  :class=>"span5 search" , :required=>true
+        .ui-dropdown
+          = submit_tag t("admin.facilities.search") ,:class=>"btn-flat success"     
+      %p{:style=>"font-weight: bold;color:green"}=flash[:notice] 
+      %p{:style=>"font-weight: bold;color:red"}=flash[:error] 
+      - unless flash[:errors].nil? 
+        - flash[:errors].each_pair do |field,mes|
+          %p{:style=>"font-weight: bold;color:red"}=t("admin.facilities.#{field}") + ": " + mes.first
+  .row-fluid.table{:"data-auto-controller"=>"AdminUsersController"}
+    %table.table.table-hover
+      %thead
+        %tr
+          %th.span2.sortable
+            = form_tag admin_currencies_path, :method=>:get do
+              = hidden_field_tag :sort , "title"
+              = hidden_field_tag :dir , @dir
+              = t("admin.facilities.name")    
+          %th.span2.sortable
+            %span.line Символ
+          %th.span2.sortable
+            %span.line
+              = t("facility.actions.delete") 
+
+           
+      %tbody
+        - @facilities.each_with_index do |facility,i|
+          %tr{:class=>("active" if i == 0)}
+            %td
+              = link_to "#{facility.title}" , "/admin/currencies/#{facility.id}/edit" , :class=>"name"
+            %td=facility.symbol
+            %td
+              = link_to t("facility.actions.delete")  , "/admin/currencies/delete/#{facility.id}" , :class=>"name"
+  .pagination.pull-right 
+    = will_paginate @facilities         
+
+

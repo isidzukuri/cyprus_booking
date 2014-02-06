@@ -1,0 +1,39 @@
+.span9.with-sidebar
+  - url =  params[:action] =~ /new/ ? admin_users_path : admin_user_path(@user)
+  .container
+    = form_for @user ,:url => url  ,:html=>{:class=>"new_user_form inline-input",:multipart=>true} do |f|
+      = f.hidden_field :id
+      - if params[:action] =~ /new/
+        = f.hidden_field :password,:value=>@pass
+      .span12.field-box
+        = f.label :roles , t("admin.users.role")    
+        = f.select :roles , options_for_select(@roles,@user.roles.any? ? @user.roles.first.id : 2) ,{} ,:class=>"span9" , :required=>true
+      .span12.field-box
+        = f.label :active , t("admin.users.active")    
+        = f.select :active , options_for_select([[t("admin.users.active_1"),1],[t("admin.users.active_0"),0]],@user.active) ,{} ,:class=>"span9" , :required=>true
+      .span12.field-box
+        = f.label :first_name , t("admin.users.first_name")    
+        = f.text_field :first_name , :class=>"span9" , :required=>true
+      .span12.field-box
+        = f.label :last_name , t("admin.users.last_name")    
+        = f.text_field :last_name , :class=>"span9" , :required=>true
+      .span12.field-box
+        = f.label :patronic , t("admin.users.patronic")    
+        = f.text_field :patronic , :class=>"span9" , :required=>true
+      .span12.field-box
+        = f.label :email , t("admin.users.email")    
+        = f.text_field :email , :type=>"email", :class=>"span9" , :required=>true 
+      .span12.field-box
+        = f.label :city , t("admin.users.address")
+        .address-fields
+          = f.text_field :city , :class=>"span12 small" , :required=>true , :placeholder=> t("admin.users.city")  
+          = f.text_field :street , :class=>"span12 small" , :required=>true  , :placeholder=>t("admin.users.street")
+          = f.text_field :building , :class=>"span12 small" , :required=>true  , :placeholder=>t("admin.users.building")
+      .span6.field-box
+        = f.label :file , "#{t("admin.facilities.ico")}"  
+        = @user.file
+        -if @user.file.present?
+          =image_tag "#{@user.file.url(:small)}"
+        %input(type="file" name="file")
+      .span11.field-box.actions
+        = f.submit t("admin.users.#{params[:action]}"), :class=>"btn-glow primary"

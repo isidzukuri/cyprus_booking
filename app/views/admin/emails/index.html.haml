@@ -1,0 +1,21 @@
+#tabs-wrapper
+  .row-fluid
+    %a.span2.tab.active{:href=>"/admin/emails"}
+      = t("admin.emails.list")
+    %a.span2.tab{:href=>"#"}
+      = t("admin.emails.edit_template")
+#pad-wrapper.users-list
+  .row-fluid.header
+    %h3= t("admin.emails.title")
+  %p{:style=>"font-weight: bold;color:green"}=flash[:notice] 
+  .row-fluid.table
+    %table.table.table-hover 
+      %tbody
+        - @emails.each_with_index do |email,i|
+          %tr{:class=>("active" if i == 0)}
+            %td
+              = link_to "#{email.name}" , edit_admin_email_path(email.id) , :class=>"name"
+  .pagination.pull-right 
+    
+
+

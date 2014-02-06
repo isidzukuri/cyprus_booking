@@ -1,0 +1,9 @@
+%h2 Условия Аренды
+.content
+  - @rental_terms.each do |r|
+    - r[:text].each do |t|
+      %h3 #{t[:Caption]}
+      = raw CGI::unescapeHTML(t[:Body]) 
+      %br
+
+
