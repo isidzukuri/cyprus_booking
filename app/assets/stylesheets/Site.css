@@ -108,7 +108,7 @@ page width. Or, you can specify an exact pixel width. */
     position: relative;
     height: 100%;
     background: url('/assets/bg.jpg') no-repeat;
-    background-size: 100%;
+    background-size: 100% 100%;
 }
 
 #header
@@ -227,9 +227,9 @@ page width. Or, you can specify an exact pixel width. */
     min-height: 555px;
     width: 980px;
     border-radius: 5px;
-    -webkit-box-shadow: 2px 2px 4px 0px rgba(50, 50, 50, 0.75);
-    -moz-box-shadow:    2px 2px 4px 0px rgba(50, 50, 50, 0.75);
-    box-shadow:         2px 2px 4px 0px rgba(50, 50, 50, 0.75);
+-webkit-box-shadow: 0px 1px 9px 0px rgba(50, 50, 50, 0.75);
+-moz-box-shadow:    0px 1px 9px 0px rgba(50, 50, 50, 0.75);
+box-shadow:         0px 1px 9px 0px rgba(50, 50, 50, 0.75);
     margin-top: 20px;
 }
 /* TAB MENU   
@@ -406,6 +406,7 @@ color: #ffffff;
     -webkit-border-radius: 2px;
     -moz-border-radius: 2px;
     border-radius: 2px;
+    z-index: 50;
 }
 #main_map #g_map{
     height: inherit;
@@ -481,6 +482,9 @@ color: #ffffff;
  .item_elms li{
     float: left;
     margin-right: 5px;
+}
+.item_elms li.pay_btn{
+    float: right;
 }
  .item_elms p {
     text-align: left;
@@ -2103,7 +2107,7 @@ fieldset{
     height: 100%;
     width: 100%;
     position: absolute;
-    z-index: 10;
+    z-index: 51;
     top: 0;
     display: none;
 }
@@ -2127,7 +2131,7 @@ fieldset{
     -moz-box-shadow:    3px 3px 5px 0px rgba(50, 50, 50, 0.75);
     box-shadow:         3px 3px 5px 0px rgba(50, 50, 50, 0.75);
 }
-.popup .icheckbox_minimal{
+.popup .icheckbox_minimal ,.options_list .icheckbox_minimal{
     width: 22px;
     height: 22px;
     border: 1px solid #d0d1d5;
@@ -2136,7 +2140,7 @@ fieldset{
     border-radius: 2px;
      background-image: none;
 }
-.popup .icheckbox_minimal.checked,.popup .icheckbox_minimal:hover{
+.popup .icheckbox_minimal.checked,.popup .icheckbox_minimal:hover ,.options_list .icheckbox_minimal:hover ,.options_list .icheckbox_minimal.checked{
     background-image: url("/assets/form_elements/chk.png");
     background-repeat: no-repeat;
 }
@@ -2235,7 +2239,7 @@ fieldset{
 .popup table td{
     padding-left: 15px;
 }
-.popup input,.faq_page input{
+.popup input,.faq_page input, .open_item input{
     line-height: 2.5;
     text-align: center;
     background-color: #eaf1f9;
@@ -2507,6 +2511,8 @@ transform:scale(.3)}
 
 .car_page #main_wrap{
     background-color: #ffffff;
+    margin: 0;
+    padding: 0;
 }
 .input_loader {
     position: absolute;
@@ -2528,4 +2534,400 @@ transform:scale(.3)}
     height: 20px;
     /*float: right;*/
     margin-left: 10px;
+    vertical-align: top;
 }
+
+.car_item{
+    height: 150px;
+}
+.car_item h3{
+    color: #004b8d;
+    font-size: 19px;
+    padding: 0;
+    margin: 0;
+}
+.car_item h3 span{
+    color: #7f7f7f;
+    font-weight: normal;
+    text-transform: uppercase;
+    font-size: 13px;
+}
+.car_item .desc{
+    width: 635px;
+    border-bottom: 2px solid #ECE5E5;
+    height: 120px;
+}
+.car_item li.desc:last-child{
+    border: none!important;
+}
+.car_item .desc .rt{
+    width:450px;
+}
+.car_item .desc .lft{
+    width: 160px;
+}
+.car_item .item_elms li.pay_btn{
+    margin-right: 25px;
+}
+.car_item .car_options li{
+    float: left;
+}
+.car_item .car_options{
+    width: 450px;
+    height: 25px;
+    color: #004b8d;
+    font-size: 14px;
+}
+.car_item .rt p span{
+    text-decoration: underline;
+}
+.car_item .car_cls{
+    color: #004b8d;
+    font-size: 17px;
+}
+.html_car_page{
+    height: auto!important;
+}
+.html_car_page .header{
+    border-bottom: 2px solid #ECE5E5;
+    height: 60px;
+}
+.html_car_page .header h2{
+    color: #004b8d;
+    padding: 10px;
+    margin: 0;
+    float: left;
+}
+.html_car_page #header{
+    z-index: 2;
+}
+.html_car_page .header h2 span{
+    color: #7f7f7f;
+    font-weight: normal;
+    font-size: 17px;
+}
+.html_car_page .header .sorting{
+    float: right;
+    margin-right: 30px;
+}
+.html_car_page .header .sorting li{
+    float: left;
+}
+
+.html_car_page .steps{
+    background-color: #004b8d;
+    height:40px;
+    z-index: 1;
+    position: relative;
+-webkit-box-shadow: 2px 2px 4px 0px rgba(50, 50, 50, 0.75);
+-moz-box-shadow: 2px 2px 4px 0px rgba(50, 50, 50, 0.75);
+box-shadow: 2px 2px 4px 0px rgba(50, 50, 50, 0.75);
+}
+.html_car_page .steps ul{
+    margin:0;
+    padding: 0;
+    min-width: 980px;
+}
+.html_car_page .steps ul li{
+    float: left;
+    width: 25%;
+    text-align: center;
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 2;
+    text-transform: uppercase;
+}
+
+.html_car_page .steps ul li .number {
+    width: 35px;
+    height: 35px;
+    display: inline-block;
+    border-radius: 500px;
+    background: #ffffff;
+    color:  #004b8d;
+    margin-top: 2px;
+    margin-right: 6px;
+}
+.html_car_page .steps .active.number{
+    background: #9cd60f;
+}
+
+.hotel_page{
+
+}
+.hotel_page #main_content{
+    padding-bottom: 100px;
+}
+.hotel_page .rating{
+    width: 100px;
+    float: left;
+}
+.hotel_page .sbOptions , .hotel_page .sbHolder ,.hotel_page .sbSelector{
+    width: 250px;
+}
+.hotel_page .sbHolder ul li{
+   float: none!important;
+}
+.hotel_page .sbHolder ul{
+    height: 265px!important;
+    max-height: 265px!important;
+}
+.hotel_page.apart_page .sbHolder ul{
+    height: 150px!important;
+    max-height: 150px!important;
+}
+.hotel_page  .sbToggle, .sbToggle:hover {
+    border-left: none;
+    background-position: -30px 0;
+    background-color: #ffffff;
+}
+.car_page .sorting li:first-child{
+    font-size: 17px;
+    line-height: 2;
+}
+.hotel_page .car_item .addr{
+    line-height: 2.5;
+}
+.item_elms .price{
+    text-align: center;
+}
+.plc_count img{
+    vertical-align: bottom;
+}
+.html_car_page .header h2 span.car_name{
+    color: #9cd60f;
+    font-size: 20px;
+}
+.html_car_page .header .final_price{
+    float: right;
+    color: #81b10f;
+    font-size: 30pt;
+    font-weight: bold;
+    margin-right: 30px;
+}
+
+.html_car_page .header .price_desc{
+    color: #004b8d;
+    padding: 10px;
+    margin: 0;
+    font-size: 18px;
+    line-height: 1.8;
+}
+
+.html_car_page .result_list{
+    
+}
+.html_car_page .result_list h2{
+    color: #004b8d;
+    margin: 10px
+}
+.html_car_page .result_list li.open_item{
+    border-bottom: 2px solid #ECE5E5;
+    min-height: 380px;
+}
+.html_car_page .result_list li.open_item:first-child{
+    min-height:150px;
+}
+.html_car_page .result_list li.open_item:first-child .car_item .desc{
+    border: none;
+}
+.options_list ,.options_list td,.franc_desc, .franc_desc td{
+    border: none;
+    
+}
+.options_list ,.options_list td{
+    font-size: 18px;
+}
+.opt_price span{
+    color: #004b8d;
+    font-weight: bold;
+
+}
+.options_list{
+    float: left;
+}
+.franc_desc{
+    float: left;
+    width: 455px;
+    margin-left: 15px;
+}
+.open_item .sbHolder, .open_item .sbSelector ,.open_item .sbOptions{
+    width: 100px;
+    float: left;
+    background-color: #eaf1f9;
+}
+.booking .open_item .sbHolder, .booking .open_item .sbSelector, .booking .open_item .sbOptions{
+    width: 200px;
+    background-color: #ffffff;
+}
+
+.open_item  .sbToggle, .open_item .sbToggle:hover {
+    border-left: none;
+    background-position: -30px 0;
+    background-color: #ffffff;
+}
+.open_item table, .open_item td{
+    border: none;
+    font-size: 13px;
+}
+.open_item table textarea{
+    width: 950px!important;
+    height: 70px!important;
+}
+table.buttom{
+    width: 100%;
+}
+td.pay_btn{
+    float: right;
+}
+td.pay_btn a{
+    margin-right: 20px;
+}
+.html_car_page .result_list li.open_item:last-child{
+    border: none;
+    min-height:150px;
+}
+.pay_btn.fanc{
+    float: left;
+}
+.pay_btn.fanc a{
+    width: 190px;
+}
+
+/* popup info block */
+
+.fancybox-desktop .fancybox-skin{
+    background: #f5f7f8;
+    border-radius: 0;
+}
+.fancybox-desktop h2{
+    height: 36px;
+    line-height: 36px;
+    color: white;
+    font-size: 16px;
+    clear: both;
+    width: 100%;
+    background: #004b8d; 
+    text-align: left;
+    font-weight: normal;
+    text-indent: 15px;
+}
+.fancybox-desktop .content{
+    margin: 15px;
+    padding: 20px 12px 12px;
+    border: 1px solid #c8d3dc;
+    background-color: white;
+    font-size: 12px;
+    line-height: 18px;
+    color: #5a5a5a;
+    max-height: 454px;
+    overflow: auto;
+}
+.fancybox-desktop .content h3{
+    color: #33577a;
+    font-size: 14px;
+    text-align: left;
+    font-weight: normal;
+    border: none;
+    padding-bottom: 12px;;
+    margin-bottom: 0;
+}
+.fancybox-desktop .content p{
+    color: #5a5a5a;
+    margin:0 0 20px;
+}
+.fancybox-desktop .content a{
+    color: #007fdb;
+}
+.fancybox-desktop .content .red{
+    color: red;
+}
+.fancybox-desktop .content ul{
+    padding: 10px 0 10px 20px;
+    overflow: hidden;
+}
+.fancybox-desktop .content ul li{
+    padding-bottom: 6px;
+}
+.fancybox-desktop .fancybox-close{
+    background: image-url('icon_info_close.png') no-repeat 0 0;
+    width: 12px;
+    height: 12px;
+    overflow: hidden;
+    display: block;
+    position: absolute;
+    top: 12px;
+    right: 12px;
+}
+.html_car_page .result_list.booking li.open_item {
+    border: none;
+    min-height: 50px;
+}
+
+.card_block {
+    padding: 8px 0 20px;
+    margin: 0 14px;
+    clear: both;
+    overflow: hidden;
+}
+.card_data {
+    position: relative;
+    float: left;
+    width: 675px;
+    height: 209px;
+    background: url("/assets/card_bg.png") no-repeat;
+}
+.pci_block {
+    float: right;
+    width: 230px;
+    padding:0;
+   /* background: url("../img/pci.png") no-repeat;*/
+    font-size: 12px;
+    line-height: 18px;
+    color: #515459;
+}
+.card_type_sel{
+    margin-bottom: 50px;
+}
+.pci_block a {color: #515459;} 
+.card_data label {
+    display: block;
+    margin: 0 0 6px;
+    font-size: 11px;
+    line-height: 12px;
+    color: #000;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+.about_cards, .card_num, .card_owner, .card_date, .card_cvv {position: absolute;}
+.card_num {
+    top: 68px;
+    left: 16px;
+}
+.card_owner {
+    top: 135px;
+    left: 16px;
+}
+.card_date {
+    top: 135px;
+    left: 212px;
+}
+.card_cvv {
+    top: 35px;
+    right: 45px;
+}
+.card_data .txtinput {
+    height: 16px;
+    border: 1px solid #B0BDD1;
+    background: #FFF;
+    padding: 9px 10px;
+    font-size: 13px;
+    line-height: 16px;
+    color: #000;
+    font-weight: bold;
+}
+.card_data .txtinput:focus {border: 1px solid #AB3395;}
+.card_num .txtinput, .card_date .txtinput, .card_cvv .txtinput  {width: 45px; text-align: center;}
+.card_num .txtinput {margin: 0 7px 0 0;}
+.card_owner .txtinput {width: 160px;}

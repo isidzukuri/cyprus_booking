@@ -1,12 +1,14 @@
 <div id="map_desults">
     <h3><%=t("search.results")%></h3>
     <p>
-        <span><%=t("search.aparts.departure")%>:</span> <%=l(@search.departure,:format=>:long)%>|
-        <span><%=t("search.aparts.arrival")%>:</span> <%=l(@search.arrival,:format=>:long)%> |
+        <span><%=t("search.aparts.departure")%>:</span> <%=l(@search.arrival,:format=>:long)%> | 
+        <span><%=t("search.aparts.arrival")%>:</span> <%=l(@search.departure,:format=>:long)%>|
         <span><%=t("search.aparts.p_count")%>:</span> <%=@search.people_count%>|
         <span><%=t("search.aparts.city")%>:</span> <%=@search.city%>
     </p>
-        <% @apartments.each do |apart|%>
-            <%= render partial:"aparts/map_item",:locals=>{:apart=>apart}%>
-        <%end%>
+        <ul class="result_list">
+            <% @apartments.each do |apart|%>
+                <%= render partial:"aparts/map_item",:locals=>{:apart=>apart}%>
+            <%end%>
+        </ul>
 </div>

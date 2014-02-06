@@ -18,9 +18,9 @@ $.Controller("Login","FormController",{
     success_call_back:function(resp){
     	window.close_popup();
     	var login_link = $(".menu a.login")
+    	$(".login").removeClass("login")
     	login_link.attr("href","/" + window.current_lang + "/cabinet")
     	login_link.html("")
-    	login_link.removeClass("login")
     	login_link.append(resp.user.name)
     	login_link.append($("<img src=" + resp.user.avatar + " />"))
     },

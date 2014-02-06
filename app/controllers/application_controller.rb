@@ -5,9 +5,14 @@ class ApplicationController < ActionController::Base
   before_filter :set_currency
   before_filter :check_ip
   before_filter :set_popup_data
+  before_filter :set_layout
 
   protected
 
+  def set_layout
+    @body_cls = ""
+  end
+  
   def cars_countries
     countries = Rails.cache.fetch("cars_countries", :expires_in => 1.month) do
 		  api.get_county_list.collect{|c| [ c, c ] }
@@ -33,8 +38,17 @@ class ApplicationController < ActionController::Base
   end
 
   def check_ip
-    data = "http://ip-api.com/json".to_uri.get.deserialize
-    $country_code = data["status"] == "success" ? data["countryCode"] : "RU"
+    if session[:country_code].nil?
+      data = "http://ip-api.com/json".to_uri.get.deserialize
+      if data["status"] == "success" 
+        session[:country_code] = data["countryCode"]
+        $country_code = data["countryCode"]
+      else
+        $country_code =  "RU"
+      end
+    else
+      $country_code = session[:country_code]
+    end
   end
 
   def set_popup_data

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140203020248) do
+ActiveRecord::Schema.define(:version => 20140206014512) do
 
   create_table "admin_modules", :force => true do |t|
     t.string   "name"
@@ -52,6 +52,36 @@ ActiveRecord::Schema.define(:version => 20140203020248) do
     t.string   "currency"
   end
 
+  create_table "cars_bookings_payeds", :force => true do |t|
+    t.string   "reservation_id"
+    t.integer  "vehicle_id"
+    t.string   "car_name"
+    t.float    "base_price"
+    t.integer  "protect"
+    t.string   "protect_price"
+    t.string   "pick_country"
+    t.string   "pick_city"
+    t.string   "pick_place"
+    t.string   "pick_location"
+    t.date     "pick_date"
+    t.string   "pick_time"
+    t.string   "drop_country"
+    t.string   "drop_city"
+    t.string   "drop_place"
+    t.string   "drop_location"
+    t.date     "drop_date"
+    t.string   "drop_time"
+    t.string   "driver_name"
+    t.string   "driver_surname"
+    t.string   "driver_birthday"
+    t.text     "cars_extras"
+    t.integer  "user_id"
+    t.integer  "car_location"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  add_index "cars_bookings_payeds", ["user_id"], :name => "index_cars_bookings_payeds_on_user_id"
 
   create_table "characteristics", :force => true do |t|
     t.string "name_ru"
@@ -278,7 +308,6 @@ ActiveRecord::Schema.define(:version => 20140203020248) do
     t.integer "value"
   end
 
-
   create_table "rewievs", :force => true do |t|
     t.integer  "user_id"
     t.integer  "house_id"
@@ -341,7 +370,6 @@ ActiveRecord::Schema.define(:version => 20140203020248) do
     t.datetime "reset_password_token_expires_at"
     t.datetime "reset_password_email_sent_at"
     t.string   "file_file_name"
-    t.string   "phone"
     t.text     "info"
   end
 

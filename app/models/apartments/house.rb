@@ -45,7 +45,7 @@ class House < ActiveRecord::Base
   end
 
   def address full = false
-    "#{self.city_name} #{full ? ",#{street}" : ""} #{self.name}"
+    "#{self.city_name} #{self.street}  #{full ? ",#{self.name}" : ""}"
   end
 
   def default_cost_string
@@ -105,6 +105,16 @@ class House < ActiveRecord::Base
       :img       => self.first_img,
       :city      => self.city_name,
     }
+  end
+
+  def to_map_hash
+    {
+      :lat => self.latitude,
+      :lng => self.longitude,
+      :name=> self.name,
+      :id  => self.id
+    }
+    
   end
 
   

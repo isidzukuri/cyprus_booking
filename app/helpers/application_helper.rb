@@ -13,4 +13,25 @@ module ApplicationHelper
 	    end
 	end
   end
+  def car_class_convert code
+    clas_regular = {
+      "special"  => "((X...)|(.V..)).*",
+      "mini"     => "[EM][^V].*",
+      "economy"  => "[E][^V].*",
+      "compact"  => "[C][^V].*",
+      "midsize"  => "[I][^V].*",
+      "intmedia" => "[I][^V].*",
+      "standart" => "[S][^V].*",
+      "full"     => "[F][^V].*",
+      "premium"  => "[P][^V].*",
+      "lux"      => "[L][^V].*"  
+    }
+    car_class = "standart"
+    clas_regular.each_pair do |n,r|
+      name = code.match(/#{r}/)
+      car_class = n unless name.nil?
+    end
+    car_class
+  end
+  
 end

@@ -91,12 +91,13 @@ $.Controller("Main",{
 	set_active_tab:function(el){
 		$.publish("remove_static");
 		var self = this;
+
 		if(el=="main"){
 			this.main.hide();
 			this.map.show()
 			this.map.animate({'margin-left': "+=100%"},300,function(){
-				self.initialize_map()
 				self.set_width();
+				self.initialize_map(true)
 			});
 			ApartSearchForm.map_search  = true
 			HotelsSearchForm.map_search = true
@@ -105,7 +106,8 @@ $.Controller("Main",{
 			ApartSearchForm.map_search  = false
 			HotelsSearchForm.map_search = false
 			this.map.animate({'margin-left': "-=100%"},300,function(){
-				self.map.hide()
+				self.map.hide();
+                self.initialize_map(true)
 				self.main.show();
 			})
 		}
@@ -113,7 +115,8 @@ $.Controller("Main",{
 	set_width:function(){
 		this.parent.map_width = this.element.find("#g_map").width()
 	},
-	initialize_map:function(){
+	initialize_map:function(resize){
+		if(resize)this.element.find("#g_map").width(this.parent.map_width)
 		if(typeof(google) == "undefined")
 			return;
 		Base_coords   = new google.maps.LatLng(35, 33);
@@ -173,7 +176,7 @@ $.Controller("Main",{
 	"map_width_resize":function(){
 		var map = this.element.find("#g_map")
 		map.width((this.parent.map_width - 580))
-		this.initialize_map()
+		this.initialize_map(false)
 	},
 	"show_hotels_on_map":function(data){
 		for (var i = 0; i < data.length; i++) {

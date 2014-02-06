@@ -40,7 +40,10 @@ class HotelSearch
      (arrival - departure).to_i 
   end
   
-  
+  def to_title
+   "#{self.city}, #{self.departure.strftime('%d.%m.%Y')}-#{self.arrival.strftime('%d.%m.%Y')}"
+  end
+
   def count_people
      count  = 0
     self.rooms.each  do |room|

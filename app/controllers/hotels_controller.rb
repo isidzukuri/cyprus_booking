@@ -1,6 +1,8 @@
 class HotelsController < ApplicationController
   before_filter :check_cache, :only=>[:results,:show]
-  
+  def set_layout
+    @body_cls = "car_page hotel_page"
+  end
   def complete
     data = api.complete(params[:filter])
     render :json => data
@@ -42,6 +44,8 @@ class HotelsController < ApplicationController
 
   def results
     check_cache
+    # p @results[:result].first
+    # raise
   end
 
   def show

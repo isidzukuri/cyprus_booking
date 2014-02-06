@@ -26,7 +26,7 @@
             </ul>
         </li>
         <li class="pay_btn">
-            <a target="_blank" href="<%=hotels_path(hotel[:id],{:session_id=>@session_id})%>"><%=t("all.more")%>..<span>></span></a>
+            <a target="_blank" href="<%="#{hotels_show_path}/#{hotel[:id]}?session_id=#{@session_id}"%>"><%=t("all.choose")%><span>></span></a>
         </li>
     </ul>
 </li>

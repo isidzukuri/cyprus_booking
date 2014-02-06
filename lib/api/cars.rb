@@ -286,8 +286,8 @@ class Api::Cars
 
   
   def booking_request booking ,card
-    pick_date = booking.pick_up.date.strftime("%d.%m.%Y").split('-')
-    drop_date = booking.dropp_off.date.strftime("%d.%m.%Y").split('-')
+    pick_date = booking.pick_up.date.strftime("%d.%m.%Y").split('.')
+    drop_date = booking.dropp_off.date.strftime("%d.%m.%Y").split('.')
     pick_time = booking.pick_up.time.split('-')
     drop_time = booking.dropp_off.time.split('-')
 
@@ -297,11 +297,11 @@ class Api::Cars
         @xml.Booking(){
           @xml.PickUp{
               @xml.Location(:id=>booking.pick_up.location)
-              @xml.Date(:year=>pick_date[0],:month=>pick_date[1],:day=>pick_date[2],:hour=>pick_time[0],:minute=>pick_date[1])
+              @xml.Date(:year=>pick_date[2],:month=>pick_date[1],:day=>pick_date[0],:hour=>pick_time[0],:minute=>pick_date[1])
           }
           @xml.DropOff{
               @xml.Location(:id=>booking.dropp_off.location)
-              @xml.Date(:year=>drop_date[0],:month=>drop_date[1],:day=>drop_date[2],:hour=>drop_time[0],:minute=>drop_date[1])
+              @xml.Date(:year=>drop_date[2],:month=>drop_date[1],:day=>drop_date[0],:hour=>drop_time[0],:minute=>drop_date[1])
           }
           @xml.Vehicle(:id=>booking.vehicle_id)
           @xml.ExtraList{
@@ -333,6 +333,8 @@ class Api::Cars
           @xml.AirlineInfo(:flightNo=>booking.flight_number) if booking.flight_presense.to_i == 0
         }
       }
+      p result
+      result
   end
 
   def open_time_list_request location,date , type

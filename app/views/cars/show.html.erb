@@ -1,0 +1,149 @@
+        <%=book_steps(t("all.cars.book_steps"),1)%>
+        <%=form_for @booking ,:url=>"/#{I18n.locale}/cars/booking/#{@car[:car_info][:id]}", :html=>{"data-auto-controller"=>"CarBooking"} do |f|%>
+            <%= hidden_field_tag "session_id" , @session_id%>
+            <div id="main_content">
+                <div id="main" >
+                    <div id="main_wrap">
+                        <div class="header">
+                            <h2><%=t("all.your_choise")%>: </h2>
+                            
+                            <div class="final_price">
+                                <h2 class="price_desc"><%=t("all.total_price")%>: </h2>
+                                <%="#{(Exchange.convert(@car[:price]["baseCurrency"], $currency) * @car[:price]["basePrice"].to_f).to_i}"%>
+                                <span class="currency"> <%=t("all.currencies_symbols.#{$currency}")%></span>
+                            </div>
+                        </div>
+                        <ul class="result_list">
+                            <li  class="open_item">
+                                <ul>
+                                    <li class="car_item">
+                                        <ul class="item_elms">
+                                            <li class="desc">
+                                                <div class="lft"><img src="<%= @car[:car_info][:LargeImageURL]%>" width="150" height="100"/></div>
+                                                <div class="rt">
+                                                    <h3><%= @car[:car_info][:Name]%><span class="analog"> <%=t("all.cars.analog")%></span></h3>
+                                                    <p class="car_cls"><%=t("all.cars.class")%>: <span><%=t("all.cars.classes.#{car_class_convert(@car[:car_info][:group])}")%></span></p>
+                                                    <ul class="car_options">
+                                                        <li>- <%=t("all.cars.korobka",:type=>t("all.cars.korobka_type.#{@car[:car_info][:automatic][0..0]}"))%></li>
+                                                        <li>- <%=t("all.cars.free_cancel",:type=>t("all.cars.free_сancellation._#{@car[:car_info][:freeCancellation].to_s}"))%></li>
+                                                        
+                                                    </ul>
+                                                    <span><%= truncate(@car[:car_info][:Description], length:150, separator: ' ',omission: '...') %></span>
+                                                </div>
+                                                
+                                            </li>
+                                            <li class="amount">
+                                                <ul>
+                                                    <li class="plc_count">
+                                                        <p><%=t("all.cars.plc_count")%></p>
+                                                        <span><%=image_tag "icons/cars_icon_01.png"%></span>
+                                                        <span><%=@car[:car_info][:seats]%></span>
+                                                        <span><%=image_tag "icons/cars_icon_02.png"%></span>
+                                                        <span><%=@car[:car_info][:seats]%></span>
+
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+
+                            </li>
+                            <li class="open_item">
+                                <h2><%=t("all.cars.add_options")%>:</h2>
+                                <table class="options_list">
+                                    <%@booking.extras.each_with_index do |ext,idx|%>
+                                        <%=f.fields_for :extras, ext do |fr|%>
+                                            <%= fr.hidden_field :id , :value=>@car_extra[idx][:id]%>
+                                            <%= fr.hidden_field :name , :value=>@car_extra[idx][:name]%>
+                                            <%= fr.hidden_field :price , :value=>@car_extra[idx][:min_price]%>
+                                            <%= fr.hidden_field :day_price , :value=>@car_extra[idx][:price]%>
+                                            <tr>
+                                                <td>
+                                                    <%=fr.check_box :count,:value=>1 %>
+                                                </td>
+                                                <td width="280">
+                                                    <%=@car_extra[idx][:name]%>
+                                                </td>
+                                                <td class="opt_price">
+                                                    <%if @car_extra[idx][:avans].downcase == "no"%>
+                                                        <span><%=t("all.cars.pay_after")%></span>
+                                                    <%else%>
+                                                        <span><%="#{(Exchange.convert(@car_extra[idx][:b_currency], $currency) * @car_extra[idx][:price].to_f).to_i} #{t("all.currencies_symbols.#{$currency}")}"%></span>
+                                                        <%if @car_extra[idx][:price_desc]=="per day"%>
+                                                        <span><%=t("all.per_day")%></span>
+                                                        <%end%>
+                                                        
+                                                    <%end%>
+                                                </td>
+                                            </tr>
+                                        <%end%>
+                                    <%end%>
+                                </table>
+                                <table class="franc_desc">
+                                    <tr>
+                                        <td><%=t("all.cars.franc_desc").html_safe%></td>
+                                    </tr>
+                                </table>
+                                <div class="franc_info">
+
+                                </div>
+                            </li>
+                            <li class="open_item"> 
+                                <h2><%=t("all.cars.driver_info")%>:</h2>
+                                <%= f.fields_for :driver do |fr|%>
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <%= fr.label :name, t("all.user.first_name") %>
+                                                <%= fr.text_field :name ,  :required => true,:class=>"only_latin"%>
+                                            </td>
+                                            <td>
+                                                <%= fr.label :name, t("all.user.last_name")%>
+                                                <%= fr.text_field :surname ,  :required => true,:class=>"only_latin"%>
+                                                <%= fr.label :name, t("all.user.birth")%>
+                                            </td>
+                                            <td>
+                                                
+                                                <%days  = 31.times.collect{|i| [(i+1),(i+1)]}%>
+                                                <%min_year = Time.now.year - 80%>
+                                                <%max_year = Time.now.year - 18%>
+                                                <%years = []%>
+                                                <%max_year.times{|i| years.push(i+1) if i > min_year}%>
+                                                <%months = t('date.month_names').collect.each_with_index{|m,i| [m,i]}%>
+                                                <%= fr.select :birthday_day , options_for_select(days) ,:class=>"form_select_day" ,:required => true%>
+                                                <%= fr.select :birthday_month , options_for_select(months ,:selected=>1),:class=>"form_select_month" ,:required => true%>
+                                                <%= fr.select :birthday_year, options_for_select(years),:class=>"form_select_year" ,:required => true%>
+                                            </td>
+                                        </tr>
+
+                                    </table>
+                                    <table>
+                                        <tr>
+                                            <td><%=t("all.cars.additionsl_desc")%></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="form-field-textarea" ><%= f.text_area :comment , :class=> "form-textarea"%></td>
+                                        </tr>
+                                    </table>
+                                    <table class="buttom">
+                                        <tr>
+                                            <td class="pay_btn fanc">
+                                                <a href="/cars/rules?id=<%=@car[:route]["PickUp"]["Location"]["id"]%>"><%=t("all.cars.rental_terms")%><span>!</span></a>
+                                            </td>
+                                            <td class="pay_btn to_pay">
+                                                <a target="_blank" href="#"><%=t("all.to_pay")%><span>></span></a>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                <%end%>
+                            </li>
+                        </ul>
+                        
+                        <div class="clear"></div>
+                    </div>
+                        <div class="clear"></div>
+                </div>
+                <div class="clear"></div>
+            </div>
+        <%end%>

@@ -18,4 +18,8 @@ class ApartSearch
     (arrival..departure).count - 1
   end
 
+  def to_title
+   "#{self.city}, #{self.departure.strftime('%d.%m.%Y')}-#{self.arrival.strftime('%d.%m.%Y')}"
+  end
+  
 end

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="html_<%=@body_cls%>">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title><%=t("meta.main_title") %></title>
@@ -13,10 +13,10 @@
 
 <body style="">
     <div id="fb-root"></div>
-    <div class="page" data-auto-controller="Main">
+    <div class="page <%=@body_cls%>" data-auto-controller="Main">
         <div id="header">
             <div class="header-center">
-                <div id="logo"></div>
+                <a href="/"><div id="logo"></div></a>
                 <div class="menucontainer">
                     <ul class="menu"> 
                         <li>

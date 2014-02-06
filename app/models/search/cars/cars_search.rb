@@ -14,4 +14,8 @@ class CarsSearch
   	(self.pick_up.date..self.dropp_off.date).count - 1
   end
 
+  def to_title
+   "#{self.pick_up.country},#{self.pick_up.city} #{self.pick_up.date.strftime('%d.%m.%Y')}-#{self.dropp_off.date.strftime('%d.%m.%Y')}"
+  end
+
 end

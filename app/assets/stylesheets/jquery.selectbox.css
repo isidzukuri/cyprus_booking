@@ -90,7 +90,7 @@
 .sbOptions a:hover,
 .sbOptions a:focus,
 .sbOptions a.sbFocus{
-	color: #B5439F;
+	color: #ff793d;
 }
 .sbOptions li.last a{
 	border-bottom: none;

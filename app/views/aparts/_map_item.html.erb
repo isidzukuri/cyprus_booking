@@ -1,33 +1,34 @@
-<li class="res_item">
+<li class="res_item" id="hotel_<%=apart.id%>">
     <ul class="item_elms">
         <li class="desc">
-            <div class="lft"><img src="img/h.jpg" width="102" height="102"/></div>
+            <div class="lft"><%=image_tag apart.first_img,:size=>"102x102"%></div>
             <div class="rt">
-                <h5>Riviera Boutique Hotel</h5>
-                <div class="rating"><span style="width:58%"></span></div>
-                <p class="addr">Sagaidachnogo Petra Str.15, 04070 Kiev</p>
+                <h5><%=apart.name%></h5>
+                <div class="rating"><span style="width:<%=apart.total_rating.to_f*20%>%"></span></div>
+                <p class="addr"><%=apart.address%></p>
             </div>
         </li>
         <li class="amount">
             <ul>
                 <li class="plc_count">
-                    <p>К-во мест</p>
-                    <span><img src="img/plc_count.png" /></span>
-                    <span>5</span>
+                    <p><%=t("all.cars.plc_count")%></p>
+                    <span><%=image_tag "plc_count.png"%></span>
+                    <span><%=apart.places%></span>
                 </li>
-                <li class="price"><span>69$</span><p>В сутки</p></li>
+                <li class="price"><span><%="#{apart.period_price(@search)} #{t("all.currencies_symbols.#{$currency}")}"%></span><p><%=t("search.hotels.all_period")%></p></li>
             </ul>
         </li>
-        <li class="options">
-            <ul>
-                <li><img src="img/plc_count.png" /></li>
-                <li><img src="img/plc_count.png" /></li>
-                <li><img src="img/plc_count.png" /></li>
-                <li><img src="img/plc_count.png" /></li>
-            </ul>
-        </li>
+        <% if apart.facilities.any?%>
+            <li class="options">
+                <ul>
+                    <%apart.facilities.each do |f|%>
+                        <li><%=image_tag f.ico %></li>
+                    <%end%>
+                </ul>
+            </li>
+        <%end%>
         <li class="pay_btn">
-            <a href="#">Больше..<span>></span></a>
+            <a target="_blank" href="<%="#{aparts_show_path}/#{apart.id}?session_id=#{@session_id}"%>"><%=t("all.choose")%><span>></span></a>
         </li>
     </ul>
 </li>

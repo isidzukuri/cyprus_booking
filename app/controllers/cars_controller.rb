@@ -2,6 +2,11 @@ class CarsController < ApplicationController
 
   before_filter :check_cache, :only=>[:results,:show]
 
+  def set_layout
+    @body_cls = "car_page"
+  end
+
+
   def search
     @search  = CarsSearch.new(params[:cars_search])
     @search.dropp_off.location = @search.pick_up.location if @search.same_place == 1
@@ -23,128 +28,52 @@ class CarsController < ApplicationController
   end
 
   def results
-    check_cache
+    check_cache  
   end
 
   def show
     check_cache
-    @id = params[:id].to_i  
+    get_car_item
+    @car_extra = api.get_car_extra params[:id]
+    @booking   = CarsBooking.new(:extras=>[CarsExtras.new]*@car_extra.count,:driver=>Driver.new)
+    redirect_to :root if @car.nil?  
   end
 
-  private
-
-  def check_cache
-    CarsSearch.new(:pick_up => CarsLocation.new , :dropp_off=>CarsLocation.new , :driver_age=>nil)
-    @session_id = params[:session_id]
-    @search     = Rails.cache.read("auto_search_query_" +@session_id)
-    @results    = Rails.cache.read("auto_search_result_"+@session_id)
-    redirect_to :root if @results.nil? or @search.nil?
+  def booking
+    check_cache
+    get_car_item
+    @booking    = CarsBooking.new params[:cars_booking]
+    @booking.dropp_off  = @search.dropp_off
+    @booking.pick_up    = @search.pick_up
+    @booking.vehicle_id = params[:id]
+    Rails.cache.write("auto_last_booking_" +@session_id,@booking, :expires_in => 30.minutes)
+    @pay        = CarsPay.new
+    @p_meth     = api.get_payment_methods(@booking.dropp_off.location).collect{|m| [m[:name],m[:id]]}
   end
 
-
-
-
+  def rules
+    @rental_terms = api.get_rental_terms params[:id]
+    render :partial => "shared/cars_rules"
+  end
 
   def book
-    
-    @session_id  = params[:session_id]
-    @booking    = CarsBooking.new params[:cars_booking]
-    search     = cookies[:auto_search_locations].blank? ? nil : Marshal.load(cookies[:auto_search_locations])
-    pick = api.get_location_info search[:pick_up][:location]
-    dropp = api.get_location_info search[:dropp_off][:location]
-      
-    @booking.dropp_off = CarsLocation.new search[:dropp_off]
-    @booking.pick_up   = CarsLocation.new search[:pick_up]
+    CarsBooking.new
 
-    @booking.dropp_off.country = pick[:country]
-    @booking.pick_up.country   = dropp[:country]
-
-    Rails.cache.write("auto_booking_"+@session_id, @booking, :expires_in => 30.minutes)
-    render :json => {:payment_form => render_to_string(:partial => 'auto/book', :locals => {:session_id => @session_id})}
-  end
-  
-
-  
-
-  
-  
-  def info
-    CarsSearch.new
-    @session_id = params[:session_id]
-    @car = api.get_car_info params[:car_id]
-    price = params[:price].gsub("n","").gsub("t","").gsub("\\","").gsub("    ","")
-    price = eval(price)
-    @car.merge!(:price => price, :location =>params[:location])
-    @car[:ImageURL] = params[:image_url]
-    Rails.cache.write("auto_"+@session_id, @car, :expires_in => 30.minutes)
-    car_locations = {:pick_up => params[:pick_up] ,:dropp_off =>params[:dropp_off]}
-    cookies[:auto_search_locations] = {
-      :value   => Marshal.dump(car_locations),
-      :expires => 24.hours.from_now
-    }
-    @franc       = false
-    @search      = cookies[:last_cars_search].blank? ? nil : Marshal.load(cookies[:last_cars_search])
-    @car_extra = api.get_car_extra params[:car_id]
-    check_car_protection
-
-    @interval    = (Time.parse(@search.dropp_off.date).to_i - Time.parse(@search.pick_up.date).to_i) / 86400
-    count        = @car_extra.count
-    user         = logged_in? ? current_user : User.new(:phone_code => "+38")
-    @booking     = CarsBooking.new(:extras=>[CarsExtras.new]*count,:driver=>Driver.new , :user=>user ,:pick_up => CarsLocation.new, :dropp_off => CarsLocation.new )
-    @phone_codes = v_api.phone_codes.map{ |p| ["+"+p[:country_phone], "+"+p[:country_phone]] }
-    
-    @pick_up_countries = cars_countries
-    @cars_search  = CarsSearch.new(:pick_up => CarsLocation.new , :dropp_off=>CarsLocation.new, :driver_age=>nil)
-    @rental_terms = api.get_rental_terms @car[:location]
-
-    data = @rental_terms.size > 0 ? @rental_terms[0][:text][0][:Caption] == I18n.t('auto.plus_optons_pattern') ? @rental_terms[0][:text][0][:Body] : nil : nil
-    @text = data.nil? ? [] : data.split('*').map{|i| i.gsub("<br />" , "")}
-    html = render_to_string :template =>"auto/car_info" ,:layout =>false
-    left_html = render_to_string(:partial => 'auto/mustache/first_order_desc')
-    currencies = render_to_string(:partial => 'auto/mustache/currencies_block')
-    render :json => {:status=>'success' , :html => html ,:left=>left_html,:curr =>"" } #currencies
-  end
-  
-  def booking_create
-    begin
-      CarsBooking.new
-      CarsSearch.new
-      @session_id  = params[:session_id]
-      @booking     = Rails.cache.read("auto_booking_"+@session_id)
-      @pay         = CarsPay.new
-      @car         = Rails.cache.read("auto_"+@session_id)
-      @search      = cookies[:last_cars_search].blank? ? nil : Marshal.load(cookies[:last_cars_search])
-      @interval    = (Time.parse(@booking.dropp_off.date).to_i - Time.parse(@booking.pick_up.date).to_i) / 86400
-      @car_extra   = @booking.extras
-      check_car_protection
-      @p_meth      = api.get_payment_methods(@booking.dropp_off.location).collect{|m| [m[:name],m[:id]]}
-      render :template =>"auto/pay_page" if @add_protect.nil?
-    rescue
-     redirect_to request.referer
+    card_info = CarsPay.new(params[:cars_pay])
+    booking   = Rails.cache.read("auto_last_booking_"+card_info.session_id)
+    booking.vehicle_id = params[:id]
+    booking.user = current_user
+    book_id   = api.make_booking booking , card_info
+    if api.error.nil? and !book_id.nil?
+      payed_booking = CarsBookingsPayed.new
+      payed_booking.set_data(booking,book_id,current_user)
+      payed_booking.save
+    else
+      p "*"
     end
+  #rescue
+   #   redirect_to :root
   end
-  
-  
-  def set_car_protect
-    @add_protect = true
-    booking_create
-    @booking.extras.collect do |ex|
-      if ex.id == @protect_item.id
-        ex.count =  params[:type].to_i
-        @booking.protect = params[:type].to_i
-      else
-        ex.count = ex.count
-      end
-    end
-    Rails.cache.write("auto_booking_"+@session_id,@booking) unless @booking.protect == 1  
-    html = render_to_string :partial =>"auto/mustache/order_desc" ,:layout =>false
-    render :json => {:html=>html,:success=>true}
-    #rescue
-     # render :json => {:success=>false}
-  end
-  
-
-
 
   ##################### Car forms actions ####################
   def option
@@ -224,15 +153,6 @@ class CarsController < ApplicationController
   end
   #####################################################################3
   
-
-  def thanks
-    unless logged_in?
-      redirect_to :root
-    else
-      @text = Thanks.find_by_page_type("auto").text
-      render :template => 'home/thanks'
-    end
-  end
   
   def payment_error
 
@@ -246,7 +166,22 @@ class CarsController < ApplicationController
   
   
   private
+
+  def get_car_item
+    @car = nil
+    @results = @results.nil? ? [] : @results
+    @results.each do |car|
+      @car = car if car[:car_info][:id] == params[:id]
+    end
+  end
   
+  def check_cache
+    CarsSearch.new(:pick_up => CarsLocation.new , :dropp_off=>CarsLocation.new , :driver_age=>nil)
+    @session_id = params[:session_id]
+    @search     = Rails.cache.read("auto_search_query_" +@session_id)
+    @results    = Rails.cache.read("auto_search_result_"+@session_id)
+    redirect_to :root if @results.nil? || @search.nil?
+  end
   
   def sort_paces places
     sort = I18n.t('search.cars.airport')
@@ -260,25 +195,9 @@ class CarsController < ApplicationController
     out
   end
   
-  
-  def check_car_protection
-    @car_extra.each do |t|
-      @franc = t[:name] == I18n.t('auto.franchize') ? true : false
-      if @franc
-        @protect_item = t
-        break
-      end
-    end  
-        
-  end
-  
   def api
     @api ||= Api::Cars.new(Settings.auto_api.host,Settings.auto_api.user,Settings.auto_api.pass,Settings.auto_api.ip)
   end
     
-  
-  def v_api
-    @v_api ||= Api::TicketsUa::Vocabulary.new(Settings.tickets_api.host, Settings.tickets_api.key)
-  end
   
 end

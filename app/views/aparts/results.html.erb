@@ -1,0 +1,29 @@
+<%=book_steps(t("all.cars.book_steps"),0)%>
+        <div id="main_content">
+            <div id="main" >
+                <div id="main_wrap">
+                    <div class="header">
+                        <h2><%=t("all.search_result")%>: <span><%=@search.to_title%></span> </h2>
+                        <div class="sorting">
+                            
+                            <ul>
+                                <li style="margin-right: 10px;"><%=t("all.sort_by")%> </li>
+                                <li>
+                                    <%=select_tag :sort,options_for_select(t("all.aparts.sort_options").each_pair.map{|b,a| [a,b]})%>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                    <ul class="result_list">
+                        <%@results.each do |apart|%>
+                            <%= render partial:"aparts/result_item",:locals=>{:apart=>apart}%>
+                        <%end%>
+                    </ul>
+                    
+                    <div class="clear"></div>
+                </div>
+                    <div class="clear"></div>
+            </div>
+            <div class="clear"></div>
+        </div>
