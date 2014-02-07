@@ -1,0 +1,128 @@
+        <%=book_steps(t("all.cars.book_steps"),2)%>
+        <%=form_for @booking ,:url=>"/#{I18n.locale}/hotels/pay?session_id=#{@session_id}", :html=>{"data-auto-controller"=>"HotelBooking"} do |f|%>
+            <%= f.hidden_field :hotel_id%>
+            <%= f.hidden_field :rate_code%>
+            <%= f.hidden_field :currency%>
+            <%= f.hidden_field :rate_code%>
+            <%= f.hidden_field :supplier_type%>
+            <%= f.hidden_field :room_type%>
+            <%= f.hidden_field :chargeable_rate%>
+            <%= f.hidden_field :arrival%>
+            <%= f.hidden_field :departure%>
+            <%= f.hidden_field :session_id%>
+            <%= f.hidden_field :rate_key%>
+            <%= f.hidden_field :name%>
+            <div id="main_content">
+                <div id="main" >
+                    <div id="main_wrap">
+                        <div class="header">
+                            <h2><%=t("all.your_choise")%>: <span><%=@search.to_title%></span></h2>
+                            
+                            <div class="final_price">
+                                <h2 class="price_desc"><%=t("all.total_price")%>: </h2>
+                                <%="#{(Exchange.convert(@booking.currency, $currency) * @booking.chargeable_rate.to_f).to_i}"%>
+                                <span class="currency"> <%=t("all.currencies_symbols.#{$currency}")%></span>
+                            </div>
+                        </div>
+                        <ul class="result_list booking">
+                            <li  class="open_item">
+                                <ul>
+                                    <li class="car_item">
+                                        <ul class="item_elms">
+                                            <li class="desc">
+                                                <div class="lft"><img src="<%= @result[:hotel][:images].first[:big]%>" width="150" height="100"/></div>
+                                                <div class="rt">
+                                                    <h3><%= @result[:hotel][:name]%></h3>
+                                                    <div class="rating"><span style="width:<%=@result[:hotel][:stars].to_f*20%>%"></span></div>
+                                                    <p class="addr"><%="#{@result[:hotel][:city]}, #{@result[:hotel][:address]} #{@result[:hotel][:zip]}"%></p>
+                                                <% unless @room[:options].nil?%>
+                                                <ul class="car_options">
+                                                    <%@room[:options].each do |opt|%><li>- <%=opt.gsub("Gratis trådlös Internet",t("all.hotels.free_wi_fi"))%></li>
+                                                    <%end%>
+                                                </ul>
+                                                <%end%>
+
+
+                                                    <span><%= strip_tags CGI::unescapeHTML(truncate(@result[:hotel][:desc], length:150, separator: ' ',omission: '...'))%></span>
+                                                </div>
+                                                
+                                            </li>
+                                            <li class="amount" style="width: 325px;">
+                                                <ul>
+                                                    <li class="plc_count gtgt">
+                                                     <%=t("all.hotels.r_count",:num=>@search.rooms.count).html_safe%>
+                                                     
+
+                                                    </li>
+                                                    <li class="plc_count gtgt">
+                                                        <%=t("all.hotels.r_type",:type=>@booking.name).html_safe%>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+
+                            </li>
+                            <li class="open_item">
+                                <%= f.fields_for :card,@booking.card do |fr|%>
+                                <%= fr.hidden_field :address%>
+                                <%= fr.hidden_field :zip_code%>
+                                <%= fr.hidden_field :country%>
+                                <table>
+                                    <tr>
+                                        <td>
+
+                                            <div class="card_block">
+                                        <div class="card_data">
+                                            <div class="card_num">
+                                                <label><%=t("all.card_num")%></label>
+                                                <%4.times do |t|%>
+                                                    <%= fr.text_field "n_#{t}".to_sym , :autocomplete=>"off" , :class=>"txtinput" ,:required=>true%>
+                                                <%end%>
+                                            </div>
+                                            <div class="card_owner">
+                                                <label><%=t("all.card_owner")%></label>
+                                                <%= fr.text_field :card_holder , :autocomplete=>"off" , :class=>"txtinput only_latin_with_space" ,:required=>true%>
+                                            </div>
+                                            <div class="card_date">
+                                                <label><%=t("all.card_date")%></label>
+                                                <%= fr.text_field :exp_date , :autocomplete=>"off" , :class=>"txtinput" ,:required=>true%>
+                                            </div>
+                                            <div class="card_cvv">
+                                                <label><%=t("all.card_cvv")%></label>
+                                                <%= fr.text_field :cvv , :autocomplete=>"off" , :class=>"txtinput" ,:required=>true%>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="pci_block">
+                                            <div class="card_type_sel">
+                                                <%= fr.select :card_type , options_for_select(@p_meth) , {} ,:class => "form_pay",:required=>true %>
+                                            </div>
+                                            <%=t("all.pci_desc")%>
+                                        </div>
+                                    </div>
+
+                                        </td>
+                                    </tr>
+                                </table>
+                                <%end%>
+                            </li>
+                            <li class="open_item">
+                                    <table class="buttom">
+                                        <tr>
+                                            <td class="pay_btn to_pay">
+                                                <a class="send_request <%=logged_in? ? "" : "login"%>" href="#"><%=t("all.pay")%><span>></span></a>
+                                            </td>
+                                        </tr>
+                                    </table>
+                            </li>
+                        </ul>
+                        
+                        <div class="clear"></div>
+                    </div>
+                        <div class="clear"></div>
+                </div>
+                <div class="clear"></div>
+            </div>
+        <%end%>

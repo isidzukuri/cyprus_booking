@@ -1,0 +1,30 @@
+        <div id="main_content">
+            <div id="main" >
+                <div id="main_wrap">
+                    <%=render "cabinet/left_menu"%>
+                <div class="right column">
+                    <div class="text_content">
+                        <% unless current_user.cars_bookings_payeds.any?%>
+                            <h1><%=t("all.user.you_dont_book",:type=>t("search.cars_title").mb_chars.downcase)%></h1>
+                        <% else%>
+                        
+                            <div class="text_body">
+                                <ul>
+                                    <%current_user.cars_bookings_payeds.each do |book|%>
+                                        <li>
+
+                                        </li>
+                                    <%end%>
+                                </ul>
+                            </div>
+                        <%end%>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="clear"></div>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="clear"></div>
+        </div>

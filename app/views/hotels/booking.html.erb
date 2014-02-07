@@ -1,0 +1,152 @@
+        <%=book_steps(t("all.cars.book_steps"),1)%>
+        <%=form_for @booking ,:url=>"/#{I18n.locale}/hotels/book/#{@result[:hotel][:id]}?session_id=#{@session_id}", :html=>{"data-auto-controller"=>"HotelBooking"} do |f|%>
+            <%= hidden_field_tag "session_id" , @session_id%>
+            <%= f.hidden_field :hotel_id%>
+            <%= f.hidden_field :rate_code%>
+            <%= f.hidden_field :currency%>
+            <%= f.hidden_field :rate_code%>
+            <%= f.hidden_field :supplier_type%>
+            <%= f.hidden_field :room_type%>
+            <%= f.hidden_field :chargeable_rate%>
+            <%= f.hidden_field :arrival%>
+            <%= f.hidden_field :departure%>
+            <%= f.hidden_field :session_id%>
+            <%= f.hidden_field :rate_key%>
+            <%= f.hidden_field :name%>
+            <div id="main_content">
+                <div id="main" >
+                    <div id="main_wrap">
+                        <div class="header">
+                            <h2><%=t("all.your_choise")%>: <span><%=@search.to_title%></span></h2>
+                            
+                            <div class="final_price">
+                                <h2 class="price_desc"><%=t("all.total_price")%>: </h2>
+                                <%="#{(Exchange.convert(@booking.currency, $currency) * @booking.chargeable_rate.to_f).to_i}"%>
+                                <span class="currency"> <%=t("all.currencies_symbols.#{$currency}")%></span>
+                            </div>
+                        </div>
+                        <ul class="result_list booking hotel_booking">
+                            <li  class="open_item">
+                                <ul>
+                                    <li class="car_item">
+                                        <ul class="item_elms">
+                                            <li class="desc">
+                                                <div class="lft"><img src="<%= @result[:hotel][:images].first[:big]%>" width="150" height="100"/></div>
+                                                <div class="rt">
+                                                    <h3><%= @result[:hotel][:name]%></h3>
+                                                    <div class="rating"><span style="width:<%=@result[:hotel][:stars].to_f*20%>%"></span></div>
+                                                    <p class="addr"><%="#{@result[:hotel][:city]}, #{@result[:hotel][:address]} #{@result[:hotel][:zip]}"%></p>
+                                                <% unless @room[:options].nil?%>
+                                                <ul class="car_options">
+                                                    <%@room[:options].each do |opt|%><li>- <%=opt.gsub("Gratis trådlös Internet",t("all.hotels.free_wi_fi"))%></li>
+                                                    <%end%>
+                                                </ul>
+                                                <%end%>
+
+
+                                                    <span><%= strip_tags CGI::unescapeHTML(truncate(@result[:hotel][:desc], length:150, separator: ' ',omission: '...'))%></span>
+                                                </div>
+                                                
+                                            </li>
+
+                                        </ul>
+                                    </li>
+                                </ul>
+
+                            </li>
+                                                <%days  = 31.times.collect{|i| [(i+1),(i+1)]}%>
+                                                <%min_year = Time.now.year - 80%>
+                                                <%max_year = Time.now.year - 18%>
+                                                <%years = []%>
+                                                <%max_year.times{|i| years.push(i+1) if i > min_year}%>
+                                                <%months = t('date.month_names').collect.each_with_index{|m,i| [m,i]}%>
+                                                <li><h2><%=t("all.hotels.travel_data")%>:</h2></li>
+                                                
+                            <%@search.rooms.each_with_index do |room,idx|%>
+                                <%= f.fields_for :rooms , room do |fr|%>
+                                    <li class="open_item">
+                                        <h3 class="room_name"><span class="lbl"><%=t("all.hotels.room_",:num=>(idx+1))%>:</span> <%=@booking.name%><span class="lbl"> <%=t("all.hotels.travelers_count",:num=>(room.childs + room.adults))%></span></h3>
+                                        <%= fr.fields_for :adult ,HotelAdult.new  do |a|%>
+                                            <table>
+                                                <tr>
+                                                    <td>
+                                                        <%= a.label :first_name, t("all.user.first_name") %>
+                                                        <%= a.text_field :first_name,:required =>true,:class=>"only_latin" %>
+                                                    </td>
+                                                
+                                                    <td>
+                                                        <%= a.label :last_name, t("all.user.last_name") %>
+                                                        <%= a.text_field :last_name,:required =>true,:class=>"only_latin" %>
+                                                        <%= a.label :birth_day, t("all.user.birth")%>
+                                                    </td>
+                                                
+                                                
+                                                    <td>
+                                                        
+                                                                <%= a.select :birth_day , options_for_select(days) ,:class=>"form_select_day" ,:required => true%>
+                                                           
+                                                                <%= a.select :birth_month , options_for_select(months ,:selected=>1),:class=>"form_select_month" ,:required => true%>
+                                                            
+                                                                <%= a.select :birth_year, options_for_select(years,1980),:class=>"form_select_year" ,:required => true%>
+                                                       
+                                                    </td>
+                                                    <td>
+                                                        <a class="info_link" href="#" title="<%=@room[:cancel]%>"><%=t("all.hotels.ref_rules")%></a>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        <%end%>
+
+                                    </li>
+                                <%end%>
+                            <%end%>
+                            <li><h2><%=t("all.hotels.travel_comment")%>:</h2></li>
+                            <li class="open_item">
+                                        <table>
+                                            <tr>
+                                                <td><%=t("all.hotels.additionsl_desc")%></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="form-field-textarea" ><%= f.text_area :comment , :class=> "form-textarea"%></td>
+                                            </tr>
+                                        </table>
+                            </li>
+                            <li><h2><%=t("all.hotels.payer_data")%>:</h2></li>
+                            <li class="open_item payer_data">
+                                <%=f.fields_for :card,HotelsBookingCard.new do |fr|%>
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <%= fr.select :country, options_for_select(@countries,$country_code)%>
+                                        </td>
+                                        <td>
+                                            <%= label_tag "card[address]", t("all.user.address") %>
+                                                        <%= fr.text_field :address,:required =>true,:class=>"",:style=>"width: 455px;" %>
+                                        </td>
+                                        <td>
+                                            <%= label_tag "card[zip_code]", t("all.user.zip_code") %>
+                                                        <%= fr.text_field :zip_code,:required =>true,:class=>"only_numbers" %>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <%end%>
+                            </li>                    
+                                                
+                                                
+                            <li class="open_item">
+                                    <table class="buttom">
+                                        <tr>
+                                            <td class="pay_btn to_pay">
+                                                <a class="<%=logged_in? ? "" : "login"%>" href="#"><%=t("all.to_pay")%><span>></span></a>
+                                            </td>
+                                        </tr>
+                                    </table>
+                            </li>
+                        </ul>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="clear"></div>
+            </div>
+        <%end%>

@@ -1,0 +1,46 @@
+                <div class="left column">
+                    <div class="search action_div" data-action="set_active_faq">
+                        <h3><%=t("all.user.my_cab")%></h3>
+                        <ul class="list">
+                            <li class="about <%= @active_tab==0 ? "active" : ""%>" >
+                                <a href="#about"><%=t("all.user.my_data")%><em class="rectangle"></em></a>
+                            </li>
+                            <li class="contacts <%= @active_tab==1 ? "active" : ""%>">
+                                <a href="#contacts"><%=t("all.user.my_bookings")%><em class="rectangle"></em></a>
+                            </li>
+                            <li class="info <%= @active_tab==2 ? "active" : ""%>">
+                                <a href="#info"><%=t("all.user.my_message")%><em class="rectangle"></em></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="faq_list">
+                        <ul class="about <%= @active_tab==0 ? "active" : ""%>">
+                            <li class="<%= @active_link==0 && @active_tab==0 ? "active" : ""%>">
+                                <%=link_to t("all.user.user_data") ,cabinet_profile_path%>
+                            </li>
+                            <li class="<%= @active_link==1 && @active_tab==0 ? "active" : ""%>">
+                                <%=link_to t("all.user.change_pass_title") ,cabinet_profile_edit_path%>
+                            </li>
+                        </ul>
+                        <ul class="contacts <%= @active_tab==1 ? "active" : ""%>">
+                            <li class="<%= @active_link==0 && @active_tab==1 ? "active" : ""%>">
+                               <%=link_to t("search.aparts_title") ,cabinet_aparts_path%>
+                            </li>
+                            <li class="<%= @active_link==1 && @active_tab==1 ? "active" : ""%>">
+                               <%=link_to t("search.hotels_title") ,cabinet_hotels_path%>
+                            </li>
+                            <li class="<%= @active_link==2 && @active_tab==1 ? "active" : ""%>">
+                               <%=link_to t("search.cars_title") ,cabinet_auto_index_path%>
+                            </li>
+                        </ul>
+                        <ul class="info <%= @active_tab==2 && @active_tab==2 ? "active" : ""%>">
+                            <li class="<%= @active_link==0 && @active_tab==2 ? "active" : ""%>">
+                                <%=link_to t("all.user.mess_in") ,"/"%>
+                            </li>
+                            <li class="<%= @active_link==1 ? "active" : ""%>">
+                                <%=link_to t("all.user.mess_out") ,"/"%>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
