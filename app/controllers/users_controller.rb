@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
 
-	before_filter :require_login , :except => [:auth,:forgot,:register,:fbregister]
-    
+
 	def auth
 		login(params[:user][:email],params[:user][:password],params[:remember].present?)
 		json = logged_in? ? {:success=>true,:user=>current_user.to_login} : {:succes=>false,:error=>t("user.errors.default_login_error")}

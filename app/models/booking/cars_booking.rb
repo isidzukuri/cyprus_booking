@@ -6,11 +6,15 @@ class CarsBooking
 
   attribute :vehicle_id
   attribute :car_name
-  attribute :protect
+  attribute :protect,:default=>0
+  attribute :protect_price
   attribute :car_price
   attribute :flight_number
   attribute :flight_presense
   attribute :comment
+  attribute :image
+  attribute :base_price
+  attribute :base_currency
   attribute :rules_agrement
   nested_attribute :driver, :class_name => "Driver"
   nested_attribute :user, :class_name => "User"

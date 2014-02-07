@@ -13,5 +13,6 @@
  *= require "minimal"
  *= require "jquery.selectbox"
  *= require jquery.fancybox
+ *= require galleriffic-2
  *= require "Site"
  */

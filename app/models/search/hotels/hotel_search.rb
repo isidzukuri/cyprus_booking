@@ -41,7 +41,7 @@ class HotelSearch
   end
   
   def to_title
-   "#{self.city}, #{self.departure.strftime('%d.%m.%Y')}-#{self.arrival.strftime('%d.%m.%Y')}"
+   "#{self.city}, #{self.departure.strftime('%d.%m.%Y')} - #{self.arrival.strftime('%d.%m.%Y')}"
   end
 
   def count_people

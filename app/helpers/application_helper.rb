@@ -33,5 +33,11 @@ module ApplicationHelper
     end
     car_class
   end
+
+  def check_image path,missing
+    return missing if path.nil?
+    status = Net::HTTP.get_response(URI(path)).code.to_i
+    [404].include?(status) ? missing : path
+  end
   
 end

@@ -1,5 +1,5 @@
 <%=book_steps(t("all.cars.book_steps"),0)%>
-        <div id="main_content">
+        <div id="main_content" data-auto-controller="HotelResult" data-key="<%=@results[:key]%>" data-location="<%=@results[:location]%>" data-id="<%=@session_id%>">
             <div id="main" >
                 <div id="main_wrap">
                     <div class="header">
@@ -20,7 +20,9 @@
                             <%= render partial:"hotels/result_item",:locals=>{:hotel=>hotel}%>
                         <%end%>
                     </ul>
-                    
+                        <div class="h_loader">
+                            <%=image_tag "spinner.gif"%>
+                        </div>
                     <div class="clear"></div>
                 </div>
                     <div class="clear"></div>

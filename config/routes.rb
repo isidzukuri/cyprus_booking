@@ -6,15 +6,27 @@ Cypr::Application.routes.draw do
   post "restore", to: "users#forgot"
   scope :path =>"(:locale)", :locale => /ru|ua|en/ do
     root :to => "home#index"
-    resource "user"
+    get "hotels/show/:id" => "hotels#show"
+    get "hotels/load_hotels"
+    post "hotels/booking/:id" => "hotels#booking"
+    post "hotels/book/:id" => "hotels#book"
+    get "hotels/pay"
+    namespace :cabinet do 
+        get :profile,to:"profile#show"
+        get "profile/edit",to:"profile#edit"
+        resources :auto
+        resources :aparts
+        resources :hotels
+    end
+
     namespace "hotels" do
-        %w(complete results booking show).each do |action|
+        %w(complete show booking results).each do |action|
             get action
         end
     	post "search"
     	post "book"
     end
-    
+
     namespace "cars" do
         %w(complete show results dropp_off_open_time pick_up_open_time dropp_off_location dropp_off_city dropp_off_country pick_up_location pick_up_city).each do |action|
             get action
@@ -26,6 +38,7 @@ Cypr::Application.routes.draw do
     get "cars/show/:id" => "cars#show"
     post "cars/booking/:id" => "cars#booking"
     post "cars/book/:id" => "cars#book"
+    post "cars/pay"
     namespace "aparts" do
         %w(complete show results).each do |action|
             get action

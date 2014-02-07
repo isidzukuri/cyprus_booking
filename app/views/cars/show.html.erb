@@ -1,6 +1,12 @@
         <%=book_steps(t("all.cars.book_steps"),1)%>
         <%=form_for @booking ,:url=>"/#{I18n.locale}/cars/booking/#{@car[:car_info][:id]}", :html=>{"data-auto-controller"=>"CarBooking"} do |f|%>
             <%= hidden_field_tag "session_id" , @session_id%>
+            <%= f.hidden_field :image ,     :value=> @car[:car_info][:LargeImageURL]%>
+            <%= f.hidden_field :car_name ,  :value=> @car[:car_info][:Name] %>
+            <%= f.hidden_field :base_price, :value=> @car[:price]["basePrice"] %>
+            <%= f.hidden_field :base_currency ,  :value=> @car[:price]["baseCurrency"] %>
+
+            
             <div id="main_content">
                 <div id="main" >
                     <div id="main_wrap">
@@ -58,6 +64,7 @@
                                             <%= fr.hidden_field :name , :value=>@car_extra[idx][:name]%>
                                             <%= fr.hidden_field :price , :value=>@car_extra[idx][:min_price]%>
                                             <%= fr.hidden_field :day_price , :value=>@car_extra[idx][:price]%>
+
                                             <tr>
                                                 <td>
                                                     <%=fr.check_box :count,:value=>1 %>
@@ -113,7 +120,7 @@
                                                 <%months = t('date.month_names').collect.each_with_index{|m,i| [m,i]}%>
                                                 <%= fr.select :birthday_day , options_for_select(days) ,:class=>"form_select_day" ,:required => true%>
                                                 <%= fr.select :birthday_month , options_for_select(months ,:selected=>1),:class=>"form_select_month" ,:required => true%>
-                                                <%= fr.select :birthday_year, options_for_select(years),:class=>"form_select_year" ,:required => true%>
+                                                <%= fr.select :birthday_year, options_for_select(years,1980),:class=>"form_select_year" ,:required => true%>
                                             </td>
                                         </tr>
 

@@ -25,7 +25,7 @@
                                 <%=t("all.login_header")%>
                             </a>
                             <%else%>
-                                <a class="" href="<%=user_path%>"><%=current_user.fio%><%=image_tag current_user.file(:cabinet)%></a>
+                                <a class="" href="<%=cabinet_profile_path%>"><%=current_user.fio%><%=image_tag current_user.file(:cabinet)%></a>
                                 
                             <%end%>
                         </li>             

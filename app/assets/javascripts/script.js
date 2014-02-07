@@ -88,15 +88,17 @@ window.show_restor_pass = function(){
   $(".popup").hide();
   $("#shadow, #restore").show();
 }
-window.show_loader  = function(){
+window.show_loader  = function(text){
   $(".popup").hide();
+  $("#loader_text p").text(text)
   $("#shadow, #bg_loader").show();
 }
 window.hide_loader  = function(){
   $("#shadow").hide();
 }
-window.show_message = function(){
+window.show_message = function(text){
   $(".popup").hide();
+  $("#loader_notice p").text(text)
   $("#shadow, #loader_notice").show();
 }
 
@@ -123,7 +125,12 @@ $(function() {
 	 	}
 
 	})();
-
+  $(".info_link").tooltip({
+    position: { my: "center top", at: "left bottom"}
+  });
+  $(".info_link").click(function(){
+    return false
+  })
   /* Enable plugin for checboxes ,radio,select */
   $('input[type="radio"], input[type="checkbox"]').iCheck({
     checkboxClass: 'icheckbox_minimal',

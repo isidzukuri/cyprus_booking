@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
   has_many :houses
   has_many :wishes
   has_many :hotel_booking_payeds
+  has_many :cars_bookings_payeds
 
 
   validates :first_name, :presence => {:message=>I18n.t("user.errors.presense")}, :length => {:minimum => 3, :maximum => 254 ,:message=>I18n.t("user.errors.minimum_chars")}

@@ -57,8 +57,9 @@ ActiveRecord::Schema.define(:version => 20140206014512) do
     t.integer  "vehicle_id"
     t.string   "car_name"
     t.float    "base_price"
+    t.float    "car_price"
     t.integer  "protect"
-    t.string   "protect_price"
+    t.float    "protect_price"
     t.string   "pick_country"
     t.string   "pick_city"
     t.string   "pick_place"
@@ -76,6 +77,9 @@ ActiveRecord::Schema.define(:version => 20140206014512) do
     t.string   "driver_birthday"
     t.text     "cars_extras"
     t.integer  "user_id"
+    t.integer  "status"
+    t.string   "img_url"
+    t.string   "base_currency"
     t.integer  "car_location"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false

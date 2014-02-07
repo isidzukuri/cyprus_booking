@@ -1,0 +1,207 @@
+        <%=book_steps(t("all.cars.book_steps"),1)%>
+        <%=form_for @booking ,:url=>"/#{I18n.locale}/hotels/booking/#{@result[:hotel][:id]}", :html=>{"data-auto-controller"=>"HotelBooking","data-lat"=>@result[:hotel][:lat],"data-lng"=>@result[:hotel][:lng]} do |f|%>
+            <%= hidden_field_tag "session_id" , @session_id%>
+            <div id="main_content">
+                <div id="main" >
+                    <div id="main_wrap" class="recommend_block">
+                        <div class="header">
+                            <div id="recommend_tabs">
+                                <div class="recommend_tabs_nav">
+                                    <ul>
+                                        <li class="tab1 t"><span class="bottom_corner"></span><a href="#tabs-001"><%=t("all.hotels.descr")%></a></li>
+                                        <li class="tab2 t "><span class="bottom_corner"></span><a href="#tabs-002"><%=t("all.hotels.udobstva")%></a></li>
+                                        <li class="tab3 t map"><span class="bottom_corner"></span><a href="#tabs-003"><%=t("all.hotels.map")%></a></li>
+                                    </ul>
+                                    <div class="final_price pay_btn pay_for_hotel top">
+                                        <a class="<%= logged_in? ? "" : "login" %>" href="#"><%=t("all.choose")%><span>></span></a>
+                                            <%= f.hidden_field :hotel_id, :value=> @result[:hotel][:id]%>
+                                            <%= f.hidden_field :rate_code, :value=>@result[:rooms].first[:rate_code]%>
+                                            <%= f.hidden_field :currency, :value=>@result[:rooms].first[:currency]%>
+                                            <%= f.hidden_field :rate_code, :value=>@result[:rooms].first[:rate_code]%>
+                                            <%= f.hidden_field :supplier_type, :value=>@result[:rooms].first[:s_type]%>
+                                            <%= f.hidden_field :room_type, :value=>@result[:rooms].first[:code]%>
+                                            <%= f.hidden_field :chargeable_rate, :value=>@result[:rooms].first[:price]%>
+                                            <%= f.hidden_field :arrival, :value=>@search.arrival.strftime("%m/%d/%Y")%>
+                                            <%= f.hidden_field :departure, :value=>@search.departure.strftime("%m/%d/%Y")%>
+                                            <%= f.hidden_field :session_id, :value=>@session_id%>
+                                            <%= f.hidden_field :rate_key ,:value=> @result[:rooms].first[:rate_key]%>
+                                            <%= f.hidden_field :name, :value=>@result[:rooms].first[:type]%>
+
+                                                
+          
+          
+          
+          
+          
+          
+          
+          
+          
+                                        <%="#{(Exchange.convert(@result[:rooms].first[:currency], $currency) * @result[:rooms].first[:price].to_f).to_i}"%>
+                                        <span class="currency"> <%=t("all.currencies_symbols.#{$currency}")%></span>
+                                    </div>
+                                </div> 
+                                <div id="tabs-001">
+                                        <div class="tab_ins">
+                                            <h2 style="width: 100%;">
+                                                <%= raw @result[:hotel][:name]%>
+                                                <span><%= raw @result[:hotel][:loc_desc]%></span>
+                                            </h2>
+                                            <div class="rating_and_address">
+                                                <span class="addr"><%="#{@result[:hotel][:city]}, #{@result[:hotel][:address]} #{@result[:hotel][:zip]}"%></span>
+                                                <div class="rating"><span style="width:<%=@result[:hotel][:stars].to_f*20%>%"></span></div>
+                                            </div>
+                                            
+                                        
+                                            <div class="hotel_photos">
+                                                <div id="slideshow"></div>
+                                                <div id="thumbs">
+                                                    <ul class="thumbs noscript">
+                                                        <%@result[:hotel][:images].each do |image|%>
+                                                            <li>
+                                                                <a class="thumb" name="optionalCustomIdentifier" href="<%= image[:big]%>" title="">
+                                                                    <img src="<%= image[:thumb]%>" alt="" />
+                                                                </a>
+                                                            </li>
+                                                        <%end%>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="hotel_text">
+                                                <p><%= raw CGI::unescapeHTML(@result[:hotel][:desc])%></p>
+                                                <div class="clear"></div>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>    
+                                </div>
+                                <div id="tabs-002">
+                                        <div class="tab_ins">
+                                            <h2 style="width: 100%;">
+                                                <%= raw @result[:hotel][:name]%>
+                                                <span><%= raw @result[:hotel][:loc_desc]%></span>
+                                            </h2>
+                                            <div class="rating_and_address">
+                                                <span class="addr"><%="#{@result[:hotel][:city]}, #{@result[:hotel][:address]} #{@result[:hotel][:zip]}"%></span>
+                                                <div class="rating"><span style="width:<%=@result[:hotel][:stars].to_f*20%>%"></span></div>
+                                            </div>
+                                            <div class="amenities">
+                                         <%@result[:hotel][:amenities].in_groups_of((@result[:hotel][:amenities].count / 3),false) do |fc_group| %>
+                                            <ul>
+                                                <%fc_group.each_with_index do |fc,index|%>
+                                                <li>-<%=fc[:amenity]%></li>
+                                                <%end%>
+                                            </ul>
+                                         <%end%>
+
+                                            </div>
+                                        </div>    
+                                </div>
+                                <div id="tabs-003">
+                                        <div class="tab_ins">
+                                                <h2 style="width: 100%;">
+                                                <%= raw @result[:hotel][:name]%>
+                                                <span><%= raw @result[:hotel][:loc_desc]%></span>
+                                            </h2>
+                                            <div class="rating_and_address">
+                                                <span class="addr"><%="#{@result[:hotel][:city]}, #{@result[:hotel][:address]} #{@result[:hotel][:zip]}"%></span>
+                                                <div class="rating"><span style="width:<%=@result[:hotel][:stars].to_f*20%>%"></span></div>
+                                            </div>
+                                            <div class="map_hotel">
+                                                <div id="g_map"></div>
+                                            </div>
+                                        </div>    
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+
+                        <ul class="result_list">
+                            <li  class="open_item">
+                                <h2><%=t("all.hotels.rooms")%>: <span><%=@search.to_title%></span></h2>
+                                <table class="av_rooms">
+                                    <tr>
+                                        <td><%=t("all.hotels.room_type")%></td>
+                                        <td><%=t("all.hotels.udobstva")%></td>
+                                        <td><%=t("all.hotels.uslovia")%></td>
+                                        <td><%=t("all.hotels.price")%></td>
+                                        <td></td>
+                                    </tr>
+                                    <%@result[:rooms].each do |room|%>
+                                        <tr data-code="<%=room[:code]%>" data-rate-code="<%=room[:rate_code]%>" data-rate-key="<%=room[:rate_key]%>" data-s-type="<%=room[:s_type]%>">
+                                            <td class="border_line border_line_grey">
+                                                <%= image_tag check_image(room[:image],"missings/hotel.jpg") ,:size =>"150x100"%>
+                                                <span><%= raw room[:type]%></span>
+                                                <a class="info_link" href="#" title="<%=room[:cancel]%>"><%=t("all.hotels.ref_rules")%></a>
+                                            </td>
+                                            <td class="border_line_grey">
+                                                <% unless room[:options].nil?%>
+                                                <ul>
+                                                    <%room[:options].each do |opt|%><li>- <%=opt.gsub("Gratis trådlös Internet",t("all.hotels.free_wi_fi"))%></li>
+                                                    <%end%>
+                                                </ul>
+                                                <%end%>
+                                            </td>
+                                            <td class="border_line_grey">
+                                                <ul class="uslovia">
+                                                    <%unless room[:low_avability].nil? or room[:low_avability].to_i == 0%>
+                                                    <li class="plc_count">
+                                                        <p><%=t("search.hotels.rooms_avail")%></p>
+                                                        <span><%=image_tag "plc_count.png"%></span>
+                                                        <span><%=room[:low_avability]%></span>
+                                                    </li>
+                                                    <%end%>
+                                                    <li>
+                                                        <%=t("all.hotels.refunable.r_#{room[:refunable].to_i}")%>
+                                                        <%=image_tag "icons/r_#{room[:refunable].to_i}.png",:size=>"28x28"%>
+                                                    </li>
+                                                    <li>Мест
+                                                        <%room[:max_adt].to_i.times do ||%>
+                                                            <%=image_tag "icons/cars_icon_01.png"%>
+                                                        <%end%>
+                                                    </li>
+                                                </ul>
+
+                                            </td>
+                                            <td>
+                                                <ul>
+                                                    <li class="price">
+                                                        <span><%="#{(Exchange.convert(room[:currency], $currency) * room[:price].to_f).to_i}"%>
+                                             <%=t("all.currencies_symbols.#{$currency}")%></span>
+                                                        <p><%=t("search.hotels.all_period")%></p>
+                                                    </li>
+                                                </ul>                                            
+                                            </td>
+                                            <td class="pay_btn pay_for_hotel">
+                                                <ul>
+                                                    <li><a class="<%= logged_in? ? "" : "login" %>" href="#"><%=t("all.choose")%><span>></span></a></li>
+                                                </ul> 
+                                               <%= form_for @booking, :url => "#{hotels_booking_path}/#{@result[:hotel][:id]}?session_id=#{@session_id}" do |f|%>
+                                                <%= f.hidden_field :hotel_id, :value=> @result[:hotel][:id]%>
+                                                <%= f.hidden_field :rate_code, :value=>room[:rate_code]%>
+                                                <%= f.hidden_field :currency, :value=>room[:currency]%>
+                                                <%= f.hidden_field :name, :value=>room[:type]%>
+                                                <%= f.hidden_field :rate_code, :value=>room[:rate_code]%>
+                                                <%= f.hidden_field :supplier_type, :value=>room[:s_type]%>
+                                                <%= f.hidden_field :room_type, :value=>room[:code]%>
+                                                <%= f.hidden_field :chargeable_rate, :value=>room[:price]%>
+                                                <%= f.hidden_field :arrival, :value=>@search.arrival.strftime("%m/%d/%Y")%>
+                                                <%= f.hidden_field :departure, :value=>@search.departure.strftime("%m/%d/%Y")%>
+                                                <%= f.hidden_field :session_id, :value=>@session_id%>
+                                                <%= f.hidden_field :rate_key ,:value=> room[:rate_key]%>
+                                                 <%end%>
+                                            </td>
+                                        </tr>
+                                    <%end%>
+                                </table>
+
+                            </li>
+                        </ul>
+                        
+                        <div class="clear"></div>
+                    </div>
+                        <div class="clear"></div>
+                </div>
+                <div class="clear"></div>
+            </div>
+        <%end%>

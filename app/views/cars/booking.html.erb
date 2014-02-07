@@ -1,5 +1,5 @@
         <%=book_steps(t("all.cars.book_steps"),2)%>
-        <%=form_for @pay ,:url=>"/#{I18n.locale}/cars/book/#{@car[:car_info][:id]}", :html=>{"data-auto-controller"=>"CarBooking"} do |f|%>
+        <%=form_for @pay ,:url=>"/#{I18n.locale}/cars/book/#{@car[:car_info][:id]}", :html=>{"data-auto-controller"=>"CarBooking","data-url"=>"#{cabinet_auto_index_path}/"} do |f|%>
             <%= f.hidden_field :session_id , :value=> @session_id%>
             <div id="main_content">
                 <div id="main" >
@@ -9,7 +9,7 @@
                             
                             <div class="final_price">
                                 <h2 class="price_desc"><%=t("all.total_price")%>: </h2>
-                                <%="#{(Exchange.convert(@car[:price]["baseCurrency"], $currency) * @car[:price]["basePrice"].to_f).to_i}"%>
+                                <%="#{(Exchange.convert(@car[:price]["baseCurrency"], $currency) * @booking.car_price.to_f).to_i}"%>
                                 <span class="currency"> <%=t("all.currencies_symbols.#{$currency}")%></span>
                             </div>
                         </div>
@@ -112,7 +112,7 @@
                                                 <a href="/cars/rules?id=<%=@car[:route]["PickUp"]["Location"]["id"]%>"><%=t("all.cars.rental_terms")%><span>!</span></a>
                                             </td>
                                             <td class="pay_btn to_pay">
-                                                <a class="<%=logged_in? ? "" : "login"%>" href="#"><%=t("all.pay")%><span>></span></a>
+                                                <a class="send_request <%=logged_in? ? "" : "login"%>" href="#"><%=t("all.pay")%><span>></span></a>
                                             </td>
                                         </tr>
                                     </table>

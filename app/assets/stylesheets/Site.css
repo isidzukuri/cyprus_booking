@@ -513,7 +513,7 @@ color: #ffffff;
     float: left;
 }
  .options ul{
-    width: 70px;
+    width: 30px;
 }
  .pay_btn a{
     background-color: #42b0e5;
@@ -915,9 +915,9 @@ margin-right: 0;
 .submit_ul li a{
     color: #ffffff;
     text-decoration: none;
-    font-size: 25pt;
+    font-size: 22pt;
     font-weight: bold;
-    line-height: 2.5;
+    line-height: 3;
     background-image: url("/assets/sprite.png");
     background-repeat: no-repeat;
     display: block;
@@ -2024,8 +2024,12 @@ margin: 10px 0 0 0;
 .faq_list .cars , .faq_list .apartments, .faq_list .hotels ,.faq_list .contacts , .faq_list .about, .faq_list .info{
     margin-top: 3px;
 }
-.faq_list .cars , .faq_list .apartments ,.faq_list .contacts , .faq_list .info{
+.faq_list .about ,.faq_list .cars , .faq_list .apartments ,.faq_list .contacts , .faq_list .info{
     display: none;
+    
+}
+.faq_list .about.active, .faq_list .cars.active , .faq_list .apartments.active ,.faq_list .contacts.active , .faq_list .info.active{
+    display: block;
     
 }
 .faq_page .left ul.list li{
@@ -2045,6 +2049,11 @@ margin: 10px 0 0 0;
     color: #ffffff;
     text-decoration: none;
     font-size: 16pt;
+    display: block;
+    width: 100%
+}
+.faq_list li:hover{
+    background-color:#e13270;
 }
 .faq_list ul{
     background-color: #005894;
@@ -2248,6 +2257,10 @@ fieldset{
     -moz-border-radius: 2px;
     border-radius: 2px;
 }
+.open_item input{
+    background-color: #ffffff;
+}
+
 .popup label{
     margin-right: 10px;
     color: #164d83;
@@ -2326,11 +2339,14 @@ fieldset{
 #loader_notice{
     left: 47%;
     top: 150px;
+    width: 300px;
+    height: 240px;
 }
 #loader_notice p{
     text-align: center;
     padding: 10px;
-    color: #ffffff;
+    color: #ff793d;
+    font-size: 20px;
 
 }
 #bg_loader{
@@ -2606,6 +2622,10 @@ transform:scale(.3)}
     font-weight: normal;
     font-size: 17px;
 }
+.html_car_page .header #recommend_tabs  h2 span{
+    float: right;
+    margin-right: 40px;
+}
 .html_car_page .header .sorting{
     float: right;
     margin-right: 30px;
@@ -2755,11 +2775,10 @@ box-shadow: 2px 2px 4px 0px rgba(50, 50, 50, 0.75);
 .open_item .sbHolder, .open_item .sbSelector ,.open_item .sbOptions{
     width: 100px;
     float: left;
-    background-color: #eaf1f9;
+    /*background-color: #eaf1f9;*/
 }
 .booking .open_item .sbHolder, .booking .open_item .sbSelector, .booking .open_item .sbOptions{
     width: 200px;
-    background-color: #ffffff;
 }
 
 .open_item  .sbToggle, .open_item .sbToggle:hover {
@@ -2823,6 +2842,8 @@ td.pay_btn a{
     color: #5a5a5a;
     max-height: 454px;
     overflow: auto;
+    display: block;
+    width: auto;
 }
 .fancybox-desktop .content h3{
     color: #33577a;
@@ -2852,8 +2873,8 @@ td.pay_btn a{
 }
 .fancybox-desktop .fancybox-close{
     background: image-url('icon_info_close.png') no-repeat 0 0;
-    width: 12px;
-    height: 12px;
+/*    width: 12px;
+    height: 12px;*/
     overflow: hidden;
     display: block;
     position: absolute;
@@ -2863,6 +2884,7 @@ td.pay_btn a{
 .html_car_page .result_list.booking li.open_item {
     border: none;
     min-height: 50px;
+    padding:5px;
 }
 
 .card_block {
@@ -2931,3 +2953,256 @@ td.pay_btn a{
 .card_num .txtinput, .card_date .txtinput, .card_cvv .txtinput  {width: 45px; text-align: center;}
 .card_num .txtinput {margin: 0 7px 0 0;}
 .card_owner .txtinput {width: 160px;}
+
+
+
+
+
+
+
+
+
+
+
+.recommend_block .ui-widget-content {background: #FFF; border: none;}
+.recommend_block .ui-tabs {padding: 0;}
+.recommend_block .ui-corner-all, .recommend_block .ui-corner-bottom, .recommend_block .ui-corner-left, .trends_tabs .ui-corner-bl, 
+.recommend_block .ui-corner-top, .recommend_block  .ui-corner-tl {border-bottom-left-radius: 0; border-top-left-radius: 0;}
+.recommend_tabs_nav {background: #FAFCFB;border-bottom: 2px solid #ECE5E5;height: 62px}
+.recommend_block .ui-tabs .ui-tabs-nav {padding: 0;width: 500px;float: left;}
+.recommend_block .ui-widget-header {border: none; background: none; color: #000;}
+
+.recommend_block .ui-widget-header li.ui-state-default {margin: 0 0 0 -1px; border: 1px solid #B7C0D0; background: #FAFCFB; font-weight: normal;}
+.recommend_block .ui-widget-header li.ui-state-default{
+    border-bottom: none;
+}
+.recommend_block .ui-widget-header li:first-child{
+    margin-left: 0;
+}
+.recommend_block .ui-widget-header li.ui-state-active {padding-bottom: 0; padding-right: 0; border: 1px solid #004b8d; background: #4bb4e8; box-shadow: inset 0 0 6px #004b8d; -moz-box-shadow: inset 0 0 6px #004b8d; -webkit-box-shadow: inset 0 0 6px #004b8d; behavior: url(/js/PIE.htc);}
+.recommend_block .ui-widget-header li.ui-state-active{
+    border-bottom: none;
+}
+.recommend_block .ui-state-default a, .recommend_block .ui-state-default a:link, .recommend_block .ui-state-default a:visited {color: #252547;}
+.recommend_block .ui-tabs .ui-tabs-nav li.ui-tabs-active a, .recommend_block .ui-tabs .ui-tabs-nav li.ui-state-disabled a, .recommend_block .ui-tabs .ui-tabs-nav li.ui-tabs-loading a {color: #FFF;}
+.recommend_block .tab_ins {overflow: hidden;height: auto;width: 100%;min-height: 400px;}
+
+.recommend_block .ui-corner-all, .recommend_block .ui-corner-top, .recommend_block .ui-corner-right, .recommend_block .ui-corner-tr {border-top-right-radius: 0}
+.recommend_block .ui-corner-all, .recommend_block .ui-corner-bottom, .recommend_block .ui-corner-right, .recommend_block .ui-corner-br, .recommend_block .ui-corner-left, .recommend_block .ui-corner-bl {border-bottom-right-radius: 0; border-bottom-left-radius: 0;}
+.recommend_block .ui-state-hover, .recommend_block .ui-widget-content .ui-state-hover, .recommend_block .ui-widget-header .ui-state-hover, .recommend_block .ui-state-focus, .recommend_block .ui-widget-content .ui-state-focus, .recommend_block .ui-widget-header .ui-state-focus { border: 1px solid #B7C0D0; background: #FAFCFB; font-weight: bold;}
+.recommend_block .ui-tabs .ui-tabs-panel {border: none; padding: 0;}
+.recommend_block .ui-tabs .ui-tabs-nav li a {padding: 0; height: 60px; line-height: 39px; text-align: center;}
+.recommend_block .ui-tabs .ui-tabs-nav li.tab1 a {width: 130px;line-height: 3.5;
+font-size: 18px;}
+.recommend_block .ui-tabs .ui-tabs-nav li.tab2 a {width: 140px;line-height: 3.5;
+font-size: 18px;}
+.recommend_block .ui-tabs .ui-tabs-nav li.tab3 a {width: 120px;line-height: 3.5;
+font-size: 18px;}
+.recommend_block .ui-tabs .ui-tabs-nav li.tab4 a {width: 104px;line-height: 3.5;
+font-size: 18px;}
+.recommend_block .ui-tabs .ui-tabs-nav li.tab5 a {width: 137px;line-height: 3.5;
+font-size: 18px;}
+.recommend_block .pay_btn{
+    
+    
+    width: 300px;
+}
+.recommend_block .pay_btn a{
+    margin-top: 5px;
+    float: right;
+}
+
+.recommend_block .bottom_corner {
+    position: absolute;
+    left: 50%;
+    bottom: 5px;
+    display: none;
+    margin: 0 0 0 -6px;
+}
+.recommend_block .ui-tabs-nav li.ui-tabs-active .bottom_corner {display: block;}
+.recommend_block .bottom_corner:after {
+    border-bottom: 6px solid #FFF;
+    border-left: 6px solid rgba(49, 57, 68, 0);
+    border-right: 6px solid rgba(49, 57, 68, 0);
+    left: 0;
+    top: 0;
+}
+.recommend_block .bottom_corner:before, .recommend_block .bottom_corner:after {
+    content: "";
+    position: absolute;
+    z-index: 250;
+}
+.html_car_page .recommend_block .header{
+    height: auto;
+    border: none;
+}
+#slideshow a{
+    text-decoration: none;
+}
+#slideshow {
+    float: left;
+    height: 265px;
+    width: 380px;
+    margin-left: 10px;
+    overflow: hidden;
+}
+#thumbs{
+    float: left;
+    width: 550px;
+    margin-left: 10px;
+    margin-top: 12px;
+}
+#slideshow img{
+    height: 245px;
+    width: 390px;
+}
+.rating_and_address{
+    width: 100%;
+    height: 25px;
+    float: left;
+}
+.tab_ins h2{
+    padding-bottom: 0!important;
+}
+.rating_and_address .rating{
+    margin-left: 15px;
+}
+.rating_and_address .addr{
+    text-align: left;
+color: #7f7f7f;
+font-size: 10pt;
+padding: 0;
+margin: 0;
+line-height: 2.3;
+}
+.hotel_text p{
+    text-align: left!important;
+    padding: 10px;
+}
+.hotel_text{
+    float: left;
+}
+
+table.av_rooms{
+    width: 100%;
+    border-top: 2px solid #ECE5E5;
+}
+table.av_rooms .pay_btn{
+    width: auto;
+    text-align: center;
+}
+table.av_rooms .price span{
+color: #81b10f;
+font-size: 30pt;
+font-weight: bold;
+}
+table.av_rooms .price p{
+    color: #000000;
+    font-size: 14pt;
+}
+table.av_rooms .price{
+    text-align: center;
+}
+table.av_rooms .border_line{
+    width: 300px;
+    text-align: center;
+    position: relative;
+}
+table.av_rooms .border_line_grey{
+    border-bottom: 2px solid #ECE5E5;
+}
+table.av_rooms .border_line img{
+    float: left;
+    border: 2px solid #ff793d;
+}
+table.av_rooms .border_line span{
+    color: #004b8d;
+    font-size: 19px;
+    padding: 0;
+    margin: 0;
+}
+table.av_rooms .border_line a{
+    /*position: absolute;
+    bottom: 0;*/
+    width: 109px;
+    display: inline-block;
+    color: #000000;
+}
+.result_list .open_item h2 span{
+    color: #7f7f7f;
+    font-weight: normal;
+    font-size: 17px;
+}
+table.av_rooms ul.uslovia{
+    text-align: left;
+}
+table.av_rooms ul.uslovia li{
+    height: 45px;
+}
+table.av_rooms ul.uslovia img{
+    float: right;
+}
+.map_hotel{
+    height: 300px;
+    float: left;
+    width: 100%;
+}
+.map_hotel #g_map{
+    height: 300px;
+}
+.amenities ul{
+    float: left;
+    width: 32%;
+    margin-left: 1%;
+    color: #004b8d;
+    font-size: 14px;
+}
+.result_list.booking.hotel_booking .desc img {
+    height: 110px;
+    border: 2px solid #ff793d;
+}
+.booking.hotel_booking .open_item .sbHolder, 
+.booking.hotel_booking .open_item .sbSelector, 
+.booking.hotel_booking .open_item .sbOptions{
+    width: 90px;
+}
+.booking.hotel_booking .info_link{
+    color:#000000;
+}
+.open_item .lbl{
+    color: #7f7f7f;
+}
+.open_item .room_name{
+    color: #81b10f;
+}
+.open_item input.error{
+    border: 1px solid red;
+}
+.bottom.pagination a{
+    text-decoration: none;
+}
+.booking .open_item.payer_data .sbHolder, 
+.booking .open_item.payer_data .sbSelector, 
+.booking .open_item.payer_data .sbOptions{
+    width: 180px;
+}
+.hotel_page .card_type_sel .sbHolder ul{
+    height: 180px!important;
+}
+label.error{
+    display: none!important;
+}
+.gtgt{
+    text-align: left;
+    height: 20px!important;
+    color: #81b10f;
+    font-weight: bold;
+    font-size: 16px;
+}
+.gtgt span{
+    color: #7f7f7f;
+}
+.h_loader{
+    text-align: center;
+    padding-bottom: 35px;
+}

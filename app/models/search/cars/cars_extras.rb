@@ -1,4 +1,5 @@
 class CarsExtras
+  
   include ActiveAttr::Model
   include ActiveAttrAdditions::Relations
 
@@ -8,5 +9,9 @@ class CarsExtras
   attribute :day_price
   attribute :count , :type => Integer , :default => 0
   validates :count , :presence => true
+
+  def franchize
+  	11068872371010
+  end
 
 end

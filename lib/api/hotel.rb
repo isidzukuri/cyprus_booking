@@ -42,6 +42,7 @@ class Api::Hotel
     @defaults[:minorRev] = 20
     data   = JSON.parse(uri['res'].post_form(@defaults.merge({:customerSessionId => session_id(session_i)}).merge(booking)).body).with_indifferent_access
     p @defaults.merge({:customerSessionId => session_id(session_i)}).merge(booking)
+    p data
     parse_error data , "HotelRoomReservationResponse"
     return unless @error.nil?
     parse_booking data[:HotelRoomReservationResponse]
@@ -171,7 +172,7 @@ class Api::Hotel
       hotel[:shortDescription]    = "" if hotel[:shortDescription].nil?
       price_block = hotel[:RoomRateDetailsList][:RoomRateDetails][:RateInfos][:RateInfo].has_key?(:ConvertedRateInfo) ? hotel[:RoomRateDetailsList][:RoomRateDetails][:RateInfos][:RateInfo][:ConvertedRateInfo] : hotel[:RoomRateDetailsList][:RoomRateDetails][:RateInfos][:RateInfo][:ChargeableRateInfo]
       next if price_block[:@total].nil?
-        adv = get_trip_advisor_block(hotel[:hotelId])
+        adv = nil#get_trip_advisor_block(hotel[:hotelId])
         item = {
         :id               => hotel[:hotelId],
         :name             => hotel[:name],
@@ -271,8 +272,12 @@ def parse_hotel_rooms_info input , interval
    item = { 
         :code      => room[:roomTypeCode],
         :rate_code => room[:rateCode],
+        :refunable => !room[:nonRefundable],
+        :avability => room[:currentAllotment],
+        :max_adt   => room[:quotedOccupancy],
+        :smoke     => room[:smokingPreferences],
         :type      => room[:rateDescription],
-        :image     => room[:RoomImages].nil? ? "not_found_room_image.png" : room[:RoomImages][:RoomImage][:url],
+        :image     => room[:RoomImages].nil? ? nil : room[:RoomImages][:RoomImage][:url],
         :avail     => room[:currentAllotment],
         :options   => room[:ValueAdds][:ValueAdd].collect{|i| i["description"]},
         :price     => price_block[:@nightlyRateTotal].to_f,

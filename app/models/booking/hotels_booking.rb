@@ -12,7 +12,8 @@ class  HotelsBooking
   attribute :room_type
   attribute :rate_code
   attribute :chargeable_rate
-
+  attribute :currency
+  attribute :name
   attribute :city
   attribute :postal_code
   attribute :country

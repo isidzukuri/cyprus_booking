@@ -1,6 +1,7 @@
 class CarsController < ApplicationController
-
+  before_filter :require_login, :only=>[:booking]
   before_filter :check_cache, :only=>[:results,:show]
+  
 
   def set_layout
     @body_cls = "car_page"
@@ -46,6 +47,7 @@ class CarsController < ApplicationController
     @booking.dropp_off  = @search.dropp_off
     @booking.pick_up    = @search.pick_up
     @booking.vehicle_id = params[:id]
+    check_protect
     Rails.cache.write("auto_last_booking_" +@session_id,@booking, :expires_in => 30.minutes)
     @pay        = CarsPay.new
     @p_meth     = api.get_payment_methods(@booking.dropp_off.location).collect{|m| [m[:name],m[:id]]}
@@ -57,8 +59,8 @@ class CarsController < ApplicationController
   end
 
   def book
+    json = {:success=>false,:msg=>I18n.t("all.server_error")}
     CarsBooking.new
-
     card_info = CarsPay.new(params[:cars_pay])
     booking   = Rails.cache.read("auto_last_booking_"+card_info.session_id)
     booking.vehicle_id = params[:id]
@@ -68,17 +70,16 @@ class CarsController < ApplicationController
       payed_booking = CarsBookingsPayed.new
       payed_booking.set_data(booking,book_id,current_user)
       payed_booking.save
+      json = {:success=>true,:id=>payed_booking.id}
     else
-      p "*"
+      json = {:success=>false,:msg=>api.error[:text]}
     end
-  #rescue
-   #   redirect_to :root
+  ensure
+      render :json => json
   end
 
   ##################### Car forms actions ####################
-  def option
-    @option ||= Proc.new{|string,id| "<option value=\"#{id.force_encoding("UTF-8")}\">#{string.force_encoding("UTF-8")}</option>"}
-  end
+
   def pick_up_city
     data = api.get_city_list params[:id]
     if data.kind_of?(Array) and data.size == 0
@@ -167,6 +168,26 @@ class CarsController < ApplicationController
   
   private
 
+  def option
+    @option ||= Proc.new{|string,id| "<option value=\"#{id.force_encoding("UTF-8")}\">#{string.force_encoding("UTF-8")}</option>"}
+  end
+  def check_protect
+    protect_el = false
+    @booking.extras.each do |e|
+      if e.name == I18n.t('all.cars.franchize')
+        protect_el = e
+      end
+    end
+      if protect_el
+        @booking.car_price  = @booking.base_price.to_f + protect_el.price.to_f * @search.interval_check
+        @booking.protect       = 1
+        @booking.protect_price = protect_el.price.to_f
+      elsif @booking.protect == 1
+        @booking.car_price -= @booking.protect_price * @search.interval_check
+      else
+        @booking.car_price = @booking.base_price
+      end  
+    end
   def get_car_item
     @car = nil
     @results = @results.nil? ? [] : @results

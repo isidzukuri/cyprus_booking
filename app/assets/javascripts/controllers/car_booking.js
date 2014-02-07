@@ -21,7 +21,12 @@ $.Controller("CarBooking",{
 		}
 		else{
 		if(this.element.valid())
-			this.element.submit()	
+				if($(ev.target).hasClass("send_request")){
+					this.send_request(this.element)
+				}
+				else{
+					this.element.submit()	
+				}	
 		}
 
 	},
@@ -71,6 +76,31 @@ $.Controller("CarBooking",{
 	  		unfl.focus();
 	  	}
 	  },
+  send_request:function(form){
+  	$.ajax({
+  		url:form.attr("action"),
+  		data:form.serialize(),
+  		type:"post",
+		beforeSend:function(){
+          	window.show_loader(window.I18n.cars_pay);
+		},
+  		dataType:"json",
+  		success:function(resp){
+  			if(resp.success){
+  				window.show_message(window.I18n.cars_pay_success);
+  				window.location.href = form.data("url") + resp.id
+  			}
+  			else{
+  				window.show_message(resp.msg);
+  			}
+  		},
+        error:function(){
+			window.hide_loader();
+			window.show_message(I18n.server_error);
+        },
+
+  	})
+  },
   ".only_chars -> keyup":function(ev){
     el = $(ev.target)
     el.val(el.val().replace(/[^а-яА-ЯA-zA-ZіЇіІЄє]/, ""))

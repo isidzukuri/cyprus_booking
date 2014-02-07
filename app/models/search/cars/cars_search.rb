@@ -18,4 +18,8 @@ class CarsSearch
    "#{self.pick_up.country},#{self.pick_up.city} #{self.pick_up.date.strftime('%d.%m.%Y')}-#{self.dropp_off.date.strftime('%d.%m.%Y')}"
   end
 
+  def interval_check
+    interval < 5 ? 5 : interval
+  end
+
 end

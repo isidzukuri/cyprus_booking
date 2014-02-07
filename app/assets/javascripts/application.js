@@ -19,6 +19,7 @@
 //= require jquery.validate
 //= require jquery.placeholder.min
 //= require loader
+//= require jquery.galleriffic
 //= require_self
 //= require jquery.maskedinput-1.3.min
 //= require jquery.fancybox
