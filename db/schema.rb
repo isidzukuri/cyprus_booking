@@ -119,8 +119,13 @@ ActiveRecord::Schema.define(:version => 20140210021751) do
     t.float  "lng"
   end
 
-# Could not dump table "countries" because of following StandardError
-#   Unknown type 'ingeter' for column 'country_id'
+  create_table "countries", :force => true do |t|
+    t.string "code"
+    t.string "name_ru"
+    t.string "name_en"
+    t.string "name_uk"
+    t.string "country_phone"
+  end
 
   create_table "currencies", :force => true do |t|
     t.string   "title"
