@@ -4,6 +4,7 @@ Cypr::Application.routes.draw do
   post "login",to: "users#auth"
   post "register", to: "users#register"
   post "restore", to: "users#forgot"
+  get "fbregister",to:"user#fbregister"
   scope :path =>"(:locale)", :locale => /ru|ua|en/ do
     root :to => "home#index"
     get "hotels/show/:id" => "hotels#show"

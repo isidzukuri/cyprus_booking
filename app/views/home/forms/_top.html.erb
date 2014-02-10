@@ -26,11 +26,12 @@
                                 <%=f.text_field :city,class:"city_name",placeholder:t("search.hotels.city_name"),required:true%>
                                 <%=f.hidden_field :place_code,required:true%>
                             </li>
-                            <li class="from_item">
-                                <%=f.text_field :arrival,class:"date_input",required:true%>
-                            </li>
+
                             <li class="from_item">
                                 <%=f.text_field :departure,class:"date_input",required:true%>
+                            </li>
+                            <li class="from_item">
+                                <%=f.text_field :arrival,class:"date_input",required:true%>
                             </li>
                             <li class="from_item">
                                 <%= f.fields_for :rooms , @hotels_search.rooms.first do |fr|%>

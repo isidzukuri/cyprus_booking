@@ -2163,11 +2163,14 @@ fieldset{
     background-image: url("/assets/form_elements/chk.png");
     background-repeat: no-repeat;
 }
-.popup .sbHolder{
+.hotel_page .popup .sbHolder{
     width: 65px;
     float: left;
     top: 2px;
 
+}
+#new_user img{
+    cursor: pointer;
 }
 .popup .sbOptions ,.popup .sbSelector{
     width: 65px;

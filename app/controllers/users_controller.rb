@@ -69,7 +69,7 @@ class UsersController < ApplicationController
 
 		}
 		fb_user = Settings.fb.url.to_uri.get(data).deserialize
-	    user_attr = {:first_name=>fb_user["first_name"],:email=>fb_user["email"],:last_name=>fb_user["last_name"]}
+	    user_attr = {:first_name=>fb_user["first_name"],:email=>fb_user["email"],:last_name=>fb_user["last_name"],:phone=>"0937799996",:phone_code=>"38"}
         if User.find_by_email(user_attr[:email]).nil?
             user_attr[:password] = SecureRandom.hex(10)
             if user = User.create(user_attr)
