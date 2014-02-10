@@ -2343,7 +2343,14 @@ fieldset{
     left: 40%;
     top: -10px;
 }
+.search_forms .cars .sbOptions{
+    max-height: 350px!important;
+}
+#loader_text p{
+    width: 500px;
 
+text-align: left;
+}
 
 /* loader */
 #loader_notice{

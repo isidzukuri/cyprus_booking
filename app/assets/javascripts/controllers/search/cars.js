@@ -5,6 +5,9 @@ $.Controller("CarsSearchForm","SearchForm",{
 		this.advanced_from = this.element.find(".advaced_from");
 		this.disable_selects();
 	},
+    "input[type=text] -> change": function(ev) {
+    	
+    },
     setup_datepicker:function(){
 	  	this.element.find(".date_input").datepicker({ 
 	      dateFormat: "dd.mm.yy",
