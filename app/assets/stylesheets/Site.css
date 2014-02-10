@@ -2890,7 +2890,7 @@ td.pay_btn a{
     padding-bottom: 6px;
 }
 .fancybox-desktop .fancybox-close{
-    background: image-url('icon_info_close.png') no-repeat 0 0;
+    background: url('/assets/icon_info_close.png') no-repeat 0 0;
 /*    width: 12px;
     height: 12px;*/
     overflow: hidden;
