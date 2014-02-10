@@ -1,0 +1,28 @@
+        <div id="main_content">
+            <div id="main" >
+                <div id="main_wrap">
+                    <%=render "cabinet/left_menu"%>
+                <div class="right column">
+                    <div class="text_content">
+                        <% unless current_user.houses.any?%>
+                            <h1><%=t("all.user.you_dont_add")%></h1>
+                        <% else%>
+                        
+                            <div class="text_body">
+                                <ul>
+                                    <%current_user.houses.each do |offer|%>
+                                        <%= render partial:"cabinet/offers/book_item",:locals=>{:apart=>offer}%>
+                                    <%end%>
+                                </ul>
+                            </div>
+                        <%end%>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="clear"></div>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="clear"></div>
+        </div>

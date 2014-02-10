@@ -1,0 +1,16 @@
+.span9.with-sidebar
+  .container
+    - url = params[:action] =~ /new/ ? admin_pages_path : admin_page_path(@page.id)
+    = form_for @page ,:url => url ,:html=>{:class=>"new_user_form inline-input"} do |f|
+      = f.text_field :name , :style=>'width:100%;',:placeholder=>"Введите название"
+      %br
+      %br
+      = f.label :text, "Категория страницы"
+      = f.select :category_id ,options_for_select(Category.all.map{|c| [c.name,c.id]})
+      %br
+      %br
+      = f.label :text, "Текст страницы"
+      %br
+      = f.text_area :text , :style=>'width:100%;height:500px'
+      .span11.field-box.actions
+        = f.submit t("admin.users.#{params[:action]}"), :class=>"btn-glow primary"

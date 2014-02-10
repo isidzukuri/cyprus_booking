@@ -5,7 +5,12 @@
             <%= f.hidden_field :car_name ,  :value=> @car[:car_info][:Name] %>
             <%= f.hidden_field :base_price, :value=> @car[:price]["basePrice"] %>
             <%= f.hidden_field :base_currency ,  :value=> @car[:price]["baseCurrency"] %>
-
+            <%= f.hidden_field :car_cls ,     :value=> @car[:car_info][:group]%>
+            <%= f.hidden_field :automatic ,  :value=> @car[:car_info][:automatic][0..0] %>
+            <%= f.hidden_field :car_desc, :value=> @car[:car_info][:Description] %>
+            <%= f.hidden_field :car_seats ,  :value=> @car[:car_info][:seats] %>
+            <%= f.hidden_field :car_doors ,  :value=> @car[:car_info][:doors] %>
+            <%= f.hidden_field :car_cancel ,  :value=> @car[:car_info][:freeCancellation] %>
             
             <div id="main_content">
                 <div id="main" >
@@ -43,7 +48,7 @@
                                                     <li class="plc_count">
                                                         <p><%=t("all.cars.plc_count")%></p>
                                                         <span><%=image_tag "icons/cars_icon_01.png"%></span>
-                                                        <span><%=@car[:car_info][:seats]%></span>
+                                                        <span><%=@car[:car_info][:doors]%></span>
                                                         <span><%=image_tag "icons/cars_icon_02.png"%></span>
                                                         <span><%=@car[:car_info][:seats]%></span>
 
@@ -139,7 +144,7 @@
                                                 <a href="/cars/rules?id=<%=@car[:route]["PickUp"]["Location"]["id"]%>"><%=t("all.cars.rental_terms")%><span>!</span></a>
                                             </td>
                                             <td class="pay_btn to_pay">
-                                                <a target="_blank" href="#"><%=t("all.to_pay")%><span>></span></a>
+                                                <a target="_blank" class="<%=logged_in? ? "" : "login" %>" href="#"><%=t("all.to_pay")%><span>></span></a>
                                             </td>
                                         </tr>
                                     </table>

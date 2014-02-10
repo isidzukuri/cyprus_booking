@@ -1,0 +1,37 @@
+                <div class="left column">
+                    <div class="search action_div" data-action="set_active_faq">
+                        <h3>FAQ</h3>
+                        <ul class="list">
+                            <li class="info <%= @active_tab==0 ? "active" : ""%>">
+                                <a href="#info">Основное<em class="rectangle"></em></a>
+                            </li>
+                            <li class="about <%= @active_tab==1 ? "active" : ""%>">
+                                <a href="#about">О нас<em class="rectangle"></em></a>
+                            </li>
+                            <li class="contacts <%= @active_tab==2 ? "active" : ""%>">
+                                <a href="#contacts">Контакты<em class="rectangle"></em></a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                    <div class="faq_list">
+                        <ul class="info <%= @active_tab==0 ? "active" : ""%>">
+                            <%Category.where(seo:"faq").first.pages.all.each_with_index do |page,i|%>
+                                <li class="<%= @seo == page.seo ? "active" : ""%>">
+                                    <a href="/<%=I18n.locale%>/faq/<%=page.seo%>"><%=page.name%></a>
+                                </li>
+                            <%end%>
+                        </ul>
+                        <ul class="contacts <%= @active_tab==1 ? "active" : ""%>">
+                            <li>
+                                <a href="#">Как забронировать отель?</a>
+                            </li>
+                        </ul>
+                        <ul class="about <%= @active_tab==2 ? "active" : ""%>">
+                            <li>
+                                <a href="#">Как забронировать апартамент?</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>

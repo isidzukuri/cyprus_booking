@@ -8,9 +8,9 @@
                             <li class="contacts <%= @active_tab==1 ? "active" : ""%>">
                                 <a href="#contacts"><%=t("all.user.my_bookings")%><em class="rectangle"></em></a>
                             </li>
-                            <li class="info <%= @active_tab==2 ? "active" : ""%>">
+                            <!-- <li class="info <%= @active_tab==2 ? "active" : ""%>">
                                 <a href="#info"><%=t("all.user.my_message")%><em class="rectangle"></em></a>
-                            </li>
+                            </li> -->
                         </ul>
                     </div>
                     <div class="faq_list">
@@ -18,9 +18,9 @@
                             <li class="<%= @active_link==0 && @active_tab==0 ? "active" : ""%>">
                                 <%=link_to t("all.user.user_data") ,cabinet_profile_path%>
                             </li>
-                            <li class="<%= @active_link==1 && @active_tab==0 ? "active" : ""%>">
+                            <!-- <li class="<%= @active_link==1 && @active_tab==0 ? "active" : ""%>">
                                 <%=link_to t("all.user.change_pass_title") ,cabinet_profile_edit_path%>
-                            </li>
+                            </li> -->
                         </ul>
                         <ul class="contacts <%= @active_tab==1 ? "active" : ""%>">
                             <li class="<%= @active_link==0 && @active_tab==1 ? "active" : ""%>">
@@ -33,12 +33,17 @@
                                <%=link_to t("search.cars_title") ,cabinet_auto_index_path%>
                             </li>
                         </ul>
-                        <ul class="info <%= @active_tab==2 && @active_tab==2 ? "active" : ""%>">
+                        <ul class="info <%= @active_tab==2 ? "active" : ""%>">
                             <li class="<%= @active_link==0 && @active_tab==2 ? "active" : ""%>">
                                 <%=link_to t("all.user.mess_in") ,"/"%>
                             </li>
                             <li class="<%= @active_link==1 ? "active" : ""%>">
                                 <%=link_to t("all.user.mess_out") ,"/"%>
+                            </li>
+                        </ul>
+                        <ul class="yuor_aparts <%= @active_tab==3 ? "active" : ""%>">
+                            <li>
+                                <%=link_to t("all.user.yuor_aparts") ,cabinet_offers_path %>
                             </li>
                         </ul>
                     </div>

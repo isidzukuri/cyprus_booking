@@ -1,0 +1,15 @@
+#tabs-wrapper
+  .row-fluid
+    %a.span2.tab{:href=>"/admin/emails"}
+      = t("admin.emails.list")
+    %a.span2.tab.active{:href=>"#"}
+      = t("admin.emails.edit_template")
+#pad-wrapper.new-user{:"data-auto-controller"=>"AdminEmailController",:"data-locale"=>I18n.locale}
+  .row-fluid.header
+    %h3= t("admin.emails.edit", :template=>@page.name)
+  .row-fluid.form-wrapper
+    = render 'email_form'
+
+
+
+

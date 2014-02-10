@@ -1,0 +1,21 @@
+#tabs-wrapper
+  .row-fluid
+    %a.span2.tab.active{:href=>"/admin/categories"}
+      Список категорий
+    %a.span2.tab{:href=>"/admin/categories/new"}
+      Добавить категорию
+#pad-wrapper.users-list
+  .row-fluid.header
+    %h3 Категории контента
+  %p{:style=>"font-weight: bold;color:green"}=flash[:notice] 
+  .row-fluid.table
+    %table.table.table-hover 
+      %tbody
+        - @categories.each_with_index do |email,i|
+          %tr{:class=>("active" if i == 0)}
+            %td{:style=>"padding-left:0px"}
+              = link_to "#{email.name}" , edit_admin_category_path(email.id) , :class=>"name"
+  .pagination.pull-right 
+    
+
+

@@ -1,0 +1,155 @@
+        <%=book_steps(t("all.cars.book_steps"),1)%>
+        <%=form_for @booking ,:url=>"/#{I18n.locale}/aparts/booking/#{@apart.id}", :html=>{"data-auto-controller"=>"ApartBooking","data-lat"=>@apart.latitude,"data-lng"=>@apart.longitude} do |f|%>
+            <%= hidden_field_tag "session_id" , @session_id%>
+            <div id="main_content">
+                <div id="main" >
+                    <div id="main_wrap" class="recommend_block">
+                        <div class="header">
+                            <div id="recommend_tabs">
+                                <div class="recommend_tabs_nav">
+                                    <ul>
+                                        <li class="tab1 t"><span class="bottom_corner"></span><a href="#tabs-001"><%=t("all.hotels.descr")%></a></li>
+                                        <%if @apart.facilities.count > 0%>
+                                        <li class="tab2 t "><span class="bottom_corner"></span><a href="#tabs-002"><%=t("all.hotels.udobstva")%></a></li>
+                                        <%end%>
+                                        <li class="tab3 t map"><span class="bottom_corner"></span><a href="#tabs-003"><%=t("all.hotels.map")%></a></li>
+                                    </ul>
+                                    <div class="final_price pay_btn pay_for_hotel top">
+                                        <a class="<%= logged_in? ? "" : "login" %>" href="#"><%=t("all.to_book")%><span>></span></a>                                       
+                                        <%="#{@apart.period_price(@search)}"%>
+                                        <span class="currency"> <%=t("all.currencies_symbols.#{$currency}")%></span>
+                                    </div>
+                                </div> 
+                                <div id="tabs-001">
+                                        <div class="tab_ins">
+                                            <h2 style="width: 100%;">
+                                                <%= @apart.name%>
+                                            </h2>
+                                            <div class="rating_and_address">
+                                                <span class="addr"><%=@apart.address%></span>
+                                                <div class="rating"><span style="width:<%=@apart.total_rating.to_f*20%>%"></span></div>
+                                            </div>
+                                            
+                                        
+                                            <div class="hotel_photos">
+                                                <div id="slideshow"></div>
+                                                <div id="thumbs">
+                                                    <ul class="thumbs noscript">
+                                                        <%@apart.photos.each do |image|%>
+                                                            <li>
+                                                                <a class="thumb" name="optionalCustomIdentifier" href="<%= image.file.url%>" title="">
+                                                                    <img src="<%= image.file.url(:small)%>" width="70" height="70" alt="" />
+                                                                </a>
+                                                            </li>
+                                                        <%end%>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="hotel_text">
+                                                <h2>Описание</h2>
+                                                <p><%= @apart.description%></p>
+                                                <div class="clear"></div>
+                                            </div>
+                                            <div class="lft">
+                                                <h2>Характеристика</h2>
+                                                <table class="chracteristic">
+                                                    <tr>
+                                                        <td>
+                                                            <%=image_tag "plc_count.png"%>
+                                                        </td>
+                                                        <td>Вмещает гостей:</td>
+                                                        <td><%=@apart.places%></td>
+                                                        <td>
+                                                            <%=image_tag "plc_count.png"%>
+                                                        </td>
+                                                        <td>Количество спален:</td>
+                                                        <td><%=@apart.rooms%></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <%=image_tag "plc_count.png"%>
+                                                        </td>
+                                                        <td>Количество ванных комнат:</td>
+                                                        <td><%=@apart.showers%></td>
+                                                        <td>
+                                                            <%=image_tag "plc_count.png"%>
+                                                        </td>
+                                                        <td>Тип кровати:</td>
+                                                        <td><%=@apart.bed%></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <%=image_tag "plc_count.png"%>
+                                                        </td>
+                                                        <td>Тип размещения:</td>
+                                                        <td><%=@apart.type%></td>
+                                                        <td>
+                                                            <%=image_tag "plc_count.png"%>
+                                                        </td>
+                                                        <td>Этажей:</td>
+                                                        <td><%=@apart.floors%></td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                            <div class="rgt">
+                                                 <h2>О хозяине</h2>
+                                                 <div class="head">
+                                                    <%=image_tag @apart.user.file(:medium)%>
+                                                    <span><%=@apart.user.fio%></span>
+                                                 </div>
+                                                 <p style="text-align: left;"><%=truncate(@apart.user.info, length:250, separator: ' ',omission: '...')%></p>
+                                                 
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>    
+                                </div>
+                                <%if @apart.facilities.count > 0%>
+                                <div id="tabs-002">
+                                        <div class="tab_ins">
+                                            <h2 style="width: 100%;">
+                                                <%= @apart.name%>
+                                            </h2>
+                                            <div class="rating_and_address">
+                                                <span class="addr"><%=@apart.address%></span>
+                                                <div class="rating"><span style="width:<%=@apart.total_rating.to_f*20%>%"></span></div>
+                                            </div>
+                                            <%if @apart.facilities.count > 0%>
+                                            <div class="amenities">
+                                         <%@apart.facilities.in_groups_of((@apart.facilities.count.to_f / 4).ceil,false) do |fc_group| %>
+                                            <ul>
+                                                <%fc_group.each_with_index do |fc,index|%>
+                                                <li><%=image_tag fc.ico%><%=fc.name%></li>
+                                                <%end%>
+                                            </ul>
+                                         <%end%>
+
+                                            </div>
+                                             <%end%>
+                                        </div>    
+                                </div>
+                                <%end%>
+                                <div id="tabs-003">
+                                        <div class="tab_ins">
+                                            <h2 style="width: 100%;">
+                                                <%= @apart.name%>
+                                            </h2>
+                                            <div class="rating_and_address">
+                                                <span class="addr"><%=@apart.address%></span>
+                                                <div class="rating"><span style="width:<%=@apart.total_rating.to_f*20%>%"></span></div>
+                                            </div>
+                                            <div class="map_hotel">
+                                                <div id="g_map"></div>
+                                            </div>
+                                        </div>    
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="clear"></div>
+                        </div>                        
+                        <div class="clear"></div>
+                    </div>
+                        <div class="clear"></div>
+                </div>
+                <div class="clear"></div>
+            </div>
+        <%end%>

@@ -19,6 +19,8 @@ class  HotelsBooking
   attribute :country
   attribute :state_province_code
   attribute :image
+  attribute :stars
+  attribute :desc
   
   attribute :session_id
   attribute :comment
@@ -33,8 +35,8 @@ class  HotelsBooking
     hash = {}
     params = {
       :hotelId        => self.hotel_id,
-      :arrivalDate    => self.arrival,
-      :departureDate  => self.departure,
+      :arrivalDate    => self.departure,
+      :departureDate  => self.arrival ,
       :supplierType   => self.supplier_type,
       :rateKey        => self.rate_key,
       :roomTypeCode   => self.room_type,
@@ -42,10 +44,10 @@ class  HotelsBooking
       :rateCode       => self.rate_code,
       
       :email          => self.user.email,
-      :firstName      => "Test Booking",#self.user.username.split(" ").first(),
-      :lastName       => "Test Booking",#self.user.username.split(" ").last(),
-      :homePhone      => "#{self.card.phone_code}#{self.card.phone}",
-      :workPhone      => "#{self.card.phone_code}#{self.card.phone}",
+      :firstName      => Settings.in_production ? self.user.first_name  : "Test Booking",
+      :lastName       => Settings.in_production ? self.user.last_name  : "Test Booking",
+      :homePhone      => "#{self.user.phone_code}#{self.user.phone}",
+      :workPhone      => "#{self.user.phone_code}#{self.user.phone}",
       
       
       :creditCardType            => self.card.card_type,
@@ -53,7 +55,7 @@ class  HotelsBooking
       :creditCardIdentifier      => self.card.cvv,
       :creditCardExpirationMonth => self.card.exp_date.split("/").first(),
       :creditCardExpirationYear  => "20" + self.card.exp_date.split("/").last(),
-      :address1 => self.card.address,
+      :address1 => Settings.in_production  ? self.card.address : "travelnow",
       :city=> "none",
       :stateProvinceCode=>"none",
       :countryCode=>self.card.country,

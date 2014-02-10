@@ -1,0 +1,25 @@
+
+	<div class="text_body">
+		<h3>Добавьте фото ваших апартаментов и окрестности</h3>
+		<div id="adminDropzone" class="dropzone btn-glow secondary dropzone_holder" action = "/admin/apartaments/upload_photos">
+			<h5>Нажмите или перетяните сюда фотографию</h5>
+		</div>
+		<%if @offer.photos.count > 0%>
+			<%@offer.photos.in_groups_of((@offer.photos.count.to_f/4).ceil,false).each do |fac_group|%>
+				<ul class="options_list dropzone">
+					<%fac_group.each do |photo|%>
+							<li id="photo_<%=photo.id%>">
+									<div class="dz-preview dz-processing dz-image-preview dz-success">  
+										<div class="dz-details">         
+											<%=image_tag photo.file.url(:small)%>
+										</div>     
+										<div class="dz-error-mark" data-id="<%=photo.id%>"><span>✘</span></div>  
+									</div>
+							</li>
+					<%end%>
+				</ul>
+			<%end%>
+		<%end%>
+	</div>
+	<div class="clear"></div>
+

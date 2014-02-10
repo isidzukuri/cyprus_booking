@@ -14,5 +14,6 @@
  *= require "jquery.selectbox"
  *= require jquery.fancybox
  *= require galleriffic-2
+ *= require dropzone
  *= require "Site"
  */

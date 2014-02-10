@@ -31,6 +31,12 @@ class CarsBookingsPayed < ActiveRecord::Base
     self.drop_date       = booking.dropp_off.date.to_date
     self.drop_time       = booking.dropp_off.time
     self.driver_name     = booking.driver.name
+    self.car_cls         = booking.car_cls
+    self.automatic       = booking.automatic
+    self.car_desc        = booking.car_desc 
+    self.car_seats       = booking.car_seats 
+    self.car_doors       = booking.car_doors 
+    self.car_cancel      = booking.car_cancel
     self.cars_extras     = booking.extras.map{|e| e[:name]}.join(",")
     self.driver_surname  = booking.driver.surname
     self.driver_birthday = "#{booking.driver.birthday_day}-#{booking.driver.birthday_month}-#{booking.driver.birthday_year}"
@@ -39,6 +45,22 @@ class CarsBookingsPayed < ActiveRecord::Base
     count_total_price
   end
 
+  def pick_up_place
+    "#{self.pick_country}, #{self.pick_place}"      
+  end
+  def dropp_off_place
+    if self.drop_country.empty?
+        "#{self.pick_country}, #{self.pick_place}"
+    else
+        "#{self.drop_country}, #{self.drop_place}"
+    end
+  end
+  def pick_up_date
+       Time.parse("#{self.pick_date} #{self.pick_time.gsub("-",":")}")
+  end
+  def dropp_off_date
+       Time.parse("#{self.drop_date} #{self.drop_time.gsub("-",":")}")
+  end
   private
     def check_car_protection extras
       extras.each do |t|

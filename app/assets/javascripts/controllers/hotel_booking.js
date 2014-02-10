@@ -189,7 +189,7 @@ $.Controller("HotelBooking",{
   		success:function(resp){
   			if(resp.success){
   				window.show_message(window.I18n.cars_pay_success);
-  				window.location.href = "/user/bookings/cars/" + resp.id
+  				window.location.href = form.data("url") + resp.id
   			}
   			else{
   				window.show_message(resp.msg);

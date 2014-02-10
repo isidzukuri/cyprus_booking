@@ -31,6 +31,7 @@
                         </li>             
                         <li><a class="lang"     href="#"><%=t("all.langs.#{I18n.locale}")%></a></li>
                         <li><a class="currency" href="#"><%=t("all.currencies.#{$currency}")%></a></li>
+                        <li><a class="add_apart <%=logged_in? ? "" : "login" %>" href="<%=new_cabinet_offer_path%>"><%=t("all.add_apart")%></a></li>
                     </ul>
                 </div>
             </div>
@@ -68,7 +69,7 @@
                         <%=link_to t("all.footer_links.faq"), faq_path%>
                     </div>
                 </div>
-                <div class="bottom-menu-column">
+<!--                 <div class="bottom-menu-column">
                     <div class="bottom-menu-column-header">
                         <%=link_to t("all.footer_links.contacts"), "/#{I18n.locale}/page/contacts"%>
                     </div>
@@ -79,7 +80,7 @@
                         <%=link_to t("all.footer_links.about"), "/#{I18n.locale}/page/about"%>
                     </div>
 
-                </div>
+                </div> -->
                
             </div>
                 

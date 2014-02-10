@@ -1,7 +1,10 @@
 class Admin::EmailsController < AdminController
 	before_filter :require_login
 	def index
-		@emails = EmailTemplate.all
+		per_page = 20
+		sort = params[:sort] || :id
+		@dir = params[:dir] == 'DESC' ? 'ASC' : 'DESC'
+		@emails = EmailTemplate.paginate(:per_page=>per_page,:page => params[:page]).order("#{sort} #{@dir}")
 	end
 	def edit
 		@email = EmailTemplate.find(params[:id])

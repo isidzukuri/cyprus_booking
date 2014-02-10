@@ -4,7 +4,8 @@ class Cabinet::ApartsController < ApplicationController
 			
 	end	
 	def show
-		
+		@book = current_user.apartments_bookings.where(id:params[:id].to_i).first
+		raise "Booking not found" if @book.nil?
 	end
 	def edit
 		

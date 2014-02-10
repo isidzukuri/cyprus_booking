@@ -85,7 +85,7 @@ $.Controller("Main",{
 	},
 	set_active_faq:function(el){
 		var el = this.element.find(".faq_list ." + el)
-		el.siblings().hide()
+		el.siblings(":not(.yuor_aparts)").hide()
 		el.show()
 	},
 	set_active_tab:function(el){

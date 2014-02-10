@@ -1,5 +1,5 @@
 class ApartmentsBooking < ActiveRecord::Base
-  attr_accessible :id, :user_id, :seller, :house_id, :total_cost, :from_date, :to_date, :status,:travelers,:currency
+  attr_accessible :id, :user_id, :seller, :house_id, :comment,:total_cost, :from_date, :to_date, :status,:travelers,:currency
 
   belongs_to :house
   belongs_to :user
@@ -16,6 +16,9 @@ class ApartmentsBooking < ActiveRecord::Base
   end
   def set_status
     self.status = 1
+    
+  end
+  def comment
     
   end
 

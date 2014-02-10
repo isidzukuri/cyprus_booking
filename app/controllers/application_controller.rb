@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   end
   
   def cars_countries
-    countries = Rails.cache.fetch("cars_countries", :expires_in => 1.month) do
+    countries = Rails.cache.fetch("cars_countries_#{I18n.locale}", :expires_in => 1.month) do
 		  api.get_county_list.collect{|c| [ c, c ] }
     end
   end

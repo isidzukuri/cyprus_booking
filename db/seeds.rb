@@ -11,13 +11,27 @@ if AdminModule.count == 0
 	AdminModule.create(name:"Характеристики апартаментов",action:"characteristics",parent_id:0,:ico_cls=>"sidebar-widgets")
 	AdminModule.create(name:"Валюты",action:"currencies",parent_id:0,:ico_cls=>"sidebar-widgets")
 	AdminModule.create(name:"Учереждиния поблизости",action:"nearbies",parent_id:0,:ico_cls=>"sidebar-widgets")
+	AdminModule.create(name:"Категории контента",action:"categories",parent_id:0,:ico_cls=>"sidebar-widgets")
+	AdminModule.create(name:"Контент",action:"pages",parent_id:0,:ico_cls=>"sidebar-widgets")
 end
 
 if City.count == 0
 	City.create(name_ru:"Никосия")
 	City.create(name_ru:"Корнос")
 end
+if Category.count == 0
+	cat_1 = Category.create(name_ru:"Главная")
+	
 
+	cat = Category.create(name_ru:"Статьи",:parent_id=>cat_1.id,:seo=>"posts")
+	Page.create(name_ru:"Отдых на кипре",:category_id=>cat.id,:seo=>"cyprus_travel")
+	Page.create(name_ru:"Города кипра",:category_id=>cat.id,:seo=>"kyprus_cities")
+	cat = Category.create(name_ru:"FAQ",:parent_id=>cat_1.id,:seo=>"faq")
+
+	Page.create(name_ru:"Как забронировать апартамент?",:category_id=>cat.id,:seo=>"ka_avto")
+	Page.create(name_ru:"Как забронировать авто?",:category_id=>cat.id,:seo=>"kas_avto")
+	Page.create(name_ru:"Как забронировать отель?",:category_id=>cat.id,:seo=>"kak_otel")
+end
 if Currency.count == 0
 	Currency.create(title:"UAH",curs:1,symbol:'₴')
 	Currency.create(title:"USD",curs:2,symbol:'$')
@@ -38,7 +52,7 @@ if Characteristic.count == 0
 end
 
 if User.count == 0
-	user = User.create(:first_name=>"Админ",:last_name=>"Админ",:patronic=>"Админыч",username:"admin",email:"admin@admin.net",password:"admin",:city=>"Admin",:street=>"Admin",:building=>"Admin")
+	user = User.create(:phone_code=>"38", :phone=>"0937799996",:first_name=>"Админ",:last_name=>"Админ",:patronic=>"Админыч",username:"admin",email:"admin@admin.net",password:"admin",:city=>"Admin",:street=>"Admin",:building=>"Admin")
 	admin_role = Role.create(role_type:"admin",name:"Administrator")
 	Role.create(role_type:"login",name:"Default User")
 	user.roles << admin_role

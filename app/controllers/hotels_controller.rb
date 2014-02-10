@@ -1,7 +1,7 @@
 class HotelsController < ApplicationController
   before_filter :require_login, :only=>[:booking]
-  before_filter :check_cache, :only=>[:results,:show,:booking,:book,:load_hotels]
-  before_filter :hotel_item_cache, :only=>[:show,:booking,:book]
+  before_filter :check_cache, :only=>[:results,:show,:booking,:book,:load_hotels,:pay]
+  before_filter :hotel_item_cache, :only=>[:show,:booking,:book,:pay]
 
 
   def search
@@ -11,7 +11,7 @@ class HotelsController < ApplicationController
       @search.rooms[i].child = [HotelChild.new] * @search.rooms[i].childs 
     end
     @session_id  = ses_id
-    lat_lng      = api.get_location(@search.city , @search.place_code,ses_id)
+    lat_lng      = api.get_location(@search.city , @search.place_code, @session_id)
     
     api.hotels_list(@search.to_api_hash,@session_id)
     @results     = api.hotel_list
@@ -50,7 +50,7 @@ class HotelsController < ApplicationController
     location = CGI::unescape params[:location]
     json     = {:success=>false}
     unless location == ""
-      api.hotel_list_pagination(key,location,ses_id)
+      api.hotel_list_pagination(key,location,params[:session_id])
       data   = ""
       api.hotel_list.each do |hotel|
         data << render_to_string(partial:"hotels/result_item",:locals=>{:hotel=>hotel})
@@ -73,6 +73,10 @@ class HotelsController < ApplicationController
 
   def book
     @booking = HotelsBooking.new(params[:hotels_booking])
+    @booking.rooms.size.times do |i|
+      @booking.rooms[i].adult = HotelAdult.new(params[:hotels_booking][:rooms_attributes][:"#{i}"][:adult_attributes]["0"])
+      @booking.rooms[i].childs = @search.rooms[i].childs
+    end
     @room    = @result[:rooms].select{|room|  room[:code].to_i == @booking.room_type.to_i and room[:price].to_f == @booking.chargeable_rate.to_f }.first
     p_meth
   end
@@ -81,9 +85,9 @@ class HotelsController < ApplicationController
     json = {:success=>true}
     @booking = HotelsBooking.new(params[:hotels_booking])
     @booking.user = current_user
-    data = api.book(@booking.to_api_hash ,ses_id)  
+    data = api.book(@booking.to_api_hash ,params[:session_id])  
     if api.error.nil?
-      json = write_booking(data)
+      json = write_booking(data,@booking)
     else
       json = {:success => false, :msg=> api.error[:text] }
     end
@@ -94,11 +98,16 @@ class HotelsController < ApplicationController
 
   private
 
-  def write_booking data
-    data.merge!({:user_id=>current_user.id})
+  def write_booking data,booking
+    p @result
+    data.merge!({
+      :desc => @result[:hotel][:desc],
+      :stars => @booking.stars,
+      :img_url=>@booking.image,
+      :user_id=>current_user.id,
+      })
     rooms_data = data[:rooms_data]
     data.reject!{ |k| k == :rooms_data }
-    data.merge!({:img_url=>@booking.image})
     booking = HotelBookingPayed.create(data)
     conf = booking.conf_numbers.split(",") rescue [booking.conf_numbers]
     rooms_data.each_with_index do |room,i|
@@ -119,7 +128,7 @@ class HotelsController < ApplicationController
 
   def p_meth
     @p_meth  = Rails.cache.fetch("hotels_search_item_payments_#{@session_id}", :expires_in => 200.minutes) do
-      api.get_payments(ses_id)
+      api.get_payments(params[:session_id])
     end
   end
 
@@ -140,12 +149,13 @@ class HotelsController < ApplicationController
   end
 
   def hotel_item_cache
-    @result  = Rails.cache.fetch("hotels_search_item_#{@session_id}", :expires_in => 200.minutes) do
+    @session_id = params[:session_id]
+    @result  = Rails.cache.fetch("hotels__search_item_#{@session_id}_#{params[:id]}", :expires_in => 200.minutes) do
       data = {:hotelId=>params[:id],:includeDetails=>true,:includeRoomImages=>true}
       data.merge!(@search.to_api_hash) 
-      hotel_info = api.hotel_info({:hotelId=>params[:id],:options=>0}, ses_id)
-      hotel_img  = api.get_images({:hotelId=>params[:id]},ses_id)
-      rooms_info = api.hotel_rooms_info data , @search.interval, ses_id  
+      hotel_info = api.hotel_info({:hotelId=>params[:id],:options=>0}, params[:session_id])
+      hotel_img  = api.get_images({:hotelId=>params[:id]},params[:session_id])
+      rooms_info = api.hotel_rooms_info data , @search.interval, params[:session_id]  
       {:hotel => hotel_info,:rooms=>rooms_info,:images=>hotel_img}
     end
   end

@@ -1,0 +1,22 @@
+                        <li class="car_item">
+                            <ul class="item_elms">
+                                <li class="desc">
+                                    <a href="<%=cabinet_apart_path(book.id)%>">
+                                    <div class="lft"><img src="<%= book.house.first_img%>"  width="150" height="100"/></div>
+                                    <div class="rt">
+                                        <h3><%= book.house.name%></h3>
+                                        <div class="rating"><span style="width:<%=book.house.total_rating.to_f*20%>%"></span></div>
+                                        <p class="addr"><%=book.house.address%></p>
+                                        <% if true%>   
+                                        <ul class="car_options">
+                                                    <li>Мест: <%=book.house.places%></li>
+                                                    <li>Комнат: <%=book.house.rooms%></li>
+                                                    <li>Этаж: <%=book.house.floor_number%></li>
+                                                </ul>
+                                        <%end%>   
+                                        <span><%= strip_tags CGI::unescapeHTML(truncate(book.house.description, length:150, separator: ' ',omission: '...'))%></span>
+                                    </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>

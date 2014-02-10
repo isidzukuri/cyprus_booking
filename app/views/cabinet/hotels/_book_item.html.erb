@@ -1,0 +1,22 @@
+                        <li class="car_item">
+                            <ul class="item_elms">
+                                <li class="desc">
+                                    <a href="<%=cabinet_hotel_path(book.id)%>">
+                                    <div class="lft"><img src="<%= book.img_url%>"  width="150" height="100"/></div>
+                                    <div class="rt">
+                                        <h3><%= raw book.hotel_name%></h3>
+                                        <div class="rating"><span style="width:<%=book.stars*20%>%"></span></div>
+                                        <p class="addr"><%=book.hotel_address%></p>
+                                        <% unless true%>   
+                                        <ul class="car_options">
+                                            <% hotel[:options].each do |opt| %>
+                                                <li>- <%=opt.gsub("Gratis trådlös Internet",t("all.hotels.free_wi_fi"))%></li>
+                                            <%end%>                                            
+                                        </ul>
+                                        <%end%>   
+                                        <span><%= strip_tags CGI::unescapeHTML(truncate(book.desc, length:150, separator: ' ',omission: '...'))%></span>
+                                    </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>

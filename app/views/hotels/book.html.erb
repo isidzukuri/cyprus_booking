@@ -1,5 +1,5 @@
         <%=book_steps(t("all.cars.book_steps"),2)%>
-        <%=form_for @booking ,:url=>"/#{I18n.locale}/hotels/pay?session_id=#{@session_id}", :html=>{"data-auto-controller"=>"HotelBooking"} do |f|%>
+        <%=form_for @booking ,:url=>"/#{I18n.locale}/hotels/pay?session_id=#{@session_id}", :html=>{"data-auto-controller"=>"HotelBooking", "data-url"=>"#{cabinet_hotels_path}/"} do |f|%>
             <%= f.hidden_field :hotel_id%>
             <%= f.hidden_field :rate_code%>
             <%= f.hidden_field :currency%>
@@ -12,6 +12,20 @@
             <%= f.hidden_field :session_id%>
             <%= f.hidden_field :rate_key%>
             <%= f.hidden_field :name%>
+            <%= f.hidden_field :image %>
+            <%= f.hidden_field :stars %>
+            <%= hidden_field_tag :id, params[:id]%>
+            <%@booking.rooms.each do |room|%>
+                <%= f.fields_for :rooms,room do |fr| %>
+                    <%= fr.fields_for :adult,room.adult do |a| %>
+                        <%= a.hidden_field :first_name%>
+                        <%= a.hidden_field :last_name%>
+                        <%= a.hidden_field :birth_day%>
+                        <%= a.hidden_field :birth_month%>
+                        <%= a.hidden_field :birth_year%>
+                    <%end%>
+                <%end%>
+            <%end%>
             <div id="main_content">
                 <div id="main" >
                     <div id="main_wrap">

@@ -28,7 +28,7 @@ class User < ActiveRecord::Base
       :large    => ['500x500>',   :jpg],
       :cabinet  => ['100x100',   :jpg],
     }
-  attr_accessible :phone_code, :phone,:info ,:email,:first_name ,:last_name, :patronic, :username, :password, :city, :street, :building
+  attr_accessible :phone_code, :info, :phone,:info ,:email,:first_name ,:last_name, :patronic, :username, :password, :city, :street, :building
   def modules
   	modules = []
   	self.roles.each do |role|

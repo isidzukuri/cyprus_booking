@@ -357,6 +357,7 @@ end
       :room_desc => input[:roomDescription], 
       :rooms_data => rooms_data,
       :rooms => input[:numberOfRoomsBooked], 
+      :base_currency => price_block[:@currencyCode],
       :s_type => input[:supplierType], 
       :status => input[:reservationStatusCode], 
       :total_price => price_block[:@total], 

@@ -1,0 +1,74 @@
+        <%url =  params[:action] =~ /new/ ? cabinet_offers_path : cabinet_offer_path(@offer)%>
+        <%=form_for @offer ,:url=>url,:html=>{"data-auto-controller"=>"OfferController", "data-lat"=>(@offer.new_record? ? 0 : @offer.latitude),"data-lng"=>(@offer.new_record? ? 0 : @offer.longitude),"data-id"=>(@offer.new_record? ? 0 : @offer.id)} do |f|%>
+        <%=f.hidden_field :latitude%>
+        <%=f.hidden_field :longitude%>
+        <div id="main_content">
+            <div id="main" >
+                <div id="main_wrap">
+                    <%=render "cabinet/left_menu"%>
+                <div class="right column">
+                    <div class="text_content">
+                        <h1 style="text-align: center">Добавьте свои апартаменты!</h1>
+                <!-- description tabs -->
+                <div class="description_tabs_block">
+                    <div class="description_tabs">
+                        <ul>
+                            <li class="descr_tab"><a href="#tabs-1">Информация</a><span class="active_corner"></span></li>
+                            <li class="descr_tab"><a href="#tabs-2">Удобства</a><span class="active_corner"></span></li>
+                            <li class="map_tab"><a href="#tabs-3">Фотографии</a><span class="active_corner"></span></li>
+                            <!-- <li class="facilities_tab"><a href="#tabs-3">Специальные цены</a><span class="active_corner"></span></li>
+                            <li class="policies_tab"><a href="#tabs-4">Правила</a><span class="active_corner"></span></li>
+                            <li class="import_info_tab"><a href="#tabs-5">Каледарь</a><span class="active_corner"></span></li>
+                            <li class="reviews_tab"><a href="#tabs-6">Отзывы</a><span class="active_corner"></span></li> -->
+                        </ul>
+                     </div>  
+                     <div id="tabs-1" class="description_panel">
+                        <%=render partial:"cabinet/offers/desc_form",:locals=>{:f=>f}%>
+                     </div>    
+                     <div id="tabs-2" class="description_panel">
+                        <%=render partial:"cabinet/offers/facifility_form",:locals=>{:f=>f}%>
+                     </div>    
+                     <div id="tabs-3" class="description_panel">
+                        <%=render partial:"cabinet/offers/photo_form",:locals=>{:f=>f}%>
+                     </div>    
+<!--                      <div id="tabs-4" class="description_panel">
+                     </div>    
+                     <div id="tabs-5" class="description_panel">
+                     </div>    
+                     <div id="tabs-6" class="description_panel">
+                     </div>   -->  
+                </div>
+                                            <table>
+                                <tr class="pay_btn">
+                                    <td><a style="float: right;width: 155px;" target="_blank" href="#"><%=t("all.save")%><span>></span></a></td>
+                                </tr>
+                            </table>
+                <!-- end description tabs -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        <div class="clear"></div>
+                    </div> 
+                    <div class="clear"></div>
+                </div>
+                <div class="clear"></div>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <%end%>

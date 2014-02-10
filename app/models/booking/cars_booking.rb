@@ -13,9 +13,16 @@ class CarsBooking
   attribute :flight_presense
   attribute :comment
   attribute :image
+  attribute :car_cls
+  attribute :automatic
+  attribute :car_desc
+  attribute :car_seats
+  attribute :car_doors
   attribute :base_price
   attribute :base_currency
   attribute :rules_agrement
+  attribute :car_desc
+  attribute :car_cancel
   nested_attribute :driver, :class_name => "Driver"
   nested_attribute :user, :class_name => "User"
   nested_attribute :pick_up,   :class_name => "CarsLocation"

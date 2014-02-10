@@ -1,0 +1,21 @@
+
+	<div class="text_body">
+		<h3>Укажите удобства которые вы можете предоставить своим гостям</h3>
+		<%@facilities.each do |fac_group|%>
+			<ul class="options_list ">
+				<%fac_group.each do |fac|%>
+					<%=f.fields_for :facilities,fac do |fr|%>
+						<li>
+							<%=fr.check_box :"id[#{fac.id}]",checked:@facilities_ids.include?(fac.id)%>
+							<%=fac.name%>
+							<%=image_tag fac.ico%>
+						</li>
+					<%end%>
+				<%end%>
+			</ul>
+		<%end%>
+	</div>
+	<div class="clear"></div>
+
+
+

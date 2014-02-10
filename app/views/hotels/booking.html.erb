@@ -13,6 +13,9 @@
             <%= f.hidden_field :session_id%>
             <%= f.hidden_field :rate_key%>
             <%= f.hidden_field :name%>
+            <%= f.hidden_field :image,:value=>@result[:hotel][:images].first[:big]%>
+            <% #= f.hidden_field :desc,:value=>@result[:hotel][:desc]%>
+            <%= f.hidden_field :stars,:value=>@result[:hotel][:stars].to_f%>
             <div id="main_content">
                 <div id="main" >
                     <div id="main_wrap">

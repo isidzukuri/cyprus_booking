@@ -1,0 +1,29 @@
+<li class="car_item" id="hotel_<%=apart.id%>">
+    <a href="<%=edit_cabinet_offer_path(apart.id)%>">
+        <ul class="item_elms">
+            <li class="desc">
+                <div class="lft"><%=image_tag apart.first_img,:size=>"150x100"%></div>
+                <div class="rt">
+                    <h3><%=apart.name%></h3>
+                    <div class="rating"><span style="width:<%=apart.total_rating.to_f*20%>%"></span></div>
+                    <p class="addr"><%=apart.address%></p>
+                    <ul class="car_options">
+                        <li>Мест: <%=apart.places%></li>
+                        <li>Комнат: <%=apart.rooms%></li>
+                        <li>Этаж: <%=apart.floor_number%></li>
+                    </ul>
+                </div>
+            </li>
+            
+            <% if false && apart.facilities.any?%>
+                <li class="options">
+                    <ul>
+                        <%apart.facilities.each do |f|%>
+                            <li><%=image_tag f.ico %></li>
+                        <%end%>
+                    </ul>
+                </li>
+            <%end%>
+        </ul>
+    </a>
+</li>

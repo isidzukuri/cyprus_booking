@@ -1,0 +1,60 @@
+        <div id="main_content">
+            <div id="main" >
+                <div id="main_wrap">
+                    <%=render "cabinet/left_menu"%>
+                <div class="right column">
+                    <div class="text_content">
+                        <%= render partial:"cabinet/aparts/book_item",:locals=>{:book=>@book}%>
+                        <table>
+                            <tr>
+                                <th><%=t("all.book_date")%></th>
+                                <th><%=t("all.dep_date")%></th>
+                                <th><%=t("all.arr_date")%></th>
+                                
+                                <th><%=t("all.book_number")%></th>
+                                <th><%=t("all.total_cost")%></th>
+                            </tr>
+                            <tr>
+                                <td><%=l(@book.created_at,:format=>:long)%></td>
+                                <td><%=l(Time.at(@book.from_date),:format=>:long).gsub(", 00:00","")%></td>
+                                <td><%=l(Time.at(@book.to_date),:format=>:long).gsub(", 00:00","")%></td>
+                                
+                                <td><%=@book.id%></td>
+                                <td><%="#{(Exchange.convert(@book.currency, $currency) * @book.total_cost.to_f).to_i}"%>
+                                    <%=t("all.currencies_symbols.#{$currency}")%></td>
+                            </tr>
+                            
+                        </table>
+                        <table class="room_data">
+                            <%@book.travelers.each_with_index do |doc,i|%>
+                            <tr>
+                                <td style="color: #004b8d;font-size: 19px;padding: 0;margin: 0;"><%=t("all.hotels.rooom",num:i+1)%></td>
+                            </tr>
+                            <tr>
+                                <td><%="#{doc.name}"%></td>
+                                <td><%="#{doc.email}"%></td>
+                                
+                            </tr>
+                            <%end%>
+                        </table>
+                        <%if  false%>
+                        <div class="pay_btn">
+                            <a target="_blank" href="#"><%=t("all.cancel_book")%><span>></span></a>
+                        </div>
+                        <%end%>
+
+
+                        <div class="rules" style="padding-bottom:30px;">
+                            <p><%=@book.house.description%></p>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="clear"></div>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="clear"></div>
+        </div>

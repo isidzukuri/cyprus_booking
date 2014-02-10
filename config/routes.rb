@@ -7,14 +7,22 @@ Cypr::Application.routes.draw do
   scope :path =>"(:locale)", :locale => /ru|ua|en/ do
     root :to => "home#index"
     get "hotels/show/:id" => "hotels#show"
+    get "aparts/show/:id" => "aparts#show"
     get "hotels/load_hotels"
     post "hotels/booking/:id" => "hotels#booking"
+    post "aparts/booking/:id" => "aparts#booking"
     post "hotels/book/:id" => "hotels#book"
+    post "aparts/book/:id" => "aparts#book"
+
     get "hotels/pay"
     namespace :cabinet do 
         get :profile,to:"profile#show"
+        get "offers/remove_photo",to:"offers#remove_photo"
         get "profile/edit",to:"profile#edit"
+        put "profile/save",to:"profile#save"
+        post "profile/save",to:"profile#save"
         resources :auto
+        resources :offers
         resources :aparts
         resources :hotels
     end
@@ -48,7 +56,7 @@ Cypr::Application.routes.draw do
     	post "book"
     end
     get "faq" ,to:"faq#index"
-    get "page" ,to:"page#show"
+    get "faq/:seo" ,to:"faq#show"
   end
 
 
@@ -67,6 +75,8 @@ Cypr::Application.routes.draw do
      resources :characteristics
      resources :currencies
      resources :nearbies
+          resources :categories
+     resources :pages
      get "apartaments",          to: "apartaments#index"
      get "apartaments/delete/:id",      to: "apartaments#delete"
      post "apartaments/upload_photos",  to: "apartaments#upload_photos"

@@ -11,9 +11,7 @@
                             <div class="text_body">
                                 <ul>
                                     <%current_user.cars_bookings_payeds.each do |book|%>
-                                        <li>
-
-                                        </li>
+                                        <%= render partial:"cabinet/auto/book_item",:locals=>{:book=>book}%>
                                     <%end%>
                                 </ul>
                             </div>

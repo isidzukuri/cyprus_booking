@@ -1,5 +1,5 @@
 class House < ActiveRecord::Base
-  attr_accessible :id, :user_id, :active, :name_ru, :name_uk, :name_en, :description_ru, :description_uk, :description_en, :cost, :full_address, :flat_number, :floor_number, :house_number, :street, :floors, :rooms, :places, :showers, :city_id,:nearbies, :facilities, :latitude, :longitude, :currency_id
+  attr_accessible :name,:bed_type,:flat_type, :description,:id, :country_id ,:user_id, :active, :name_ru, :name_uk, :name_en, :description_ru, :description_uk, :description_en, :cost, :full_address, :flat_number, :floor_number, :house_number, :street, :floors, :rooms, :places, :showers, :city_id,:nearbies, :facilities, :latitude, :longitude, :currency_id
 
   belongs_to :user
   belongs_to :city
@@ -20,7 +20,24 @@ class House < ActiveRecord::Base
   def concerted_price total
     Exchange.convert(self.currency.title, $currency) * total
   end
-
+  def bed
+    I18n.t("all.bed_types.type_#{self.bed_type}")
+  end
+  def type
+    I18n.t("all.flat_types.type_#{self.flat_type}")
+  end
+  def name=(name)
+    write_attribute(:"name_#{I18n.locale}",name)
+  end
+  def name
+    read_attribute("name_#{I18n.locale}")
+  end
+  def description=(description)
+     write_attribute(:"description_#{I18n.locale}",description)
+  end
+  def description
+    read_attribute("description_#{I18n.locale}")
+  end
   def period_price search
     total = 0.0
     specific_prices = self.house_prices.where("from_date >= ? AND to_date <= ?",search.arrival.to_time.to_i,search.departure.to_time.to_i).all 
@@ -40,9 +57,7 @@ class House < ActiveRecord::Base
     read_attribute("description_#{I18n.locale}")
   end
 
-  def name
-    read_attribute("name_#{I18n.locale}")
-  end
+
 
   def address full = false
     "#{self.city_name} #{self.street}  #{full ? ",#{self.name}" : ""}"

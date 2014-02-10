@@ -1,0 +1,80 @@
+                        <div class="text_body">
+                            <h3>Заполните основные данные вашего предложения</h3>
+                            <table>
+                                <tr>
+                                    <td>Страна</td>
+                                    <td>Город</td>
+                                    <td>Улица</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <%=f.select :country_id, options_for_select(@countries,50) %>
+                                    </td>
+                                    <td>
+                                        <%=f.select :city_id, options_for_select(@cities) %>
+                                    </td>
+                                    <td>
+                                        <%=f.text_field :street,required:true,:style=>"width: 223px;" %>
+                                    </td>
+                                </tr>
+                            </table>
+                            <table class="dddd">
+                                <tr>
+                                    <td>Номер дома</td>
+                                    <td>Номер квартиры</td>
+                                    <td>Етажей вдоме</td>
+                                    <td>Етаж</td>
+                                    <td>Комнат</td>
+                                    <td>Мест</td>
+                                </tr>
+                                <tr>
+                                    <td><%=f.text_field :house_number,required:true,:class=>"only_numbers" %></td>
+                                    <td><%=f.text_field :flat_number,required:true,:class=>"only_numbers" %></td>
+                                    <td><%=f.text_field :floors,required:true,:class=>"only_numbers" %></td>
+                                    <td><%=f.text_field :floor_number,required:true,:class=>"only_numbers" %></td>
+                                    <td><%=f.text_field :rooms,required:true,:class=>"only_numbers" %></td>
+                                    <td><%=f.text_field :places,required:true,:class=>"only_numbers" %></td>
+                                </tr>
+                            </table>
+                            <table>
+                                <tr>
+                                    <td>Тип размещения</td> 
+                                    <td>Отображаемое название</td> 
+                                </tr>
+                                <tr>
+                                    <td><%=f.select :flat_type, options_for_select(@flat_types) %></td>
+                                    <td><%=f.text_field :name,required:true ,:style=>"width: 100%;"%></td>
+                                </tr>
+                            </table>
+                            <table>
+                                <tr>
+                                    <td>Полный адррес</td> 
+                                </tr>
+                                <tr>
+                                    
+                                    <td><%=f.text_field :full_address,required:true ,:style=>"width: 100%;"%></td>
+                                </tr>
+                            </table>
+                            <table>
+                                <tr>
+                                    <td>Цена за сутку</td> 
+                                    <td>Валюта</td> 
+                                </tr>
+                                <tr>
+                                    
+                                    <td><%=f.text_field :cost,required:true,:class=>"only_numbers" ,:style=>"width: 100%;"%></td>
+                                    <td><%=f.select :currency_id, options_for_select(@currencies) %></td> 
+                                </tr>
+                            </table>
+                            <div id="g_map"></div>
+                            <table>
+                                <tr>
+                                    <td>Описание</td> 
+                                </tr>
+                                <tr>
+                                    <td><%=f.text_area :description,required:true ,:style=>"width: 100%;"%></td>
+                                </tr>
+                            </table>
+
+                            
+                        </div>

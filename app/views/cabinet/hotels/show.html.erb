@@ -1,0 +1,72 @@
+        <div id="main_content">
+            <div id="main" >
+                <div id="main_wrap">
+                    <%=render "cabinet/left_menu"%>
+                <div class="right column">
+                    <div class="text_content">
+                        <%= render partial:"cabinet/hotels/book_item",:locals=>{:book=>@book}%>
+                        <table>
+                            <tr>
+                                <th><%=t("all.book_date")%></th>
+                                <th><%=t("all.dep_date")%></th>
+                                <th><%=t("all.arr_date")%></th>
+                                
+                                <th><%=t("all.book_number")%></th>
+                                <th><%=t("all.total_cost")%></th>
+                            </tr>
+                            <tr>
+                                <td><%=l(@book.created_at,:format=>:long)%></td>
+                                <td><%=l(Time.parse(@book.arrival_date),:format=>:long).gsub(", 00:00","")%></td>
+                                <td><%=l(Time.parse(@book.departure_date),:format=>:long).gsub(", 00:00","")%></td>
+                                
+                                <td><%=@book.reservation_id%></td>
+                                <td><%="#{(Exchange.convert(@book.base_currency, $currency) * @book.total_price.to_f).to_i}"%>
+                                    <%=t("all.currencies_symbols.#{$currency}")%></td>
+                            </tr>
+                            
+                        </table>
+                        <table class="room_data">
+                            <%@book.hotel_doc.each_with_index do |doc,i|%>
+                            <tr>
+                                <td style="color: #004b8d;font-size: 19px;padding: 0;margin: 0;"><%=t("all.hotels.rooom",num:i+1)%></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <%=@book.room_desc%>
+                                    
+                                </td>
+                                <td><%="#{doc.first_name} #{doc.last_name}"%></td>
+                                <td><%=t("all.hotels.conf_num",num:doc.conf_number)%></td>
+                                <td><%=t("all.hotels.r_status")%>: <%=t("all.hotels.r_status_#{doc.canceled.to_i}")%></td>
+                            </tr>
+                            <%end%>
+                        </table>
+                        <%if  false%>
+                        <div class="pay_btn">
+                            <a target="_blank" href="#"><%=t("all.cancel_book")%><span>></span></a>
+                        </div>
+                        <%end%>
+                        <%if false%>
+                            <h3><%=t("all.additional_book")%>:</h3>
+                            <%@book.cars_extras.split(",").in_groups_of(@book.cars_extras.split(",").size/2,false).each do |ext_group|%>
+                            <ul class="opton_group">
+                                <%ext_group.each do |ext|%>
+                                <li><%=ext%></li>
+                                <%end%>
+                            </ul>
+                            <%end%>
+                        <%end%>
+
+                        <div class="rules">
+                            <%=@book.cancel_policy%>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="clear"></div>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="clear"></div>
+        </div>

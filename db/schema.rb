@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140206014512) do
+ActiveRecord::Schema.define(:version => 20140210021751) do
 
   create_table "admin_modules", :force => true do |t|
     t.string   "name"
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(:version => 20140206014512) do
     t.datetime "updated_at", :null => false
     t.integer  "status"
     t.string   "currency"
+    t.string   "comment"
   end
 
   create_table "cars_bookings_payeds", :force => true do |t|
@@ -80,12 +81,27 @@ ActiveRecord::Schema.define(:version => 20140206014512) do
     t.integer  "status"
     t.string   "img_url"
     t.string   "base_currency"
+    t.string   "car_cls"
+    t.string   "automatic"
+    t.string   "car_desc"
+    t.string   "car_seats"
+    t.string   "car_doors"
+    t.string   "car_cancel"
     t.integer  "car_location"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
   end
 
   add_index "cars_bookings_payeds", ["user_id"], :name => "index_cars_bookings_payeds_on_user_id"
+
+  create_table "categories", :force => true do |t|
+    t.string   "name_ru"
+    t.string   "name_en"
+    t.integer  "parent_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "seo"
+  end
 
   create_table "characteristics", :force => true do |t|
     t.string "name_ru"
@@ -103,13 +119,8 @@ ActiveRecord::Schema.define(:version => 20140206014512) do
     t.float  "lng"
   end
 
-  create_table "countries", :force => true do |t|
-    t.string "code"
-    t.string "name_ru"
-    t.string "name_en"
-    t.string "name_uk"
-    t.string "country_phone"
-  end
+# Could not dump table "countries" because of following StandardError
+#   Unknown type 'ingeter' for column 'country_id'
 
   create_table "currencies", :force => true do |t|
     t.string   "title"
@@ -185,10 +196,13 @@ ActiveRecord::Schema.define(:version => 20140206014512) do
     t.string   "rooms_adt"
     t.string   "rooms_chd"
     t.string   "rooms_names"
+    t.string   "base_currency"
     t.boolean  "canceled",           :default => false
     t.datetime "created_at",                            :null => false
     t.datetime "updated_at",                            :null => false
     t.string   "img_url"
+    t.string   "desc"
+    t.float    "stars"
   end
 
   create_table "hotel_docs", :force => true do |t|
@@ -244,12 +258,15 @@ ActiveRecord::Schema.define(:version => 20140206014512) do
     t.string  "district"
     t.integer "floors"
     t.integer "rooms"
+    t.integer "flat_type",                     :default => 1,   :null => false
+    t.integer "bed_type",                      :default => 1,   :null => false
     t.integer "places"
-    t.integer "showers"
+    t.integer "showers",                       :default => 1,   :null => false
     t.integer "active",                        :default => 1,   :null => false
     t.integer "user_id"
     t.integer "city_id"
     t.string  "rules"
+    t.integer "country_id"
   end
 
   create_table "houses_nearbies", :id => false, :force => true do |t|
@@ -294,6 +311,17 @@ ActiveRecord::Schema.define(:version => 20140206014512) do
     t.float    "lng"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
+  end
+
+  create_table "pages", :force => true do |t|
+    t.integer  "category_id"
+    t.string   "name_ru"
+    t.string   "name_en"
+    t.text     "text_ru"
+    t.text     "text_en"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.string   "seo"
   end
 
   create_table "photos", :force => true do |t|

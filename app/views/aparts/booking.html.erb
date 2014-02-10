@@ -1,0 +1,93 @@
+        <%=book_steps(t("all.cars.book_steps"),1)%>
+        <%=form_for @booking ,:url=>"/#{I18n.locale}/aparts/book/#{@apart.id}?session_id=#{@session_id}", :html=>{"data-auto-controller"=>"ApartBooking"} do |f|%>
+            <%= hidden_field_tag "session_id" , @session_id%>
+            <div id="main_content">
+                <div id="main" >
+                    <div id="main_wrap">
+                        <div class="header">
+                            <h2><%=t("all.your_choise")%>: <span><%=@search.to_title%></span></h2>
+                            
+                            <div class="final_price">
+                                <h2 class="price_desc"><%=t("all.total_price")%>: </h2>
+                                <%="#{@apart.period_price(@search)}"%>
+                                <span class="currency"> <%=t("all.currencies_symbols.#{$currency}")%></span>
+                            </div>
+                        </div>
+                        <ul class="result_list booking hotel_booking">
+                            <li  class="open_item">
+                                <ul>
+                                    <li class="car_item">
+                                        <ul class="item_elms">
+                                            <li class="desc">
+                                            <div class="lft"><%=image_tag @apart.first_img,:size=>"150x100"%></div>
+                                            <div class="rt">
+                                                <h3><%=@apart.name%></h3>
+                                                <div class="rating"><span style="width:<%=@apart.total_rating.to_f*20%>%"></span></div>
+                                                <p class="addr"><%=@apart.address%></p>
+                                                <ul class="car_options">
+                                                    <li>Мест: <%=@apart.places%></li>
+                                                    <li>Комнат: <%=@apart.rooms%></li>
+                                                    <li>Этаж: <%=@apart.floor_number%></li>
+                                                </ul>
+                                                <span><%= strip_tags CGI::unescapeHTML(truncate(@apart.description, length:150, separator: ' ',omission: '...'))%></span>
+                                            </div>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+
+                            </li>
+                                                <li><h2><%=t("all.hotels.travel_data")%>:</h2></li>
+                                                
+                            <%@booking.travelers.each_with_index do |trav,idx|%>
+                                <%= f.fields_for "travelers[#{idx}]" , trav do |a|%>
+                                    <li class="open_item">
+                                        <h3 class="room_name"><span class="lbl"><%=t("all.guest",:num=>(idx+1))%></h3>
+                                            <table>
+                                                <tr>
+                                                    <td>
+                                                        <%= a.label :name, t("all.user.first_name") %>
+                                                        <%= a.text_field :name,:required =>true,:class=>"only_latin" %>
+                                                    </td>
+                                                
+                                                    <td>
+                                                        <%= a.label :email, t("all.user.email") %>
+                                                        <%= a.email_field :email,:required =>true %>
+                                                       
+                                                    </td>
+                                                
+                                                </tr>
+                                            </table>
+                                    </li>
+                                <%end%>
+                            <%end%>
+                            <li><h2><%=t("all.hotels.travel_comment")%>:</h2></li>
+                            <li class="open_item">
+                                        <table>
+                                            <tr>
+                                                <td><%=t("all.hotels.additionsl_desc")%></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="form-field-textarea" ><%= f.text_area :comment , :class=> "form-textarea"%></td>
+                                            </tr>
+                                        </table>
+                            </li>
+             
+                                                
+                            <li class="open_item">
+                                    <table class="buttom">
+                                        <tr>
+                                            <td class="pay_btn to_pay">
+                                                <a class="<%=logged_in? ? "" : "login"%>" href="#"><%=t("all.to_pay")%><span>></span></a>
+                                            </td>
+                                        </tr>
+                                    </table>
+                            </li>
+                        </ul>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="clear"></div>
+            </div>
+        <%end%>

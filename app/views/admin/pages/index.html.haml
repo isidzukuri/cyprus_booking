@@ -1,0 +1,20 @@
+#tabs-wrapper
+  .row-fluid
+    %a.span2.tab.active{:href=>"/admin/pages"} список страниц
+    %a.span2.tab{:href=>"/admin/pages/new"} Создать
+#pad-wrapper.users-list
+  .row-fluid.header
+    %h3 Страницы
+  %p{:style=>"font-weight: bold;color:green"}=flash[:notice] 
+  .row-fluid.table
+    %table.table.table-hover 
+      %tbody
+        - @pages.each_with_index do |email,i|
+          %tr{:class=>("active" if i == 0)}
+            %td
+              = link_to "#{email.name}" , edit_admin_page_path(email.id) , :class=>"name"
+              %td=email.category.name
+  .pagination.pull-right 
+    
+
+

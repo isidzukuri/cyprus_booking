@@ -40,15 +40,36 @@ class ApartsController < ApplicationController
 
   def show
     check_cache
-    @id = params[:id].to_i  
+    @apart   = House.find(params[:id])
+    @booking = ApartmentsBooking.new
   end
   
   def booking
-    
+    check_cache
+    @apart   = House.find(params[:id])
+    @booking = ApartmentsBooking.new(:travelers=>[Traveler.new]*@search.people_count)
   end
   
   def book
-    
+    check_cache
+    @apart   = House.find(params[:id])
+    travelers_ = []
+    travelers = params[:apartments_booking].delete(:travelers).each_pair do |i,trav|
+          travelers_ << Traveler.new(trav)
+    end
+
+    @booking = ApartmentsBooking.new(params[:apartments_booking])
+    @booking.house_id = @apart.id
+    @booking.currency = $currency
+    @booking.travelers  = travelers_
+    @booking.total_cost = @apart.period_price(@search)
+    @booking.from_date  = @search.arrival.to_time.to_i
+    @booking.to_date    = @search.departure.to_time.to_i
+    @booking.seller     = @apart.user.id
+    @booking.user       = current_user
+    @booking.save
+    Employment.create(:status=>2,:house_id=>@apart.id,:from_date=>@search.arrival.to_time.to_i,:to_date=>@search.departure.to_time.to_i)
+    redirect_to cabinet_aparts_path
   end
 
   private

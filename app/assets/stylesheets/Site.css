@@ -1,4 +1,4 @@
-﻿/*----------------------------------------------------------
+/*----------------------------------------------------------
 The base color for this template is #5c87b2. If you'd like
 to use a different color start by replacing all instances of
 #5c87b2 with your new color. 004b8d
@@ -2069,6 +2069,16 @@ margin: 10px 0 0 0;
     border-left: 3px solid #e13270;
     
 }
+.yuor_aparts.active{
+    background-color: #ffffff;
+    border-left: 3px solid #e13270;
+}
+.yuor_aparts.active li{
+    background-color: #ffffff;
+}
+.yuor_aparts.active li a{
+    color: #005894;
+}
 .faq_list li.active a{
     color: #005894;
 }   
@@ -2555,6 +2565,7 @@ transform:scale(.3)}
 
 .car_item{
     height: 150px;
+    list-style-type: none;
 }
 .car_item h3{
     color: #004b8d;
@@ -2679,7 +2690,7 @@ box-shadow: 2px 2px 4px 0px rgba(50, 50, 50, 0.75);
 .hotel_page #main_content{
     padding-bottom: 100px;
 }
-.hotel_page .rating{
+.hotel_page .rating, .cabinet .rating{
     width: 100px;
     float: left;
 }
@@ -2706,7 +2717,7 @@ box-shadow: 2px 2px 4px 0px rgba(50, 50, 50, 0.75);
     font-size: 17px;
     line-height: 2;
 }
-.hotel_page .car_item .addr{
+.hotel_page .car_item .addr, .cabinet .car_item .addr{
     line-height: 2.5;
 }
 .item_elms .price{
@@ -2985,7 +2996,7 @@ td.pay_btn a{
 }
 .recommend_block .ui-state-default a, .recommend_block .ui-state-default a:link, .recommend_block .ui-state-default a:visited {color: #252547;}
 .recommend_block .ui-tabs .ui-tabs-nav li.ui-tabs-active a, .recommend_block .ui-tabs .ui-tabs-nav li.ui-state-disabled a, .recommend_block .ui-tabs .ui-tabs-nav li.ui-tabs-loading a {color: #FFF;}
-.recommend_block .tab_ins {overflow: hidden;height: auto;width: 100%;min-height: 400px;}
+.recommend_block .tab_ins {overflow: hidden;height: auto;width: 100%;min-height: 400px;padding-bottom: 50px;}
 
 .recommend_block .ui-corner-all, .recommend_block .ui-corner-top, .recommend_block .ui-corner-right, .recommend_block .ui-corner-tr {border-top-right-radius: 0}
 .recommend_block .ui-corner-all, .recommend_block .ui-corner-bottom, .recommend_block .ui-corner-right, .recommend_block .ui-corner-br, .recommend_block .ui-corner-left, .recommend_block .ui-corner-bl {border-bottom-right-radius: 0; border-bottom-left-radius: 0;}
@@ -3206,3 +3217,240 @@ label.error{
     text-align: center;
     padding-bottom: 35px;
 }
+.cabinet table{
+    width: 100%;
+}
+.cabinet .opton_group{
+    float: left;
+    margin-right: 20px;
+}
+.cabinet .rules{
+    float: left;
+}
+.cabinet .rules h3 {
+color: #004b8d;
+font-size: 19px;
+padding: 0;
+margin: 0;
+}
+.cabinet .content{
+    display: block!important;
+}
+.cabinet .room_data,.cabinet .room_data td{
+    border: none;
+}
+.cabinet .room_data{
+    margin: 20px 0;
+}
+}
+.cabinet  .room_data td{
+    font-size: 20px;
+
+    color: #9cd70e;
+}
+.cabinet  .room_data tr{
+    font-size:13px;
+
+    color: #000000;
+}
+.cabinet.offer table, .cabinet.offer table td{
+    border: none;
+}
+
+
+
+.cabinet.offer .sbToggle, .cabinet.offer .sbToggle:hover {
+border-left: none;
+background-position: -30px 0;
+background-color: #ffffff;
+}
+
+.cabinet.offer{
+    
+}
+.cabinet.offer .dddd input{
+    width: 94px;
+}
+.cabinet.offer #g_map{
+    height: 300px;
+}
+.cabinet.offer textarea{
+    resize:none;
+}
+.cabinet.offer .ui-widget-content{
+border: none;
+background: none;
+}
+.cabinet.offer .ui-tabs .ui-tabs-panel{
+    margin:0;
+    padding: 0;
+}
+.cabinet.offer .ui-tabs .ui-tabs-nav{
+    margin:0;
+    padding: 0;
+}
+.cabinet.offer .ui-widget-header{
+    border: none;
+    background: none;
+}
+.cabinet.offer .ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active{
+    border: 1px solid #cccccc;
+    border-bottom: none;
+    background: none;
+}
+
+
+.cabinet.offer .ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited{
+    color: #e13270;
+}
+.cabinet.offer .description_panel.ui-tabs-panel.ui-widget-content.ui-corner-bottom{
+    border: 1px solid #cccccc;
+}
+.cabinet.offer .description_tabs_block{
+    margin:0;
+    padding: 0;
+}
+.cabinet.offer .text_content{
+    width: 660px;
+padding: 0 10px;
+}
+.cabinet.offer .options_list {
+    width: 50%;
+}
+.cabinet.offer .options_list .icheckbox_minimal{
+    float: left;
+}
+
+.cabinet.offer .options_list li{
+    line-height: 2;
+    height: 50px;
+    margin: 0 5px;
+}
+.dropzone .dz-preview .dz-error-mark, .dropzone-previews .dz-preview .dz-error-mark, .dropzone .dz-preview .dz-success-mark, .dropzone-previews .dz-preview .dz-success-mark{
+    opacity: 1;
+    cursor: pointer;
+}
+#adminDropzone.dropzone .dz-preview .dz-error-mark{
+    opacity: 0;
+}
+.cabinet.offer .options_list img{
+    float: right;
+    
+}
+.cabinet.offer input{
+    background-color: #ffffff;
+}
+.cabinet.offer input.error{
+    border: 1px solid red;
+}
+.cabinet.offer #tabs-2 h3,.cabinet.offer #tabs-3 h3,.cabinet.offer #tabs-1 h3{
+    color: #9cd70e;
+    font-size: 15px;
+    text-align: center;
+}
+
+.cabinet.offer .options_list.dropzone {
+    width: 25%;
+    background: none;
+}
+.cabinet.offer .options_list.dropzone li{
+    height: 150px;
+}
+
+.hotel_photos{
+    height: 350px;
+}
+.apart_page .amenities ul{
+    width: 24%;
+}
+.apart_page .amenities ul li{
+    height: 50px;
+    line-height: 3;
+}
+
+.apart_page .amenities ul li img{
+    float: left;
+    
+}
+.apart_page .recommend_block .header h2{
+    width: 100%
+    
+}
+.apart_page .recommend_block .pay_btn a{
+    width: 175px;
+} 
+.apart_page .recommend_block .pay_btn{
+    width: 330px;
+}
+.apart_page .chracteristic , .apart_page .chracteristic td{
+    border: none;
+}
+
+
+
+.apart_page .chracteristic{
+    width: 500px;
+}
+.tab_ins .lft{
+    float: left;
+    width: 500px;
+}
+.tab_ins .rgt{
+    float: left;
+    width: 450px;
+   
+}
+.tab_ins .rgt img{
+    border-radius: 500px;
+    float: left;
+}
+.tab_ins .rgt .head{
+    height: 52px;
+    float: left;
+    width: 100%;
+     line-height: 4;
+}
+.tab_ins .rgt h2, .tab_ins .lft h2{
+    margin-bottom: 15px;
+}
+.tab_ins .rgt .head span{
+    margin-left: 10px;
+    font-weight: bold;
+}
+
+
+
+
+.html_faq_page.cabinet table,.html_faq_page.cabinet table td{
+    border: none;
+}
+.html_faq_page.cabinet input{
+    background: none;
+}
+.html_faq_page.cabinet .sbToggle, .sbToggle:hover{
+background-position: -30px 0;
+background-color: #ffffff;
+}
+.html_faq_page.cabinet  .phone .sbHolder, .html_faq_page.cabinet  .phone .sbHolder:focus .sbSelector,.html_faq_page.cabinet  .phone .sbOptions{
+    width: 70px;
+}
+.html_faq_page.cabinet  .phone input{
+    width: 128px;
+    height: 32px;
+}
+.html_faq_page.cabinet  .phone .sbHolder{
+    float: left;
+}
+.html_faq_page.cabinet textarea{
+    border: 1px solid #CCC;
+    resize:none;
+font-size: 13px;
+text-decoration: none;
+color: #888888;
+}
+
+
+
+
+
+
