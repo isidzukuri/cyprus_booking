@@ -164,7 +164,7 @@ $.Controller("Main",{
 	"set_lang_menu_position":function(){
 		var left  = this.element.find(".lang").offset().left
 		var block = this.element.find(".lang_block")
-		var position = left - block.width() / 3 + 30
+		var position = left - block.width() / 1 + 30
 		block.offset({left:position})
 	},
 	"set_currency_menu_position":function(){

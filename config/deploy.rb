@@ -6,9 +6,9 @@ set :repository,  "git@github.com:isidzukuri/cyprus_booking.git"
 set :user, "adok"
 set :use_sudo, false
 
-set :deploy_via, :remote_cache
+set :deploy_via, :export
 set :scm, :git
-set :branch, 'master'
+set :branch, 'new'
 set :scm_verbose, true
 set :deploy_to, "/home/adok/#{application}"
 

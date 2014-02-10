@@ -169,7 +169,6 @@ ru:
     currencies:
       USD: "USD"
       EUR: "EUR"
-      UAH: "UAH"
       RUR: "RUR"
     currencies_symbols:
       USD: "$"
