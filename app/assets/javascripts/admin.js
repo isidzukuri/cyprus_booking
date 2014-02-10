@@ -6,6 +6,7 @@
 //= jNice
 //= require plugins
 //= require jquery.validate
+//= require jquery-1.7.2.min
 //= require jquery-ui-1.9.2.custom
 //= require ajaxformbar/js/jquery.ajaxformbar.min
 //= require jquery.tinyscrollbar.min
