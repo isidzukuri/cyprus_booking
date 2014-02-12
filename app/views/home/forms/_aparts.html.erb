@@ -1,6 +1,6 @@
                                 <div class="apartments hidden" data-auto-controller="ApartSearchForm">
                                     <%=form_for @apart_search,:url=>aparts_search_path,html:{:"data-complete"=>aparts_complete_path} do |f|%>
-                                        <ul class="top_ul">
+                                        <ul class="top_ul alpha">
                                             <li>
                                                 <%=f.text_field :city,class:"city_name",placeholder:t("search.aparts.city_name"),required:true%>
                                                 <%=f.hidden_field :city_id,required:true%>

@@ -1,6 +1,6 @@
                                 <div class="cars hidden" data-auto-controller="CarsSearchForm">
                                     <%=form_for @cars_search,:url=>cars_search_path do |f|%>
-                                        <ul class="top_ul">
+                                        <ul class="top_ul alpha">
                                             <%= f.fields_for :pick_up, @cars_search.pick_up do |fr|%>
                                                 <li>
                                                     <%= fr.select :country , @pick_up_countries.reverse.push([t("search.cars.pick_up_country"),""]).reverse, {},:"data-action"=>cars_pick_up_city_path,:"data-call-back"=>"render_pick_up_city" %>
@@ -15,7 +15,7 @@
                                             <% end %>
                                         </ul>
                                         <div class="advaced_from">
-                                            <ul class="top_ul">
+                                            <ul class="top_ul alpha">
                                             <%= f.fields_for :dropp_off, @cars_search.dropp_off do |fr|%>
                                                 <li>
                                                     <%= fr.select :country ,[t("search.cars.dropp_off_country"),""],{},disabled:true,:"data-action"=>cars_dropp_off_city_path,:"data-call-back"=>"render_dropp_off_city"%>
@@ -30,7 +30,7 @@
                                             <% end %>
                                             </ul>
                                         </div>
-                                        <ul class="bottom_ul">
+                                        <ul class="bottom_ul alpha_1">
                                             <%= f.fields_for :pick_up  , @cars_search.pick_up do |fr|%>
                                                 <li>
                                                     <div class="dates">

@@ -3,7 +3,7 @@
                                         <div class="advaced_from">
                                             <ul class="rooms_data bottom_ul fr"> </ul>
                                         </div>
-                                        <ul class="top_ul">
+                                        <ul class="top_ul alpha">
                                             <li>
                                                 <%=f.text_field :city,class:"city_name",placeholder:t("search.hotels.city_name"),required:true%>
                                                 <%=f.hidden_field :place_code,required:true%>
@@ -21,7 +21,7 @@
                                             </li>
 
                                         </ul>
-                                        <ul class="bottom_ul">
+                                        <ul class="bottom_ul alpha">
                                             <li style="height:40px;">
                                                 <div class="rooms_count ">
                                                     <label><%=t("search.hotels.rooms_count")%></label>
@@ -30,7 +30,7 @@
 
                                             </li>
                                         </ul>
-                                        <ul class="rooms_data bottom_ul ft">
+                                        <ul class="rooms_data bottom_ul ft alpha_1">
                                             <label class="label"><%=t("search.hotels.room")%> 1</label>
                                             <%= f.fields_for :rooms , @hotels_search.rooms.first do |fr|%>
                                                 <li class="one_room">
