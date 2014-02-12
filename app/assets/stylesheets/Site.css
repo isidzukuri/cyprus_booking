@@ -2163,7 +2163,7 @@ fieldset{
     background-image: url("/assets/form_elements/chk.png");
     background-repeat: no-repeat;
 }
-.hotel_page .popup .sbHolder{
+.hotel_page .popup .sbHolder,.hotel_page .popup .sbHolder{
     width: 65px;
     float: left;
     top: 2px;
