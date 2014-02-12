@@ -1,5 +1,5 @@
 //= require jquery
-//= require bootstrap
+
 //= require wysiwug
 //= require bootstrap-wysihtml5
 //= require wysihtml5_ru
