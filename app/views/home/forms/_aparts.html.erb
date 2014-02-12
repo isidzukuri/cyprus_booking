@@ -2,17 +2,17 @@
                                     <%=form_for @apart_search,:url=>aparts_search_path,html:{:"data-complete"=>aparts_complete_path} do |f|%>
                                         <ul class="top_ul alpha">
                                             <li>
-                                                <%=f.text_field :city,class:"city_name",placeholder:t("search.aparts.city_name"),required:true%>
+                                                <%=f.text_field :city,class:"city_name alpha_1",placeholder:t("search.aparts.city_name"),required:true%>
                                                 <%=f.hidden_field :city_id,required:true%>
                                             </li>
                                             <li>
                                                 <div class="dates">
                                                     <label><%=t("search.aparts.departure")%></label>
-                                                    <%=f.text_field :departure,class:"city_name date_input",required:true%>
+                                                    <%=f.text_field :departure,class:"city_name date_input alpha_1",required:true%>
                                                 </div>
                                                 <div class="dates">
                                                     <label><%=t("search.aparts.arrival")%></label>
-                                                    <%=f.text_field :arrival,class:"city_name date_input",required:true%>
+                                                    <%=f.text_field :arrival,class:"city_name date_input alpha_1",required:true%>
                                                 </div>
                                             </li>
                                             <li>

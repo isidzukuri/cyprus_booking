@@ -17,7 +17,7 @@ $.Controller("Login","FormController",{
 	},
     success_call_back:function(resp){
     	window.close_popup();
-    	var login_link = $(".menu a.login")
+    	var login_link = $(".menu a.login:first")
     	$(".login").removeClass("login")
     	login_link.attr("href","/" + window.current_lang + "/cabinet")
     	login_link.html("")
