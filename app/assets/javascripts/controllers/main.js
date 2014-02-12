@@ -8,9 +8,9 @@ $.Controller("Main",{
 		this.setup_map_height();
 		$.publish("set_lang_menu_position");
 		$.publish("set_currency_menu_position");
-		$("#main_wrap .left.column").height($(window).height() - ($("#header").height() + $(".choose_buttons").height() + $("#footer").height()))
+		$(".html_ #main_wrap .left.column").height($(window).height() - ($("#header").height() + $(".choose_buttons").height() + $("#footer").height()))
 		$(window).resize(function(){
-			$("#main_wrap .left.column").height($(window).height() - ($("#header").height() + $(".choose_buttons").height() + $("#footer").height()))
+			$(".html_ #main_wrap .left.column").height($(window).height() - ($("#header").height() + $(".choose_buttons").height() + $("#footer").height()))
 		})
 		$(".opacity").height($(window).height() - ($("#header").height() + $(".choose_buttons").height() + $("#footer").height()))
 		$(window).resize(function(){
