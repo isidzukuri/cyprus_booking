@@ -3463,3 +3463,32 @@ background-color: #ffffff;
 
 
 
+.html_ #main
+{
+    padding-bottom: 0;
+    position: absolute;
+    left: 0;
+}
+.html_ #main_wrap{
+    width: 300px;
+    margin-top: 0;
+    background-color: transparent;
+
+}
+.html_ .page
+{
+
+    background: url('/assets/44.jpg') no-repeat;
+}
+.html_ .left{
+    float: none;
+}
+.opacity{
+    width: 300px;
+position: absolute;
+left: 0;
+height: 500px;
+top: 0;
+opacity: 0.5;
+background-color: #004b8d;
+}
