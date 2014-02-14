@@ -22,7 +22,7 @@
 //= require jquery.galleriffic
 //= require_self
 //= require dropzone
-//= require jquery.maskedinput-1.3.min
+//= require jquery.maskedinput.min
 //= require jquery.fancybox
 //= require_tree ./controllers
 //= require_tree ./i18n
