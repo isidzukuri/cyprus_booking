@@ -16,7 +16,7 @@
 //= require ICanHaz.min
 //= require jquery.event.drag
 //= require jquery.event.drag.live
-//= require maskedinput
+
 //= require jquery.mvc
 //= require jquery.rating
 
