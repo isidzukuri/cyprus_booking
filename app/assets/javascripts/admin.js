@@ -11,7 +11,7 @@
 //= require ajaxformbar/js/jquery.ajaxformbar.min
 //= require jquery.tinyscrollbar.min
 //= require jquery.maskedinput.min
-//= require underscore
+
 //= require sprintf-0.7-beta1
 //= require ICanHaz.min
 //= require jquery.event.drag
