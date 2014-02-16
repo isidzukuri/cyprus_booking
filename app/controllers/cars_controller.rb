@@ -7,6 +7,10 @@ class CarsController < ApplicationController
     @body_cls = "car_page"
   end
 
+  def get_map_items
+    
+  end
+
 
   def search
     @search  = CarsSearch.new(params[:cars_search])

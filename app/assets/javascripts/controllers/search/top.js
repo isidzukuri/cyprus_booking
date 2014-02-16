@@ -2,14 +2,36 @@
 //= require ./apartments
 $.Controller("TopSearchForm",{
 	map_city_img:"/assets/icons/city.png",
+
 	init:function(){
 		this.forms = this.element.find("form");
 		this.setup_controllers();
+		$("#new_cars_search .date_input").datepicker({ 
+	      dateFormat: "dd.mm.yy",
+	      minDate: 0,
+	  	  numberOfMonths: 2, 
+	  	  dayNamesMin: I18n.days_short,
+	  	  monthNames: I18n.months,
+	  	  firstDay: 1,
+	      onSelect: function(selected) {
+	          var idx = ($(".date_input").index($(this)) + 1);
+	          if( $(".date_input").size() >= idx){
+	            var next_dp = $(".date_input:eq(" + idx + ")")
+	            next_dp.datepicker("option","minDate", selected)
+	            $(this).change()
+	          }
+	      },
+		  beforeShow: function() {
+		      $('#ui-datepicker-div').addClass("main_datepicker");
+	   	  }
+	    });
 	},
 	setup_controllers:function(){
 		var forms = this.element.find("form");
-		$(this.forms[0]).attachApartSearchForm();;
-		$(this.forms[1]).attachHotelsSearchForm()
+		this.apart_ctrl = $(this.forms[0]).attachApartSearchForm().controller();
+		this.hotels_ctrl= $(this.forms[1]).attachHotelsSearchForm().controller();
+		this.cars_ctrl  = $(this.forms[2]).attachCarsSearchForm().controller();
+		this.main_ctrl = $(".page").controller()
 	},
 	".search_type -> change":function(ev){
 		var idx   = $(ev.target).val();
@@ -30,6 +52,29 @@ $.Controller("TopSearchForm",{
 			$.publish("get_items",[idx,marker.id])
 		});
 		return marker
+	},
+	infowindow:function(data){
+		contentString =" test"
+	  var infowindow = new google.maps.InfoWindow({
+	      content: contentString
+	  });
+	  return infowindow
+	},
+	hotel_marker:function(data){
+		$.publish("show_hotels_on_map",[data]);
+		var self = this
+		for(i in G_map.markers){
+			marker = G_map.markers[i];
+            google.maps.event.addListener(marker, 'click', function() {
+              self.infowindow().open(G_map,marker);
+            });
+		}
+	},
+	cars_marker:function(ev){
+		$.publish("show_cars_on_map",[data]);
+	},
+	aparts_marker:function(data){
+		$.publish("show_hotels_on_map",[data]);
 	}
 },
 {
@@ -46,16 +91,26 @@ $.Controller("TopSearchForm",{
 
 	},
 	"get_items":function(idx,id){
-		
+		var self = this
 		$.ajax({
-			url:["/apartments/get_map_items","/hotels/get_map_items","/cars/get_map_items"][idx],
+			url:["/aparts/get_map_items","/hotels/get_map_items","/cars/get_map_items"][idx],
 			dataType:"json",
 			data:{id:id},
-			success:function(reps){
-				console.log(reps)
+            beforeSend:function(){
+            	window.show_loader($("form:first").data("search-text"));
+            },
+			success:function(resp){
+				window.hide_loader()
+				if(resp.success){
+					G_map.clearMarkers()
+					self[["aparts_marker","hotel_marker","cars_marker"][idx]](resp.data)
+				}
+				else{
+					alert("Nothing found in this city")
+				}
+				
 			},
 			error:function(resp){
-				console.log(resp)
 				alert("Error")
 			}
 

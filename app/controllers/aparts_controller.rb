@@ -9,6 +9,11 @@ class ApartsController < ApplicationController
     render :json => cities.map{|c| {value:c.name,code:c.id,desc:c.country}}
   end
 
+  def get_map_items
+    apartments = House.where(city_id:params[:id].to_i).map(&:to_map_hash)
+    render :json  => {:success=>(apartments.count > 0),:data=>apartments}
+  end
+
   def search
     begin
       @search = ApartSearch.new(params[:apart_search])

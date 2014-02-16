@@ -31,7 +31,8 @@ class HotelSearch
       :minStarRating => self.stars,
       #:latitude      => self.lat,
       #:longitude     => self.lng,
-      :destinationId => self.place_code
+      :destinationId => self.place_code,
+      :searchRadius   => 5,
     )
     search
   end

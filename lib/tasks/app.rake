@@ -62,8 +62,42 @@ namespace :app do
     end
   end
 
-end
+  desc "Import Hotel Data"
+  task :import_ean_hotels => :environment do
+    del_query = Rails.env == "development" ? "DELETE FROM hotels;" : "TRUNCATE TABLE hotels;"
+    ActiveRecord::Base.connection.execute del_query 
+    codes = HotelLocation.all.map{|l| l.code}
+    File.read("#{Rails.root}/db/ean_hotels.txt").split("\n").each do |row|
+      row = row.split("|")
+      next if row.at(20).nil?
+      next unless codes.include?(row.at(20).to_i)
+      hotel = {
+        :hotel_id => row.at(0),
+        :name => row.at(2),
+        :address => row.at(3),
+        :lat => row.at(9).nil? ? 0 : row.at(9).to_f,
+        :lng => row.at(10).nil? ? 0 : row.at(10).to_f,
+        :stars => row.at(14).nil? ? 0 : row.at(14).to_f,
+        :check_in => row.at(23),
+        :check_out => row.at(24),
+        :currency => row.at(13),
+        :hight_rate =>  row.at(21).nil? ? 0 : row.at(21).to_f,
+        :low_rate =>  row.at(22).nil? ? 0 : row.at(22).to_f,
+        :hotel_location_id => row.at(20).nil? ? 0 : HotelLocation.find_by_code(row.at(20).to_i).id,
+      }
+      Hotel.create(hotel)
+    end   
+    codes = Hotel.all.map{|l| l.hotel_id}
+    File.read("#{Rails.root}/db/ean_hotel_images.txt").split("\n").each do |row|
+      row = row.split("|")
+      next unless codes.include?(row.first.to_i)
+      hotel = Hotel.find_by_hotel_id(row.first.to_i)
+      p hotel
+      hotel.update_attributes({:image_url=>row.at(2)})
+    end
+  end
 
+end
 
 def api
   @api ||= Api::Cars.new(Settings.auto_api.host,Settings.auto_api.user,Settings.auto_api.pass,Settings.auto_api.ip)

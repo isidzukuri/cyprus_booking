@@ -4,8 +4,21 @@ class HotelsController < ApplicationController
   before_filter :hotel_item_cache, :only=>[:show,:booking,:book,:pay]
 
   def get_map_items
-    Hotel.where(citi_id:params[:id])
-    
+    city = HotelLocation.find(params[:id].to_i) 
+    @search = HotelSearch.new(rooms:[HotelRoom.new(adult:[HotelAdult.new],child:HotelChild.new)])
+    @search.city = city.name
+    @search.place_code = "#{city.lat}|#{city.lng}"
+    1.times do |i|
+      @search.rooms[i].adult = [HotelAdult.new] * 1
+      @search.rooms[i].child = [HotelChild.new] * 1
+    end
+    @session_id  = ses_id
+    lat_lng      = api.get_location(@search.city , @search.place_code, @session_id)
+    api.hotels_list(@search.to_api_hash,@session_id)
+    @results     = api.hotel_list
+    @key         = api.cacheKey
+    @location    = api.cacheLocation
+    render :json => {success:true,data:@results.map{|h| {:id=>h[:id],:lat=>h[:lat],:lng=>h[:lng],:name=>h[:name]}}}
   end
 
   def search

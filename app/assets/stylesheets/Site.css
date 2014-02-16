@@ -399,6 +399,9 @@ color: #DFCECE;
 .top_search_form .sbHolder ,.top_search_form .sbOptions,.top_search_form .sbSelector{
     width: 120px;
 }
+.top_search_form .biiig .sbHolder ,.top_search_form .biiig .sbOptions,.top_search_form .biiig .sbSelector{
+    width: 342px;
+}
 .top_search_form .sbSelector, .top_search_form .sbOptions a:link, .top_search_form .sbOptions a:visited {
 color: #ffffff;
 }

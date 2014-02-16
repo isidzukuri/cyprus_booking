@@ -17,7 +17,7 @@ $.Controller("Main",{
 		$(window).resize(function(){
 			$(".opacity").height($(window).height() - ($("#header").height() + $(".choose_buttons").height() + $("#footer").height()))
 		})
-		$.publish("change_map_markers",[0])
+		
 		
 	},
 	".choose_buttons a , .search .list a -> click":function(ev){
@@ -109,6 +109,7 @@ $.Controller("Main",{
 			this.map.animate({'margin-left': "+=100%"},300,function(){
 				self.set_width();
 				self.initialize_map(true)
+				$.publish("change_map_markers",[0])
 			});
 			ApartSearchForm.map_search  = true
 			HotelsSearchForm.map_search = true
@@ -157,7 +158,9 @@ $.Controller("Main",{
 
 		});
 		google.maps.event.addListener(marker, 'mouseover', function(){
-			$('#map_desults').scrollTo($("#" + prefix + data.id),{duration:200});
+			if($("#map_desults").size()){
+				$('#map_desults').scrollTo($("#" + prefix + data.id),{duration:200});
+			}
 			marker.setIcon(self.parent.map_image_hover)
 		});
 		google.maps.event.addListener(marker, 'mouseout', function(){
@@ -198,14 +201,12 @@ $.Controller("Main",{
 },
 {
 	"change_map_markers":function(idx){
-		console.log(idx)
 		var markers = ["apart_cities","hotel_cities","cars_cities"];
 		markers = locations[markers[idx]];
 		G_map.clearMarkers()
 		console.log(markers)
 		for(i in markers){
 			mar = markers[i];
-			console.log(mar)
 			point = new google.maps.LatLng(Number(mar.lat),Number(mar.lng));
 			this._marker(point,mar.name)
 		}
