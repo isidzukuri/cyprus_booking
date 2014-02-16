@@ -1,0 +1,2 @@
+class AviaController < ApplicationController
+end

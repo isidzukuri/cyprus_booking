@@ -22,4 +22,15 @@ class HomeController < ApplicationController
     @top_search    = TopSearch.new(rooms:[HotelRoom.new(adult:[HotelAdult.new],child:HotelChild.new)])
   end
 
+  def get_locations
+    {
+      apart_cities: City.all.map(&:to_map)
+      hotel_cities: HotelLocation.all.map(&:to_map)
+      cars_cities:  CarCity.all.map(&:to_map)
+    }
+    
+    
+    
+  end
+
 end

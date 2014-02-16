@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140216085407) do
+ActiveRecord::Schema.define(:version => 20140216092856) do
 
   create_table "admin_modules", :force => true do |t|
     t.string   "name"
@@ -59,6 +59,8 @@ ActiveRecord::Schema.define(:version => 20140216085407) do
     t.integer  "country_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.float    "lat"
+    t.float    "lng"
   end
 
   create_table "car_city_locations", :force => true do |t|
@@ -246,6 +248,7 @@ ActiveRecord::Schema.define(:version => 20140216085407) do
     t.float    "lng"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "lang"
   end
 
   create_table "house_prices", :force => true do |t|
