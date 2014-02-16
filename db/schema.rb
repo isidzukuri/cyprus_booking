@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140216102148) do
+ActiveRecord::Schema.define(:version => 20140216134939) do
 
   create_table "admin_modules", :force => true do |t|
     t.string   "name"
@@ -254,6 +254,24 @@ ActiveRecord::Schema.define(:version => 20140216102148) do
     t.string   "name_ru"
     t.string   "name_en"
     t.integer  "country_id"
+  end
+
+  create_table "hotels", :force => true do |t|
+    t.integer  "hotel_id"
+    t.string   "name"
+    t.string   "address"
+    t.float    "lat"
+    t.float    "lng"
+    t.float    "stars"
+    t.string   "check_in"
+    t.string   "check_out"
+    t.string   "currency"
+    t.float    "hight_rate"
+    t.float    "low_rate"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+    t.integer  "hotel_location_id"
+    t.string   "image_url"
   end
 
   create_table "house_prices", :force => true do |t|
