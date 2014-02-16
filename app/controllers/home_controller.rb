@@ -25,8 +25,8 @@ class HomeController < ApplicationController
   def get_locations
     {
       apart_cities: City.all.map(&:to_map)
-      hotel_cities: HotelLocation.all.map(&:to_map)
-      cars_cities:  CarCity.all.map(&:to_map)
+      hotel_cities: HotelLocation.where(lang:I18n.locale).all.map(&:to_map)
+      cars_cities:  CarCity.where(lang:I18n.locale).all.map(&:to_map)
     }
     
     

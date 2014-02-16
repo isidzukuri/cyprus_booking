@@ -31,10 +31,10 @@ namespace :app do
       data = api.get_city_list name
       next if data.kind_of?(Array) and data.size == 0
       (data.kind_of?(String) ? [data] : data).each do |n|
-        city = CarCity.create(name:n,country_id:COUNTRY_ID,lang:lang)
+        city = CarCity.create(name:n.force_encoding("UTF-8"),country_id:COUNTRY_ID,lang:lang)
         data = api.get_location_list name , n
         data.each do |c|
-          CarCityLocation.create(country_id:COUNTRY_ID,car_city_id:city.id,location_id:c[:id],name:c[:name],lang:lang)
+          CarCityLocation.create(country_id:COUNTRY_ID,car_city_id:city.id,location_id:c[:id],name:c[:name].force_encoding("UTF-8"),lang:lang)
         end
       end
     end
@@ -55,3 +55,13 @@ end
 def api
   @api ||= Api::Cars.new(Settings.auto_api.host,Settings.auto_api.user,Settings.auto_api.pass,Settings.auto_api.ip)
 end
+
+  def get_coords address
+    data = "http://maps.google.com/maps/api/geocode/json".to_uri.get(address:CGI.unescape(address),sensor:false).deserialize
+    if data["status"]!="ZERO_RESULTS"
+      data =  data["results"].first["geometry"]["location"]
+      {:lat=>data["lat"],:lng=>data["lng"]}
+    else
+      {}
+    end
+  end
