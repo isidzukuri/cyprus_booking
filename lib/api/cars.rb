@@ -2,6 +2,7 @@
 class Api::Cars
   
   attr_reader :error
+  attr_accessor :prefered
   require 'openssl'
   OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
   def initialize(host,user,pass,ip)

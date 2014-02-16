@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140210021751) do
+ActiveRecord::Schema.define(:version => 20140216085407) do
 
   create_table "admin_modules", :force => true do |t|
     t.string   "name"
@@ -51,6 +51,24 @@ ActiveRecord::Schema.define(:version => 20140210021751) do
     t.integer  "status"
     t.string   "currency"
     t.string   "comment"
+  end
+
+  create_table "car_cities", :force => true do |t|
+    t.string   "name"
+    t.string   "lang"
+    t.integer  "country_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "car_city_locations", :force => true do |t|
+    t.string   "name"
+    t.string   "lang"
+    t.integer  "country_id"
+    t.integer  "car_city_id"
+    t.integer  "location_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "cars_bookings_payeds", :force => true do |t|
@@ -119,13 +137,8 @@ ActiveRecord::Schema.define(:version => 20140210021751) do
     t.float  "lng"
   end
 
-  create_table "countries", :force => true do |t|
-    t.string "code"
-    t.string "name_ru"
-    t.string "name_en"
-    t.string "name_uk"
-    t.string "country_phone"
-  end
+# Could not dump table "countries" because of following StandardError
+#   Unknown type 'ingeter' for column 'country_id'
 
   create_table "currencies", :force => true do |t|
     t.string   "title"

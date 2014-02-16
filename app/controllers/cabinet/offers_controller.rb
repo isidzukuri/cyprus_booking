@@ -61,7 +61,7 @@ class Cabinet::OffersController < ApplicationController
 	private
 	def set_data
 		@cities     = City.all.map{|c| [c.name,c.id]}
-		@countries  = Country.all.map{|c| [c.name,c.id]}
+		@countries  = Country.where(id:50).all.map{|c| [c.name,c.id]}
 		@facilities = Facility.all.in_groups_of(Facility.count/2)
 		@currencies = Currency.all.map{|c| [c.title,c.id]}
 		@flat_types = I18n.t("all.flat_types").each_pair.map{|g,h| [h,g.to_s.gsub("type_","")]}
