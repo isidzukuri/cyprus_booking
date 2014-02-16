@@ -36,7 +36,7 @@ ru:
       p_count: "Гостей"
       guest: "Гость(я)"
     hotels:
-      city_name: "Введите город или отель"
+      city_name: "Введите город"
       departure: "Заезд"
       arrival: "Отъезд"
       rooms_count: "К-во номеров"

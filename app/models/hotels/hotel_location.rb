@@ -1,6 +1,8 @@
 class HotelLocation < ActiveRecord::Base
-  attr_accessible :code, :lat, :lng, :name,:country_id,:lang
-
+  attr_accessible :code, :lat, :lng, :name,:country_id,:lang,:name_en,:name_ru,:country_id
+	def name
+	  read_attribute("name_#{I18n.locale}")
+	end
   def to_map
   	{
   		lat:self.lat,

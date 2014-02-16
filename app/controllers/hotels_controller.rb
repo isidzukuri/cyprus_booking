@@ -3,9 +3,16 @@ class HotelsController < ApplicationController
   before_filter :check_cache, :only=>[:results,:show,:booking,:book,:load_hotels,:pay]
   before_filter :hotel_item_cache, :only=>[:show,:booking,:book,:pay]
 
+  def get_map_items
+    Hotel.where(citi_id:params[:id])
+    
+  end
 
   def search
     @search       = HotelSearch.new(params[:hotel_search])
+    loc = HotelLocation.find(@search.city)
+    @search.place_code = "#{loc.lat}|#{loc.lng}"
+    @search.city = loc.name
     @search.rooms_count.times do |i|
       @search.rooms[i].adult = [HotelAdult.new] * @search.rooms[i].adults 
       @search.rooms[i].child = [HotelChild.new] * @search.rooms[i].childs 
@@ -49,7 +56,7 @@ class HotelsController < ApplicationController
     key      = CGI::unescape params[:key]
     location = CGI::unescape params[:location]
     json     = {:success=>false}
-    unless location == ""
+    unless location == "" || location == "null"
       api.hotel_list_pagination(key,location,params[:session_id])
       data   = ""
       api.hotel_list.each do |hotel|

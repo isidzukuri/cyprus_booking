@@ -30,3 +30,8 @@ auto_api:
   user: modernmedia
   pass: 2modernmedia123
   ip: 5.9.59.86
+avia:
+  complete_url: "http://places.aviasales.ru"
+  search_url: "http://nano.aviasales.ru/searches.json"
+  marker: ""
+  token: ""

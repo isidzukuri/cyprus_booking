@@ -7,7 +7,7 @@ $.Controller("HotelsSearchForm","SearchForm",{
 		this.room = this.element.find(".rooms_data.ft .one_room").clone();
 		this.labl = this.element.find(".rooms_data.ft label:eq(0)").clone();
 		this.change_rooms_count(1);
-		this.init_autocomplete(this.element.find(".city_name"));
+		//this.init_autocomplete(this.element.find(".city_name"));
 	},
 
 	".rooms_count select -> change":function(ev){

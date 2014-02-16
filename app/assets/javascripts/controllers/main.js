@@ -2,6 +2,7 @@ $.Controller("Main",{
 	map_width:0,
 	map_image: "/assets/ic_map.png",
 	map_image_hover:"/assets/ic_map_hover.png",
+	map_city_img:"/assets/icons/city.png",
 	init:function(){
 		this.map  = this.element.find("#main_map")
 		this.main = this.element.find("#main")
@@ -16,7 +17,7 @@ $.Controller("Main",{
 		$(window).resize(function(){
 			$(".opacity").height($(window).height() - ($("#header").height() + $(".choose_buttons").height() + $("#footer").height()))
 		})
-
+		$.publish("change_map_markers",[0])
 		
 	},
 	".choose_buttons a , .search .list a -> click":function(ev){
@@ -193,5 +194,22 @@ $.Controller("Main",{
 			G_map.addMarker(this.marker(data[i],"hotel_")) 
 		};
 		G_map.fitBounds(this.bounds)
+	}
+},
+{
+	"change_map_markers":function(idx){
+		console.log(idx)
+		var markers = ["apart_cities","hotel_cities","cars_cities"];
+		markers = locations[markers[idx]];
+		G_map.clearMarkers()
+		console.log(markers)
+		for(i in markers){
+			mar = markers[i];
+			console.log(mar)
+			point = new google.maps.LatLng(Number(mar.lat),Number(mar.lng));
+			this._marker(point,mar.name)
+		}
+		
+
 	}
 });

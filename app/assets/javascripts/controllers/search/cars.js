@@ -34,6 +34,7 @@ $.Controller("CarsSearchForm","SearchForm",{
 			this.advanced_from.show()
 		}
 		else{
+			console.log(this.advanced_from)
 			this.advanced_from.hide()
 		}
 	},

@@ -1,9 +1,8 @@
                 <div class="top_search_form" data-auto-controller="TopSearchForm">
                     <%=form_for @apart_search,:url=>aparts_search_path,html:{:"data-complete"=>aparts_complete_path} do |f|%>
                         <ul>
-                            <li class="from_item">
-                                <%=f.text_field :city,class:"city_name",placeholder:t("search.aparts.city_name"),required:true%>
-                                <%=f.hidden_field :city_id,required:true%>
+                            <li class="from_item cars">
+                                <%= f.select :city_id ,@cities.reverse.push([t("search.hotels.city_name"),""]).reverse,{},required:true%>
                             </li>
                             <li class="from_item">
                                 <%=f.text_field :arrival,class:"date_input",required:true%>
@@ -22,9 +21,8 @@
                     <%end%>
                     <%=form_for @hotels_search,:url=>hotels_search_path,html:{:"data-complete"=>hotels_complete_path,:class=>"hidden"} do |f|%>
                         <ul>
-                            <li class="from_item">
-                                <%=f.text_field :city,class:"city_name",placeholder:t("search.hotels.city_name"),required:true%>
-                                <%=f.hidden_field :place_code,required:true%>
+                            <li class="from_item cars">
+                                <%= f.select :city ,@hotel_cities.reverse.push([t("search.hotels.city_name"),""]).reverse,{},required:true%>
                             </li>
 
                             <li class="from_item">

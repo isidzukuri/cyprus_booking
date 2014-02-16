@@ -91,14 +91,17 @@ class CarsController < ApplicationController
   end
    
   def pick_up_location
-    data = api.get_location_list params[:prev] ,params[:id]
-    if data.kind_of?(Array) and data.size == 0
-      render :json =>{:success=>false}
-    else
-      data = sort_paces data
-      locations = [option.call(t("search.cars.pick_up_place"),""),data.collect{|c| option.call(c[:name],c[:id])}].flatten.join("")
-      render :json =>{:success=>true,:options=>locations}
-    end
+    data = CarCityLocation.where(car_city_id:params[:id].to_i)
+    locations = [option.call(t("search.cars.pick_up_place"),""),data.collect{|c| option.call(c.name,c.location_id.to_s)}].flatten.join("")
+    render :json =>{:success=>true,:options=>locations}
+    # data = api.get_location_list params[:prev] ,params[:id]
+    # if data.kind_of?(Array) and data.size == 0
+    #   render :json =>{:success=>false}
+    # else
+    #   data = sort_paces data
+    #   locations = [option.call(t("search.cars.pick_up_place"),""),data.collect{|c| option.call(c.name,c.location_id)}].flatten.join("")
+    #   render :json =>{:success=>true,:options=>locations}
+    # end
   end
   
   def dropp_off_country

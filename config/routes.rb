@@ -29,7 +29,7 @@ Cypr::Application.routes.draw do
     end
 
     namespace "hotels" do
-        %w(complete show booking results).each do |action|
+        %w(complete show booking results get_map_items).each do |action|
             get action
         end
     	post "search"
@@ -37,7 +37,7 @@ Cypr::Application.routes.draw do
     end
 
     namespace "cars" do
-        %w(complete show results dropp_off_open_time pick_up_open_time dropp_off_location dropp_off_city dropp_off_country pick_up_location pick_up_city).each do |action|
+        %w(complete get_map_items show results dropp_off_open_time pick_up_open_time dropp_off_location dropp_off_city dropp_off_country pick_up_location pick_up_city).each do |action|
             get action
         end
     	post "search"
@@ -49,7 +49,7 @@ Cypr::Application.routes.draw do
     post "cars/book/:id" => "cars#book"
     post "cars/pay"
     namespace "aparts" do
-        %w(complete show results).each do |action|
+        %w(complete show results get_map_items).each do |action|
             get action
         end
         get "show/:id" => "aparts#show"

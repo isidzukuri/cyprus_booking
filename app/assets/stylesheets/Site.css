@@ -393,12 +393,16 @@ color: #DFCECE;
 .top_search_form .city_name{
     width: 250px;
 }
+.top_search_form .cars .sbHolder ,.top_search_form .cars .sbOptions,.top_search_form .cars .sbSelector{
+    width: 200px;
+}
 .top_search_form .sbHolder ,.top_search_form .sbOptions,.top_search_form .sbSelector{
     width: 120px;
 }
 .top_search_form .sbSelector, .top_search_form .sbOptions a:link, .top_search_form .sbOptions a:visited {
 color: #ffffff;
 }
+
 .top_search_form .sbHolder ,.top_search_form .sbOptions{
     background: #004b8d;
     border: 1px solid #003d7c;
