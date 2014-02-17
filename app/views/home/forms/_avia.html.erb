@@ -1,0 +1,65 @@
+                                <div class="avia" data-auto-controller="AviaSearchForm">
+                                    <%=form_for @avia_search,:url=>avia_search_path,html:{:"data-complete"=>avia_complete_path} do |f|%>
+                                        <ul class="top_ul alpha">
+                                            <li class="cars">
+                                                    <%= f.text_field :from_name,class:"alpha_1 city_name",required:true%>
+                                                    <%= f.hidden_field :origin_name,required:true%>
+                                            </li>
+                                            <li class="cars">
+                                                    <%= f.text_field :to_name,class:"alpha_1 city_name",required:true%>
+                                                    <%= f.hidden_field :destination_name,required:true%>
+                                            </li>
+                                            <li style="display:block!important;">
+                                                <div class="dates">
+                                                    <label><%=t("search.hotels.departure")%></label>
+                                                    <%=f.text_field :depart_date,class:"city_name date_input alpha_1",required:true%>
+                                                </div>
+                                                <div class="dates">
+                                                    <label><%=t("search.hotels.arrival")%></label>
+                                                    <%=f.text_field :return_date,class:"city_name date_input alpha_1",required:true%>
+                                                </div>
+                                            </li>
+
+                                        </ul>
+                                        <ul class="bottom_ul alpha">
+                                            <li style="height:40px;">
+                                                <div class="rooms_count ">
+                                                    <ul class="flight_data">
+                                                    <li class="fk_i">
+                                                        <label><%=t("search.cars.return_flight")%></label>
+                                                    <%= f.check_box :same_place ,value:1,checked:true%>
+                                                    </li>
+                                                    <li class="fk_i">
+                                                        <label><%=t("search.cars.class")%></label>
+                                                    <%=f.select :trip_class, [["Эконом",0],["Бизнесс",1]]%>
+                                                    </li>
+                                                    </ul>
+                                                    
+                                                </div>
+
+                                            </li>
+                                        </ul>
+                                        <ul class="rooms_data bottom_ul ft alpha_1">
+                                            
+                                            <li class="one_room">
+                                                <div class="adt">
+                                                    <label><%=t("search.hotels.adt")%> </label>
+                                                    <%= f.select :adults , (1..4).to_a%>
+                                                </div>
+                                                <div class="chd">
+                                                    <label><%=t("search.hotels.chd")%> </label>
+                                                    <%= f.select :children , (0..4).to_a%>
+                                                </div>
+                                                <div class="">
+                                                    <label><%=t("search.hotels.infants")%> </label>
+                                                    <%= f.select :infants , (0..4).to_a%>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                        <ul class="submit_ul">
+                                            <li class="submit">
+                                                <a href="#"><%=t("search.submit")%></a>
+                                            </li>
+                                        </ul>
+                                    <% end %>
+                                </div>

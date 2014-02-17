@@ -35,7 +35,13 @@ Cypr::Application.routes.draw do
     	post "search"
     	post "book"
     end
-
+    namespace "avia" do
+        %w(complete show booking results get_map_items).each do |action|
+            get action
+        end
+        post "search"
+        post "book"
+    end
     namespace "cars" do
         %w(complete get_map_items show results dropp_off_open_time pick_up_open_time dropp_off_location dropp_off_city dropp_off_country pick_up_location pick_up_city).each do |action|
             get action

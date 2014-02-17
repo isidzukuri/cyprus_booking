@@ -24,6 +24,7 @@ class HomeController < ApplicationController
   	@cars_search   = CarsSearch.new(:pick_up => CarsLocation.new(country:Country.find_by_code("CY").name) , :dropp_off=>CarsLocation.new(country:Country.find_by_code("CY").name,:date=>3.week.from_now.to_date.strftime("%d.%m.%Y")) , :driver_age=>nil)
   	@apart_search  = ApartSearch.new 
     @top_search    = TopSearch.new(rooms:[HotelRoom.new(adult:[HotelAdult.new],child:HotelChild.new)])
+    @avia_search   = AviaSearch.new 
   end
 
   def get_locations

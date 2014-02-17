@@ -41,7 +41,7 @@
                             </li>
                         </ul>
                     <%end%>
-                    <%=form_for @cars_search,:url=>cars_search_path,html:{:class=>"hidden"} do |f|%>
+<!--                     <%=form_for @cars_search,:url=>cars_search_path,html:{:class=>"hidden"} do |f|%>
                         
                         <%= f.hidden_field :same_place ,value:1%>
                         <ul>
@@ -51,22 +51,22 @@
                                     <%= fr.select :location ,options_for_select(@pick_up_cities_all.reverse.push([t("search.cars.pick_up_city"),""]).reverse,18692),{},:reuired=>true %>
                                 </li>
                                 <li class="from_item">
-                                    <%=fr.text_field :date,class:"date_input",required:true%>
+                                    <%=fr.text_field :date,class:"date_input",required:true,:"data-action"=>cars_pick_up_open_time_path,:"data-call-back"=>"render_pick_up_time"%>
                                 </li>
                             <%end%>
                             <%= f.fields_for :dropp_off  , @cars_search.dropp_off do |fr|%>
                                 <li class="from_item">
-                                    <%=fr.text_field :date,class:"date_input",required:true%>
+                                    <%=fr.text_field :date,class:"date_input",required:true,:"data-action"=>cars_dropp_off_open_time_path,:"data-call-back"=>"render_dropp_off_time"%>
                                 </li>
                             <%end%>
                             <li class="from_item">
                                 <input type="submit" class="submit" value="<%=t("search.do_submit")%>"/>
                             </li>
                         </ul>
-                    <%end%>
+                    <%end%> -->
                     <ul>
                             <li class="from_item">
-                                <%=select_tag :search__type,options_for_select([[t("search.aparts_"),0],[t("search.hotels_"),1],[t("search.cars_"),2]]),:class=>"search_type"%>
+                                <%=select_tag :search_type,options_for_select([[t("search.aparts_"),0],[t("search.hotels_"),1]]),:class=>"search_type"%>
                             </li>
                     </ul>
                 </div>

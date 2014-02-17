@@ -1,0 +1,90 @@
+                        <li class="car_item">
+                            <% fly["direct_flights"].each do |seg|%>
+                                <ul class="item_elms">
+                                    <li class="desc">
+                                        <div class="lft">
+                                            <%=image_tag "airline_logos/#{seg['airline']}.png" ,:size=>"80x30"%>
+                                        </div>
+                                        <div class="rt">
+                                            <h3><%= seg['aircraft']%><span class="analog"> <%="#{seg['airline']} #{seg['number']}"%></span></h3>
+                                            <p class="car_cls"><%=t("all.avia.in_flight",:hour=>seg['duration'].to_i/60,:min=>seg['duration'].to_i%60)%></p>
+                                            <ul class="car_options">
+                                                <li><%="#{seg["origin"]} -> #{seg["destination"]}"%></li>
+                                            </ul>
+                                        </div>  
+                                    </li>
+                                    <li class="amount">
+                                        <ul>
+                                            <li class="plc_count">
+                                                <p><%=t("all.avia.dep")%></p>
+                                                <span><%=l(Time.at(seg["departure"].to_i),:format=>:short)%></span>
+                                                <p><%=t("all.avia.arr")%></p>
+                                                <span><%=l(Time.at(seg["arrival"].to_i),:format=>:short)%></span>
+                                            </li>
+                                            
+                                        </ul>
+                                    </li>
+                                    
+                                </ul>
+                            <%end%>
+                            <% if fly["return_flights"].present? %>
+                                <% fly["return_flights"].each do |seg|%>
+                                    <ul class="item_elms">
+                                        <li class="desc">
+                                            <div class="lft">
+                                                <%=image_tag "airline_logos/#{seg['airline']}.png" ,:size=>"80x30"%>
+                                            </div>
+                                            <div class="rt">
+                                                <h3><%= seg['aircraft']%><span class="analog"> <%="#{seg['airline']} #{seg['number']}"%></span></h3>
+                                                <p class="car_cls"><%=t("all.avia.in_flight",:hour=>seg['duration'].to_i/60,:min=>seg['duration'].to_i%60)%></p>
+                                                <ul class="car_options">
+                                                    <li><%="#{seg["origin"]} -> #{seg["destination"]}"%></li>
+                                                </ul>
+                                            </div>  
+                                        </li>
+                                        <li class="amount">
+                                            <ul>
+                                                <li class="plc_count">
+                                                    <p><%=t("all.avia.dep")%></p>
+                                                    <span><%=l(Time.at(seg["departure"].to_i),:format=>:short)%></span>
+                                                    <p><%=t("all.avia.arr")%></p>
+                                                    <span><%=l(Time.at(seg["arrival"].to_i),:format=>:short)%></span>
+                                                </li>
+                                                
+                                            </ul>
+                                        </li>
+                                        
+                                    </ul>
+                                <%end%>
+                            <%end%>
+                            <ul class="item_elms">
+                                <li class="amount">
+                                    <li class="price">
+                                                <span><%="#{(Exchange.convert(:RUR, $currency) *fly['native_prices'].values.first.to_f).to_i} #{t("all.currencies_symbols.#{$currency}")}"%></span>
+                                    </li>
+                                </li>
+                                <li class="pay_btn">
+                                    <a target="_blank" href="<%= @url.call(@results["search_id"],fly['order_urls'].values.first) %>"><%=t("all.choose")%><span>></span></a>
+                                </li>
+                            </ul>
+                        </li>
+
+
+<!-- <li>
+    <table>
+        <% fly["direct_flights"].each do |seg|%>
+            <tr>
+                <td>
+                    <%=image_tag "airline_logos/#{seg['airline']}.png" ,:size=>"80x30"%>
+                </td>
+            </tr>
+        <%end%>
+        <% if fly["return_flights"].present? %>
+            <% fly["return_flights"].each do |seg|%>
+                <tr>
+                    <td></td>
+                </tr>
+            <%end%>
+        <%end%>
+    </table>
+<li> -->

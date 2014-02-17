@@ -33,5 +33,5 @@ auto_api:
 avia:
   complete_url: "http://places.aviasales.ru"
   search_url: "http://nano.aviasales.ru/searches.json"
-  marker: ""
-  token: ""
+  marker: 28169
+  token: "997ac704db23c3a0a0a080b689ee0c0e"

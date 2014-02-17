@@ -10,7 +10,7 @@ $.Controller("SearchForm",{
     "input[type=text] -> change": function(ev) {
 	    unfilled = []
 	    this.element.find("input[type=text]:visible").each(function(){if($(this).val() == "") unfilled.push($(this))});
-	    if (unfilled.length)
+	    if (unfilled.length && !unfilled[0].hasClass("disabled"))
 	      return unfilled[0].focus();
     },
     setup_datepicker:function(){
@@ -26,7 +26,7 @@ $.Controller("SearchForm",{
 	          if( $(".date_input").size() >= idx){
 	            var next_dp = $(".date_input:eq(" + idx + ")")
 	            next_dp.datepicker("option","minDate", selected)
-	            setTimeout(function(){ next_dp.focus() }, 100)
+	            if(!next_dp.hasClass("disabled")) setTimeout(function(){ next_dp.focus() }, 100)
 	          }
 	            
 	      },

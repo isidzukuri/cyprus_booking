@@ -13,6 +13,8 @@ ru:
     cars_title: "Авто"
     aparts_title: "Апартаменты"
     cars:
+      return_flight: В обе стороны
+      class: Класс
       default_error: "На заданую дату отсутсвуют результаты"
       dont_work: "Выбранный пункт проката не работает в заданую дату"
       airport: "аэропорт"
@@ -44,6 +46,7 @@ ru:
       room: Номер
       adt: Взрослые
       chd: Дети
+      infants: Младенцы
       chd_age: Возраст ребенка
       all_period: "За весь период"
       rooms_avail: "К-во номеров"

@@ -7,6 +7,10 @@ ru:
       default: "Secret Code did not match with the Image"
       user: "Код с картинки введен не верно"
   all:
+    avia:
+      dep: Вылет
+      arr: Прилет
+      in_flight: "В воздухе %{hour} час(а) %{min} минут(a)"
     guest: "Гость №%{num}"
     bed_types:
       type_1: Настоящая кровать
