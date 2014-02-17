@@ -3,7 +3,10 @@ $.Controller("Main",{
 	map_image: "/assets/ic_map.png",
 	map_image_hover:"/assets/ic_map_hover.png",
 	map_city_img:"/assets/icons/city.png",
+
 	init:function(){
+		this.info_content = contentString = $('<div class="map_ballon" data-auto-controller="BallooonController"> <div class="b_map_popup"> <div class="b_photo"><img  height="70" src="" width="70"></a></div><div class="b_text" style="border: none;"><h5></h5><div class="b_ratio rating"><span></span></div><div class="b_address"></div><div class="b_order" style="padding-left:0;width: 230px;"><div class="b_left"><strong></strong><div class="span text small_text">Цена за ночь</div></div><div class="pay_btn"><a class="form-submit" href="" target="_blank">Выбрать</a></div></div></div></div></div>')
+		this.parent.infowindow = new google.maps.InfoWindow()
 		this.map  = this.element.find("#main_map")
 		this.main = this.element.find("#main")
 		this.setup_map_height();
@@ -147,6 +150,21 @@ $.Controller("Main",{
 	    G_map = new google.maps.Map(mapCanvas, mapOptions);
 	    this.element.find("#map_desults").height($("#g_map").height() - $("#footer").height() - 10);
 	},
+	infowindow:function(data){
+		var lang_prefix ="/ru"
+	  var content = this.info_content
+	  content.find("h5").text(data.name)
+	  content.find("img").attr("src",data.image)
+	  content.find(".b_address").text(data.address)
+	  content.find(".rating span").css("width",Number(data.stars) * 20 + "%")
+	  content.find(".b_left strong").text(data.price)
+	  content.find(".form-submit").attr("href",lang_prefix + "/hotels/show/" + data.id + "?session_id=" + data.session_id)
+	  this.parent.infowindow.close()
+	  this.parent.infowindow = new google.maps.InfoWindow({
+	      content: content.prop('outerHTML')
+	  });
+	  return  this.parent.infowindow
+	},
 	marker:function(data,prefix){
 		var self = this
 		var lat_lng = new google.maps.LatLng(Number(data.lat),Number(data.lng));
@@ -166,6 +184,9 @@ $.Controller("Main",{
 		google.maps.event.addListener(marker, 'mouseout', function(){
 			marker.setIcon(self.parent.map_image)
 		});
+        google.maps.event.addListener(marker, 'click', function() {
+          self.infowindow(data).open(G_map,marker);
+        });
 		this.bounds.extend(lat_lng);
 		this.markers[prefix + data.id] = marker
 		return marker

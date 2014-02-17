@@ -87,14 +87,14 @@ namespace :app do
       }
       Hotel.create(hotel)
     end   
-    codes = Hotel.all.map{|l| l.hotel_id}
-    File.read("#{Rails.root}/db/ean_hotel_images.txt").split("\n").each do |row|
-      row = row.split("|")
-      next unless codes.include?(row.first.to_i)
-      hotel = Hotel.find_by_hotel_id(row.first.to_i)
-      p hotel
-      hotel.update_attributes({:image_url=>row.at(2)})
-    end
+    # codes = Hotel.all.map{|l| l.hotel_id}
+    # File.read("#{Rails.root}/db/ean_hotel_images.txt").split("\n").each do |row|
+    #   row = row.split("|")
+    #   next unless codes.include?(row.first.to_i)
+    #   hotel = Hotel.find_by_hotel_id(row.first.to_i)
+    #   p hotel
+    #   hotel.update_attributes({:image_url=>row.at(2)})
+    # end
   end
 
 end

@@ -32,7 +32,7 @@ class HotelSearch
       #:latitude      => self.lat,
       #:longitude     => self.lng,
       :destinationId => self.place_code,
-      :searchRadius   => 5,
+      :searchRadius   => 10,
     )
     search
   end

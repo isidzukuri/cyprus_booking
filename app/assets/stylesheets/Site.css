@@ -3570,3 +3570,117 @@ top: 0;
     background-color:transparent;
     background-position: 0 0;
 }
+
+
+
+ .b_map{
+  position: relative;
+}
+.b_map_popup{
+  position: relative;
+  padding: 14px 14px 10px;
+  overflow: hidden;
+}
+
+ .b_map_popup .b_photo,
+ .b_data_orenda .hotel_list .b_map_popup .b_photo{
+  float: left;
+  margin: 0px 10px 10px 0px;
+  text-align: left;
+  width: 74px;
+  padding: 5px;
+  border: 1px solid #A5A5A5;
+}
+.b_map_popup .b_photo .photo_link{
+  display: block;
+  border: 1px solid #444444;
+  width: 70px;
+  height: 70px;
+  overflow: hidden;
+  margin-bottom: 6px;
+}
+ .b_map_popup .b_photo .link{
+  color: #344D63;
+  font-size: 11px;
+  text-decoration: none;
+}
+.b_map_popup .b_photo .link:hover{
+  text-decoration: underline;
+}
+ .b_map_popup .b_text h5 {
+  color: #33577a;
+  font-size: 16px;
+  font-weight: bold;
+  padding-bottom: 2px;
+}
+ .b_map_popup .b_text{
+  width: 250px;
+  float: left;
+  padding: 0;
+}
+.b_map_popup.b_address{
+  font-weight: bold;
+  color: #33577a;
+}
+.b_map_popup .b_description{
+  padding: 6px 0 32px;
+}
+.b_map_popup .b_description a{
+  text-decoration: none;
+  font-weight: bold;
+}
+ .b_map_popup .b_ratio {
+  margin: 4px 0 4px;
+}
+.b_map_popup .b_order .text.small_text{
+  clear:both;
+  display:block;
+  font-size:14px;
+  padding-bottom:6px;
+  color: #9EA5AD;
+  font-size: 11px;
+}
+ .b_map_popup .b_order{
+  padding-top: 12px;
+}
+ .b_map_popup .b_order strong{
+  font-size: 18px;
+  color: #33577a;
+  font-weight: normal;
+  line-height: 16px;
+  font-weight: bold;
+}
+ .b_map_popup .b_order .b_left{
+  float: left;
+}
+ .b_map_popup .b_order .form-submit{
+
+  display: block;
+  color: white;
+  font-family: "PFDinDisplayProBold","Myriad Pro",sans-serif;
+  font-size:15px;
+  height: 38px;
+  line-height: 38px;
+  text-align: center;
+  text-transform: uppercase;
+  width: 120px;
+  text-decoration: none;
+  font-weight: normal;
+  padding: 0 12px;
+  float: right;
+  clear: none;
+  margin: 3px 0 0;
+}
+.b_map .icon_other_hotel{
+  display: block;
+  width: 15px;
+  height: 19px;
+  overflow: hidden;
+  background: url('icon_maps.png') no-repeat 0 0;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+.b_map .icon_other_hotel.deactive{
+  background: url('icon_maps.png') no-repeat 0 100%;  
+}

@@ -12,9 +12,9 @@ hotels_api:
   host: http://api.ean.com/ean-services/rs/hotel/v3/
   book_host: https://book.api.ean.com/ean-services/rs/hotel/v3/
   ip: 127.0.0.1
-  cid: 55505
-  key: u82xeps9fe4q6nmzfwuxgjuz
-  secret: 9DtutZxu
+  cid: 447655
+  key: rk4y5bac7e5w7kvzssea93qp
+  secret: XYqm7Ewg
   search_url: http://www.trip.ru/hotels/searches/new/autocomplete
   trip_advisor_url: http://www.tripadvisor.com/WidgetEmbed-cdspropertysummary
   trip_advisor_key: 1A065E1528EF4FCFB99FCAF44AFECAB9

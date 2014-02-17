@@ -8,7 +8,38 @@ class CarsController < ApplicationController
   end
 
   def get_map_items
-    
+    city = CarCity.find(params[:id]).car_city_locations.first
+    p city
+    @search = CarsSearch.new(
+      same_place: 1,
+      :pick_up => CarsLocation.new(
+        country:Country.find_by_code("CY").name ,
+        location:city.location_id ,
+        place: city.name,
+         city: city.car_city.name,
+        ),
+      :dropp_off=>CarsLocation.new(
+        country:Country.find_by_code("CY").name,
+        location:city.location_id ,
+        place: city.name,
+        city: city.car_city.name,
+        :date=>3.week.from_now.to_date.strftime("%d.%m.%Y")) , 
+      :driver_age=>nil)
+    result      = api.search_cars @search 
+    @session_id = Digest::MD5.hexdigest("#{@search.to_json}#{request.remote_ip}")
+    cookies[:last_cars_search] = {
+      :value => Marshal.dump(@search),
+      :expires => 24.hours.from_now
+    }
+    if result.size < 1
+      text = api.error.text rescue text = I18n.t('search.cars.default_error')
+      render :json => {:success => false, :text =>text}
+    else
+      @session_id  = Digest::MD5.hexdigest("#{@search.to_json}#{request.remote_ip}")
+      Rails.cache.write("auto_search_result_" + @session_id, result, :expires_in => 1.hour)
+      Rails.cache.write("auto_search_query_" +@session_id,@search, :expires_in => 1.hour)
+      render :json => {:success => true, :data => cars_results_path(:session_id=>@session_id)}
+    end
   end
 
 

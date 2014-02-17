@@ -53,25 +53,12 @@ $.Controller("TopSearchForm",{
 		});
 		return marker
 	},
-	infowindow:function(data){
-		contentString =" test"
-	  var infowindow = new google.maps.InfoWindow({
-	      content: contentString
-	  });
-	  return infowindow
-	},
 	hotel_marker:function(data){
 		$.publish("show_hotels_on_map",[data]);
-		var self = this
-		for(i in G_map.markers){
-			marker = G_map.markers[i];
-            google.maps.event.addListener(marker, 'click', function() {
-              self.infowindow().open(G_map,marker);
-            });
-		}
 	},
-	cars_marker:function(ev){
-		$.publish("show_cars_on_map",[data]);
+	cars_marker:function(data){
+		window.location.href = data
+		//$.publish("show_cars_on_map",[data]);
 	},
 	aparts_marker:function(data){
 		$.publish("show_hotels_on_map",[data]);

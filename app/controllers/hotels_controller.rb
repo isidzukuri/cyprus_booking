@@ -18,7 +18,9 @@ class HotelsController < ApplicationController
     @results     = api.hotel_list
     @key         = api.cacheKey
     @location    = api.cacheLocation
-    render :json => {success:true,data:@results.map{|h| {:id=>h[:id],:lat=>h[:lat],:lng=>h[:lng],:name=>h[:name]}}}
+      Rails.cache.write("hotels_search_result_"+@session_id, {:total=>api.total,:result=>@results,:prices=>api.prices,:key=>@key,:location=>@location}, :expires_in => 1.hour)
+      Rails.cache.write("hotels_search_query_" +@session_id,@search, :expires_in => 1.hour)
+    render :json => {success:true,data:@results.map{|h| {:session_id=>@session_id, :price=>"#{(Exchange.convert(h[:currency], $currency) * h[:avg_price].to_i).round(2)} #{t("all.currencies_symbols.#{$currency}")}",:address=>h[:address],:stars=>h[:stars],:image=>h[:image],:id=>h[:id],:lat=>h[:lat],:lng=>h[:lng],:name=>h[:name]}}}
   end
 
   def search
