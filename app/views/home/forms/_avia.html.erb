@@ -1,12 +1,12 @@
-                                <div class="avia" data-auto-controller="AviaSearchForm">
+                                <div class="avia hidden hotels" data-auto-controller="AviaSearchForm">
                                     <%=form_for @avia_search,:url=>avia_search_path,html:{:"data-complete"=>avia_complete_path} do |f|%>
                                         <ul class="top_ul alpha">
                                             <li class="cars">
-                                                    <%= f.text_field :from_name,class:"alpha_1 city_name",required:true%>
+                                                    <%= f.text_field :from_name,class:"alpha_1 city_name",required:true,:placeholder=>t("search.hotels.city_name")%>
                                                     <%= f.hidden_field :origin_name,required:true%>
                                             </li>
                                             <li class="cars">
-                                                    <%= f.text_field :to_name,class:"alpha_1 city_name",required:true%>
+                                                    <%= f.text_field :to_name,class:"alpha_1 city_name",required:true,:placeholder=>t("search.hotels.city_name")%>
                                                     <%= f.hidden_field :destination_name,required:true%>
                                             </li>
                                             <li style="display:block!important;">

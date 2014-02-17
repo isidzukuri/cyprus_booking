@@ -12,6 +12,7 @@ ru:
     hotels_title: "Отели"
     cars_title: "Авто"
     aparts_title: "Апартаменты"
+    avia_title: "Авиа"
     cars:
       return_flight: В обе стороны
       class: Класс

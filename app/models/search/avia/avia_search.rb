@@ -1,7 +1,7 @@
 class AviaSearch
   include ActiveAttr::Model
-  attribute :from_name,  :type  => String, :default => "MOW"
-  attribute :to_name,  :type  => String, :default => "PFO"
+  attribute :from_name,  :type  => String
+  attribute :to_name,  :type  => String
   attribute :origin_name,  :type  => String, :default => "MOW"
   attribute :destination_name, :type  => String, :default => "PFO"
   attribute :depart_date, :type => Date ,   :default => 2.week.from_now.to_date.strftime("%Y-%m-%d")

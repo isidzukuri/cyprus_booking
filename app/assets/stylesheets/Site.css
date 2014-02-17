@@ -647,8 +647,8 @@ ul {
 }
 .left ul.list li{
     float: left;
-     width: 90px;
-     margin-right: 5px;
+     width: 70px;
+     /*margin-right: 5px;*/
 
      height: 65px;
      background-image: url("/assets/sprite.png");
@@ -656,13 +656,16 @@ ul {
 }
 
 .list li.hotels{
-    background-position: 15px -100px;
+    background-position: 3px -100px;
 }
 .list li.cars{
-    background-position: 15px -155px;
+    background-position: 3px -155px;
 }
 .list li.apartments{
-    background-position: 15px -213px;
+    background-position: 3px -213px;
+}
+.list li.avia{
+    background-position: 3px -213px;
 }
 .left ul.list li .rectangle{
     display: none;
