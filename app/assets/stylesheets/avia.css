@@ -571,9 +571,7 @@
     display: block;
     margin: 0 0 0 -100px;
     width: 200px;
-    height: 69px;
-    background: url(/assets/app_store-530bc9858aeeb17fa9cf4bcf31839bd4.png) 0 50% no-repeat;
-    content: ""}
+    height: 69px;}
 #aviasales_search_proposals {
     position: relative;
 }
@@ -596,65 +594,7 @@
 .aviasales_proposal_buy_button{
 	width: 350px;
 }
-/*.aviasales_proposal_buy_button {
-    background-color: #eee;
-    height: 26px;
-    top: -5px;
-    left: -5px;
-    padding: 3px;
-    position: absolute;
-    width: 100%;
-    margin: 0px;
-    border-radius: 5px;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-}*/
-/*.aviasales_proposal_buy_button a {
-    float: left;
-    right: 0px;
-    position: absolute;
-    display: block;
-    width: 100%;
-    height: 25px;
-    text-decoration: none !important;
-}
-.aviasales_proposal_buy_button a .aviasales_for_label {
-    position: relative;
-    float: left;
-    margin-left: 10px;
-    margin-top: 7px;
-    font-size: 12px;
-}
-.aviasales_proposal_buy_button a .aviasales_price {
-    margin-left: 8px;
-    float: left;
-    position: relative;
-    display: inline-block;
-    zoom: 1;
-    *display: inline;
-    font-size: 20px;
-    margin-top: 2px;
-    width: 120px;
-}
-.aviasales_proposal_buy_button a .aviasales_price .aviasales_price_value {
-    color: #000;
-}
-.aviasales_proposal_buy_button a .aviasales_as-button {
-    width: 75px;
-    margin: 0px;
-    text-align: center;
-    padding: 4px 4px !important;
-    height: 16px;
-    margin-left: 5px;
-    position: relative;
-    display: inline-block;
-    zoom: 1;
-    *display: inline;
-}
-.aviasales_proposal_buy_button a .aviasales_as-button .aviasales_button_label {
-    font-size: 14px;
-    font-weight: bold;
-}*/
+
 .aviasales_proposal_layout {
     position: relative;
     background-color: #fff;
@@ -678,10 +618,10 @@
     display: inline-block;
     width: 23px;
     height: 23px;
-    background-image: url(/assets/ui/social_icons-79c49d723af2824b99ce90716732d6ca.png);
+
 }
 .aviasales_proposal_layout .aviasales_proposal_header .aviasales_share a.aviasales_share_waiting {
-    background-image: url(/assets/ui/ajax_loader_mini-8efbea123480b2bc44c4eb3ae709a94b.gif) !important;
+    
     background-position: 50% 50% !important;
     background-repeat: no-repeat;
 }
@@ -983,12 +923,12 @@
     margin: 0px;
 }
 .aviasales_exp, .aviasales_euroset, .aviasales_cash, .aviasales_card, .aviasales_yandex_money, .aviasales_web_money, .aviasales_terminal, .aviasales_svyaznoy, .aviasales_bank, .aviasales_contact, .aviasales_elexnet {
-    background-image: url(/assets/sprites/payments-960c59faba42beed337a9faa116957fd.png);
+
     height: 15px;
     position: relative;
     display: inline-block;
     zoom: 1;
-    *display: inline;
+    display: inline;
     margin-left: 1px;
     margin-bottom: 1px;
 }
@@ -1034,7 +974,7 @@
 }
 .aviasales_shadow {
     position: relative;
-    background-image: url(/assets/ui/shadow-f533ab18c0ac720d2e245ca27106bf22.png);
+
     height: 13px;
     width: 100%;
     background-position: center;
