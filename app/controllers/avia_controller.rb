@@ -8,8 +8,8 @@ class AviaController < ApplicationController
 		search = AviaSearch.new(params[:avia_search])
 		data = api.search(search.to_api_hash)
 		session_id = Digest::MD5.hexdigest(search.to_s)
- 		Rails.cache.write("avia_search_result_"+session_id, data, :expires_in => 4.hour)
-      	Rails.cache.write("avia_search_query_" +session_id, search, :expires_in => 4.hour)
+ 		Rails.cache.write("avia_search_result_"+session_id, data, :expires_in => 15.minutes)
+      	Rails.cache.write("avia_search_query_" +session_id, search, :expires_in => 15.minutes)
       	render :json => {success:true,map_search:false,url:avia_results_path(session_id:session_id)}
 	end
 
@@ -20,6 +20,7 @@ class AviaController < ApplicationController
 		#p @results["tickets"].first
 		#raise
 		@url     = api.book_url
+		redirect_to :root unless @search || @results 
 	end
 
 
