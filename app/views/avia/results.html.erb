@@ -2,10 +2,10 @@
             <div id="main" >
                 <div id="main_wrap">
                     <div class="header">
-                        <h2><%=t("all.search_result")%>: <span><%=@search.to_title%></span> </h2>
+                        <h2><%=t("all.search_result")%>: <span><%=@search.to_title.html_safe%></span> </h2>
                     </div>
                     <ul class="result_list content" id="results">
-                        <%@results["tickets"].take(10).each do |fly|%>
+                        <%@results["tickets"].take(50).each do |fly|%>
                             <%= render partial:"avia/result_item",:locals=>{:fly=>fly}%>
                         <%end%>
                     </ul>

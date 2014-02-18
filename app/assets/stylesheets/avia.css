@@ -1,0 +1,1094 @@
+
+#aviasales_new_search .aviasales_form_line_wrapper .aviasales_form_input_unit .aviasales_range {
+    position: absolute;
+    right: 3px;
+    top: -5px;
+}
+#aviasales_new_search .aviasales_form_line_wrapper .aviasales_form_input_unit .aviasales_range label {
+    vertical-align: bottom;
+}
+#aviasales_new_search .aviasales_form_line_wrapper .aviasales_form_input_unit .aviasales_is-direct {
+    margin-top: -5px !important;
+    margin-bottom: 0 !important;
+}
+#aviasales_new_search .aviasales_form_line_wrapper .aviasales_form_input_unit .aviasales_is-direct label {
+    vertical-align: bottom;
+}
+#aviasales_new_search .aviasales_form_line_wrapper .aviasales_form_input_unit div.selector {
+    width: 82px;
+    padding: 0 0 0 10px;
+}
+#aviasales_new_search .aviasales_form_line_wrapper .aviasales_form_input_unit div.selector select {
+    width: 82px;
+    padding: 0 0 0 10px;
+}
+#aviasales_new_search .aviasales_form_line_wrapper .aviasales_form_input_unit div.selector span {
+    width: 70px;
+    padding: 0 5px 0 0;
+}
+#aviasales_new_search .aviasales_form_line_wrapper .aviasales_short_labeled_select div.selector, #aviasales_new_search .aviasales_form_line_wrapper .aviasales_short_labeled_select div.selector select {
+    width: 37px;
+}
+#aviasales_new_search .aviasales_form_line_wrapper .aviasales_short_labeled_select div.selector span {
+    width: 25px;
+}
+#aviasales_new_search .aviasales_form_line_wrapper .aviasales_short_labeled_select label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: #888;
+    padding-top: 28px;
+    font-size: 0.9em;
+    white-space: nowrap;
+}
+#aviasales_new_search .aviasales_form_line_wrapper .aviasales_short_labeled_select label div {
+    position: absolute;
+    top: 0;
+    left: 3px;
+}
+#aviasales_new_search #passengers_num {
+    float: left;
+    margin: 5px 3px 0 0;
+}
+#aviasales_new_search #passengers_num .aviasales_form_input_unit {
+    margin: 0 25px 0 0;
+}
+#aviasales_new_search #trip_class {
+    margin: 5px 0 0;
+}
+#aviasales_new_search #hotel_search {
+    margin: 1.2em 0 0;
+    padding-top: 15px;
+    float: right;
+}
+#aviasales_new_search #passengers_num p, #aviasales_new_search #trip_class p {
+    padding: 0 0 3px;
+}
+.aviasales_window_content #aviasales_main_ajax_loading_window #aviasales_ajax_header {
+    font-size: 16px;
+}
+.aviasales_window_content #aviasales_main_ajax_loading_window #aviasales_ajax_progress {
+    background: #00b5ea;
+    color: #FFF;
+    margin: 0;
+}
+.aviasales_window_content #aviasales_main_ajax_loading_window #aviasales_ajax_progress .aviasales_search_progressbar {
+    overflow: hidden;
+    height: 15px;
+    font-size: 12px;
+    margin-top: 8px;
+    border: 1px solid #2a8eb2;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    position: relative;
+    color: white;
+    background: #555 url(/assets/progress_bar_static_bg-12d95675b6b7208524dbabba2ad61637.png) 0 0 repeat-x;
+}
+.aviasales_window_content #aviasales_main_ajax_loading_window #aviasales_ajax_progress .aviasales_search_progressbar .aviasales_search_progressbar_company_list {
+    overflow: hidden;
+    margin: 0 5px;
+    position: relative;
+    z-index: 2;
+    height: 15px;
+}
+.aviasales_window_content #aviasales_main_ajax_loading_window #aviasales_ajax_progress .aviasales_search_progressbar .aviasales_search_progressbar_company_list .aviasales_search_progressbar_company_list_inner_wrapper {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    z-index: 3;
+    height: 15px;
+}
+.aviasales_window_content #aviasales_main_ajax_loading_window #aviasales_ajax_progress .aviasales_search_progressbar .aviasales_search_progressbar_company_list .aviasales_search_progressbar_company_list_inner_wrapper ul {
+    white-space: nowrap;
+    position: absolute;
+    top: 0;
+}
+.aviasales_window_content #aviasales_main_ajax_loading_window #aviasales_ajax_progress .aviasales_search_progressbar .aviasales_search_progressbar_company_list .aviasales_search_progressbar_company_list_inner_wrapper ul li {
+    display: inline;
+    line-height: 15px;
+    padding: 0 15px 0 0;
+    margin: 0;
+}
+.aviasales_window_content #aviasales_main_ajax_loading_window #aviasales_ajax_progress .aviasales_search_progressbar .aviasales_search_progressbar_current_progress {
+    position: absolute;
+    overflow: hidden;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    height: 15px;
+    background: url(data:image/gif;
+    base64, R0lGODlhAQAeAMQAAADG7QCo1gCr2AC%2B6K2trb%2B%2Bvpydnba2turr6wDE7ImJidfY2KSkpQC04MfHx4%2BPjgCy3gCl1ADH75WVluXm5s%2FQ0AC75QCu2wDB6wCj0u%2Fv7wC449%2Ff3wCg0AAAAAAAACH5BAAAAAAALAAAAAABAB4AAAUYoPJMBkMchVMtHIVoEpBgg7U10CUEUdaFADs%3D) 0 -15px repeat-x;
+    width: 0;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+}
+.aviasales_window_content #aviasales_main_ajax_loading_window .aviasales_search_progressbar.short_progressbar {
+    float: left;
+    width: 520px;
+}
+.aviasales_window_content #aviasales_main_ajax_loading_window .aviasales_search_progressbar.shortest_progressbar {
+    float: left;
+    width: 375px;
+    margin-right: 10px;
+}
+.aviasales_window_content #aviasales_main_ajax_loading_window .aviasales_gplay {
+    float: left;
+    margin: -15px 0 0;
+}
+.aviasales_window_content #aviasales_main_ajax_loading_window .aviasales_gplay .aviasales_gplay_logo {
+    background: url(/assets/gplay_small-5a641678a25ffe562d038a4fc188ce42.png) 0 0 no-repeat;
+    width: 135px;
+    height: 40px;
+    display: block;
+}
+.aviasales_window_content #aviasales_main_ajax_loading_window .aviasales_appstore {
+    float: left;
+    margin: -15px 10px 0 0;
+}
+.aviasales_window_content #aviasales_main_ajax_loading_window .aviasales_appstore .aviasales_appstore_logo {
+    width: 135px;
+    height: 40px;
+    display: block;
+}
+.aviasales_window_content #aviasales_main_ajax_loading_window .aviasales_appstore .aviasales_appstore_logo_ru {
+    background: url(/assets/app_store_small_ru-9e35566869bc3b495e56654bae80af30.png) 0 0 no-repeat;
+}
+.aviasales_window_content #aviasales_main_ajax_loading_window .aviasales_appstore .aviasales_appstore_logo_en {
+    background: url(/assets/app_store_small_en-f27350b84af08e3454003a6c47d36584.png) 0 0 no-repeat;
+}
+.aviasales_window_content #aviasales_main_ajax_loading_window #aviasales_ajax_progress {
+    position: relative;
+    padding: 10px;
+    border-radius: 10px 10px 0px 0px;
+    -webkit-border-radius: 10px 10px 0px 0px;
+    -moz-border-radius: 10px 10px 0px 0px;
+    color: #FFF;
+    background-color: #00b5ea !important;
+    width: 670px;
+}
+.aviasales_window_content #aviasales_main_ajax_loading_window #aviasales_ajax_progress .aviasales_progress_animation {
+    padding-top: 0;
+    position: relative;
+}
+.aviasales_window_content #aviasales_main_ajax_loading_window #aviasales_ajax_progress .aviasales_progress_animation:after {
+    content: "";
+    clear: both;
+    display: block;
+    height: 0;
+    overflow: hidden;
+}
+.aviasales_window_content #aviasales_main_ajax_loading_window #aviasales_ajax_progress .aviasales_progress_bar {
+    float: left;
+    width: 150px;
+    margin-top: 3px;
+    position: relative;
+    border: 1px solid #2a8eb2;
+    background: #555 url(/assets/progress_bar_static_bg-12d95675b6b7208524dbabba2ad61637.png) 0 50% repeat-x;
+}
+.aviasales_window_content #aviasales_main_ajax_loading_window .aviasales_loading_comments {
+    width: 670px;
+    background: #FFF;
+    padding: 10px 10px 0;
+    color: #333;
+    font-size: 13px;
+}
+.aviasales_window_content #aviasales_main_ajax_loading_window .aviasales_loading_comments li {
+    background: url(/assets/sprites/main_release_1_19_0-869bee0340c9a51ef68bea6d4458fbf2.png) 0 -191px no-repeat;
+    padding: 2px 0 0 35px;
+    min-height: 30px;
+    margin: 0 10px 10px 5px;
+    display: inline-block;
+    vertical-align: top;
+    width: 275px;
+}
+.aviasales_window_content #aviasales_main_ajax_loading_window .aviasales_loading_comments .aviasales_first_comment {
+    background-position: -96px -191px;
+    float: left;
+}
+.aviasales_window_content #aviasales_main_ajax_loading_window .aviasales_loading_comments .aviasales_second_comment {
+    background-position: -64px -223px;
+    float: left;
+}
+.aviasales_window_content #aviasales_main_ajax_loading_window .aviasales_loading_comments .aviasales_third_comment {
+    background-position: -32px -255px;
+    clear: both;
+}
+.aviasales_window_content #aviasales_main_ajax_loading_window .aviasales_loading_comments .aviasales_fourth_comment {
+    background-position: 0 -287px;
+    clear: both;
+}
+.aviasales_window_content #aviasales_main_ajax_loading_window .aviasales_adv_container {
+    height: 245px;
+    width: 690px;
+    position: relative;
+}
+.aviasales_window_content #aviasales_main_ajax_loading_window .aviasales_adv_container .aviasales_left_adv_wrapper {
+    position: relative;
+    float: left;
+    height: 100%;
+    background: #FFF;
+    width: 305px;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+}
+.aviasales_window_content #aviasales_main_ajax_loading_window .aviasales_adv_container .aviasales_left_adv_wrapper .wrapper_dummy {
+    border-radius: 0 0 0 10px;
+    -webkit-border-radius: 0 0 0 10px;
+    -moz-border-radius: 0 0 0 10px;
+}
+.aviasales_window_content #aviasales_main_ajax_loading_window .aviasales_adv_container .aviasales_right_adv_wrapper {
+    position: relative;
+    float: right;
+    height: 100%;
+    background: #FFF;
+    width: 385px;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+}
+.aviasales_window_content #aviasales_main_ajax_loading_window .aviasales_adv_container .aviasales_right_adv_wrapper .wrapper_dummy {
+    border-radius: 0 0 10px 0;
+    -webkit-border-radius: 0 0 10px 0;
+    -moz-border-radius: 0 0 10px 0;
+}
+.aviasales_window_content #aviasales_main_ajax_loading_window .aviasales_adv_container .aviasales_hotels_form_container, .aviasales_window_content #aviasales_main_ajax_loading_window .aviasales_adv_container .aviasales_subscribe_form {
+    position: relative;
+    z-index: 2;
+}
+.aviasales_window_content #aviasales_main_ajax_loading_window .aviasales_adv_container .wrapper_dummy {
+    position: absolute;
+    background: #FFF;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+}
+.aviasales_window_content #aviasales_main_ajax_loading_window .aviasales_focused {
+    -moz-box-shadow: 0px 0px 29px #222;
+    -webkit-box-shadow: 0px 0px 29px #222;
+    box-shadow: 0px 0px 29px #222;
+    z-index: 3;
+}
+.aviasales_window_content #aviasales_main_ajax_loading_window .aviasales_blured {
+    background: rgba(255, 255, 255, 0.6) !important;
+    opacity: 0.6;
+    filter: alpha(opacity=60);
+    z-index: 2;
+}
+.aviasales_window_content #aviasales_main_ajax_loading_window .aviasales_left_adv_wrapper.aviasales_blured, .aviasales_window_content #aviasales_main_ajax_loading_window .aviasales_right_adv_wrapper.aviasales_blured {
+    background: transparent !important;
+}
+.aviasales_window_content #aviasales_main_ajax_loading_window .aviasales_focused .wrapper_dummy, .aviasales_window_content #aviasales_main_ajax_loading_window .aviasales_blured .wrapper_dummy {
+    background: rgba(255, 255, 255, 0.6) !important;
+}
+.aviasales_window_content #aviasales_main_ajax_loading_window .aviasales_focused .wrapper_dummy {
+    opacity: 0.4;
+    filter: alpha(opacity=40);
+}
+.aviasales_window_content #aviasales_main_ajax_loading_window .aviasales_bottom_rounded {
+    border-radius: 0px 0px 10px 10px;
+    -webkit-border-radius: 0px 0px 10px 10px;
+    -moz-border-radius: 0px 0px 10px 10px;
+}
+.aviasales_window_content #aviasales_main_ajax_loading_window h3 {
+    color: black;
+    font-size: 18px;
+    margin: 0 0 5px;
+    padding-left: 15px;
+    font-weight: normal;
+}
+.aviasales_window_content #aviasales_main_ajax_loading_window .aviasales_hotels_form_container {
+    position: relative;
+    float: left;
+    padding: 0;
+    width: 304px;
+}
+.aviasales_window_content #aviasales_main_ajax_loading_window .aviasales_hotels_form_container #aviasales_hotels_banner {
+    margin-right: 0px;
+    padding: 10px;
+}
+.aviasales_window_content #aviasales_main_ajax_loading_window .aviasales_hotels_form_container #aviasales_hotels_banner .aviasales_hotels_form {
+    background: #f9be0b;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+    width: 264px;
+}
+.aviasales_window_content #aviasales_main_ajax_loading_window .aviasales_hotels_form_container #aviasales_hotels_banner .aviasales_hotels_form .aviasales_selected_iata {
+    display: none;
+}
+.aviasales_window_content #aviasales_main_ajax_loading_window .aviasales_hotels_form_container #aviasales_hotels_banner .aviasales_hotels_form .aviasales_form-input-unit input {
+    width: 258px;
+}
+.aviasales_window_content #aviasales_main_ajax_loading_window .aviasales_hotels_form_container #aviasales_hotels_banner .aviasales_hotels_form input {
+    height: 20px;
+    line-height: 20px;
+}
+.aviasales_window_content #aviasales_main_ajax_loading_window .aviasales_hotels_form_container #aviasales_hotels_banner .aviasales_hotels_form label {
+    display: block;
+    font-size: 10px;
+}
+.aviasales_window_content #aviasales_main_ajax_loading_window .aviasales_hotels_form_container #aviasales_hotels_banner .aviasales_hotels_form .aviasales_hotel_checkin, .aviasales_window_content #aviasales_main_ajax_loading_window .aviasales_hotels_form_container #aviasales_hotels_banner .aviasales_hotels_form .aviasales_hotel_checkout {
+    width: 128px;
+    margin: 15px 0;
+    position: relative;
+}
+.aviasales_window_content #aviasales_main_ajax_loading_window .aviasales_hotels_form_container #aviasales_hotels_banner .aviasales_hotels_form .aviasales_hotel_checkin input, .aviasales_window_content #aviasales_main_ajax_loading_window .aviasales_hotels_form_container #aviasales_hotels_banner .aviasales_hotels_form .aviasales_hotel_checkout input {
+    width: 122px;
+    padding: 3px;
+    font-size: 11px;
+}
+.aviasales_window_content #aviasales_main_ajax_loading_window .aviasales_hotels_form_container #aviasales_hotels_banner .aviasales_hotels_form .aviasales_hotel_checkin .aviasales_dp_trigger, .aviasales_window_content #aviasales_main_ajax_loading_window .aviasales_hotels_form_container #aviasales_hotels_banner .aviasales_hotels_form .aviasales_hotel_checkout .aviasales_dp_trigger {
+    position: absolute;
+    left: auto;
+    top: auto;
+    right: 2px;
+    bottom: 4px;
+}
+.aviasales_window_content #aviasales_main_ajax_loading_window .aviasales_hotels_form_container #aviasales_hotels_banner .aviasales_hotels_form .aviasales_hotel_checkin {
+    float: left;
+}
+.aviasales_window_content #aviasales_main_ajax_loading_window .aviasales_hotels_form_container #aviasales_hotels_banner .aviasales_hotels_form .aviasales_hotel_checkout {
+    float: right;
+}
+.aviasales_window_content #aviasales_main_ajax_loading_window .aviasales_hotels_form_container #aviasales_hotels_banner .aviasales_hotels_form p {
+    clear: both;
+    color: #444;
+    padding: 2px 0 0;
+}
+.aviasales_window_content #aviasales_main_ajax_loading_window .aviasales_hotels_form_container #aviasales_hotels_banner .aviasales_hotel_button {
+    position: relative;
+    clear: both;
+    text-align: center;
+}
+.aviasales_window_content #aviasales_main_ajax_loading_window .aviasales_hotels_form_container #aviasales_hotels_banner .aviasales_hotel_button .aviasales_as-button {
+    margin: 0;
+}
+.aviasales_window_content #aviasales_main_ajax_loading_window .aviasales_hotels_form_container #aviasales_hotels_banner .aviasales_hotel_button a {
+    margin-bottom: 10px;
+}
+.aviasales_window_content #aviasales_main_ajax_loading_window .aviasales_hotels_form_container #aviasales_hotels_banner .aviasales_hint {
+    text-align: center;
+    font-size: 10px;
+    margin-top: 5px;
+    color: #009acb;
+}
+.aviasales_window_content input.non-active {
+    color: black;
+}
+.aviasales_window_content input.wrong {
+    color: red;
+    border: 1px solid #ff4444 !important;
+}
+.aviasales_window_content .aviasales_email_inactive {
+    color: #888a8a;
+}
+.aviasales_window_content .aviasales_right_adv_wrapper .aviasales_subscribe_form {
+    margin: 10px;
+}
+.aviasales_window_content .aviasales_right_adv_wrapper .aviasales_subscribe {
+    background: #cfecf8;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    padding: 15px 10px;
+    margin-bottom: 15px;
+    position: relative;
+}
+.aviasales_window_content .aviasales_right_adv_wrapper .aviasales_subscribe .aviasales_tarif_descr {
+    width: 320px;
+    font-size: 14px;
+    font-weight: 600;
+    overflow: hidden;
+}
+.aviasales_window_content .aviasales_right_adv_wrapper .aviasales_subscribe .aviasales_tarif_descr_origin_name:after {
+    content: "";
+    background: url(/assets/sprites/main_release_1_19_0-869bee0340c9a51ef68bea6d4458fbf2.png) -102px -60px no-repeat;
+    width: 16px;
+    height: 10px;
+    margin: 0 5px;
+    display: inline-block;
+}
+.aviasales_window_content .aviasales_right_adv_wrapper .aviasales_subscribe p {
+    padding: 15px 0 12px;
+    font-size: 13px;
+}
+.aviasales_window_content .aviasales_right_adv_wrapper fieldset {
+    border: 0;
+    padding: 0;
+    margin: 0;
+}
+.aviasales_window_content .aviasales_right_adv_wrapper fieldset legend {
+    padding: 0 0 15px;
+    margin: 0;
+    font-size: 18px;
+    display: block;
+    width: 100%}
+.aviasales_window_content .aviasales_right_adv_wrapper fieldset label {
+    font-size: 12px;
+    display: block;
+    cursor: pointer;
+}
+.aviasales_window_content .aviasales_right_adv_wrapper fieldset div {
+    position: relative;
+}
+.aviasales_window_content .aviasales_right_adv_wrapper fieldset .aviasales_error_label {
+    font-size: 12px;
+    bottom: 5px;
+}
+.aviasales_window_content .aviasales_right_adv_wrapper fieldset #aviasales_subscriber_email {
+    width: 200px;
+    padding-right: 140px;
+    height: 35px;
+    line-height: 34px;
+    font-size: 14px;
+}
+.aviasales_window_content .aviasales_right_adv_wrapper fieldset #aviasales_subscribe_submit_wrapper {
+    text-align: center;
+    position: absolute;
+    right: -5px;
+    top: -5px;
+}
+.aviasales_window_content .aviasales_right_adv_wrapper fieldset #aviasales_subscribe_submit_wrapper #aviasales_subscriber_submit {
+    margin: 0;
+}
+.aviasales_window_content .aviasales_right_adv_wrapper fieldset .aviasales_form_loader {
+    background: url(/assets/ajax-form-loader-a34b6aaabbaebcacf98c209aafde3d69.gif);
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    margin-top: 20px;
+    right: 140px;
+}
+.aviasales_window_content .aviasales_right_adv_wrapper fieldset .aviasales_tarif_success_message {
+    background: white;
+    right: 25px;
+    top: 9px;
+    width: 323px;
+    height: 35px;
+    padding-top: 2px;
+    position: absolute;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+}
+.aviasales_window_content p {
+    padding: 0 15px;
+    font-size: 11px;
+}
+.aviasales_window_content #aviasales_message {
+    padding-left: 70px;
+}
+.aviasales_window_content .aviasales_message_icon {
+    height: 50px;
+    width: 50px;
+    left: 10px;
+    top: 10px;
+    background-image: url(/assets/sprites/main_release_1_19_0-869bee0340c9a51ef68bea6d4458fbf2.png);
+    position: absolute;
+}
+.aviasales_window_content .aviasales_window_close {
+    display: none;
+    z-index: 10;
+}
+.aviasales_window_content .aviasales_message_close, .aviasales_window_content .aviasales_window_close {
+    position: absolute;
+    background-image: url(/assets/sprites/main_release_1_19_0-869bee0340c9a51ef68bea6d4458fbf2.png);
+    background-position: -35px -132px;
+    color: #555555;
+    height: 32px;
+    width: 32px;
+    cursor: pointer;
+    right: -15px;
+    top: -15px;
+}
+.aviasales_window_content .aviasales_message_close:hover, .aviasales_window_content .aviasales_window_close:hover {
+    background-position: -67px -132px;
+}
+.aviasales_window_content .aviasales_message_header {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+.aviasales_window_content .aviasales_error_message, .aviasales_window_content .aviasales_info_message, .aviasales_window_content .aviasales_warning_message {
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    padding: 10px;
+    width: 400px;
+}
+.aviasales_window_content .aviasales_error_message {
+    color: white;
+    background-color: #ee5751;
+}
+.aviasales_window_content .aviasales_error_message .aviasales_message_icon {
+    background-position: -5px -5px;
+}
+.aviasales_window_content .aviasales_info_message {
+    color: white;
+    background-color: #00bb43;
+}
+.aviasales_window_content .aviasales_info_message .aviasales_message_icon {
+    background-position: -68px -5px;
+}
+.aviasales_window_content .aviasales_warning_message {
+    color: black;
+    background-color: #ffc057;
+}
+.aviasales_window_content .aviasales_warning_message .aviasales_message_icon {
+    background-position: -128px -5px;
+}
+.aviasales_window_content .aviasales_iphone_alert {
+    background: #FFF;
+    padding: 20px;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+}
+.aviasales_window_content .aviasales_iphone_alert .aviasales_window_close {
+    display: block !important;
+}
+.aviasales_window_content .aviasales_iphone_alert a {
+    display: block;
+    padding: 80px 0 0;
+    font-size: 26px;
+    min-width: 200px;
+    max-width: 250px;
+    position: relative;
+    text-align: center;
+    line-height: 1.2em;
+}
+.aviasales_window_content .aviasales_iphone_alert a:before {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    display: block;
+    margin: 0 0 0 -100px;
+    width: 200px;
+    height: 69px;
+    background: url(/assets/app_store-530bc9858aeeb17fa9cf4bcf31839bd4.png) 0 50% no-repeat;
+    content: ""}
+#aviasales_search_proposals {
+    position: relative;
+}
+.aviasales_currency_code {
+    font-size: 90%;
+    font-variant: small-caps !important;
+    font-weight: 100 !important;
+    margin-left: 2px;
+}
+.aviasales_as-button.pay_btn a{
+	margin-top: 0;
+}
+.aviasales_price.price{
+	float: left;
+	margin: 10px 20px 0 0;
+}
+.aviasales_as-button.pay_btn{
+	float: right;
+}
+.aviasales_proposal_buy_button{
+	width: 350px;
+}
+/*.aviasales_proposal_buy_button {
+    background-color: #eee;
+    height: 26px;
+    top: -5px;
+    left: -5px;
+    padding: 3px;
+    position: absolute;
+    width: 100%;
+    margin: 0px;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+}*/
+/*.aviasales_proposal_buy_button a {
+    float: left;
+    right: 0px;
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 25px;
+    text-decoration: none !important;
+}
+.aviasales_proposal_buy_button a .aviasales_for_label {
+    position: relative;
+    float: left;
+    margin-left: 10px;
+    margin-top: 7px;
+    font-size: 12px;
+}
+.aviasales_proposal_buy_button a .aviasales_price {
+    margin-left: 8px;
+    float: left;
+    position: relative;
+    display: inline-block;
+    zoom: 1;
+    *display: inline;
+    font-size: 20px;
+    margin-top: 2px;
+    width: 120px;
+}
+.aviasales_proposal_buy_button a .aviasales_price .aviasales_price_value {
+    color: #000;
+}
+.aviasales_proposal_buy_button a .aviasales_as-button {
+    width: 75px;
+    margin: 0px;
+    text-align: center;
+    padding: 4px 4px !important;
+    height: 16px;
+    margin-left: 5px;
+    position: relative;
+    display: inline-block;
+    zoom: 1;
+    *display: inline;
+}
+.aviasales_proposal_buy_button a .aviasales_as-button .aviasales_button_label {
+    font-size: 14px;
+    font-weight: bold;
+}*/
+.aviasales_proposal_layout {
+    position: relative;
+    background-color: #fff;
+    padding: 10px 0px 0px 0px;
+    margin: 0px 0px 2px 0px;
+}
+.aviasales_proposal_layout .aviasales_proposal_header {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 46px;
+}
+.aviasales_proposal_layout .aviasales_proposal_header .aviasales_share {
+    position: absolute;
+    height: 24px;
+    width: 90px;
+    left: 450px;
+    top: 5px;
+}
+.aviasales_proposal_layout .aviasales_proposal_header .aviasales_share a.aviasales_social_service {
+    display: inline-block;
+    width: 23px;
+    height: 23px;
+    background-image: url(/assets/ui/social_icons-79c49d723af2824b99ce90716732d6ca.png);
+}
+.aviasales_proposal_layout .aviasales_proposal_header .aviasales_share a.aviasales_share_waiting {
+    background-image: url(/assets/ui/ajax_loader_mini-8efbea123480b2bc44c4eb3ae709a94b.gif) !important;
+    background-position: 50% 50% !important;
+    background-repeat: no-repeat;
+}
+.aviasales_proposal_layout .aviasales_proposal_header .aviasales_share .aviasales_vk:hover {
+    background-position: 0 0;
+}
+.aviasales_proposal_layout .aviasales_proposal_header .aviasales_share .aviasales_facebook:hover {
+    background-position: -24px 0px;
+}
+.aviasales_proposal_layout .aviasales_proposal_header .aviasales_share .aviasales_twitter:hover {
+    background-position: -48px 0px;
+}
+.aviasales_proposal_layout .aviasales_proposal_header .aviasales_share .aviasales_vk {
+    background-position: 0 -24px;
+}
+.aviasales_proposal_layout .aviasales_proposal_header .aviasales_share .aviasales_facebook {
+    background-position: -24px -24px;
+}
+.aviasales_proposal_layout .aviasales_proposal_header .aviasales_share .aviasales_twitter {
+    background-position: -48px -24px;
+}
+.aviasales_proposal_layout .aviasales_proposal_header .aviasales_share .aviasales_show_share_buttons {
+    right: 10px;
+    position: absolute;
+}
+.aviasales_proposal_layout .aviasales_proposal_header .aviasales_share .aviasales_proposal_share_buttons {
+    display: none;
+}
+.aviasales_proposal_layout .aviasales_proposal_header .aviasales_aircompany_big_logo {
+    width: 140px;
+    right: 10px;
+    position: absolute;
+}
+.aviasales_proposal_layout .aviasales_proposal_header .aviasales_charter {
+    position: absolute;
+    left: 241px;
+    padding: 5px;
+    font-size: 14px;
+    background-color: #ffe8a1;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+}
+.aviasales_proposal_layout .aviasales_proposal_header .aviasales_aircompany_price {
+    position: absolute;
+    top: -3px;
+    left: 234px;
+    width: 95px;
+    padding-right: 55px;
+    text-decoration: none;
+}
+.aviasales_proposal_layout .aviasales_proposal_header .aviasales_aircompany_price .aviasales_aircompany_price_label {
+    text-decoration: underline;
+    display: inline;
+}
+.aviasales_proposal_layout .aviasales_proposal_header .aviasales_aircompany_price .aviasales_aircompany_price_value {
+    color: #000;
+    display: block;
+    position: absolute;
+    top: 8px;
+    left: 100px;
+    white-space: nowrap;
+}
+.aviasales_proposal_layout .aviasales_proposal_header .aviasales_gates_count {
+    position: absolute;
+    left: 53px;
+    top: 28px;
+}
+.aviasales_proposal_layout .aviasales_proposal_header .aviasales_ico-boldarrowdown {
+    background-position: right center;
+    padding: 1px 15px 1px 1px;
+}
+.aviasales_proposal_layout .aviasales_buy_button {
+    position: absolute;
+    display: block;
+    width: 215px;
+    left: 10px;
+    z-index: 10;
+}
+.aviasales_proposal_layout .aviasales_flight_ico {
+    width: 30px;
+}
+.aviasales_proposal_layout .aviasales_flight_ico div {
+    background-image: url(/assets/airplanes.png);
+    width: 24px;
+    height: 22px;
+    margin: 14px 2px 0px 4px;
+}
+.aviasales_proposal_layout .aviasales_depart .aviasales_flight_ico div {
+    background-position: 0px 0px;
+}
+.aviasales_proposal_layout .aviasales_return .aviasales_flight_ico div {
+    background-position: 24px 0px;
+}
+.aviasales_proposal_layout .aviasales_depart, .aviasales_proposal_layout .aviasales_return {
+    position: relative;
+    cursor: pointer;
+    margin: 0px 10px 0px 10px;
+    border-top: 1px solid #CCC;
+    overflow: hidden;
+}
+.aviasales_proposal_layout div.aviasales_depart:hover, .aviasales_proposal_layout div.aviasales_return:hover {
+    background-color: #efefef;
+}
+.aviasales_proposal_layout .aviasales_flight_date, .aviasales_proposal_layout .aviasales_flight_ico, .aviasales_proposal_layout .aviasales_flight_depart, .aviasales_proposal_layout .aviasales_flight_data, .aviasales_proposal_layout .aviasales_flight_landing, .aviasales_proposal_layout .aviasales_big_right_arrow {
+    position: relative;
+    display: inline-block;
+    height: 47px;
+    vertical-align: top;
+    padding: 0 0px 0 0;
+    zoom: 1;
+    *display: inline;
+}
+.aviasales_proposal_layout .aviasales_big_right_arrow {
+    font-size: 15px;
+    margin-top: 15px;
+    width: 15px;
+    height: 10px;
+}
+.aviasales_proposal_layout .aviasales_flight_date {
+    width: 100px;
+}
+.aviasales_proposal_layout .aviasales_flight_date div {
+    margin-top: 16px;
+    position: relative;
+    font-size: 16px;
+    color: #777;
+    letter-spacing: -0.1em;
+}
+.aviasales_proposal_layout .aviasales_flight_data {
+    width: 240px;
+}
+.aviasales_proposal_layout .aviasales_place_data {
+    width: 100%;
+    margin-top: 6px;
+}
+.aviasales_proposal_layout .aviasales_place_data .aviasales_time, .aviasales_proposal_layout .aviasales_place_data .aviasales_date {
+    position: absolute;
+    position: relative;
+    display: inline-block;
+    height: 20px;
+    zoom: 1;
+    *display: inline;
+}
+.aviasales_proposal_layout .aviasales_flight_depart, .aviasales_proposal_layout .aviasales_flight_landing {
+    width: 170px;
+}
+.aviasales_proposal_layout .aviasales_flight_depart .aviasales_time, .aviasales_proposal_layout .aviasales_flight_depart .aviasales_date, .aviasales_proposal_layout .aviasales_flight_landing .aviasales_time, .aviasales_proposal_layout .aviasales_flight_landing .aviasales_date {
+    font-size: 12px;
+}
+.aviasales_proposal_layout .aviasales_flight_depart .aviasales_place_name, .aviasales_proposal_layout .aviasales_flight_landing .aviasales_place_name {
+    font-size: 14px;
+    margin-bottom: 3px;
+}
+.aviasales_proposal_layout .aviasales_flight_depart .aviasales_place_name .aviasales_iata, .aviasales_proposal_layout .aviasales_flight_landing .aviasales_place_name .aviasales_iata {
+    margin-left: 5px;
+}
+.aviasales_proposal_layout .aviasales_flight_depart .aviasales_time, .aviasales_proposal_layout .aviasales_flight_landing .aviasales_time {
+    width: 40px;
+}
+.aviasales_proposal_layout .aviasales_flight_depart .aviasales_date, .aviasales_proposal_layout .aviasales_flight_landing .aviasales_date {
+    width: 80px;
+    color: #999;
+}
+.aviasales_proposal_layout .aviasales_flight_landing {
+    margin-left: 20px;
+}
+.aviasales_proposal_layout .aviasales_proposal_flight_duration {
+    color: #777;
+    font-size: 11px;
+}
+.aviasales_proposal_layout .aviasales_proposal_flight_duration .aviasales_duration_label {
+    margin-top: 11px;
+}
+.aviasales_proposal_layout .aviasales_proposal_flight_full, .aviasales_proposal_layout .aviasales_proposal_flight_short {
+    position: relative;
+}
+.aviasales_proposal_layout .aviasales_proposal_short_layout {
+    position: relative;
+}
+.aviasales_proposal_layout .aviasales_proposal_short_layout .aviasales_proposal_flight_short .aviasales_flight_data .aviasales_no_stops_message, .aviasales_proposal_layout .aviasales_proposal_short_layout .aviasales_proposal_flight_short .aviasales_flight_data .aviasales_stops_data {
+    position: relative;
+    width: 100%;
+    height: 100%}
+.aviasales_proposal_layout .aviasales_proposal_short_layout .aviasales_proposal_flight_short .aviasales_flight_data .aviasales_flight_stop_data {
+    text-align: center;
+    position: relative;
+    color: #999;
+}
+.aviasales_proposal_layout .aviasales_proposal_short_layout .aviasales_proposal_flight_short .aviasales_flight_data .aviasales_flight_stop_data div {
+    display: inline;
+    margin: 0px 3px;
+}
+.aviasales_proposal_layout .aviasales_proposal_short_layout .aviasales_proposal_flight_short .aviasales_flight_data .aviasales_flight_stop_data .aviasales_details {
+    margin-top: 4px;
+    display: block !important;
+}
+.aviasales_proposal_layout .aviasales_proposal_short_layout .aviasales_proposal_flight_short .aviasales_flight_data .aviasales_last .aviasales_right_arrow {
+    display: none !important;
+}
+.aviasales_proposal_layout .aviasales_proposal_short_layout .aviasales_proposal_flight_short .aviasales_flight_data .aviasales_place_data {
+    display: inline-block;
+    zoom: 1;
+    *display: inline;
+}
+.aviasales_proposal_layout .aviasales_proposal_short_layout .aviasales_proposal_flight_short .aviasales_flight_data .aviasales_place_data .aviasales_iata, .aviasales_proposal_layout .aviasales_proposal_short_layout .aviasales_proposal_flight_short .aviasales_flight_data .aviasales_place_data .aviasales_time {
+    color: #999 !important;
+    position: relative;
+    display: block;
+    text-align: center;
+}
+.aviasales_proposal_layout .aviasales_proposal_short_layout .aviasales_proposal_flight_short .aviasales_flight_data .aviasales_place_data .aviasales_time {
+    font-size: 10px;
+}
+.aviasales_proposal_layout .aviasales_proposal_short_layout .aviasales_proposal_flight_short .aviasales_no_stops_message {
+    display: none;
+    text-align: center;
+    margin-top: 17px;
+    height: 20px;
+    color: #777;
+}
+.aviasales_proposal_layout .aviasales_proposal_short_layout .aviasales_proposal_flight_short .aviasales_no_stops .aviasales_stops_data {
+    display: none !important;
+}
+.aviasales_proposal_layout .aviasales_proposal_short_layout .aviasales_proposal_flight_short .aviasales_no_stops .aviasales_no_stops_message {
+    position: relative;
+    display: inline-block !important;
+    zoom: 1;
+    *display: inline;
+}
+.aviasales_proposal_layout .aviasales_proposal_full_layout {
+    position: relative;
+}
+.aviasales_proposal_layout .aviasales_proposal_full_layout .aviasales_flight_data {
+    text-align: center;
+    display: inline-block;
+    zoom: 1;
+    *display: inline;
+}
+.aviasales_proposal_layout .aviasales_proposal_full_layout .aviasales_flight_data .aviasales_flight_data_wrapper {
+    width: 100%;
+    height: 50px;
+}
+.aviasales_proposal_layout .aviasales_proposal_full_layout .aviasales_flight_data .aviasales_flight_data_wrapper table {
+    height: 100%}
+.aviasales_proposal_layout .aviasales_proposal_full_layout .aviasales_flight_data .aviasales_aircompany_logo, .aviasales_proposal_layout .aviasales_proposal_full_layout .aviasales_flight_data .aviasales_flight_aircraft, .aviasales_proposal_layout .aviasales_proposal_full_layout .aviasales_flight_data .aviasales_flight_number, .aviasales_proposal_layout .aviasales_proposal_full_layout .aviasales_flight_data .aviasales_flight_duration {
+    font-size: 11px;
+    text-align: center;
+    vertical-align: middle;
+}
+.aviasales_proposal_layout .aviasales_proposal_full_layout .aviasales_flight_data .aviasales_flight_duration {
+    width: 45px;
+}
+.aviasales_proposal_layout .aviasales_proposal_full_layout .aviasales_flight_data .aviasales_aircompany_logo {
+    width: 70px;
+}
+.aviasales_proposal_layout .aviasales_proposal_full_layout .aviasales_flight_data .aviasales_flight_aircraft {
+    width: 80px;
+}
+.aviasales_proposal_layout .aviasales_proposal_full_layout .aviasales_flight_data .aviasales_flight_number {
+    width: 50px;
+}
+.aviasales_proposal_layout .aviasales_proposal_full_layout .aviasales_stop_data {
+    text-align: center;
+    width: 100%}
+.aviasales_proposal_layout .aviasales_proposal_full_layout .aviasales_stop_data .aviasales_stars_rating {
+    display: inline-block;
+    margin-left: 5px;
+}
+.aviasales_proposal_tooltip_content {
+    padding: 5px 6px 5px 10px;
+}
+.aviasales_gate_entry {
+    width: 180px;
+    padding: 0px;
+    position: relative;
+}
+.aviasales_gate_entry .aviasales_payment_icons {
+    position: relative;
+    margin-top: 4px;
+}
+.aviasales_gate_entry .aviasales_price {
+    font-size: 15px !important;
+    width: 90px !important;
+    margin-top: 5px !important;
+}
+.aviasales_gate_entry .aviasales_gate_name {
+    position: relative;
+    width: 100%;
+    padding: 2px 0px;
+    text-align: left;
+}
+.aviasales_gate_entry .aviasales_buy_button {
+    position: relative;
+    height: 30px;
+    margin: 4px 0px;
+}
+.aviasales_gate_entry .aviasales_buy_button .aviasales_as-button {
+    margin: 0px;
+}
+.aviasales_exp, .aviasales_euroset, .aviasales_cash, .aviasales_card, .aviasales_yandex_money, .aviasales_web_money, .aviasales_terminal, .aviasales_svyaznoy, .aviasales_bank, .aviasales_contact, .aviasales_elexnet {
+    background-image: url(/assets/sprites/payments-960c59faba42beed337a9faa116957fd.png);
+    height: 15px;
+    position: relative;
+    display: inline-block;
+    zoom: 1;
+    *display: inline;
+    margin-left: 1px;
+    margin-bottom: 1px;
+}
+.aviasales_exp {
+    width: 22px;
+    background-position: 125px 0px;
+}
+.aviasales_euroset {
+    width: 15px;
+    background-position: 206px 0px;
+}
+.aviasales_cash {
+    width: 22px;
+    background-position: 191px 0px;
+}
+.aviasales_card {
+    width: 44px;
+    background-position: 169px 0px;
+}
+.aviasales_yandex_money {
+    width: 15px;
+    background-position: 58px 0px;
+}
+.aviasales_web_money {
+    width: 15px;
+    background-position: 73px 0px;
+}
+.aviasales_terminal {
+    width: 15px;
+    background-position: 103px 0px;
+}
+.aviasales_svyaznoy {
+    width: 15px;
+    background-position: 88px 0px;
+}
+.aviasales_contact {
+    width: 26px;
+    background-position: 26px 0px;
+}
+.aviasales_elexnet {
+    width: 17px;
+    background-position: 43px 0px;
+}
+.aviasales_shadow {
+    position: relative;
+    background-image: url(/assets/ui/shadow-f533ab18c0ac720d2e245ca27106bf22.png);
+    height: 13px;
+    width: 100%;
+    background-position: center;
+}
+.aviasales_proposal_link_message {
+    width: 400px;
+    background: #fff;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    padding: 10px;
+}
+.aviasales_proposal_link_message .aviasales_message_text {
+    margin-bottom: 10px;
+}
+.aviasales_proposal_link_message .aviasales_show_proposal_button {
+    margin: 0px;
+    width: 100px;
+    text-align: center;
+    left: 130px;
+    position: relative;
+}
+.aviasales_tickets_advices {
+    position: relative;
+    z-index: 10;
+    padding: 10px;
+}
+.aviasales_tickets_advices .aviasales_advice:before {
+    content: "— ";
+    color: #009FCF;
+}
+.aviasales_tickets_advices .aviasales_advice {
+    font-size: 12px;
+    text-indent: -1.3em;
+    margin-bottom: 10px;
+    padding: 0px;
+    padding-left: 15px;
+}
+#aviasales_search_timeout {
+    background: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+}
+#aviasales_search_timeout .buttons {
+    margin: 20px 0 10px;
+}
+#aviasales_search_timeout .message {
+    margin: 10px;
+}
+
+
+.aviasales_proposal{
+    margin-bottom:20px;
+    border-bottom: 3px solid #9cd60f;
+}

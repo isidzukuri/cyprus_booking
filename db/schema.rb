@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140216134939) do
+ActiveRecord::Schema.define(:version => 20140218101614) do
 
   create_table "admin_modules", :force => true do |t|
     t.string   "name"
@@ -37,6 +37,14 @@ ActiveRecord::Schema.define(:version => 20140216134939) do
     t.text     "value"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "airports", :force => true do |t|
+    t.string "name_ru"
+    t.string "name_en"
+    t.string "code"
+    t.string "city"
+    t.string "country"
   end
 
   create_table "apartments_bookings", :force => true do |t|

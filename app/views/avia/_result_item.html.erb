@@ -1,150 +1,106 @@
-<!--                         <li class="car_item">
-                        	<% fly["direct_flights"].each do |seg|%>
-                                <ul class="item_elms">
-                                    <li class="desc">
-                                        <div class="lft">
-                                        	<%=image_tag "airline_logos/#{seg['airline']}.png" ,:size=>"80x30"%>
-                                        </div>
-                                        <div class="rt">
-                                            <h3><%= seg['aircraft']%><span class="analog"> <%="#{seg['airline']} #{seg['number']}"%></span></h3>
-                                            <p class="car_cls"><%=t("all.avia.in_flight",:hour=>seg['duration'].to_i/60,:min=>seg['duration'].to_i%60)%></p>
-                                            <ul class="car_options">
-                                                <li><%="#{seg["origin"]} -> #{seg["destination"]}"%></li>
-                                            </ul>
-                                        </div>  
-                                    </li>
-                                    <li class="amount">
-                                        <ul>
-                                            <li class="plc_count">
-                                                <p><%=t("all.avia.dep")%></p>
-                                                <span><%=l(Time.at(seg["departure"].to_i),:format=>:short)%></span>
-                                                <p><%=t("all.avia.arr")%></p>
-                                                <span><%=l(Time.at(seg["arrival"].to_i),:format=>:short)%></span>
-                                            </li>
-                                            
-                                        </ul>
-                                    </li>
-                                    
-                                </ul>
-                            <%end%>
-                            <% if fly["return_flights"].present? %>
-                                <% fly["return_flights"].each do |seg|%>
-                                    <ul class="item_elms">
-                                        <li class="desc">
-                                            <div class="lft">
-                                                <%=image_tag "airline_logos/#{seg['airline']}.png" ,:size=>"80x30"%>
-                                            </div>
-                                            <div class="rt">
-                                                <h3><%= seg['aircraft']%><span class="analog"> <%="#{seg['airline']} #{seg['number']}"%></span></h3>
-                                                <p class="car_cls"><%=t("all.avia.in_flight",:hour=>seg['duration'].to_i/60,:min=>seg['duration'].to_i%60)%></p>
-                                                <ul class="car_options">
-                                                    <li><%="#{seg["origin"]} -> #{seg["destination"]}"%></li>
-                                                </ul>
-                                            </div>  
-                                        </li>
-                                        <li class="amount">
-                                            <ul>
-                                                <li class="plc_count">
-                                                    <p><%=t("all.avia.dep")%></p>
-                                                    <span><%=l(Time.at(seg["departure"].to_i),:format=>:short)%></span>
-                                                    <p><%=t("all.avia.arr")%></p>
-                                                    <span><%=l(Time.at(seg["arrival"].to_i),:format=>:short)%></span>
-                                                </li>
-                                                
-                                            </ul>
-                                        </li>
-                                        
-                                    </ul>
-                                <%end%>
-                            <%end%>
-                            <ul class="item_elms">
-                                <li class="amount">
-                                    <li class="price">
-                                                <span><%="#{(Exchange.convert(:RUR, $currency) *fly['native_prices'].values.first.to_f).to_i} #{t("all.currencies_symbols.#{$currency}")}"%></span>
-                                    </li>
-                                </li>
-                                <li class="pay_btn">
-                                    <a target="_blank" href="<%= @url.call(@results["search_id"],fly['order_urls'].values.first) %>"><%=t("all.choose")%><span>></span></a>
-                                </li>
-                            </ul>
-                        </li>
+<% current_gate = @results["gates_info"].select{|f| f["id"].to_i == fly['native_prices'].keys.map(&:to_i).first }.first# @results["gates_info"].select{|g| g["id"].to_i == fly['order_urls'].keys.first}.first%>
+<% #raise current_gate["currency_code"].upcase.to_sym.to_s%>
 
- -->
-<li class="fly_el">
-	<table>
-		<% fly["direct_flights"].each_with_index do |seg,i|%>
-                <tr class="item_elms">
-                    <td style="width: 150px;">
-                        <%=image_tag "airline_logos/#{seg['airline']}.png" ,:size=>"120x50"%>
-                    </td>
-                    <td style="width: 250px;">
-                        <h3>
-                            <%= seg['aircraft']%>
-                            <span class="analog"> <%="#{seg['airline']} #{seg['number']}"%></span>
-                        </h3>
-                        <p class="car_cls"><%=t("all.avia.in_flight",:hour=>seg['duration'].to_i/60,:min=>seg['duration'].to_i%60)%>
-                        </p>
-                        <b style="font-size: 15px;"><%="#{seg["origin"]} → #{seg["destination"]}"%></b>
-                    </td>
-                    <td  class="hghg">
-                        <p class="fgfg"><%=t("all.avia.dep")%></p>
-                                                    <b><%=l(Time.at(seg["departure"].to_i),:format=>:short)%></b>
-                                                    <%if true%>
-                                                    <p class="fgfg"><%=t("all.avia.arr")%></p>
-                                                    <b><%=l(Time.at(seg["arrival"].to_i),:format=>:short)%></b>
-                                                    <%end%>
-                    </td>
-                </tr>
-		<%end%>
-		<% if fly["return_flights"].present? %>
-			<% fly["return_flights"].each_with_index do |seg,i|%>
-                <tr class="item_elms">
-                    <td style="width: 150px;">
-                        <%=image_tag "airline_logos/#{seg['airline']}.png" ,:size=>"120x50"%>
-                    </td>
-                    <td style="width: 250px;">
-                        <h3>
-                            <%= seg['aircraft']%>
-                            <span class="analog"> <%="#{seg['airline']} #{seg['number']}"%></span>
-                        </h3>
-                        <p class="car_cls"><%=t("all.avia.in_flight",:hour=>seg['duration'].to_i/60,:min=>seg['duration'].to_i%60)%>
-                        </p>
-                        <b style="font-size: 15px;"><%="#{seg["origin"]} → #{seg["destination"]}"%></b>
-                    </td>
-                    <td class="hghg">
-                        <p class="fgfg"><%=t("all.avia.dep")%></p>
-                                                    <b><%=l(Time.at(seg["departure"].to_i),:format=>:short)%></b>
-                                                    <%if true%>
-                                                    <p class="fgfg"><%=t("all.avia.arr")%></p>
-                                                    <b><%=l(Time.at(seg["arrival"].to_i),:format=>:short)%></b>
-                                                    <%end%>
-                    </td>
-                </tr>
-			<%end%>
-		<%end%>
-	</table>
-    <table>
-        <tr class="item_elms">
-            <td class="price pay_btn">
-                <span><%="#{(Exchange.convert(:RUR, $currency) *fly['native_prices'].values.first.to_f).to_i} #{t("all.currencies_symbols.#{$currency}")}"%>
-                </span>
-                <a target="_blank" href="<%= @url.call(@results["search_id"],fly['order_urls'].values.first) %>">
-                    <%=t("all.choose")%>
-                    <span style="color:#ffffff;font-size: 16pt;">></span>
-                </a>
-            </td>
-        </tr>
-<!--         <tr class="item_elms">
-            <td  class="pay_btn">
-                <a target="_blank" href="<%= @url.call(@results["search_id"],fly['order_urls'].values.first) %>"><%=t("all.choose")%><span>></span></a>
-            </td>
-        </tr> -->
-    </table>
-</li>
-<script type="text/javascript">
-    $(document).ready(function(){
-        $(".fly_el").each(function(){
-            $(this).find("table:last").height($(this).find("table:first").height())
-        })
-    })
-</script>
+<div class="aviasales_proposal">
+   <div class="aviasales_proposal_layout">
+      <div class="aviasales_buy_button">
+         <div class="aviasales_proposal_buy_button item_elms">
+            
+               <div class="aviasales_price price"><span class="aviasales_price_value"><%=(Exchange.convert(current_gate["currency_code"].upcase.to_sym, $currency) *fly['native_prices'].values.first.to_f).to_i%></span><span class="aviasales_price_fraction"></span><span class="aviasales_currency_code"><%=t("all.currencies_symbols.#{$currency}")%></span></div>
+               <div class="aviasales_as-button pay_btn">
+                  <a target="_blank" class="aviasales_tooltiped" href="<%= @url.call(@results["search_id"],fly['order_urls'].values.first) %>" class="aviasales_button_label"><%=t("all.choose")%><span style="color:#ffffff;font-size: 16pt;">></span></a>
+               </div>
+            
+         </div>
+      </div>
+      <div class="aviasales_proposal_header">
+         <div class="aviasales_aircompany_big_logo"><%=image_tag "http://engine.aviasales.ru/images/airlines/png/#{(fly["main_airline"].nil? ? fly["direct_flights"].first["airline"] : fly["main_airline"])}@2x.png?" %>
+         </div>
+      </div>
+      <div class="aviasales_depart">
+         <div class="aviasales_proposal_full_layout">
+            <div class="aviasales_proposal_flight_full">
+               <div class="aviasales_flight_ico">
+                  <div></div>
+               </div>
+               <div class="aviasales_flight_depart">
+                  <div class="aviasales_place_data">
+                     <div class="aviasales_place_name"><span class="aviasales_tooltiped" ><%= Airport.search(fly["direct_flights"].first['origin'])%> <span class="aviasales_iata"><%=fly["direct_flights"].first['origin']%></span></span></div>
+                     <div class="aviasales_time"><%=l(Time.at(fly["direct_flights"].first['departure']),:format=>"%H:%S")%></div>
+                     <div class="aviasales_date"><%=l(Time.at(fly["direct_flights"].first['departure']),:format=>"%a, %e %b")%></div>
+                  </div>
+               </div>
+               <div class="aviasales_big_right_arrow">→</div>
+                   <div class="aviasales_flight_data">
+                      <table class="aviasales_stops_data" border="0" width="100%" cellpadding="0" cellspacing="0">
+                         <tbody>
+                            <tr>
+                               <td style="display: inline;" class="aviasales_flight_stop_data">
+                                  <% total_travel = fly["direct_flights"].map{|f| f["duration"]}.sum%>
+                                  <div style="display: inline;" class="aviasales_proposal_flight_duration"><%=t("all.avia.travel_total",:ch=>total_travel/60,:min=>total_travel%60) %></div>
+                                  <div style="display: inline;" class="aviasales_proposal_flight_label">
+                                     <%=t("all.avia.in_travel")%>,
+                                  </div>
+                                  <div style="display: inline;" class="aviasales_stops_count"><%= fly["direct_flights"].count > 0 ? t("all.avia.peresadok",:num=>fly["direct_flights"].count) : t("all.avia.bez_peresadok")%></div>
+                               </td>
+                            </tr>
+                         </tbody>
+                      </table>
+                   </div>
+               <div class="aviasales_big_right_arrow">→</div>
+               <div class="aviasales_flight_landing">
+                  <div class="aviasales_place_data">
+                     <div class="aviasales_place_name"><span class="aviasales_tooltiped" ><%= Airport.search(fly["direct_flights"].last['destination'])%> <span class="aviasales_iata"><%=fly["direct_flights"].last['destination']%></span></span></div>
+                     <div class="aviasales_time"><%=l(Time.at(fly["direct_flights"].last['arrival']),:format=>"%H:%S")%></div>
+                     <div class="aviasales_date"><%=l(Time.at(fly["direct_flights"].last['arrival']),:format=>"%a, %e %b")%></div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <% if fly["return_flights"].present? %>
+          <div class="aviasales_return">
+             <div class="aviasales_proposal_short_layout">
+                <div class="aviasales_proposal_flight_short">
+                   <div class="aviasales_flight_ico">
+                      <div></div>
+                   </div>
+                   <div class="aviasales_flight_depart">
+                      <div class="aviasales_place_data">
+                         <div class="aviasales_place_name"><span class="aviasales_tooltiped" ><%= Airport.search(fly["return_flights"].last['origin'])%> <span class="aviasales_iata"><%=fly["return_flights"].first['origin']%></span></span></div>
+                         <div class="aviasales_time"><%=l(Time.at(fly["return_flights"].first['departure']),:format=>"%H:%S")%></div>
+                         <div class="aviasales_date"><%=l(Time.at(fly["return_flights"].first['departure']),:format=>"%a, %e %b")%></div>
+                      </div>
+                   </div>
+                   <div class="aviasales_big_right_arrow">→</div>
+                   <div class="aviasales_flight_data">
+                      <table class="aviasales_stops_data" border="0" width="100%" cellpadding="0" cellspacing="0">
+                         <tbody>
+                            <tr>
+                               <td class="aviasales_flight_stop_data">
+                                  <% total_travel = fly["return_flights"].map{|f| f["duration"]}.sum%>
+                                  <div class="aviasales_proposal_flight_duration"><%=t("all.avia.travel_total",:ch=>total_travel/60,:min=>total_travel%60) %></div>
+                                  <div class="aviasales_proposal_flight_label">
+                                     <%=t("all.avia.in_travel")%>,
+                                  </div>
+                                  <div class="aviasales_stops_count"><%= fly["return_flights"].count > 0 ? t("all.avia.peresadok",:num=>fly["return_flights"].count) : t("all.avia.bez_peresadok")%></div>
+                               </td>
+                            </tr>
+                         </tbody>
+                      </table>
+                   </div>
+                   <div class="aviasales_big_right_arrow">→</div>
+                   <div class="aviasales_flight_landing">
+                      <div class="aviasales_place_data">
+                         <div class="aviasales_place_name"><span class="aviasales_tooltiped" ><%= Airport.search(fly["return_flights"].last['destination'])%><span class="aviasales_iata"><%=fly["return_flights"].last['destination']%></span></span></div>
+                         <div class="aviasales_time"><%=l(Time.at(fly["return_flights"].last['arrival']),:format=>"%H:%S")%></div>
+                         <div class="aviasales_date"><%=l(Time.at(fly["return_flights"].last['arrival']),:format=>"%a, %e %b")%></div>
+                      </div>
+                   </div>
+                </div>
+             </div>
+             <div class="aviasales_proposal_full_layout"></div>
+          </div>
+      <%end%>
+   </div>
+</div>

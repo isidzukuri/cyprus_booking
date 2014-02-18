@@ -8,6 +8,10 @@ ru:
       user: "Код с картинки введен не верно"
   all:
     avia:
+      bez_peresadok: Без пересадок
+      peresadok: "Пересадок: %{num}"
+      in_travel: в пути
+      travel_total: "%{ch}ч %{min}мин"
       dep: Вылет
       arr: Прилет
       in_flight: "В воздухе %{hour} час(а) %{min} минут(a)"
@@ -178,7 +182,7 @@ ru:
       USD: "$"
       EUR: "€"
       UAH: "₴"
-      RUR: "$"
+      RUR: "ք"
     pci_desc: Передача информации защищена сертификатом SSL 128 бит подписанным компанией Thawte. Сайт в полной мере отвечает стандартам безопасности платежных систем Visa и MasterCard (PCI compliancy). Надежность подтверждена сертификатом HackerSafe от McAfee.
     card_num: Номер карты (16 цифр)
     card_owner: Имя владельца карты

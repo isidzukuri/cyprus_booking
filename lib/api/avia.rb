@@ -35,7 +35,7 @@ class Api::Avia
 	end
 
 	def locale
-		%w(ru en de).include?(I18n.locale) ? I18n.locale : :en
+		%w(ru en de).include?(I18n.locale) ? I18n.locale : :ru
 	end
   
 end

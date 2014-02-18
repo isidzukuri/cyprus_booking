@@ -654,6 +654,11 @@ ul {
      background-image: url("/assets/sprite.png");
       background-repeat: no-repeat;
 }
+.left ul.list li.avia{
+     background-image: url("/assets/plane.png");
+      background-repeat: no-repeat;
+      background-position: 20px 25px;
+}
 
 .list li.hotels{
     background-position: 3px -100px;

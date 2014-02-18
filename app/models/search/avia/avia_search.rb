@@ -32,7 +32,7 @@ class AviaSearch
   end
 
   def to_title
-   "#{self.from_name} -> #{self.to_name} #{self.depart_date.strftime('%d.%m.%Y')} - #{self.return_date.strftime('%d.%m.%Y')}"
+   "#{self.from_name} &#10175; #{self.to_name} #{self.depart_date.strftime('%d.%m.%Y')} - #{self.return_date.strftime('%d.%m.%Y')}"
   end
 
 

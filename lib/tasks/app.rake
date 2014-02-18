@@ -97,6 +97,16 @@ namespace :app do
     # end
   end
 
+  desc "Import Airports"
+  task :import_airports => :environment do
+    del_query = Rails.env == "development" ? "DELETE FROM airports;" : "TRUNCATE TABLE airports;"
+    queries   = File.read("#{Rails.root}/db/airports.sql").split(";")
+    ActiveRecord::Base.connection.execute del_query
+    queries.each do |query|
+      ActiveRecord::Base.connection.execute query
+    end
+  end
+
 end
 
 def api
