@@ -3704,8 +3704,8 @@ top: 0;
     margin-right: 20px;
 }
 .html_ input.alpha_1.disabled{
-    background-color: rgba(0, 46, -1, 0.5);
-    color: rgba(0, 46, -1, 0.5);
+    background-color: rgba(0, 46, 0, 0.5);
+    color: rgba(0, 46, 0, 0.5);
 }
 .search_forms .flight_data .sbSelector{
     width: 80px;
